@@ -1,0 +1,60 @@
+/* Cerulean Theme CSS */
+
+/* Global Styles */
+body {
+    background-color: #fff; /* White background */
+    color: #231F20; /* Dark text color */
+    font-family: Arial;
+    font-size: 11pt;
+
+}
+
+h1 {
+  color: #005EB8;
+  font-weight: 150;
+}
+
+h2 {
+  color: #005EB8;
+  font-weight: 150;
+}
+
+h3 {
+  color: #005EB8;
+  font-weight: 100;
+}
+
+h4 {
+  color: #005EB8;
+  font-weight: 50
+}
+
+hr {
+  color: #005EB8;
+  border-color: #005EB8;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #005EB8; /* Cerulean blue background */
+    border-color: #005EB8; /* Cerulean blue border */
+    color: #fff; /* White text color */
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #005EB8; /* Cerulean blue button background */
+    border-color: #005EB8; /* Cerulean blue button border */
+    color: #fff; /* White text color */
+}
+
+/* Links Styles */
+a {
+    color: #005EB8; /* Cerulean blue link color */
+}
+
+/* Add more styles as needed */
+
+.toc.float-toc {
+    margin-bottom: 20px; /* Adjust the margin as needed */
+}
