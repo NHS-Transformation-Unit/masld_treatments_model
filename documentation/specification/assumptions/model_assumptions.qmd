@@ -1,0 +1,82 @@
+---
+title: "Development of MASLD Treatment Model Assumptions"
+bibliography: ../../references/model_assumptions_references.bib
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "01/12/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../../src/config/nhse_theme.css
+
+---
+
+# Introduction
+The purpose of this document is to identify the relevant and appropriate sources for each of the MASLD treatment model assumptions. This will include:
+
+* An explanation of __why__ this assumption needs to be determined.
+* Discussion of literature that provides estimates of the assumption including the __geographical area__, __time period__ of the data collection and any important __limitations__.
+* The __suggested value__ of this assumption to be used in the model and the range of __sensitivities__ to be applied.
+
+
+***
+
+# Assumptions Development
+
+## MASLD & MASH Prevalence
+
+### Why is this required?
+The prevalence of MASLD & MASH is necessary to establish the population of patients that could be considered for each of the four treatment options. By establishing the prevalence this will enable the initial population to be calculated for MASLD patients across England. Further assumptions will then be applied to determine the percentage of this population that is eligible for the treatment.
+
+### Findings from Literature
+
+| **Reference**                 | **Estimate of Prevalence (95%CI)**| **Location**  | **Comments**                     |
+|-------------------------------|-----------------------------------|---------------|----------------------------------|
+| [@lekakis2024naturalhistmasld]| MASLD: 32% (30 - 35%)             | Global        | Meta-analysis of NAFLD worldwide |
+| [@younossi2016globalnafld]    | MASLD: 25.2% (22.1 - 28.7%)       | Global        | Meta-analysis of NAFLD           |
+| [@younossi2019globalhealth]   | MASLD: 25%                        | Global        | Review of global risk factors    |
+| [@younossi2019globalhealth]   | MASLD: 24%                        | Europe        | Review of global risk factors    |
+| [@younossi2023systematic]     | MASLD: 25.1% (20.6 - 30.3%)       | Western Europe| Systematic Review                |
+| [@younossi2023systematic]     | MASLD: 38.0% (33.7 - 42.5%)       | Global        | Systematic Review - 2016 to 2019 |
+| [@alenezi2022ukprev]          | MASLD: 23.7% (20.6 - 26.8%)       | UK            | Systematic Review and meta-analysis |
+| [@younossi2023systematic]     | MASH: 5.27%                       | Global        | Systematic Review                |
+| [@younossi2023systematic]     | MASH: 4.02%                       | Western Europe| Systematic Review                |
+| [@younossi2023systematic]     | MASH: 4.02%                       | Western Europe| Systematic Review                |
+| [@younossi2019globalhealth]   | MASH: 3 - 5%                      | Global        | Review of global risk factors    |
+
+### Suggested Model Inputs and Sensitivites
+
+<br/>
+
+## MASLD Incidence
+
+### Why is this required?
+The modelling of future treatments will need to run over a number of years, this modelling period is still to be confirmed. Therefore, consideration needs to be given to the number of new patients diagnosed with MASLD who may become eligible for treatment each year, i.e. the incidence rate. This will ensure that modelling future year treatment activities and associated costs account accurately for future demand.
+
+### Findings from Literature
+
+### Suggested Model Inputs and Sensitivites
+
+<br/>
+
+## MASLD and MASH Progression
+
+### Why is this required?
+The modelling of future treatments will need to run over a number of years, this modelling period is still to be confirmed. Therefore, consideration needs to be given to how patients in each of the MASLD and MASH sub-groups will progress during this period.
+
+For example, how many patients with a Fibrosis score of 2 might progress to a Fibrosis score of 3 during that year and no-longer be eligible for a specific treatment? Likewise consideration will need to be given to patient's who see an improvement in the condition of their liver through new treatments or through lifestyle changes.
+
+### Findings from Literature
+
+
+### Suggested Model Inputs and Sensitivites
+
+<br/>
+
+# References
+
+::: {#refs}
+:::
