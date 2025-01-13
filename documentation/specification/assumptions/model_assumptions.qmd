@@ -33,19 +33,30 @@ The prevalence of MASLD & MASH is necessary to establish the population of patie
 
 ### Findings from Literature
 
-| **Reference**                 | **Estimate of Prevalence (95%CI)**| **Location**  | **Comments**                     |
-|-------------------------------|-----------------------------------|---------------|----------------------------------|
-| [@lekakis2024naturalhistmasld]| MASLD: 32% (30 - 35%)             | Global        | Meta-analysis of NAFLD worldwide |
-| [@younossi2016globalnafld]    | MASLD: 25.2% (22.1 - 28.7%)       | Global        | Meta-analysis of NAFLD           |
-| [@younossi2019globalhealth]   | MASLD: 25%                        | Global        | Review of global risk factors    |
-| [@younossi2019globalhealth]   | MASLD: 24%                        | Europe        | Review of global risk factors    |
-| [@younossi2023systematic]     | MASLD: 25.1% (20.6 - 30.3%)       | Western Europe| Systematic Review                |
-| [@younossi2023systematic]     | MASLD: 38.0% (33.7 - 42.5%)       | Global        | Systematic Review - 2016 to 2019 |
+The table below provides an overview of the estimates of the prevalence of MASLD and MASH from relevant literature:
+
+| **Reference**                 | **Estimate of Prevalence (95%CI)**| **Location**  | **Comments**                        |
+|-------------------------------|-----------------------------------|---------------|-------------------------------------|
+| [@lekakis2024naturalhistmasld]| MASLD: 32% (30 - 35%)             | Global        | Meta-analysis of NAFLD worldwide    |
+| [@younossi2016globalnafld]    | MASLD: 25.2% (22.1 - 28.7%)       | Global        | Meta-analysis of NAFLD              |
+| [@younossi2019globalhealth]   | MASLD: 25%                        | Global        | Review of global risk factors       |
+| [@younossi2019globalhealth]   | MASLD: 24%                        | Europe        | Review of global risk factors       |
+| [@younossi2023systematic]     | MASLD: 25.1% (20.6 - 30.3%)       | Western Europe| Systematic Review                   |
+| [@younossi2023systematic]     | MASLD: 38.0% (33.7 - 42.5%)       | Global        | Systematic Review - 2016 to 2019    |
 | [@alenezi2022ukprev]          | MASLD: 23.7% (20.6 - 26.8%)       | UK            | Systematic Review and meta-analysis |
-| [@younossi2023systematic]     | MASH: 5.27%                       | Global        | Systematic Review                |
-| [@younossi2023systematic]     | MASH: 4.02%                       | Western Europe| Systematic Review                |
-| [@younossi2023systematic]     | MASH: 4.02%                       | Western Europe| Systematic Review                |
-| [@younossi2019globalhealth]   | MASH: 3 - 5%                      | Global        | Review of global risk factors    |
+| [@younossi2023systematic]     | MASH: 5.27%                       | Global        | Systematic Review                   |
+| [@younossi2023systematic]     | MASH: 4.02%                       | Western Europe| Systematic Review                   |
+| [@younossi2023systematic]     | MASH: 4.02%                       | Western Europe| Systematic Review                   |
+| [@younossi2019globalhealth]   | MASH: 3 - 5%                      | Global        | Review of global risk factors       |
+
+Alongside the overall prevalence rates the modelling will also need to consider the prevalence or distribution of Fibrosis categories to identify those eligible for treatments. Findings from relevant literature are shown in the table below:
+
+| **Reference**                 | **Sub-group** | **Estimate (95% CI) **| **Location**  | **Comments**                    |
+|-------------------------------|---------------|-----------------------|---------------|---------------------------------|
+| [@basu2022mgmt]               | MASH          | 20% (of MAFLD)        | USA           | Review of management of NAFLD   |
+| [@basu2022mgmt]               | F3/F4         | 20% (of MASH)         | USA           | Review of management of NAFLD   |
+
+
 
 ### Suggested Model Inputs and Sensitivites
 
@@ -71,10 +82,33 @@ For example, how many patients with a Fibrosis score of 2 might progress to a Fi
 
 ### Findings from Literature
 
+The table below provides an overview of the proportion of patients who see disease progression including the progression of Fibrosis:
+
+| **Reference**           | **Group**           | **Estimate (95% CI)** | **Location**       | **Comments**                |
+|-------------------------|---------------------|-----------------------|--------------------|-----------------------------|
+| [@basu2022mgmt]         | MASH Patients       | 40%                   | USA                | Fibrosis progression        |
+
 
 ### Suggested Model Inputs and Sensitivites
 
 <br/>
+
+## Co-morbidities and Risk Factors
+
+### Why is this required?
+It is important to consider the expected overlap of patients with MASLD and other conditions such as Obesity or Diabetes. Patients who have MASLD but are being treated on an obesity pathway with a GLP-1 agonist may not be prescribed one of the four treatments in addition to their obesity treatment. Therefore, an estimate of patients with MASLD to exclude from the treatment population is required.
+
+### Findings from Literature
+
+The table below provides an overview of the overlap between MASLD and other co-morbidities:
+
+| **Reference**           | **Co-morbidity**  | **Estimated Prevalence (95% CI)** | **Location**    | **Comments**           |
+|-------------------------|-------------------|-----------------------------------|-----------------|------------------------|
+| [@basu2022mgmt]         | Obesity           | 51%                               | USA             | MASLD patients         |
+| [@basu2022mgmt]         | Obesity           | 82%                               | USA             | MASH patients          |
+| [@basu2022mgmt]         | Type 2 Diabetes   | 60%                               | USA             | T2 Diabetes patients with MASLD |
+| [@basu2022mgmt]         | Dyslipidaemia     | >50%                              | USA             | MASLD Patients         |
+
 
 # References
 
