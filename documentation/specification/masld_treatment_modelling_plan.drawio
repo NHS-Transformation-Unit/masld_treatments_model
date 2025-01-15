@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.5">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.5" pages="2">
   <diagram name="Population Definition" id="xs2OLtfrepnZK95y4oaU">
     <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -159,6 +159,200 @@
         </mxCell>
         <mxCell id="iKx3rJSZ27HeEZRzWkcr-5" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;Establishing Model Starting Position&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;1. Prevalence:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;From adult population in England identify the population of people living with MASLD via prevalence estimates.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;2. Sub-Population Prevalence:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Within the MASLD population determine the population living with MASH.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;3. Fibrosis Stage:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Establish the proportion of MASH patients with each Fibrosis score.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;4. Comorbidities receiving treatment (Obesity and Diabetes):&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Determine the proportion of patients in each sub-group that overlap with Obesity and Type 2 Diabetes. Establish the proportion of these patients potentially receiving treatments that overlap/preclude emergent treatments.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;5. Treatment Eligibility:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Within each treatment model identify the proportion of each sub-group that will be eligible for treatment.&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="690" y="80" width="330" height="620" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="naU-dzvsDJ1YFrtGIBLM" name="Temporal Requirements">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-1" target="mXDoEKHYHSl2Kpew68sw-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-1" target="mXDoEKHYHSl2Kpew68sw-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="310" />
+              <mxPoint x="565" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-1" target="mXDoEKHYHSl2Kpew68sw-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="330" />
+              <mxPoint x="275" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zTdPPjTp7W1CLCJ7EwbN-1" value="4. Retention" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="mXDoEKHYHSl2Kpew68sw-34">
+          <mxGeometry x="0.2398" y="1" relative="1" as="geometry">
+            <mxPoint x="-21" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-1" value="Isolated Steatosis" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A8E3F5;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="229" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-2" target="mXDoEKHYHSl2Kpew68sw-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-2" target="mXDoEKHYHSl2Kpew68sw-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-2" target="mXDoEKHYHSl2Kpew68sw-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="241" y="310" />
+              <mxPoint x="565" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-2" target="mXDoEKHYHSl2Kpew68sw-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="241" y="330" />
+              <mxPoint x="275" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-2" value="F0" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#86BBD0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200.5" y="229" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-3" target="mXDoEKHYHSl2Kpew68sw-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-3" target="mXDoEKHYHSl2Kpew68sw-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-3" target="mXDoEKHYHSl2Kpew68sw-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="310" />
+              <mxPoint x="565" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zTdPPjTp7W1CLCJ7EwbN-2" value="5. Mortality" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="mXDoEKHYHSl2Kpew68sw-30">
+          <mxGeometry x="-0.3406" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-3" target="mXDoEKHYHSl2Kpew68sw-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="330" />
+              <mxPoint x="275" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-3" value="F1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6593AB;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="229" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-4" target="mXDoEKHYHSl2Kpew68sw-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-4" target="mXDoEKHYHSl2Kpew68sw-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-4" target="mXDoEKHYHSl2Kpew68sw-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="310" />
+              <mxPoint x="565" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-4" target="mXDoEKHYHSl2Kpew68sw-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="330" />
+              <mxPoint x="275" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-4" value="F2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#436C85;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="229" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-5" target="mXDoEKHYHSl2Kpew68sw-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-5" target="mXDoEKHYHSl2Kpew68sw-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-5" target="mXDoEKHYHSl2Kpew68sw-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="310" />
+              <mxPoint x="565" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-5" target="mXDoEKHYHSl2Kpew68sw-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="330" />
+              <mxPoint x="275" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-5" value="F3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#224460;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="560" y="229" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-6" target="mXDoEKHYHSl2Kpew68sw-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-6" target="mXDoEKHYHSl2Kpew68sw-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="310" />
+              <mxPoint x="565" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-6" target="mXDoEKHYHSl2Kpew68sw-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="330" />
+              <mxPoint x="275" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-6" value="F4" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#001C3B;fontColor=#FFFFFF;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="680" y="229" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mXDoEKHYHSl2Kpew68sw-7" target="mXDoEKHYHSl2Kpew68sw-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-9" value="1. MASLD Incidence" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="mXDoEKHYHSl2Kpew68sw-8">
+          <mxGeometry x="-0.1014" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-7" value="At Risk Population" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;fontStyle=1;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="110" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-23" value="3. Disease Progression" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="200" as="sourcePoint" />
+            <mxPoint x="750" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-24" value="2. Recovery" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="180" as="sourcePoint" />
+            <mxPoint x="530" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-25" value="Non-Retention Treatment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontStyle=1;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="230" y="350" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mXDoEKHYHSl2Kpew68sw-26" value="Mortality" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontStyle=1;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="520" y="350" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="M5IWxWlW7q2NL-v4HUql-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;Temporal Requirements&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;1. MASLD Incidence:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;The incidence rate will determine the number of new patients potentially eligible for treatment each year.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;2. Recovery:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The percentage of patients in each sub-group of MASLD and MASH who recover, potentially no longer requiring treatment.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;3. Disease Progression:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;The percentage of patients in each sub-group where their disease progresses, potentially making them eligible or ineligible for treatment.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;4. Retention:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;The proportion of patients receiving treatment in each sub-group who decline or drop-out of treatment.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;5. Mortality:&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Mortality rates for patients within each sub-group. This accounts for patients being removed from the model appropriately to account for mortality within the population.&lt;/font&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="800" y="30" width="330" height="620" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
