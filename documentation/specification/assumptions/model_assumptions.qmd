@@ -105,6 +105,8 @@ Findings from relevant literature are shown in the table below:
 | [@singh2015progression]       | F2            | 16.7%                 | Global        | Biopsy proven NAFLD             |
 | [@singh2015progression]       | F3            | 9.3%                  | Global        | Biopsy proven NAFLD             |
 | [@singh2015progression]       | F4            | 5.7%                  | Global        | Biopsy proven NAFLD             |
+| [@owrangi2024cirrhosis]       | F4            | 3.26% (2.47-4.31%)    | Global        | Prevalence within MASLD         |
+| [@owrangi2024cirrhosis]       | F4            | 4.13% (2.88-5.87%)    | Western Europe| Prevalence within MASLD         |
 
 ### Suggested Model Inputs and Sensitivites
 
@@ -138,6 +140,7 @@ The table below shows the estimated prevalence of **Type 2 Diabetes for patients
 | **Reference**           | **Group**         | **Estimated Prevalence (95% CI)** | **Location**  | **Comments**                |
 |-------------------------|-------------------|-----------------------------------|---------------|-----------------------------|
 | [@konyn2023mortality]   | MASLD             | 22.5% (17.9 - 27.9%)              | USA           | MASLD patients with T2D     |
+| [@sripongpun2024mortality] | MASLD             | 43.3%                             | USA           | MASH patients with T2D      |
 | [@konyn2023mortality]   | MASH              | 43.6% (30.3 - 58.0%)              | USA           | MASH patients with T2D      |
 | [@pustjens2024profile]  | MASLD - All ages  | 66.8%                             | USA           | MASLD patients with pre-diabetes (US Abdo confirmed) |
 | [@pustjens2024profile]  | MASLD - 20-40     | 37.4%                             | USA           | MASLD patients with pre-diabetes (US Abdo confirmed) |
@@ -238,6 +241,17 @@ Consideration needs to be given to how many patients will be retained and remain
 Consideration needs to be given to how many patients will die during each year of the model and are therefore, no longer requiring treatment.
 
 ### Findings from Literature
+The table below summaries all cause mortality rates per **1,000 patient years**:
+
+| **Reference**                 | **Rate (95% CI)**          | **Location**  | **Comments**                                  |
+|-------------------------------|----------------------------|---------------|-----------------------------------------------|
+| [@simon2021mortality]         | 28.6                       | Sweden        | MASLD overall, biopsy confirmed               |
+| [@simon2021mortality]         | 8.3                        | Sweden        | Simple steatosis, biopsy confirmed            |
+| [@simon2021mortality]         | 13.4                       | Sweden        | Non-fibrotic MASH, biopsy confirmed           |
+| [@simon2021mortality]         | 28.6                       | Sweden        | Non-cirrhotic fibrosis, biopsy confirmed      |
+| [@simon2021mortality]         | 53.6                       | Sweden        | Cirrhosis, biopsy confirmed                   |
+| [@younossi2023systematic]     | 17.05 (10.31 - 28.05)      | Global        | MASLD overall, including non-biopsy diagnosed |
+| [@owrangi2024cirrhosis]       | 79.1 (44.4 - 137.1)        | Global        | Cirrhosis                                     |
 
 ### Suggested Model Inputs and Sensitivites
 
