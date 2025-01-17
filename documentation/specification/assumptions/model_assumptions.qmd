@@ -179,6 +179,17 @@ The modelling of future treatments will need to run over a number of years, this
 
 ### Findings from Literature
 
+The table below provides a summary of estimates of incidence rates **per 1,000 Patient Years**:
+
+| **Reference**                 | **Estimate of Incidence  (95%CI)**| **Location**    | **Comments**                            |
+|-------------------------------|-----------------------------------|-----------------|-----------------------------------------|
+| [@younossi2023systematic]     | 48.89 (38.49 - 61.93)             | Global (pooled) | Meta-analysis, global pooled incidence  |
+| [@younossi2023systematic]     | 32.54 (30.08 - 35.18)             | Germany         | Meta-analysis, global pooled incidence  |
+| [@younossi2023systematic]     | 59.11 (39.64 - 87.26)             | Global          | Meta-analysis, 2010 - 2014 pooled       |
+| [@EASL2016]                   | 20 - 86                           | USA             | Elevated liver enzymes and/or Ultrasound|
+| [@EASL2016]                   | 34                                | USA             | H-MRS diagnosed                         |
+
+
 ### Suggested Model Inputs and Sensitivites
 
 **TBC**
