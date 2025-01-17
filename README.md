@@ -1,5 +1,8 @@
 <img src="images/TU_logo_large.png" alt="TU logo" width="200" align="right"/>
 
+<br/>
+
+
 # MALSD Treatment Modelling
 This repository contains the code and relevant documentation for the development of the MASLD treatment modelling. This modelling is intended to provide an overview of the populations eligible for each treatment, the anticipated clinical activities and the cost implications of these.
 
@@ -48,7 +51,7 @@ The current structure of the repository is detailed below:
 The repository can be cloned locally using:
 
 ```
-git clone https://github.com/NHS-Transformation-Unit/HSDS_MASH.git
+git clone https://github.com/NHS-Transformation-Unit/masld_treatments_model.git
 ```
 
 <br/>
