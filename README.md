@@ -3,7 +3,7 @@
 <br/>
 
 
-# MALSD Treatment Modelling
+# MASLD Treatment Modelling
 This repository contains the code and relevant documentation for the development of the MASLD treatment modelling. This modelling is intended to provide an overview of the populations eligible for each treatment, the anticipated clinical activities and the cost implications of these.
 
 **This repository is still being developed so the structure and contents will change.**

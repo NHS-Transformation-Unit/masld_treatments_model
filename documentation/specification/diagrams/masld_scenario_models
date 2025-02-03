@@ -1,0 +1,178 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.6">
+  <diagram name="Page-1" id="1YjeF1wAm67en0hxqlRc">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="635sY96S-uglbecGUek--55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--1" target="635sY96S-uglbecGUek--3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--1" target="635sY96S-uglbecGUek--4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--1" value="Defined populations receiving treatment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="570" y="92.5" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--3" target="635sY96S-uglbecGUek--6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--3" target="635sY96S-uglbecGUek--5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--3" value="Weight Loss Drugs - Output 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="220" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--4" target="635sY96S-uglbecGUek--10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--4" target="635sY96S-uglbecGUek--9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--4" target="635sY96S-uglbecGUek--8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--4" value="Liver Drug Treatments - Output 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="220" width="440" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--5" target="635sY96S-uglbecGUek--13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--5" value="Trial Delivery Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="560" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--6" target="635sY96S-uglbecGUek--12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--6" value="Primary Care Delivery Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--8" target="635sY96S-uglbecGUek--15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--8" value="Trial Delivery Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1080" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--9" target="635sY96S-uglbecGUek--14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--9" value="Primary Care Delivery Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--10" target="635sY96S-uglbecGUek--16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--10" value="Blended Primary &amp;amp; Secondary Care Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="920" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--12" target="635sY96S-uglbecGUek--25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--12" value="Modelling of clinical activities being primary and community care led" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="370" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--13" target="635sY96S-uglbecGUek--26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--13" value="Modelling of clinical activities as delivered in the clinical trials" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="370" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--14" target="635sY96S-uglbecGUek--27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--14" value="Modelling of clinical activities being primary and community care led" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="370" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--15" target="635sY96S-uglbecGUek--29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--15" value="Modelling of clinical activities as delivered in the clinical trials" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="370" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--16" target="635sY96S-uglbecGUek--28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--16" value="Modelling of clinical activities being primary and community care led" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="370" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--19" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Individual Scenarios&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;Model clinical activities with assumptions unique to each scenario on how treatments are delivered in different settings.&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="280" width="180" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--20" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Define Population&lt;/span&gt;&lt;/h1&gt;&lt;p style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 12px; font-weight: normal;&quot;&gt;Apply agreed assumptions to define relevant populations. These are consistent across each scenario.&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="170" y="50" width="180" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--21" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Costing Scenarios&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;Each scenario is then costed using assumptions specific to that healthcare setting.&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="505" width="180" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--22" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Model Outputs&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;Outputs for each scenario showing the:&lt;br&gt;&lt;ul&gt;&lt;li&gt;Population receiving treatment&lt;/li&gt;&lt;li&gt;Number of additional clinical activities and proportion of current service activities.&lt;/li&gt;&lt;li&gt;Cost of additional clinical activities and treatment. Additional clinical activity costs shown as proportion of current service costs.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="680" width="180" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--23" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1200" y="480" as="sourcePoint" />
+            <mxPoint x="160" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--24" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1200" y="660" as="sourcePoint" />
+            <mxPoint x="160" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--25" target="635sY96S-uglbecGUek--37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--25" value="Primary Care Delivery Scenario - Costed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--26" target="635sY96S-uglbecGUek--38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--26" value="Trial Delivery Scenario - Costed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="560" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--27" target="635sY96S-uglbecGUek--39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--27" value="Primary Care Delivery Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--28" target="635sY96S-uglbecGUek--40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--28" value="Blended Primary &amp;amp; Secondary Care Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="920" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="635sY96S-uglbecGUek--29" target="635sY96S-uglbecGUek--41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--29" value="Trial Delivery Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1080" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--35" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1200" y="200" as="sourcePoint" />
+            <mxPoint x="160" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--37" value="Primary Care Delivery Scenario - Model Outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--38" value="Trial Delivery Scenario - Model Outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="560" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--39" value="Primary Care Delivery Scenario - Model Outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--40" value="Blended Primary &amp;amp; Secondary Care Scenario - Model Outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="920" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--41" value="Trial Delivery Scenario - Model Outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1080" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="635sY96S-uglbecGUek--53" value="Stage of Modelling" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;rotation=-90;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontSize=32;" vertex="1" parent="1">
+          <mxGeometry x="-382.81" y="465.32" width="913.13" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
