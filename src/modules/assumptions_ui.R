@@ -6,8 +6,7 @@ library(DT)
 assumptions_ui <- function(id) {
   ns <- NS(id)
   
-  navbarPage("MASLD Treatment Modelling",
-             id = "navbar",
+
              tabPanel(title = "Population Assumptions",
                       fluidPage(
                         sidebarLayout(
@@ -178,5 +177,5 @@ assumptions_ui <- function(id) {
                         )
                       )
              )
-  )
+
 }

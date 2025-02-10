@@ -12,7 +12,12 @@ assumptions_server <- function(id) {
         masld_prev = input$masld_prev / 100,
         masld_prev_tol = input$masld_prev_tol / 100,
         mash_prev = input$mash_prev / 100,
-        mash_prev_tol = input$mash_prev_tol / 100
+        mash_prev_tol = input$mash_prev_tol / 100,
+        F0_prop = input$F0_prop / 100,
+        F1_prop = input$F1_prop / 100,
+        F2_prop = input$F2_prop / 100,
+        F3_prop = input$F3_prop / 100,
+        F4_prop = input$F4_prop / 100
       )
     })
     
@@ -129,6 +134,8 @@ assumptions_server <- function(id) {
       datatable(mash_pop_DT, options = list(pageLength = 10,
                                             autoWidth = TRUE))
     })
+    
+    
     
     output$download_assumptions <- downloadHandler(
       filename = function() { "assumptions_pop.csv" },
