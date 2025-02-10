@@ -2,7 +2,7 @@
 title: "Development of MASLD Treatment Model Assumptions"
 bibliography: ../../references/model_assumptions_references.bib
 author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
-date: "02/05/2025"
+date: "02/09/2025"
 date-format: "DD MMMM YYYY"
 format:
   html:
