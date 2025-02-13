@@ -3,7 +3,12 @@
 
 packages <- c("shiny",
               "here",
-              "EnvStats")
+              "bslib",
+              "EnvStats",
+              "ggplot2",
+              "dplyr",
+              "tidyr",
+              "DT")
 
 # Package Load ------------------------------------------------------------
 
