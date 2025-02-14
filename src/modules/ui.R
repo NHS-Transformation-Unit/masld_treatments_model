@@ -248,6 +248,132 @@ ui <- navbarPage(
                                 DTOutput("treat_pop_sem_DT")
                            )
                          )
+               ),
+               nav_panel("Survodutide",
+                         sidebarLayout(
+                           sidebarPanel(
+                             h3("Survodutide"),
+                             hr(),
+                             sliderInput("treat_pop_F0_surv",
+                                         "Select the proportion of F0 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F1_surv",
+                                         "Select the proportion of F1 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F2_surv",
+                                         "Select the proportion of F2 patients receiving treatment:",
+                                         value = 5,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F3_surv",
+                                         "Select the proportion of F3 patients receiving treatment:",
+                                         value = 5,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F4_surv",
+                                         "Select the proportion of F4 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%")
+                           ),
+                           mainPanel(
+                             h4("Table of treatment population"),
+                             DTOutput("treat_pop_surv_DT")
+                           )
+                         )
+               ),
+               nav_panel("Resmetirom",
+                         sidebarLayout(
+                           sidebarPanel(
+                             h3("Resmetirom"),
+                             hr(),
+                             sliderInput("treat_pop_F0_res",
+                                         "Select the proportion of F0 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F1_res",
+                                         "Select the proportion of F1 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F2_res",
+                                         "Select the proportion of F2 patients receiving treatment:",
+                                         value = 5,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F3_res",
+                                         "Select the proportion of F3 patients receiving treatment:",
+                                         value = 5,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F4_res",
+                                         "Select the proportion of F4 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%")
+                           ),
+                           mainPanel(
+                             h4("Table of treatment population"),
+                             DTOutput("treat_pop_res_DT")
+                           )
+                         )
+               ),
+               nav_panel("Lanifibranor",
+                         sidebarLayout(
+                           sidebarPanel(
+                             h3("Lanifibranor"),
+                             hr(),
+                             sliderInput("treat_pop_F0_lan",
+                                         "Select the proportion of F0 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F1_lan",
+                                         "Select the proportion of F1 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F2_lan",
+                                         "Select the proportion of F2 patients receiving treatment:",
+                                         value = 5,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F3_lan",
+                                         "Select the proportion of F3 patients receiving treatment:",
+                                         value = 5,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%"),
+                             sliderInput("treat_pop_F4_lan",
+                                         "Select the proportion of F4 patients receiving treatment:",
+                                         value = 0,
+                                         min = 0,
+                                         max = 100,
+                                         post = "%")
+                           ),
+                           mainPanel(
+                             h4("Table of treatment population"),
+                             DTOutput("treat_pop_lan_DT")
+                           )
+                         )
                )
                          
              )

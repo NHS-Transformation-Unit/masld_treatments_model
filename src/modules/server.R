@@ -34,7 +34,22 @@ server <- function(input, output, session) {
       treat_prop_F1_sem = input$treat_pop_F1_sem / 100,
       treat_prop_F2_sem = input$treat_pop_F2_sem / 100,
       treat_prop_F3_sem = input$treat_pop_F3_sem / 100,
-      treat_prop_F4_sem = input$treat_pop_F4_sem / 100
+      treat_prop_F4_sem = input$treat_pop_F4_sem / 100,
+      treat_prop_F0_surv = input$treat_pop_F0_surv / 100,
+      treat_prop_F1_surv = input$treat_pop_F1_surv / 100,
+      treat_prop_F2_surv = input$treat_pop_F2_surv / 100,
+      treat_prop_F3_surv = input$treat_pop_F3_surv / 100,
+      treat_prop_F4_surv = input$treat_pop_F4_surv / 100,
+      treat_prop_F0_res = input$treat_pop_F0_res / 100,
+      treat_prop_F1_res = input$treat_pop_F1_res / 100,
+      treat_prop_F2_res = input$treat_pop_F2_res / 100,
+      treat_prop_F3_res = input$treat_pop_F3_res / 100,
+      treat_prop_F4_res = input$treat_pop_F4_res / 100,
+      treat_prop_F0_lan = input$treat_pop_F0_lan / 100,
+      treat_prop_F1_lan = input$treat_pop_F1_lan / 100,
+      treat_prop_F2_lan = input$treat_pop_F2_lan / 100,
+      treat_prop_F3_lan = input$treat_pop_F3_lan / 100,
+      treat_prop_F4_lan = input$treat_pop_F4_lan / 100
     )
   })
   
@@ -147,6 +162,49 @@ server <- function(input, output, session) {
       mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
     
   })
+  
+  treat_pop_surv <- reactive({
+    params <- treat_imp_assumptions()
+    f_stage_diagnosed() |>
+      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_surv, 0),
+             "F1_treat" = round(F1_diag * params$treat_prop_F1_surv, 0),
+             "F2_treat" = round(F2_diag * params$treat_prop_F2_surv, 0),
+             "F3_treat" = round(F3_diag * params$treat_prop_F3_surv, 0),
+             "F4_treat" = round(F4_diag * params$treat_prop_F4_surv, 0)) |>
+      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+      rowwise() |>
+      mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
+    
+  })
+  
+  treat_pop_res <- reactive({
+    params <- treat_imp_assumptions()
+    f_stage_diagnosed() |>
+      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_res, 0),
+             "F1_treat" = round(F1_diag * params$treat_prop_F1_res, 0),
+             "F2_treat" = round(F2_diag * params$treat_prop_F2_res, 0),
+             "F3_treat" = round(F3_diag * params$treat_prop_F3_res, 0),
+             "F4_treat" = round(F4_diag * params$treat_prop_F4_res, 0)) |>
+      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+      rowwise() |>
+      mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
+    
+  })
+  
+  treat_pop_lan <- reactive({
+    params <- treat_imp_assumptions()
+    f_stage_diagnosed() |>
+      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_lan, 0),
+             "F1_treat" = round(F1_diag * params$treat_prop_F1_lan, 0),
+             "F2_treat" = round(F2_diag * params$treat_prop_F2_lan, 0),
+             "F3_treat" = round(F3_diag * params$treat_prop_F3_lan, 0),
+             "F4_treat" = round(F4_diag * params$treat_prop_F4_lan, 0)) |>
+      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+      rowwise() |>
+      mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
+    
+  })
+  
   
   pre_treat_biopsy_sem <- reactive({
     
@@ -304,6 +362,50 @@ server <- function(input, output, session) {
                              autoWidth = TRUE))
   })
   
+  output$treat_pop_surv_DT <- renderDT({
+    treat_pop_surv <- treat_pop_surv() |>
+      rename("Simulation" = 1,
+             "F0" = 2,
+             "F1" = 3,
+             "F2" = 4,
+             "F3" = 5,
+             "F4" = 6,
+             "Total Treated" = 7)
+    datatable(treat_pop_surv,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
+  
+  output$treat_pop_res_DT <- renderDT({
+    treat_pop_res <- treat_pop_res() |>
+      rename("Simulation" = 1,
+             "F0" = 2,
+             "F1" = 3,
+             "F2" = 4,
+             "F3" = 5,
+             "F4" = 6,
+             "Total Treated" = 7)
+    datatable(treat_pop_res,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
+  
+  output$treat_pop_lan_DT <- renderDT({
+    treat_pop_lan <- treat_pop_lan() |>
+      rename("Simulation" = 1,
+             "F0" = 2,
+             "F1" = 3,
+             "F2" = 4,
+             "F3" = 5,
+             "F4" = 6,
+             "Total Treated" = 7)
+    datatable(treat_pop_lan,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
   
   output$pre_treat_biopsy_sem_DT <- renderDT({
     pre_treat_biopsy_sem_DT <- pre_treat_biopsy_sem()
