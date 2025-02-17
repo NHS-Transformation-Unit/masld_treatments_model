@@ -1,0 +1,96 @@
+body {
+    background-color: #fff;
+    color: #333; 
+    font-size: 11pt;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+h1, h2, h3, h4 {
+  color: #407EC9;
+}
+
+hr {
+  color: #407EC9;
+  border-color: #407EC9;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #407EC9;
+    border-color: #407EC9;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Navbar Brand (Title) */
+.navbar-brand {
+  color: #ffffff !important;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover {
+  color: #f8f9fa !important;
+}
+
+/* Navbar Links */
+.navbar-nav > li > a {
+  color: #ffffff !important;
+  padding: 12px 15px;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Hover effect on navbar links */
+.navbar-nav > li > a:hover {
+  color: #000000 !important;
+  background-color: rgba(255, 255, 255, 0.2) !important; /* Slight transparency */
+}
+
+/* Active Tab Styling */
+.navbar-nav > li.active > a {
+  color: #407EC9 !important;
+  background-color: #ffffff !important;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styling */
+.btn {
+    background-color: #407EC9;
+    border-color: #407EC9;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Hover Effect on Buttons */
+.btn:hover {
+  background-color: #ffffff;
+  border-color: #407EC9;
+  color: #407EC9;
+  box-shadow: 0 2px 10px rgba(64, 126, 201, 0.4);
+}
+
+/* Links */
+a {
+    color: #407EC9;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #305a8f;
+    text-decoration: none;
+}
+
+/* Add Smooth Tab Switching */
+.tab-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
