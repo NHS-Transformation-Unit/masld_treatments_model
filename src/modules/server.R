@@ -56,7 +56,7 @@ server <- function(input, output, session) {
   sem_pathway_assumptions <- reactive({
     
     list(
-      pre_treat_biopsy_sem = input$liver_biopsy_prop_sem / 100
+      pre_treat_biopsy_sem = input$pre_liver_biopsy_prop_sem / 100
     )
     
   })
@@ -355,7 +355,7 @@ server <- function(input, output, session) {
              "F2" = 4,
              "F3" = 5,
              "F4" = 6,
-             "Total Treated" = 7)
+             "Total Starting Treatment" = 7)
     datatable(treat_pop_sem,
               rownames = FALSE,
               options = list(pageLength = 10,
@@ -370,7 +370,7 @@ server <- function(input, output, session) {
              "F2" = 4,
              "F3" = 5,
              "F4" = 6,
-             "Total Treated" = 7)
+             "Total Starting Treatment" = 7)
     datatable(treat_pop_surv,
               rownames = FALSE,
               options = list(pageLength = 10,
@@ -385,7 +385,7 @@ server <- function(input, output, session) {
              "F2" = 4,
              "F3" = 5,
              "F4" = 6,
-             "Total Treated" = 7)
+             "Total Starting Treatment" = 7)
     datatable(treat_pop_res,
               rownames = FALSE,
               options = list(pageLength = 10,
@@ -400,7 +400,7 @@ server <- function(input, output, session) {
              "F2" = 4,
              "F3" = 5,
              "F4" = 6,
-             "Total Treated" = 7)
+             "Total Starting Treatment" = 7)
     datatable(treat_pop_lan,
               rownames = FALSE,
               options = list(pageLength = 10,
