@@ -5,15 +5,101 @@ library(DT)
 library(shinyMatrix)
 
 ui <- navbarPage(
+  
   title = "MASLD Treatment Activity and Costs Modelling",
   id = "navbar",
   
+  tags$link(rel = "stylesheet", type = "text/css", href = "config/app_theme.css"),
+
   tabPanel("Introduction",
            fluidPage(
              h1("Introduction to the MASLD Treatment Activity and Costs Model"),
-             p("Some explanatory text"),
+             p("This model has been developed to simulate the populations, clinical activities and associated costs 
+               of implementing four new treatment pathways for ", strong("Metabolic Dysfunction-Associated Steatotic Liver Disease (MASLD).")),
+             p("These four new treatment pathways include the use of the following treatments:",
+               tags$ul(
+                 tags$li("Semaglutide"),
+                 tags$li("Servodutide"),
+                 tags$li("Resmetiron"),
+                 tags$li("Lanifibranor")
+               )),
+             p("The three tabs below provide guidance and information on:",
+               tags$ul(
+                 tags$li("Using the model"),
+                 tags$li("Understanding the assumptions in the model and how these are applied"),
+                 tags$li("Links to more detailed documentation regarding the development of the model")
+               )),
              navset_tab(
-               nav_panel("How to use the tool"),
+               nav_panel("How to use the model",
+                         h2("How to use the model"),
+                         p("This section provides an overview of how to use the model and covers:",
+                           tags$ul(
+                             tags$li("The structure of the model"),
+                             tags$li("Navigating between sections"),
+                             tags$li("Changing different input assumptions"),
+                             tags$li("Reviewing the model outputs"),
+                             tags$li("Extracting model outputs and assumptions")
+                           )),
+                         br(),
+                         h3("Model Structure"),
+                         p("This model has been created using the open source programming language ",
+                           tags$a("R", href = "https://www.r-project.org/", target = "_blank"), "to create a shinyApp. 
+                           The model contains a series of input tabs relating to different components of the model. These 
+                           different input components include:",
+                           tags$ul(
+                             tags$li(strong("Population Assumptions:"), "These assumptions are used to determine the size of 
+                                     population of patients that are potentially eligible for treatment. Therefore, this includes 
+                                     assumptions such as the prevalence of MASLD, the breakdown of Fibrosis Stage and rates of 
+                                     diagnosis for each Fibrosis Stage. The assumptions applied in this section will output an 
+                                     estimate of the diagnosed population of patients at each Fibrosis Stage. These estimates are 
+                                     then taken forward into the next section."),
+                             tags$li(strong("Treatment Implementation:"), "These assumptions take the estimates of each diagnosed 
+                                     Fibrosis Stage to model the percentage of patients being treated. There are separate assumptions 
+                                     for each of the four treatments. The output of this section will be the number of patients 
+                                     starting each treatment."),
+                             tags$li(strong("Semaglutide Pathway Activity Assumptions:"), "The assumptions within this section relate 
+                                     to how the new treatment pathway for Semaglutide is expected to be delivered. These assumptions 
+                                     cover areas such as retention rates, the number of monitoring tests and the proportion of these 
+                                     tests including specific diagnostics such as Fibroscanning or Liver biopsies. These assumptions 
+                                     are applied to the estimated number of patients starting the Semaglutide treatment pathway to 
+                                     determine the number of each clinical activity along this pathway."),
+                             tags$li(strong("Survodutide Pathway Activity Assumptions:"), "Similarly to the Semaglutide pathway above, 
+                                     this section contains the assumptions for the Survodutide pathway."),
+                             tags$li(strong("Resmetiron Pathway Activity Assumptions:"), "Similarly to the Semaglutide pathway above, 
+                                     this section contains the assumptions for the Resmetiron pathway."),
+                             tags$li(strong("Lanifibranor Pathway Activity Assumptions:"), "Similarly to the Semaglutide pathway above, 
+                                     this section contains the assumptions for the Lanifibranor pathway."),
+                             tags$li(strong("Financial Assumptions:"), "The assumptions within this section cover the costs associated 
+                                     with the delivery of each treatment. These include the costs of the treatments and associated 
+                                     activities such as the cost of an appointment with a Heptalogist in secondary care or the cost of 
+                                     a Liver biopsy. These assumptions are applied to the pathway activities determined in the previous 
+                                     sections to determine the cost implications of each treatment pathway."),
+                             tags$li(strong("Model Outputs - Activity and Costs:"), "This section contains the outputs of the model. 
+                                     These outputs include the volume of patients treated, the clinical activities undertaken for these 
+                                     treatment cohorts and the costs associated with these. The outputs are produced at a summary level 
+                                     and also include a breakdown of the activities and costs at each stage of the pathways.")
+                           )
+                         ),
+                        br(),
+                        h3("Navigating the model"),
+                        p("You can navigate through the different stages of the model using the navigation bar at the top of this page. 
+                          Clicking on any of the tabs will take you to the relevant screen for inputting assumptions or viewing the 
+                          outputs of the model."),
+                        br(),
+                        h3("Changing model assumptions"),
+                        p("This model has been created to enable the ability to create bespoke scenarios for delivering these new treatments. 
+                          Consequently, each of the model assumptions can be amended to simulate activities and costs under those conditions. 
+                          By default each assumption within the model will be set to the specified value as determined by the modelling group. 
+                          This will be based on available literature, input from clinical experts and feedback from the pathway mapping 
+                          workstream. To amend any of these assumptions simply:",
+                          tags$ul(
+                            tags$li("Change the value of the slider input to the desired value"),
+                            tags$li("Input a specific number into an input box"),
+                            tags$li("Amend the table of percentages to model the setting for specific activities")
+                          )),
+                        p("Some of the assumptions will have data validation or limits applied to stop impossible assumptions being applied. 
+                          For example, applying negative percentages.")
+                         ),
                nav_panel("Explanation of Assumptions"),
                nav_panel("Modelling Documentation")
              )
@@ -165,11 +251,23 @@ ui <- navbarPage(
                              post = "%"),
                  br(),
                  h4("Download Assumptions"),
-                 downloadButton("download_assumptions", "Download Assumptions")
+                 downloadButton("download_assumptions", "Download Population Assumptions")
                ),
                mainPanel(
                  h1("Population Assumptions"),
-                 h3("Prevalence"),
+                 p("The section below shows the impact of each of the assumptions to the left on determining the population 
+                   of patients that would be eligible for the new treatment pathways. Each section below will contain:",
+                   tags$ul(
+                     tags$li("A histogram showing the populations simulated from the assumptions"),
+                     tags$li("A data table showing the populations for each simulation. Within each table:",
+                             tags$ul(
+                               tags$li("Simulation 1: The central estimate based on the assumptions"),
+                               tags$li("Simulation 2: The lower bound estimate based on the lower tolerance for each assumption"),
+                               tags$li("Simulation 3: The upper bound estimate based on the higher tolerance for each assumption"),
+                               tags$li("Simulations 4 - 100: Simulated data based on the above lower, central and upper parameters")
+                             ))
+                   )),
+                 h3("MASLD Prevalence"),
                  p("The tabs below show the simulated MASLD populations to be used within the model as either a histogram or table:"),
                  textOutput("masld_prev"),
                  navset_tab(
@@ -382,7 +480,10 @@ ui <- navbarPage(
   tabPanel(title = "Semaglutide Pathway Activity Assumptions",
            fluidPage(
              h1("Semaglutide Pathway Activity Assumptions"),
-             p("In this section you can set the assumptions about the clinical activities that occur along the treatment pathway"),
+             p("In this section you can set the assumptions about the clinical activities that occur along the treatment pathway.
+               These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
+               to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
+               pathway."),
              navset_tab(
                nav_panel("Pathway Assumptions",
                  fluidRow(
@@ -678,7 +779,10 @@ ui <- navbarPage(
   tabPanel(title = "Survodutide Pathway Activity Assumptions",
            fluidPage(
              h1("Survodutide Pathway Activity Assumptions"),
-             p(),
+             p("In this section you can set the assumptions about the clinical activities that occur along the treatment pathway.
+               These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
+               to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
+               pathway."),
              navset_tab(
                nav_panel("Pathway Assumptions",
                          fluidRow(
@@ -1006,7 +1110,10 @@ ui <- navbarPage(
   tabPanel(title = "Resmetirom Pathway Activity Assumptions",
            fluidPage(
              h1("Resmetirom Pathway Activity Assumptions"),
-             p(),
+             p("In this section you can set the assumptions about the clinical activities that occur along the treatment pathway.
+               These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
+               to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
+               pathway."),
              navset_tab(
                nav_panel("Pathway Assumptions",
                          fluidRow(
@@ -1319,7 +1426,10 @@ ui <- navbarPage(
   tabPanel(title = "Lanifibranor Pathway Activity Assumptions",
            fluidPage(
              h1("Lanifibranor Pathway Activity Assumptions"),
-             p(),
+             p("In this section you can set the assumptions about the clinical activities that occur along the treatment pathway.
+               These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
+               to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
+               pathway."),
              navset_tab(
                nav_panel("Pathway Assumptions",
                          fluidRow(
@@ -1629,7 +1739,21 @@ ui <- navbarPage(
              )
            )
   ),
-  tabPanel(title = "Financial Assumptions"),
+  tabPanel(title = "Financial Assumptions",
+           fluidPage(
+             h1("Financial Assumptions"),
+             p("This section contains the assumptions covering the costs of treatments and associated 
+               clinical activities. These can be amended in each of the sections below:"),
+             navset_tab(
+               nav_panel("Diagnostic investigation costs"
+               ),
+               nav_panel("Appointment costs"
+               ),
+               nav_panel("Drug costs"
+               )
+             )
+           )
+  ),
   tabPanel(title = "Model Outputs - Activity and Costs",
            fluidPage(
            h1("Model Outputs"),
