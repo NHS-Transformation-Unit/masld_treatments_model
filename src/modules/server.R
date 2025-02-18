@@ -115,6 +115,73 @@ server <- function(input, output, session) {
     
   })
   
+  surv_pathway_assumptions <- reactive({
+    
+    list(
+      pre_liver_biopsy_prop_surv = input$pre_liver_biopsy_prop_surv / 100,
+      pre_elf_prop_surv = input$pre_elf_prop_surv / 100,
+      pre_biomarkers_prop_surv = input$pre_biomarkers_prop_surv / 100,
+      pre_fibro_prop_surv = input$pre_fibro_prop_surv / 100,
+      mm_assess_prop_surv = input$mm_assess_prop_surv / 100,
+      mm_assess_setting_surv_pc_gp = (input$mm_assess_setting_surv[1, 1] / 100),
+      mm_assess_setting_surv_pc_nur = (input$mm_assess_setting_surv[2, 1] / 100),
+      mm_assess_setting_surv_sc_hgc = (input$mm_assess_setting_surv[3, 1] / 100),
+      mm_assess_setting_surv_sc_hgn = (input$mm_assess_setting_surv[4, 1] / 100),
+      mm_assess_setting_surv_com_dia = (input$mm_assess_setting_surv[5, 1] / 100),
+      mm_assess_setting_surv_com_pha = (input$mm_assess_setting_surv[6, 1] / 100),
+      retention_surv_0_24 = input$retention_surv_0_24 / 100,
+      treatment_setting_0_24_matrix_surv_pc_gp = (input$treatment_setting_0_24_matrix_surv[1, 1]) / 100,
+      treatment_setting_0_24_matrix_surv_pc_nur = (input$treatment_setting_0_24_matrix_surv[2, 1]) / 100,
+      treatment_setting_0_24_matrix_surv_sc_hgc = (input$treatment_setting_0_24_matrix_surv[3, 1]) / 100,
+      treatment_setting_0_24_matrix_surv_sc_hgn = (input$treatment_setting_0_24_matrix_surv[4, 1]) / 100,
+      treatment_setting_0_24_matrix_surv_com_dia = (input$treatment_setting_0_24_matrix_surv[5, 1]) / 100,
+      treatment_setting_0_24_matrix_surv_com_pha = (input$treatment_setting_0_24_matrix_surv[6, 1]) / 100,
+      monitor_tests_0_71_num_surv = input$monitor_tests_0_71_num_surv,
+      monitor_tests_0_71_elf_prop_surv = input$monitor_tests_0_71_elf_prop_surv / 100,
+      monitor_tests_0_71_bio_prop_surv = input$monitor_tests_0_71_bio_prop_surv / 100,
+      retention_25_71_surv = input$retention_25_71_surv / 100,
+      treatment_setting_25_71_matrix_surv_pc_gp = (input$treatment_setting_25_71_matrix_surv[1, 1]) / 100,
+      treatment_setting_25_71_matrix_surv_pc_nur = (input$treatment_setting_25_71_matrix_surv[2, 1]) / 100,
+      treatment_setting_25_71_matrix_surv_sc_hgc = (input$treatment_setting_25_71_matrix_surv[3, 1]) / 100,
+      treatment_setting_25_71_matrix_surv_sc_hgn = (input$treatment_setting_25_71_matrix_surv[4, 1]) / 100,
+      treatment_setting_25_71_matrix_surv_com_dia = (input$treatment_setting_25_71_matrix_surv[5, 1]) / 100,
+      treatment_setting_25_71_matrix_surv_com_pha = (input$treatment_setting_25_71_matrix_surv[6, 1]) / 100,
+      efficacy_liver_biopsy_surv = input$efficacy_liver_biopsy_surv / 100,
+      efficacy_elf_prop_surv = input$efficacy_elf_prop_surv / 100,
+      efficacy_fibro_prop_surv = input$efficacy_fibro_prop_surv / 100,
+      efficacy_biomarkers_prop_surv = input$efficacy_biomarkers_prop_surv / 100,
+      continuation_prop_surv = input$continuation_prop_surv / 100,
+      continuation_delivery_setting_surv_pc_gp = (input$continuation_delivery_setting_surv[1, 1]) / 100,
+      continuation_delivery_setting_surv_pc_nur = (input$continuation_delivery_setting_surv[2, 1]) / 100,
+      continuation_delivery_setting_surv_sc_hgc = (input$continuation_delivery_setting_surv[3, 1]) / 100,
+      continuation_delivery_setting_surv_sc_hgn = (input$continuation_delivery_setting_surv[4, 1]) / 100,
+      continuation_delivery_setting_surv_com_dia = (input$continuation_delivery_setting_surv[5, 1]) / 100,
+      continuation_delivery_setting_surv_com_pha = (input$continuation_delivery_setting_surv[6, 1]) / 100,
+      retention_73_103_surv = input$retention_73_103_surv / 100,
+      treatment_setting_73_103_matrix_surv_pc_gp = (input$treatment_setting_73_103_matrix_surv[1, 1]) / 100,
+      treatment_setting_73_103_matrix_surv_pc_nur = (input$treatment_setting_73_103_matrix_surv[2, 1]) / 100,
+      treatment_setting_73_103_matrix_surv_sc_hgc = (input$treatment_setting_73_103_matrix_surv[3, 1]) / 100,
+      treatment_setting_73_103_matrix_surv_sc_hgn = (input$treatment_setting_73_103_matrix_surv[4, 1]) / 100,
+      treatment_setting_73_103_matrix_surv_com_dia = (input$treatment_setting_73_103_matrix_surv[5, 1]) / 100,
+      treatment_setting_73_103_matrix_surv_com_pha = (input$treatment_setting_73_103_matrix_surv[6, 1]) / 100,
+      monitoring_tests_number_73_103_surv = input$monitoring_tests_number_73_103_surv,
+      monitoring_tests_73_103_elf_surv = input$monitoring_tests_73_103_elf_surv / 100,
+      monitoring_tests_73_103_biomarkers_surv = input$monitoring_tests_73_103_biomarkers_surv / 100,
+      ongoing_period_surv = input$ongoing_period_surv,
+      retention_end_surv = input$retention_end_surv / 100,
+      survodutide_ongoing_delivery_setting_pc_gp = (input$survodutide_ongoing_delivery_setting[1, 1]) / 100,
+      survodutide_ongoing_delivery_setting_pc_nur = (input$survodutide_ongoing_delivery_setting[2, 1]) / 100,
+      survodutide_ongoing_delivery_setting_sc_hgc = (input$survodutide_ongoing_delivery_setting[3, 1]) / 100,
+      survodutide_ongoing_delivery_setting_sc_hgn = (input$survodutide_ongoing_delivery_setting[4, 1]) / 100,
+      survodutide_ongoing_delivery_setting_com_dia = (input$survodutide_ongoing_delivery_setting[5, 1]) / 100,
+      survodutide_ongoing_delivery_setting_com_pha = (input$survodutide_ongoing_delivery_setting[6, 1]) / 100,
+      ongoing_annual_prop_elf_surv = input$ongoing_annual_prop_elf_surv / 100,
+      ongoing_annual_prop_biomarkers_surv = input$ongoing_annual_prop_biomarkers_surv / 100,
+      ongoing_annual_prop_fibro_surv = input$ongoing_annual_prop_fibro_surv
+    )
+    
+  })
+  
   masld_estimates <- reactive({
     params <- assumptions()
     
