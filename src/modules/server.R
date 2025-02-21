@@ -6,6 +6,8 @@ library(EnvStats)
 
 server <- function(input, output, session) {
   
+  addResourcePath(prefix = "config", directoryPath = "www/config")
+  
   assumptions <- reactive({
     
     list(
@@ -182,6 +184,130 @@ server <- function(input, output, session) {
     
   })
   
+  res_pathway_assumptions <- reactive({
+    
+    list(
+      pre_liver_biopsy_prop_res = input$pre_liver_biopsy_prop_res / 100,
+      pre_elf_prop_res = input$pre_elf_prop_res / 100,
+      pre_biomarkers_prop_res = input$pre_biomarkers_prop_res / 100,
+      pre_fibro_prop_res = input$pre_fibro_prop_res / 100,
+      mm_assess_prop_res = input$mm_assess_prop_res / 100,
+      mm_assess_setting_res_pc_gp = (input$mm_assess_setting_res[1, 1]) / 100,
+      mm_assess_setting_res_pc_nur = (input$mm_assess_setting_res[2, 1]) / 100,
+      mm_assess_setting_res_sc_hgc = (input$mm_assess_setting_res[3, 1]) / 100,
+      mm_assess_setting_res_sc_hgn = (input$mm_assess_setting_res[4, 1]) / 100,
+      mm_assess_setting_res_com_dia = (input$mm_assess_setting_res[5, 1]) / 100,
+      mm_assess_setting_res_com_pha = (input$mm_assess_setting_res[6, 1]) / 100,
+      dosage_0_71_res = input$dosage_0_71_res / 100,
+      retention_res_0_71 = input$retention_res_0_71 / 100,
+      treatment_setting_0_71_matrix_res_pc_gp = (input$treatment_setting_0_71_matrix_res[1, 1]) / 100,
+      treatment_setting_0_71_matrix_res_pc_nur = (input$treatment_setting_0_71_matrix_res[2, 1]) / 100,
+      treatment_setting_0_71_matrix_res_sc_hgc = (input$treatment_setting_0_71_matrix_res[3, 1]) / 100,
+      treatment_setting_0_71_matrix_res_sc_hgn = (input$treatment_setting_0_71_matrix_res[4, 1]) / 100,
+      treatment_setting_0_71_matrix_res_com_dia = (input$treatment_setting_0_71_matrix_res[5, 1]) / 100,
+      treatment_setting_0_71_matrix_res_com_pha = (input$treatment_setting_0_71_matrix_res[6, 1]) / 100,
+      monitor_tests_0_71_res = input$monitor_tests_0_71_res,
+      monitor_tests_0_71_elf_res = input$monitor_tests_0_71_elf_res / 100,
+      monitor_tests_0_71_biomarkers_res = input$monitor_tests_0_71_biomarkers_res / 100,
+      monitor_tests_0_71_fibro_res = input$monitor_tests_0_71_fibro_res / 100,
+      efficacy_liver_biopsy_res = input$efficacy_liver_biopsy_res / 100,
+      efficacy_elf_prop_res = input$efficacy_elf_prop_res / 100,
+      efficacy_fibro_prop_res = input$efficacy_fibro_prop_res / 100,
+      efficacy_biomarkers_prop_res = input$efficacy_biomarkers_prop_res / 100,
+      continuation_prop_res = input$continuation_prop_res / 100,
+      continuation_delivery_setting_res_pc_gp = (input$continuation_delivery_setting_res[1, 1]) / 100,
+      continuation_delivery_setting_res_pc_nur = (input$continuation_delivery_setting_res[2, 1]) / 100,
+      continuation_delivery_setting_res_sc_hgc = (input$continuation_delivery_setting_res[3, 1]) / 100,
+      continuation_delivery_setting_res_sc_hgn = (input$continuation_delivery_setting_res[4, 1]) / 100,
+      continuation_delivery_setting_res_com_dia = (input$continuation_delivery_setting_res[5, 1]) / 100,
+      continuation_delivery_setting_res_com_pha = (input$continuation_delivery_setting_res[6, 1]) / 100,
+      retention_73_103_res = input$retention_73_103_res / 100,
+      treatment_setting_73_103_matrix_res_pc_gp = (input$treatment_setting_73_103_matrix_res[1, 1]) / 100,
+      treatment_setting_73_103_matrix_res_pc_nur = (input$treatment_setting_73_103_matrix_res[2, 1]) / 100,
+      treatment_setting_73_103_matrix_res_sc_hgc = (input$treatment_setting_73_103_matrix_res[3, 1]) / 100,
+      treatment_setting_73_103_matrix_res_sc_hgn = (input$treatment_setting_73_103_matrix_res[4, 1]) / 100,
+      treatment_setting_73_103_matrix_res_com_dia = (input$treatment_setting_73_103_matrix_res[5, 1]) / 100,
+      treatment_setting_73_103_matrix_res_com_pha = (input$treatment_setting_73_103_matrix_res[6, 1]) / 100,
+      monitoring_tests_number_73_103_res = input$monitoring_tests_number_73_103_res,
+      monitoring_tests_73_103_elf_res = input$monitoring_tests_73_103_elf_res / 100,
+      monitoring_tests_73_103_biomarkers_res = input$monitoring_tests_73_103_biomarkers_res / 100,
+      ongoing_period_res = input$ongoing_period_res,
+      retention_end_res = input$retention_end_res / 100,
+      resmetirom_ongoing_delivery_setting_pc_gp = (input$resmetirom_ongoing_delivery_setting[1, 1]) / 100,
+      resmetirom_ongoing_delivery_setting_pc_nur = (input$resmetirom_ongoing_delivery_setting[2, 1]) / 100,
+      resmetirom_ongoing_delivery_setting_sc_hgc = (input$resmetirom_ongoing_delivery_setting[3, 1]) / 100,
+      resmetirom_ongoing_delivery_setting_sc_hgn = (input$resmetirom_ongoing_delivery_setting[4, 1]) / 100,
+      resmetirom_ongoing_delivery_setting_com_dia = (input$resmetirom_ongoing_delivery_setting[5, 1]) / 100,
+      resmetirom_ongoing_delivery_setting_com_pha = (input$resmetirom_ongoing_delivery_setting[6, 1]) / 100,
+      ongoing_annual_prop_elf_res = input$ongoing_annual_prop_elf_res / 100,
+      ongoing_annual_prop_biomarkers_res = input$ongoing_annual_prop_biomarkers_res / 100,
+      ongoing_annual_prop_fibro_res = input$ongoing_annual_prop_fibro_res / 100
+    )
+    
+  })
+  
+  lan_pathway_assumptions <- reactive({
+    
+    list(
+      pre_liver_biopsy_prop_lan = input$pre_liver_biopsy_prop_lan / 100,
+      pre_elf_prop_lan = input$pre_elf_prop_lan / 100,
+      pre_biomarkers_prop_lan = input$pre_biomarkers_prop_lan / 100,
+      pre_fibro_prop_lan = input$pre_fibro_prop_lan / 100,
+      mm_assess_prop_lan = input$mm_assess_prop_lan / 100,
+      mm_assess_setting_lan_pc_gp = (input$mm_assess_setting_lan[1, 1]) / 100,
+      mm_assess_setting_lan_pc_nur = (input$mm_assess_setting_lan[2, 1]) / 100,
+      mm_assess_setting_lan_sc_hgc = (input$mm_assess_setting_lan[3, 1]) / 100,
+      mm_assess_setting_lan_sc_hgn = (input$mm_assess_setting_lan[4, 1]) / 100,
+      mm_assess_setting_lan_com_dia = (input$mm_assess_setting_lan[5, 1]) / 100,
+      mm_assess_setting_lan_com_pha = (input$mm_assess_setting_lan[6, 1]) / 100,
+      dosage_0_71_lan = input$dosage_0_71_lan / 100,
+      retention_lan_0_71 = input$retention_lan_0_71 / 100,
+      treatment_setting_0_71_matrix_lan_pc_gp = (input$treatment_setting_0_71_matrix_lan[1, 1]) / 100,
+      treatment_setting_0_71_matrix_lan_pc_nur = (input$treatment_setting_0_71_matrix_lan[2, 1]) / 100,
+      treatment_setting_0_71_matrix_lan_sc_hgc = (input$treatment_setting_0_71_matrix_lan[3, 1]) / 100,
+      treatment_setting_0_71_matrix_lan_sc_hgn = (input$treatment_setting_0_71_matrix_lan[4, 1]) / 100,
+      treatment_setting_0_71_matrix_lan_com_dia = (input$treatment_setting_0_71_matrix_lan[5, 1]) / 100,
+      treatment_setting_0_71_matrix_lan_com_pha = (input$treatment_setting_0_71_matrix_lan[6, 1]) / 100,
+      monitor_tests_0_71_lan = input$monitor_tests_0_71_lan,
+      monitor_tests_0_71_elf_lan = input$monitor_tests_0_71_elf_lan / 100,
+      monitor_tests_0_71_biomarkers_lan = input$monitor_tests_0_71_biomarkers_lan / 100,
+      monitor_tests_0_71_fibro_lan = input$monitor_tests_0_71_fibro_lan / 100,
+      efficacy_liver_biopsy_lan = input$efficacy_liver_biopsy_lan / 100,
+      efficacy_elf_prop_lan = input$efficacy_elf_prop_lan / 100,
+      efficacy_fibro_prop_lan = input$efficacy_fibro_prop_lan / 100,
+      efficacy_biomarkers_prop_lan = input$efficacy_biomarkers_prop_lan / 100,
+      continuation_prop_lan = input$continuation_prop_lan / 100,
+      continuation_delivery_setting_lan_pc_gp = (input$continuation_delivery_setting_lan[1, 1]) / 100,
+      continuation_delivery_setting_lan_pc_nur = (input$continuation_delivery_setting_lan[2, 1]) / 100,
+      continuation_delivery_setting_lan_sc_hgc = (input$continuation_delivery_setting_lan[3, 1]) / 100,
+      continuation_delivery_setting_lan_sc_hgn = (input$continuation_delivery_setting_lan[4, 1]) / 100,
+      continuation_delivery_setting_lan_com_dia = (input$continuation_delivery_setting_lan[5, 1]) / 100,
+      continuation_delivery_setting_lan_com_pha = (input$continuation_delivery_setting_lan[6, 1]) / 100,
+      retention_73_103_lan = input$retention_73_103_lan / 100,
+      treatment_setting_73_103_matrix_lan_pc_gp = (input$treatment_setting_73_103_matrix_lan[1, 1]) / 100,
+      treatment_setting_73_103_matrix_lan_pc_nur = (input$treatment_setting_73_103_matrix_lan[2, 1]) / 100,
+      treatment_setting_73_103_matrix_lan_sc_hgc = (input$treatment_setting_73_103_matrix_lan[3, 1]) / 100,
+      treatment_setting_73_103_matrix_lan_sc_hgn = (input$treatment_setting_73_103_matrix_lan[4, 1]) / 100,
+      treatment_setting_73_103_matrix_lan_com_dia = (input$treatment_setting_73_103_matrix_lan[5, 1]) / 100,
+      treatment_setting_73_103_matrix_lan_com_pha = (input$treatment_setting_73_103_matrix_lan[6, 1]) / 100,
+      monitoring_tests_number_73_103_lan = input$monitoring_tests_number_73_103_lan,
+      monitoring_tests_73_103_elf_lan = input$monitoring_tests_73_103_elf_lan / 100,
+      monitoring_tests_73_103_biomarkers_lan = input$monitoring_tests_73_103_biomarkers_lan / 100,
+      ongoing_period_lan = input$ongoing_period_lan,
+      retention_end_lan = input$retention_end_lan / 100,
+      lanifibranor_ongoing_delivery_setting_pc_gp = (input$lan_ongoing_delivery_setting[1, 1]) / 100,
+      lanifibranor_ongoing_delivery_setting_pc_nur = (input$lan_ongoing_delivery_setting[2, 1]) / 100,
+      lanifibranor_ongoing_delivery_setting_sc_hgc = (input$lan_ongoing_delivery_setting[3, 1]) / 100,
+      lanifibranor_ongoing_delivery_setting_sc_hgn = (input$lan_ongoing_delivery_setting[4, 1]) / 100,
+      lanifibranor_ongoing_delivery_setting_com_dia = (input$lan_ongoing_delivery_setting[5, 1]) / 100,
+      lanifibranor_ongoing_delivery_setting_com_pha = (input$lan_ongoing_delivery_setting[6, 1]) / 100,
+      ongoing_annual_prop_elf_lan = input$ongoing_annual_prop_elf_lan / 100,
+      ongoing_annual_prop_biomarkers_lan = input$ongoing_annual_prop_biomarkers_lan / 100,
+      ongoing_annual_prop_fibro_lan = input$ongoing_annual_prop_fibro_lan / 100
+    )
+    
+  })
+  
   masld_estimates <- reactive({
     params <- assumptions()
     
@@ -329,10 +455,37 @@ server <- function(input, output, session) {
   
   pre_treat_biopsy_sem <- reactive({
     
-    params <- sem_pathway_assumptions()
+    params_sem <- sem_pathway_assumptions()
     treat_pop_sem() |>
       select(c(simulation, treated_total)) |>
-      mutate("Liver Biopsy Activities" = round(treated_total * params$pre_treat_biopsy_sem, 0))
+      mutate(liv_bio_act = round(treated_total * params_sem$pre_treat_biopsy_sem, 0))
+    
+  })
+  
+  pre_treat_biopsy_surv <- reactive({
+    
+    params_surv <- surv_pathway_assumptions()
+    treat_pop_surv() |>
+      select(c(simulation, treated_total)) |>
+      mutate(liv_bio_act = round(treated_total * params_surv$pre_liver_biopsy_prop_surv, 0))
+    
+  })
+  
+  pre_treat_biopsy_res <- reactive({
+    
+    params_res <- res_pathway_assumptions()
+    treat_pop_res() |>
+      select(c(simulation, treated_total)) |>
+      mutate(liv_bio_act = round(treated_total * params_res$pre_liver_biopsy_prop_res, 0))
+    
+  })
+  
+  pre_treat_biopsy_lan <- reactive({
+    
+    params_lan <- lan_pathway_assumptions()
+    treat_pop_lan() |>
+      select(c(simulation, treated_total)) |>
+      mutate(liv_bio_act = round(treated_total * params_lan$pre_liver_biopsy_prop_lan, 0))
     
   })
   
@@ -531,6 +684,30 @@ server <- function(input, output, session) {
   output$pre_treat_biopsy_sem_DT <- renderDT({
     pre_treat_biopsy_sem_DT <- pre_treat_biopsy_sem()
     datatable(pre_treat_biopsy_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWifth = TRUE))
+  })
+  
+  output$pre_treat_biopsy_surv_DT <- renderDT({
+    pre_treat_biopsy_surv_DT <- pre_treat_biopsy_surv()
+    datatable(pre_treat_biopsy_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWifth = TRUE))
+  })
+  
+  output$pre_treat_biopsy_res_DT <- renderDT({
+    pre_treat_biopsy_res_DT <- pre_treat_biopsy_res()
+    datatable(pre_treat_biopsy_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWifth = TRUE))
+  })
+  
+  output$pre_treat_biopsy_lan_DT <- renderDT({
+    pre_treat_biopsy_lan_DT <- pre_treat_biopsy_lan()
+    datatable(pre_treat_biopsy_lan_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
                              autoWifth = TRUE))

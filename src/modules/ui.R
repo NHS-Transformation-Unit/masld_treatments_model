@@ -1782,11 +1782,23 @@ ui <- navbarPage(
                          nav_panel("Data Table", DTOutput("pre_treat_biopsy_sem_DT"))
                        )
              ),
-             nav_panel("Survodutide"
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_surv_DT"))
+                       )
              ),
-             nav_panel("Resmetirom"
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_res_DT"))
+                       )
              ),
-             nav_panel("Lanifibranor"
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_lan_DT"))
+                       )
              ),
              nav_panel("All Treamtents"
              )
