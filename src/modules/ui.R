@@ -1745,11 +1745,23 @@ ui <- navbarPage(
              p("This section contains the assumptions covering the costs of treatments and associated 
                clinical activities. These can be amended in each of the sections below:"),
              navset_tab(
-               nav_panel("Diagnostic investigation costs"
+               nav_panel("Diagnostic investigation costs",
+                         h4("Liver Biopsy"),
+                         numericInput("fin_liv_bio",
+                                      "Specify the cost of a liver biopsy:",
+                                      value = 962,
+                                      min = 0,
+                                      max = NA,
+                                      step = 1),
+                         h4("ELF Test"),
+                         numericInput("fin_elf",
+                                      "Specify the cost of an ELF test:",
+                                      value = 136,
+                                      min = 0,
+                                      max = NA,
+                                      step = 1)
                ),
                nav_panel("Appointment costs"
-               ),
-               nav_panel("Drug costs"
                )
              )
            )
@@ -1776,35 +1788,308 @@ ui <- navbarPage(
            h4("Liver Biopsies"),
            p("Some text on Liver Biopsies"),
            navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_all_DT"))
+                       )
+             ),
              nav_panel("Semaglutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
                          nav_panel("Data Table", DTOutput("pre_treat_biopsy_sem_DT"))
                        )
              ),
              nav_panel("Survodutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
                          nav_panel("Data Table", DTOutput("pre_treat_biopsy_surv_DT"))
                        )
              ),
              nav_panel("Resmetirom",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
                          nav_panel("Data Table", DTOutput("pre_treat_biopsy_res_DT"))
                        )
              ),
              nav_panel("Lanifibranor",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
                          nav_panel("Data Table", DTOutput("pre_treat_biopsy_lan_DT"))
                        )
-             ),
-             nav_panel("All Treamtents"
              )
+             
            ),
            br(),
-           
+           h4("ELF Testing"),
+           p("Some text on ELF Testing"),
+           navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_all_DT"))
+                       )
+             ),
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_lan_DT"))
+                       )
+             )
+             
+           ),
+           h4("Biomarkers"),
+           p("Some biomarker text"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_lan_DT"))
+                       )
+             ),
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_all_DT"))
+                       )
+             )
+           )
            )
   )
 )

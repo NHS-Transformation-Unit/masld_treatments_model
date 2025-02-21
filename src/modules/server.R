@@ -4,9 +4,15 @@ library(tidyr)
 library(ggplot2)
 library(EnvStats)
 
+
+
+
+
 server <- function(input, output, session) {
   
   addResourcePath(prefix = "config", directoryPath = "www/config")
+  
+# Load Inputs -------------------------------------------------------------
   
   assumptions <- reactive({
     
@@ -58,7 +64,7 @@ server <- function(input, output, session) {
   sem_pathway_assumptions <- reactive({
     
     list(
-      pre_treat_biopsy_sem = input$pre_liver_biopsy_prop_sem / 100,
+      pre_liver_biopsy_prop_sem = input$pre_liver_biopsy_prop_sem / 100,
       pre_elf_prop_sem = input$pre_elf_prop_sem / 100,
       pre_biomarkers_prop_sem = input$pre_biomarkers_prop_sem / 100,
       pre_fibro_prop_sem = input$pre_fibro_prop_sem / 100,
@@ -308,6 +314,19 @@ server <- function(input, output, session) {
     
   })
   
+  fin_assumptions <- reactive({
+    
+    list(
+      fin_liv_bio = input$fin_liv_bio,
+      fin_elf = input$fin_elf
+    )
+  })
+  
+
+# Population Logic --------------------------------------------------------
+
+
+  
   masld_estimates <- reactive({
     params <- assumptions()
     
@@ -452,44 +471,248 @@ server <- function(input, output, session) {
     
   })
   
-  
+
+# Pre-Treatment: Biopsies -------------------------------------------------
+
+
   pre_treat_biopsy_sem <- reactive({
     
     params_sem <- sem_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_sem() |>
       select(c(simulation, treated_total)) |>
-      mutate(liv_bio_act = round(treated_total * params_sem$pre_treat_biopsy_sem, 0))
+      mutate(liv_bio_act = round(treated_total * params_sem$pre_liver_biopsy_prop_sem, 0),
+             liv_bio_act_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2))
     
   })
   
   pre_treat_biopsy_surv <- reactive({
     
     params_surv <- surv_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_surv() |>
       select(c(simulation, treated_total)) |>
-      mutate(liv_bio_act = round(treated_total * params_surv$pre_liver_biopsy_prop_surv, 0))
+      mutate(liv_bio_act = round(treated_total * params_surv$pre_liver_biopsy_prop_surv, 0),
+             liv_bio_act_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2))
     
   })
   
   pre_treat_biopsy_res <- reactive({
     
     params_res <- res_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_res() |>
       select(c(simulation, treated_total)) |>
-      mutate(liv_bio_act = round(treated_total * params_res$pre_liver_biopsy_prop_res, 0))
+      mutate(liv_bio_act = round(treated_total * params_res$pre_liver_biopsy_prop_res, 0),
+             liv_bio_act_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2))
     
   })
   
   pre_treat_biopsy_lan <- reactive({
     
     params_lan <- lan_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_lan() |>
       select(c(simulation, treated_total)) |>
-      mutate(liv_bio_act = round(treated_total * params_lan$pre_liver_biopsy_prop_lan, 0))
+      mutate(liv_bio_act = round(treated_total * params_lan$pre_liver_biopsy_prop_lan, 0),
+             liv_bio_act_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2))
     
   })
   
+  pre_treat_biopsy_all <- reactive({
+    
+    pre_treat_biopsy_sem_all <- pre_treat_biopsy_sem() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("liv_bio_act_sem" = 2,
+             "liv_bio_act_cost_sem" = 3)
+    
+    pre_treat_biopsy_surv_all <- pre_treat_biopsy_surv() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("liv_bio_act_surv" = 2,
+             "liv_bio_act_cost_surv" = 3)
+    
+    pre_treat_biopsy_res_all <- pre_treat_biopsy_res() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("liv_bio_act_res" = 2,
+             "liv_bio_act_cost_res" = 3)
+    
+    pre_treat_biopsy_lan_all <- pre_treat_biopsy_lan() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("liv_bio_act_lan" = 2,
+             "liv_bio_act_cost_lan" = 3)
+    
+    pre_treat_biopsy_sem_all|>
+      left_join(pre_treat_biopsy_surv_all, by = c("simulation")) |>
+      left_join(pre_treat_biopsy_res_all, by = c("simulation")) |>
+      left_join(pre_treat_biopsy_lan_all, by = c("simulation")) |>
+      rowwise() |>
+      mutate("liv_bio_act_all" = sum(c_across(c(liv_bio_act_sem,
+                                                liv_bio_act_surv,
+                                                liv_bio_act_res,
+                                                liv_bio_act_lan))),
+             "liv_bio_act_cost_all" = sum(c_across(c(liv_bio_act_cost_sem,
+                                                     liv_bio_act_cost_surv,
+                                                     liv_bio_act_cost_res,
+                                                     liv_bio_act_cost_lan)))
+      )
+    
+  })
   
+
+# Pre-Treatment: ELF ------------------------------------------------------
+
+  
+  pre_treat_elf_sem <- reactive({
+    
+    params_sem <- sem_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_sem() |>
+      select(c(simulation, treated_total)) |>
+      mutate(elf_act = round(treated_total * params_sem$pre_elf_prop_sem, 0),
+             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+    
+  })
+  
+  pre_treat_elf_surv <- reactive({
+    
+    params_surv <- surv_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_surv() |>
+      select(c(simulation, treated_total)) |>
+      mutate(elf_act = round(treated_total * params_surv$pre_elf_prop_surv, 0),
+             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+    
+  })
+  
+  pre_treat_elf_res <- reactive({
+    
+    params_res <- res_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_res() |>
+      select(c(simulation, treated_total)) |>
+      mutate(elf_act = round(treated_total * params_res$pre_elf_prop_res, 0),
+             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+    
+  })
+  
+  pre_treat_elf_lan <- reactive({
+    
+    params_lan <- lan_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_lan() |>
+      select(c(simulation, treated_total)) |>
+      mutate(elf_act = round(treated_total * params_lan$pre_elf_prop_lan, 0),
+             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+    
+  })
+  
+  pre_treat_elf_all <- reactive({
+    
+    pre_treat_elf_sem_all <- pre_treat_elf_sem() |>
+      select(c(simulation, elf_act, elf_cost)) |>
+      rename("elf_act_sem" = 2,
+             "elf_act_cost_sem" = 3)
+    
+    pre_treat_elf_surv_all <- pre_treat_elf_surv() |>
+      select(c(simulation, elf_act, elf_cost)) |>
+      rename("elf_act_surv" = 2,
+             "elf_act_cost_surv" = 3)
+    
+    pre_treat_elf_res_all <- pre_treat_elf_res() |>
+      select(c(simulation, elf_act, elf_cost)) |>
+      rename("elf_act_res" = 2,
+             "elf_act_cost_res" = 3)
+    
+    pre_treat_elf_lan_all <- pre_treat_elf_lan() |>
+      select(c(simulation, elf_act, elf_cost)) |>
+      rename("elf_act_lan" = 2,
+             "elf_act_cost_lan" = 3)
+    
+    pre_treat_elf_sem_all|>
+      left_join(pre_treat_elf_surv_all, by = c("simulation")) |>
+      left_join(pre_treat_elf_res_all, by = c("simulation")) |>
+      left_join(pre_treat_elf_lan_all, by = c("simulation")) |>
+      rowwise() |>
+      mutate("elf_act_all" = sum(c_across(c(elf_act_sem,
+                                            elf_act_surv,
+                                            elf_act_res,
+                                            elf_act_lan))),
+             "elf_act_cost_all" = sum(c_across(c(elf_act_cost_sem,
+                                                 elf_act_cost_surv,
+                                                 elf_act_cost_res,
+                                                 elf_act_cost_lan)))
+      )
+    
+  })
+
+
+# Pre-Treatment: Biomarkers -----------------------------------------------
+
+  pre_treat_biomarkers_sem <- reactive({
+    
+    params_sem <- sem_pathway_assumptions()
+    treat_pop_sem() |>
+      select(c(simulation, treated_total)) |>
+      mutate(biomarkers_act = round(treated_total * params_sem$pre_biomarkers_prop_sem, 0))
+    
+  })
+  
+  pre_treat_biomarkers_surv <- reactive({
+    
+    params_surv <- surv_pathway_assumptions()
+    treat_pop_surv() |>
+      select(c(simulation, treated_total)) |>
+      mutate(biomarkers_act = round(treated_total * params_surv$pre_biomarkers_prop_surv, 0))
+    
+  })
+  
+  pre_treat_biomarkers_res <- reactive({
+    
+    params_res <- res_pathway_assumptions()
+    treat_pop_res() |>
+      select(c(simulation, treated_total)) |>
+      mutate(biomarkers_act = round(treated_total * params_res$pre_biomarkers_prop_res, 0))
+    
+  })
+  
+  pre_treat_biomarkers_lan <- reactive({
+    
+    params_lan <- lan_pathway_assumptions()
+    treat_pop_lan() |>
+      select(c(simulation, treated_total)) |>
+      mutate(biomarkers_act = round(treated_total * params_lan$pre_biomarkers_prop_lan, 0))
+    
+  })
+  
+  pre_treat_biomarkers_all <- reactive({
+    
+    pre_treat_biomarkers_sem_all <- pre_treat_biomarkers_sem() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("biomarkers_act_sem" = 2)
+    
+    pre_treat_biomarkers_surv_all <- pre_treat_biomarkers_surv() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("biomarkers_act_surv" = 2)
+    
+    pre_treat_biomarkers_res_all <- pre_treat_biomarkers_res() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("biomarkers_act_res" = 2)
+    
+    pre_treat_biomarkers_lan_all <- pre_treat_biomarkers_lan() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("biomarkers_act_lan" = 2)
+    
+    pre_treat_biomarkers_sem_all|>
+      left_join(pre_treat_biomarkers_surv_all, by = c("simulation")) |>
+      left_join(pre_treat_biomarkers_res_all, by = c("simulation")) |>
+      left_join(pre_treat_biomarkers_lan_all, by = c("simulation")) |>
+      rowwise() |>
+      mutate("biomarkers_act_all" = sum(c_across(biomarkers_act_sem:biomarkers_act_lan)))
+    
+  })
+
+# Outputs: Population -----------------------------------------------------
+
   output$masld_pop_histogram <- renderPlot({
     masld_pop_hist_df <- masld_pop_sim()
     ggplot(masld_pop_hist_df, aes(x = masld_population))+
@@ -621,6 +844,9 @@ server <- function(input, output, session) {
                              autoWidth = TRUE))
   })
   
+
+# Outputs: Treatment Implementation ---------------------------------------
+  
   output$treat_pop_sem_DT <- renderDT({
     treat_pop_sem <- treat_pop_sem() |>
       rename("Simulation" = 1,
@@ -681,37 +907,441 @@ server <- function(input, output, session) {
                              autoWidth = TRUE))
   })
   
+
+# Outputs: Pre-Treatment --------------------------------------------------
+
+  output$pre_treat_biopsy_sem_sum_1_act <- renderText({
+    scales::comma(pre_treat_biopsy_sem()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_sem_sum_2_act <- renderText({
+    scales::comma(pre_treat_biopsy_sem()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_sem_sum_3_act <- renderText({
+    scales::comma(pre_treat_biopsy_sem()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_sem_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_sem()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_sem_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_sem()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_sem_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_sem()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_surv_sum_1_act <- renderText({
+    scales::comma(pre_treat_biopsy_surv()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_surv_sum_2_act <- renderText({
+    scales::comma(pre_treat_biopsy_surv()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_surv_sum_3_act <- renderText({
+    scales::comma(pre_treat_biopsy_surv()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_surv_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_surv()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_surv_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_surv()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_surv_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_surv()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+ 
+  output$pre_treat_biopsy_res_sum_1_act <- renderText({
+    scales::comma(pre_treat_biopsy_res()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_res_sum_2_act <- renderText({
+    scales::comma(pre_treat_biopsy_res()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_res_sum_3_act <- renderText({
+    scales::comma(pre_treat_biopsy_res()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_res_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_res()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_res_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_res()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_res_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_res()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_lan_sum_1_act <- renderText({
+    scales::comma(pre_treat_biopsy_lan()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_lan_sum_2_act <- renderText({
+    scales::comma(pre_treat_biopsy_lan()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_lan_sum_3_act <- renderText({
+    scales::comma(pre_treat_biopsy_lan()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_lan_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_lan()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_lan_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_lan()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_lan_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_lan()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_all_sum_1_act <- renderText({
+    scales::comma(pre_treat_biopsy_all()[[1, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_all_sum_2_act <- renderText({
+    scales::comma(pre_treat_biopsy_all()[[2, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_all_sum_3_act <- renderText({
+    scales::comma(pre_treat_biopsy_all()[[3, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_biopsy_all_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_all()[[1, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_all_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_all()[[2, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biopsy_all_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biopsy_all()[[3, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
   output$pre_treat_biopsy_sem_DT <- renderDT({
-    pre_treat_biopsy_sem_DT <- pre_treat_biopsy_sem()
+    pre_treat_biopsy_sem_DT <- pre_treat_biopsy_sem() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("Simulation" = 1,
+             "Liver Biopsy Activity" = 2,
+             "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_sem_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWifth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biopsy_surv_DT <- renderDT({
-    pre_treat_biopsy_surv_DT <- pre_treat_biopsy_surv()
+    pre_treat_biopsy_surv_DT <- pre_treat_biopsy_surv() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("Simulation" = 1,
+             "Liver Biopsy Activity" = 2,
+             "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_surv_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWifth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biopsy_res_DT <- renderDT({
-    pre_treat_biopsy_res_DT <- pre_treat_biopsy_res()
+    pre_treat_biopsy_res_DT <- pre_treat_biopsy_res() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("Simulation" = 1,
+             "Liver Biopsy Activity" = 2,
+             "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_res_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWifth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biopsy_lan_DT <- renderDT({
-    pre_treat_biopsy_lan_DT <- pre_treat_biopsy_lan()
+    pre_treat_biopsy_lan_DT <- pre_treat_biopsy_lan() |>
+      select(c(simulation, liv_bio_act, liv_bio_act_cost)) |>
+      rename("Simulation" = 1,
+             "Liver Biopsy Activity" = 2,
+             "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_lan_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWifth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
   })
+  
+  output$pre_treat_biopsy_all_DT <- renderDT({
+    pre_treat_biopsy_all_DT <- pre_treat_biopsy_all() |>
+      select(c(simulation, liv_bio_act_all, liv_bio_act_cost_all)) |>
+      rename("Simulation" = 1,
+             "Liver Biopsy Activity" = 2,
+             "Liver Biopsy Costs" = 3)
+    datatable(pre_treat_biopsy_all_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
+    
+  })
+  
+  output$pre_treat_elf_sem_sum_1_act <- renderText({
+    scales::comma(pre_treat_elf_sem()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_sem_sum_2_act <- renderText({
+    scales::comma(pre_treat_elf_sem()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_sem_sum_3_act <- renderText({
+    scales::comma(pre_treat_elf_sem()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_sem_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_elf_sem()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_sem_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_elf_sem()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_sem_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_elf_sem()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_surv_sum_1_act <- renderText({
+    scales::comma(pre_treat_elf_surv()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_surv_sum_2_act <- renderText({
+    scales::comma(pre_treat_elf_surv()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_surv_sum_3_act <- renderText({
+    scales::comma(pre_treat_elf_surv()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_surv_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_elf_surv()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_surv_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_elf_surv()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_surv_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_elf_surv()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_res_sum_1_act <- renderText({
+    scales::comma(pre_treat_elf_res()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_res_sum_2_act <- renderText({
+    scales::comma(pre_treat_elf_res()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_res_sum_3_act <- renderText({
+    scales::comma(pre_treat_elf_res()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_res_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_elf_res()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_res_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_elf_res()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_res_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_elf_res()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_lan_sum_1_act <- renderText({
+    scales::comma(pre_treat_elf_lan()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_lan_sum_2_act <- renderText({
+    scales::comma(pre_treat_elf_lan()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_lan_sum_3_act <- renderText({
+    scales::comma(pre_treat_elf_lan()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_lan_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_elf_lan()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_lan_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_elf_lan()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_lan_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_elf_lan()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_all_sum_1_act <- renderText({
+    scales::comma(pre_treat_elf_all()[[1, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_all_sum_2_act <- renderText({
+    scales::comma(pre_treat_elf_all()[[2, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_all_sum_3_act <- renderText({
+    scales::comma(pre_treat_elf_all()[[3, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_elf_all_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_elf_all()[[1, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_all_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_elf_all()[[2, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_all_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_elf_all()[[3, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_elf_sem_DT <- renderDT({
+    pre_treat_elf_sem_DT <- pre_treat_elf_sem() |>
+      select(c(simulation, elf_act, elf_act_cost)) |>
+      rename("Simulation" = 1,
+             "ELF Activity" = 2,
+             "ELF Costs" = 3)
+    datatable(pre_treat_elf_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_elf_surv_DT <- renderDT({
+    pre_treat_elf_surv_DT <- pre_treat_elf_surv() |>
+      select(c(simulation, elf_act, elf_act_cost)) |>
+      rename("Simulation" = 1,
+             "ELF Activity" = 2,
+             "ELF Costs" = 3)
+    datatable(pre_treat_elf_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_elf_res_DT <- renderDT({
+    pre_treat_elf_res_DT <- pre_treat_elf_res() |>
+      select(c(simulation, elf_act, elf_act_cost)) |>
+      rename("Simulation" = 1,
+             "ELF Activity" = 2,
+             "ELF Costs" = 3)
+    datatable(pre_treat_elf_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_elf_lan_DT <- renderDT({
+    pre_treat_elf_lan_DT <- pre_treat_elf_lan() |>
+      select(c(simulation, elf_act, elf_act_cost)) |>
+      rename("Simulation" = 1,
+             "ELF Activity" = 2,
+             "ELF Costs" = 3)
+    datatable(pre_treat_elf_lan_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_elf_all_DT <- renderDT({
+    pre_treat_elf_all_DT <- pre_treat_elf_all() |>
+      select(c(simulation, elf_act_all, elf_act_cost_all)) |>
+      rename("Simulation" = 1,
+             "ELF Activity" = 2,
+             "ELF Costs" = 3)
+    datatable(pre_treat_elf_all_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
+    
+  })
+  
+  
+  output$pre_treat_biomarkers_sem_DT <- renderDT({
+    pre_treat_biomarkers_sem_DT <- pre_treat_biomarkers_sem() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("Simulation" = 1,
+             "Biomarkers Activity" = 2)
+    datatable(pre_treat_biomarkers_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
+  
+  output$pre_treat_biomarkers_surv_DT <- renderDT({
+    pre_treat_biomarkers_surv_DT <- pre_treat_biomarkers_surv() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("Simulation" = 1,
+             "Biomarkers Activity" = 2)
+    datatable(pre_treat_biomarkers_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
+  
+  output$pre_treat_biomarkers_res_DT <- renderDT({
+    pre_treat_biomarkers_res_DT <- pre_treat_biomarkers_res() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("Simulation" = 1,
+             "Biomarkers Activity" = 2)
+    datatable(pre_treat_biomarkers_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
+  
+  output$pre_treat_biomarkers_lan_DT <- renderDT({
+    pre_treat_biomarkers_lan_DT <- pre_treat_biomarkers_lan() |>
+      select(c(simulation, biomarkers_act)) |>
+      rename("Simulation" = 1,
+             "Biomarkers Activity" = 2)
+    datatable(pre_treat_biomarkers_lan_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+  })
+  
+  output$pre_treat_biomarkers_all_DT <- renderDT({
+    pre_treat_biomarkers_all_DT <- pre_treat_biomarkers_all() |>
+      select(c(simulation, biomarkers_act_all)) |>
+      rename("Simulation" = 1,
+             "Biomarkers Activity" = 2)
+    datatable(pre_treat_biomarkers_all_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+    
+  })
+  
+
+# Downloads: Inputs -------------------------------------------------------
+
   
   output$download_assumptions <- downloadHandler(
     filename = function() { "population_assumptions_pop.csv" },
