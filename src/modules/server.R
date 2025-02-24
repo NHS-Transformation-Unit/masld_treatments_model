@@ -82,12 +82,18 @@ server <- function(input, output, session) {
       mm_assess_setting_sem_com_dia_mins = input$mm_assess_setting_sem[5, 2],
       mm_assess_setting_sem_com_pha_mins = input$mm_assess_setting_sem[6, 2],
       retention_sem_0_16 = input$retention_sem_0_16 / 100,
-      treatment_setting_0_16_matrix_sem_pc_gp = (input$treatment_setting_0_16_matrix_sem[1 , 1]) / 100,
-      treatment_setting_0_16_matrix_sem_pc_nur = (input$treatment_setting_0_16_matrix_sem[2 , 1]) / 100,
-      treatment_setting_0_16_matrix_sem_sc_hgc = (input$treatment_setting_0_16_matrix_sem[3 , 1]) / 100,
-      treatment_setting_0_16_matrix_sem_sc_hgn = (input$treatment_setting_0_16_matrix_sem[4 , 1]) / 100,
-      treatment_setting_0_16_matrix_sem_com_dia = (input$treatment_setting_0_16_matrix_sem[5 , 1]) / 100,
-      treatment_setting_0_16_matrix_sem_com_pha = (input$treatment_setting_0_16_matrix_sem[6 , 1]) / 100,
+      treatment_setting_0_16_matrix_sem_pc_gp = (input$treatment_setting_0_16_matrix_sem[1, 1]) / 100,
+      treatment_setting_0_16_matrix_sem_pc_nur = (input$treatment_setting_0_16_matrix_sem[2, 1]) / 100,
+      treatment_setting_0_16_matrix_sem_sc_hgc = (input$treatment_setting_0_16_matrix_sem[3, 1]) / 100,
+      treatment_setting_0_16_matrix_sem_sc_hgn = (input$treatment_setting_0_16_matrix_sem[4, 1]) / 100,
+      treatment_setting_0_16_matrix_sem_com_dia = (input$treatment_setting_0_16_matrix_sem[5, 1]) / 100,
+      treatment_setting_0_16_matrix_sem_com_pha = (input$treatment_setting_0_16_matrix_sem[6, 1]) / 100,
+      treatment_setting_0_16_matrix_sem_pc_gp_mins = input$treatment_setting_0_16_matrix_sem[1, 2],
+      treatment_setting_0_16_matrix_sem_pc_nur_mins = input$treatment_setting_0_16_matrix_sem[2, 2],
+      treatment_setting_0_16_matrix_sem_sc_hgc_mins = input$treatment_setting_0_16_matrix_sem[3, 2],
+      treatment_setting_0_16_matrix_sem_sc_hgn_mins = input$treatment_setting_0_16_matrix_sem[4, 2],
+      treatment_setting_0_16_matrix_sem_com_dia_mins = input$treatment_setting_0_16_matrix_sem[5, 2],
+      treatment_setting_0_16_matrix_sem_com_pha_mins = input$treatment_setting_0_16_matrix_sem[6, 2],
       monitoring_tests_number_sem = input$monitoring_tests_number_sem,
       monitoring_elf_prop_sem = input$monitoring_elf_prop_sem / 100,
       monitoring_bio_prop_sem = input$monitoring_bio_prop_sem / 100,
@@ -765,6 +771,92 @@ server <- function(input, output, session) {
   })
   
 
+# Pre-Treatment: Fibroscans -----------------------------------------------
+
+  pre_treat_fibro_sem <- reactive({
+    
+    params_sem <- sem_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_sem() |>
+      select(c(simulation, treated_total)) |>
+      mutate(fibro_act = round(treated_total * params_sem$pre_fibro_prop_sem, 0),
+             fibro_cost = round(fibro_act * params_fin$fin_fibro, 2))
+    
+  })
+  
+  pre_treat_fibro_surv <- reactive({
+    
+    params_surv <- surv_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_surv() |>
+      select(c(simulation, treated_total)) |>
+      mutate(fibro_act = round(treated_total * params_surv$pre_fibro_prop_surv, 0),
+             fibro_cost = round(fibro_act * params_fin$fin_fibro, 2))
+    
+  })
+  
+  pre_treat_fibro_res <- reactive({
+    
+    params_res <- res_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_res() |>
+      select(c(simulation, treated_total)) |>
+      mutate(fibro_act = round(treated_total * params_res$pre_fibro_prop_res, 0),
+             fibro_cost = round(fibro_act * params_fin$fin_fibro, 2))
+    
+  })
+  
+  pre_treat_fibro_lan <- reactive({
+    
+    params_lan <- lan_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_lan() |>
+      select(c(simulation, treated_total)) |>
+      mutate(fibro_act = round(treated_total * params_lan$pre_fibro_prop_lan, 0),
+             fibro_cost = round(fibro_act * params_fin$fin_fibro, 2))
+    
+  })
+  
+  pre_treat_fibro_all <- reactive({
+    
+    pre_treat_fibro_sem_all <- pre_treat_fibro_sem() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("fibro_act_sem" = 2,
+             "fibro_act_cost_sem" = 3)
+    
+    pre_treat_fibro_surv_all <- pre_treat_fibro_surv() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("fibro_act_surv" = 2,
+             "fibro_act_cost_surv" = 3)
+    
+    pre_treat_fibro_res_all <- pre_treat_fibro_res() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("fibro_act_res" = 2,
+             "fibro_act_cost_res" = 3)
+    
+    pre_treat_fibro_lan_all <- pre_treat_fibro_lan() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("fibro_act_lan" = 2,
+             "fibro_act_cost_lan" = 3)
+    
+    pre_treat_fibro_sem_all|>
+      left_join(pre_treat_fibro_surv_all, by = c("simulation")) |>
+      left_join(pre_treat_fibro_res_all, by = c("simulation")) |>
+      left_join(pre_treat_fibro_lan_all, by = c("simulation")) |>
+      rowwise() |>
+      mutate("fibro_act_all" = sum(c_across(c(fibro_act_sem,
+                                              fibro_act_surv,
+                                              fibro_act_res,
+                                              fibro_act_lan))),
+             "fibro_act_cost_all" = sum(c_across(c(fibro_act_cost_sem,
+                                                   fibro_act_cost_surv,
+                                                   fibro_act_cost_res,
+                                                   fibro_act_cost_lan)))
+      )
+    
+  }) 
+  
+
 # Pre-Treatment: MM Assessment --------------------------------------------
 
   pre_treat_mm_assess_sem <- reactive({
@@ -1086,6 +1178,40 @@ server <- function(input, output, session) {
     
   })
 
+
+# Treatment Delivery ------------------------------------------------------
+
+init_treat_sem <- reactive({
+  
+  params_sem <- sem_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  treat_pop_sem() |>
+    select(c(simulation, treated_total)) |>
+    mutate(treat_init_retained = round(treated_total * params_sem$retention_sem_0_16, 0)) |>
+    mutate(week = list(0:16)) |>
+    unnest(week) |>
+    mutate(retention_factor = 1 - (week * (1 - params_sem$retention_sem_0_16) / 16),
+           appts_week = round(treated_total * retention_factor, 0)) |>
+    group_by(simulation) |>
+    summarise(start_treat = mean(treated_total),
+              end_treat = mean(treat_init_retained),
+              treat_act = sum(appts_week), .groups = "drop") |>
+    mutate(treat_act_pc_gp = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_pc_gp, 0),
+           treat_act_pc_nur = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_pc_nur, 0),
+           treat_act_sc_hgc = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_sc_hgc, 0),
+           treat_act_sc_hgn = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_sc_hgn, 0),
+           treat_act_com_dia = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_com_dia, 0),
+           treat_act_com_pha = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_com_pha, 0),
+           treat_act_pc_gp_cost = round(treat_act_pc_gp * (params_sem$treatment_setting_0_16_matrix_sem_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+           treat_act_pc_nur_cost = round(treat_act_pc_nur * (params_sem$treatment_setting_0_16_matrix_sem_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+           treat_act_sc_hgc_cost = round(treat_act_sc_hgc * (params_sem$treatment_setting_0_16_matrix_sem_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+           treat_act_sc_hgn_cost = round(treat_act_sc_hgn * (params_sem$treatment_setting_0_16_matrix_sem_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+           treat_act_com_dia_cost = round(treat_act_com_dia * (params_sem$treatment_setting_0_16_matrix_sem_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+           treat_act_com_pha_cost = round(treat_act_com_pha * (params_sem$treatment_setting_0_16_matrix_sem_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+    )
+  
+})  
+  
 # Outputs: Population -----------------------------------------------------
 
   output$masld_pop_histogram <- renderPlot({
@@ -1843,6 +1969,192 @@ server <- function(input, output, session) {
     
   })
   
+  output$pre_treat_fibro_sem_sum_1_act <- renderText({
+    scales::comma(pre_treat_fibro_sem()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_sem_sum_2_act <- renderText({
+    scales::comma(pre_treat_fibro_sem()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_sem_sum_3_act <- renderText({
+    scales::comma(pre_treat_fibro_sem()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_sem_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_fibro_sem()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_sem_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_fibro_sem()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_sem_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_fibro_sem()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_surv_sum_1_act <- renderText({
+    scales::comma(pre_treat_fibro_surv()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_surv_sum_2_act <- renderText({
+    scales::comma(pre_treat_fibro_surv()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_surv_sum_3_act <- renderText({
+    scales::comma(pre_treat_fibro_surv()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_surv_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_fibro_surv()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_surv_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_fibro_surv()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_surv_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_fibro_surv()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_res_sum_1_act <- renderText({
+    scales::comma(pre_treat_fibro_res()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_res_sum_2_act <- renderText({
+    scales::comma(pre_treat_fibro_res()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_res_sum_3_act <- renderText({
+    scales::comma(pre_treat_fibro_res()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_res_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_fibro_res()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_res_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_fibro_res()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_res_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_fibro_res()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_lan_sum_1_act <- renderText({
+    scales::comma(pre_treat_fibro_lan()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_lan_sum_2_act <- renderText({
+    scales::comma(pre_treat_fibro_lan()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_lan_sum_3_act <- renderText({
+    scales::comma(pre_treat_fibro_lan()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_lan_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_fibro_lan()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_lan_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_fibro_lan()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_lan_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_fibro_lan()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_all_sum_1_act <- renderText({
+    scales::comma(pre_treat_fibro_all()[[1, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_all_sum_2_act <- renderText({
+    scales::comma(pre_treat_fibro_all()[[2, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_all_sum_3_act <- renderText({
+    scales::comma(pre_treat_fibro_all()[[3, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_fibro_all_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_fibro_all()[[1, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_all_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_fibro_all()[[2, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_all_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_fibro_all()[[3, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_fibro_sem_DT <- renderDT({
+    pre_treat_fibro_sem_DT <- pre_treat_fibro_sem() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("Simulation" = 1,
+             "Fibroscan Activity" = 2,
+             "Fibroscan Costs" = 3)
+    datatable(pre_treat_fibro_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_fibro_surv_DT <- renderDT({
+    pre_treat_fibro_surv_DT <- pre_treat_fibro_surv() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("Simulation" = 1,
+             "Fibroscan Activity" = 2,
+             "Fibroscan Costs" = 3)
+    datatable(pre_treat_fibro_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_fibro_res_DT <- renderDT({
+    pre_treat_fibro_res_DT <- pre_treat_fibro_res() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("Simulation" = 1,
+             "Fibroscan Activity" = 2,
+             "Fibroscan Costs" = 3)
+    datatable(pre_treat_fibro_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_fibro_lan_DT <- renderDT({
+    pre_treat_fibro_lan_DT <- pre_treat_fibro_lan() |>
+      select(c(simulation, fibro_act, fibro_cost)) |>
+      rename("Simulation" = 1,
+             "Fibroscan Activity" = 2,
+             "Fibroscan Costs" = 3)
+    datatable(pre_treat_fibro_lan_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
+  })
+  
+  output$pre_treat_fibro_all_DT <- renderDT({
+    pre_treat_fibro_all_DT <- pre_treat_fibro_all() |>
+      select(c(simulation, fibro_act_all, fibro_act_cost_all)) |>
+      rename("Simulation" = 1,
+             "Fibroscan Activity" = 2,
+             "Fibroscan Costs" = 3)
+    datatable(pre_treat_fibro_all_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
+    
+  })
+  
   output$pre_treat_mm_assess_sem_sum_1_act <- renderText({
     scales::comma(pre_treat_mm_assess_sem()[[1, 3]], big.mark = ",")
   })
@@ -2201,6 +2513,14 @@ server <- function(input, output, session) {
                                  "Community Pharmacist Costs")
                      ,currency = "£"
                      ,digits = 2)
+  })
+  
+  output$init_treat_sem_DT <- renderDT({
+    init_treat_sem_DT <- init_treat_sem()
+    datatable(init_treat_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
   })
 
 # Downloads: Inputs -------------------------------------------------------
