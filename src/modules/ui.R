@@ -2549,7 +2549,98 @@ ui <- navbarPage(
            p("As each of the treatment pathways are slightly different this is split across different sections to 
              demonstrate the activities and costs associated with each stage of treatment. There is an ", 
              strong("all treatments section"), " that captures all treatment delivery costs between weeks 0 and 72."),
-           DTOutput("init_treat_sem_DT")
+           navset_tab(
+             nav_panel("Semaglutide",
+                       p("Semaglutide treatment is modelled in two phases between weeks 0-16 and then dosage maintenance 
+                         until week 71 prior to a continuation decision."),
+                       navset_tab(
+                         nav_panel("Weeks 0-16",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Semaglutide treatment 
+                                                 delivery between weeks 0 to 16 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("init_treat_sem_016_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_sem_016_sum_1_cost", inline = TRUE)
+                                                           ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("init_treat_sem_016_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_sem_016_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("init_treat_sem_016_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_sem_016_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               p("The table below contains the activity and costs to deliver the treatment between weeks 0 and 16:"),
+                                               DTOutput("init_treat_sem_DT"))
+                                   )
+
+                         ),
+                         nav_panel("Weeks 16-71",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Semaglutide treatment 
+                                                 delivery between weeks 16 to 71 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("dm1_treat_sem_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("dm1_treat_sem_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("dm1_treat_sem_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("dm1_treat_sem_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("dm1_treat_sem_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("dm1_treat_sem_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               p("The table below contains the activity and costs to deliver the treatment between weeks 16 and 71:"),
+                                               DTOutput("dm1_treat_sem_DT"))
+                                   )
+                         ),
+                         nav_panel("Combined Treatment to Week 72",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Semaglutide treatment 
+                                                 delivery between weeks 0 to 71 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("total_sem_treat_72_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("total_sem_treat_72_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("total_sem_treat_72_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("total_sem_treat_72_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("total_sem_treat_72_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("total_sem_treat_72_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               DTOutput("total_sem_treat_72_DT"))
+                                   ))
+                                  
+                       )
+             )
+           )
 
            )
   )
