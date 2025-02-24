@@ -11,6 +11,7 @@ ui <- navbarPage(
   
   tags$link(rel = "stylesheet", type = "text/css", href = "config/app_theme.css"),
 
+
   tabPanel("Introduction",
            fluidPage(
              h1("Introduction to the MASLD Treatment Activity and Costs Model"),
@@ -524,22 +525,22 @@ ui <- navbarPage(
                                       max = 100,
                                       post = "%"),
                           matrixInput("mm_assess_setting_sem",
-                                      "Input setting for multimorbidity assessment:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input setting and minutes for multimorbidity assessment:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
                           )
@@ -823,22 +824,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("mm_assess_setting_surv",
-                                              "Input setting for multimorbidity assessment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for multimorbidity assessment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1154,22 +1155,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("mm_assess_setting_res",
-                                              "Input setting for multimorbidity assessment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for multimorbidity assessment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1470,22 +1471,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("mm_assess_setting_lan",
-                                              "Input setting for multimorbidity assessment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for multimorbidity assessment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -2015,7 +2016,7 @@ ui <- navbarPage(
                        navset_tab(
                          nav_panel("Summary",
                                    p("Based on the applied assumptions the modelled activity and costs for 
-                                     pre-treatment liver biopsies are:",
+                                     pre-treatment ELF testing are:",
                                      tags$ul(
                                        tags$li("A central estimate of ",
                                                textOutput("pre_treat_elf_all_sum_1_act", inline = TRUE),
@@ -2041,7 +2042,7 @@ ui <- navbarPage(
                        navset_tab(
                          nav_panel("Summary",
                                    p("Based on the applied assumptions the modelled activity and costs for 
-                                     pre-treatment liver biopsies are:",
+                                     pre-treatment ELF testing are:",
                                      tags$ul(
                                        tags$li("A central estimate of ",
                                                textOutput("pre_treat_elf_sem_sum_1_act", inline = TRUE),
@@ -2067,7 +2068,7 @@ ui <- navbarPage(
                        navset_tab(
                          nav_panel("Summary",
                                    p("Based on the applied assumptions the modelled activity and costs for 
-                                     pre-treatment liver biopsies are:",
+                                     pre-treatment ELF testing are:",
                                      tags$ul(
                                        tags$li("A central estimate of ",
                                                textOutput("pre_treat_elf_surv_sum_1_act", inline = TRUE),
@@ -2093,7 +2094,7 @@ ui <- navbarPage(
                        navset_tab(
                          nav_panel("Summary",
                                    p("Based on the applied assumptions the modelled activity and costs for 
-                                     pre-treatment liver biopsies are:",
+                                     pre-treatment ELF testing are:",
                                      tags$ul(
                                        tags$li("A central estimate of ",
                                                textOutput("pre_treat_elf_res_sum_1_act", inline = TRUE),
@@ -2119,7 +2120,7 @@ ui <- navbarPage(
                        navset_tab(
                          nav_panel("Summary",
                                    p("Based on the applied assumptions the modelled activity and costs for 
-                                     pre-treatment liver biopsies are:",
+                                     pre-treatment ELF testing are:",
                                      tags$ul(
                                        tags$li("A central estimate of ",
                                                textOutput("pre_treat_elf_lan_sum_1_act", inline = TRUE),
@@ -2143,40 +2144,272 @@ ui <- navbarPage(
              )
              
            ),
+           br(),
            h4("Biomarkers"),
            p("Some biomarker text"),
            navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_all_DT"))
+                       )
+             ),
              nav_panel("Semaglutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
                          nav_panel("Data Table", DTOutput("pre_treat_biomarkers_sem_DT"))
                        )
              ),
              nav_panel("Survodutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
                          nav_panel("Data Table", DTOutput("pre_treat_biomarkers_surv_DT"))
                        )
              ),
              nav_panel("Resmetirom",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
                          nav_panel("Data Table", DTOutput("pre_treat_biomarkers_res_DT"))
                        )
              ),
              nav_panel("Lanifibranor",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
                          nav_panel("Data Table", DTOutput("pre_treat_biomarkers_lan_DT"))
                        )
-             ),
+             )
+           ),
+           br(),
+           h4("Multimorbidity Assessment"),
+           p("Some MM Assessment text"),
+           navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
-                         nav_panel("Summary"),
-                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_all_DT"))
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_all_DT"))
+                       )
+             ),
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_sem_DT"))
+                       )
+                       ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_lan_DT"))
                        )
              )
            )
+
            )
   )
 )

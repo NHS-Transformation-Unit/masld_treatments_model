@@ -75,6 +75,12 @@ server <- function(input, output, session) {
       mm_assess_setting_sem_sc_hgn = (input$mm_assess_setting_sem[4, 1]) / 100,
       mm_assess_setting_sem_com_dia = (input$mm_assess_setting_sem[5, 1]) / 100,
       mm_assess_setting_sem_com_pha = (input$mm_assess_setting_sem[6, 1]) / 100,
+      mm_assess_setting_sem_pc_gp_mins = input$mm_assess_setting_sem[1, 2],
+      mm_assess_setting_sem_pc_nur_mins = input$mm_assess_setting_sem[2, 2],
+      mm_assess_setting_sem_sc_hgc_mins = input$mm_assess_setting_sem[3, 2],
+      mm_assess_setting_sem_sc_hgn_mins = input$mm_assess_setting_sem[4, 2],
+      mm_assess_setting_sem_com_dia_mins = input$mm_assess_setting_sem[5, 2],
+      mm_assess_setting_sem_com_pha_mins = input$mm_assess_setting_sem[6, 2],
       retention_sem_0_16 = input$retention_sem_0_16 / 100,
       treatment_setting_0_16_matrix_sem_pc_gp = (input$treatment_setting_0_16_matrix_sem[1 , 1]) / 100,
       treatment_setting_0_16_matrix_sem_pc_nur = (input$treatment_setting_0_16_matrix_sem[2 , 1]) / 100,
@@ -137,6 +143,12 @@ server <- function(input, output, session) {
       mm_assess_setting_surv_sc_hgn = (input$mm_assess_setting_surv[4, 1] / 100),
       mm_assess_setting_surv_com_dia = (input$mm_assess_setting_surv[5, 1] / 100),
       mm_assess_setting_surv_com_pha = (input$mm_assess_setting_surv[6, 1] / 100),
+      mm_assess_setting_surv_pc_gp_mins = input$mm_assess_setting_surv[1, 2],
+      mm_assess_setting_surv_pc_nur_mins = input$mm_assess_setting_surv[2, 2],
+      mm_assess_setting_surv_sc_hgc_mins = input$mm_assess_setting_surv[3, 2],
+      mm_assess_setting_surv_sc_hgn_mins = input$mm_assess_setting_surv[4, 2],
+      mm_assess_setting_surv_com_dia_mins = input$mm_assess_setting_surv[5, 2],
+      mm_assess_setting_surv_com_pha_mins = input$mm_assess_setting_surv[6, 2],
       retention_surv_0_24 = input$retention_surv_0_24 / 100,
       treatment_setting_0_24_matrix_surv_pc_gp = (input$treatment_setting_0_24_matrix_surv[1, 1]) / 100,
       treatment_setting_0_24_matrix_surv_pc_nur = (input$treatment_setting_0_24_matrix_surv[2, 1]) / 100,
@@ -204,6 +216,12 @@ server <- function(input, output, session) {
       mm_assess_setting_res_sc_hgn = (input$mm_assess_setting_res[4, 1]) / 100,
       mm_assess_setting_res_com_dia = (input$mm_assess_setting_res[5, 1]) / 100,
       mm_assess_setting_res_com_pha = (input$mm_assess_setting_res[6, 1]) / 100,
+      mm_assess_setting_res_pc_gp_mins = input$mm_assess_setting_res[1, 2],
+      mm_assess_setting_res_pc_nur_mins = input$mm_assess_setting_res[2, 2],
+      mm_assess_setting_res_sc_hgc_mins = input$mm_assess_setting_res[3, 2],
+      mm_assess_setting_res_sc_hgn_mins = input$mm_assess_setting_res[4, 2],
+      mm_assess_setting_res_com_dia_mins = input$mm_assess_setting_res[5, 2],
+      mm_assess_setting_res_com_pha_mins = input$mm_assess_setting_res[6, 2],
       dosage_0_71_res = input$dosage_0_71_res / 100,
       retention_res_0_71 = input$retention_res_0_71 / 100,
       treatment_setting_0_71_matrix_res_pc_gp = (input$treatment_setting_0_71_matrix_res[1, 1]) / 100,
@@ -266,6 +284,12 @@ server <- function(input, output, session) {
       mm_assess_setting_lan_sc_hgn = (input$mm_assess_setting_lan[4, 1]) / 100,
       mm_assess_setting_lan_com_dia = (input$mm_assess_setting_lan[5, 1]) / 100,
       mm_assess_setting_lan_com_pha = (input$mm_assess_setting_lan[6, 1]) / 100,
+      mm_assess_setting_lan_pc_gp_mins = input$mm_assess_setting_lan[1, 2],
+      mm_assess_setting_lan_pc_nur_mins = input$mm_assess_setting_lan[2, 2],
+      mm_assess_setting_lan_sc_hgc_mins = input$mm_assess_setting_lan[3, 2],
+      mm_assess_setting_lan_sc_hgn_mins = input$mm_assess_setting_lan[4, 2],
+      mm_assess_setting_lan_com_dia_mins = input$mm_assess_setting_lan[5, 2],
+      mm_assess_setting_lan_com_pha_mins = input$mm_assess_setting_lan[6, 2],
       dosage_0_71_lan = input$dosage_0_71_lan / 100,
       retention_lan_0_71 = input$retention_lan_0_71 / 100,
       treatment_setting_0_71_matrix_lan_pc_gp = (input$treatment_setting_0_71_matrix_lan[1, 1]) / 100,
@@ -318,7 +342,16 @@ server <- function(input, output, session) {
     
     list(
       fin_liv_bio = input$fin_liv_bio,
-      fin_elf = input$fin_elf
+      fin_elf = input$fin_elf,
+      fin_biomarkers = input$fin_biomarkers,
+      fin_fibro = input$fin_fibro,
+      fin_appt_pc_gp_pph = input$fin_appt_pc_gp_pph,
+      fin_appt_pc_nur_pph = input$fin_appt_pc_nur_pph,
+      fin_appt_sc_hgc_pph = input$fin_appt_sc_hgc_pph,
+      fin_appt_sc_hgn_pph = input$fin_appt_sc_hgn_pph,
+      fin_appt_com_dia_pph = input$fin_appt_com_dia_pph,
+      fin_appt_com_pha_pph = input$fin_appt_com_pha_pph
+      
     )
   })
   
@@ -569,7 +602,7 @@ server <- function(input, output, session) {
     treat_pop_sem() |>
       select(c(simulation, treated_total)) |>
       mutate(elf_act = round(treated_total * params_sem$pre_elf_prop_sem, 0),
-             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+             elf_cost = round(elf_act * params_fin$fin_elf, 2))
     
   })
   
@@ -580,7 +613,7 @@ server <- function(input, output, session) {
     treat_pop_surv() |>
       select(c(simulation, treated_total)) |>
       mutate(elf_act = round(treated_total * params_surv$pre_elf_prop_surv, 0),
-             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+             elf_cost = round(elf_act * params_fin$fin_elf, 2))
     
   })
   
@@ -591,7 +624,7 @@ server <- function(input, output, session) {
     treat_pop_res() |>
       select(c(simulation, treated_total)) |>
       mutate(elf_act = round(treated_total * params_res$pre_elf_prop_res, 0),
-             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+             elf_cost = round(elf_act * params_fin$fin_elf, 2))
     
   })
   
@@ -602,7 +635,7 @@ server <- function(input, output, session) {
     treat_pop_lan() |>
       select(c(simulation, treated_total)) |>
       mutate(elf_act = round(treated_total * params_lan$pre_elf_prop_lan, 0),
-             elf_cost = round(treated_total * params_fin$fin_elf, 2))
+             elf_cost = round(elf_act * params_fin$fin_elf, 2))
     
   })
   
@@ -651,63 +684,405 @@ server <- function(input, output, session) {
   pre_treat_biomarkers_sem <- reactive({
     
     params_sem <- sem_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_sem() |>
       select(c(simulation, treated_total)) |>
-      mutate(biomarkers_act = round(treated_total * params_sem$pre_biomarkers_prop_sem, 0))
+      mutate(biomarkers_act = round(treated_total * params_sem$pre_biomarkers_prop_sem, 0),
+             biomarkers_cost = round(biomarkers_act * params_fin$fin_biomarkers, 2))
     
   })
   
   pre_treat_biomarkers_surv <- reactive({
     
     params_surv <- surv_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_surv() |>
       select(c(simulation, treated_total)) |>
-      mutate(biomarkers_act = round(treated_total * params_surv$pre_biomarkers_prop_surv, 0))
+      mutate(biomarkers_act = round(treated_total * params_surv$pre_biomarkers_prop_surv, 0),
+             biomarkers_cost = round(biomarkers_act * params_fin$fin_biomarkers, 2))
     
   })
   
   pre_treat_biomarkers_res <- reactive({
     
     params_res <- res_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_res() |>
       select(c(simulation, treated_total)) |>
-      mutate(biomarkers_act = round(treated_total * params_res$pre_biomarkers_prop_res, 0))
+      mutate(biomarkers_act = round(treated_total * params_res$pre_biomarkers_prop_res, 0),
+             biomarkers_cost = round(biomarkers_act * params_fin$fin_biomarkers, 2))
     
   })
   
   pre_treat_biomarkers_lan <- reactive({
     
     params_lan <- lan_pathway_assumptions()
+    params_fin <- fin_assumptions()
     treat_pop_lan() |>
       select(c(simulation, treated_total)) |>
-      mutate(biomarkers_act = round(treated_total * params_lan$pre_biomarkers_prop_lan, 0))
+      mutate(biomarkers_act = round(treated_total * params_lan$pre_biomarkers_prop_lan, 0),
+             biomarkers_cost = round(biomarkers_act * params_fin$fin_biomarkers, 2))
     
   })
   
   pre_treat_biomarkers_all <- reactive({
     
     pre_treat_biomarkers_sem_all <- pre_treat_biomarkers_sem() |>
-      select(c(simulation, biomarkers_act)) |>
-      rename("biomarkers_act_sem" = 2)
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
+      rename("biomarkers_act_sem" = 2,
+             "biomarkers_act_cost_sem" = 3)
     
     pre_treat_biomarkers_surv_all <- pre_treat_biomarkers_surv() |>
-      select(c(simulation, biomarkers_act)) |>
-      rename("biomarkers_act_surv" = 2)
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
+      rename("biomarkers_act_surv" = 2,
+             "biomarkers_act_cost_surv" = 3)
     
     pre_treat_biomarkers_res_all <- pre_treat_biomarkers_res() |>
-      select(c(simulation, biomarkers_act)) |>
-      rename("biomarkers_act_res" = 2)
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
+      rename("biomarkers_act_res" = 2,
+             "biomarkers_act_cost_res" = 3)
     
     pre_treat_biomarkers_lan_all <- pre_treat_biomarkers_lan() |>
-      select(c(simulation, biomarkers_act)) |>
-      rename("biomarkers_act_lan" = 2)
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
+      rename("biomarkers_act_lan" = 2,
+             "biomarkers_act_cost_lan" = 3)
     
     pre_treat_biomarkers_sem_all|>
       left_join(pre_treat_biomarkers_surv_all, by = c("simulation")) |>
       left_join(pre_treat_biomarkers_res_all, by = c("simulation")) |>
       left_join(pre_treat_biomarkers_lan_all, by = c("simulation")) |>
       rowwise() |>
-      mutate("biomarkers_act_all" = sum(c_across(biomarkers_act_sem:biomarkers_act_lan)))
+      mutate("biomarkers_act_all" = sum(c_across(c(biomarkers_act_sem,
+                                                   biomarkers_act_surv,
+                                                   biomarkers_act_res,
+                                                   biomarkers_act_lan))),
+             "biomarkers_act_cost_all" = sum(c_across(c(biomarkers_act_cost_sem,
+                                                        biomarkers_act_cost_surv,
+                                                        biomarkers_act_cost_res,
+                                                        biomarkers_act_cost_lan)))
+      )
+    
+  })
+  
+
+# Pre-Treatment: MM Assessment --------------------------------------------
+
+  pre_treat_mm_assess_sem <- reactive({
+    
+    params_sem <- sem_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_sem() |>
+      select(c(simulation, treated_total)) |>
+      mutate(mm_act = round(treated_total * params_sem$mm_assess_prop_sem, 0),
+             mm_act_pc_gp = round(mm_act * params_sem$mm_assess_setting_sem_pc_gp, 0),
+             mm_act_pc_nur = round(mm_act * params_sem$mm_assess_setting_sem_pc_nur, 0),
+             mm_act_sc_hgc = round(mm_act * params_sem$mm_assess_setting_sem_sc_hgc, 0),
+             mm_act_sc_hgn = round(mm_act * params_sem$mm_assess_setting_sem_sc_hgn, 0),
+             mm_act_com_dia = round(mm_act * params_sem$mm_assess_setting_sem_com_dia, 0),
+             mm_act_com_pha = round(mm_act * params_sem$mm_assess_setting_sem_com_pha, 0),
+             mm_act_pc_gp_cost = round(mm_act_pc_gp * (params_sem$mm_assess_setting_sem_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+             mm_act_pc_nur_cost = round(mm_act_pc_nur * (params_sem$mm_assess_setting_sem_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+             mm_act_sc_hgc_cost = round(mm_act_sc_hgc * (params_sem$mm_assess_setting_sem_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+             mm_act_sc_hgn_cost = round(mm_act_sc_hgn * (params_sem$mm_assess_setting_sem_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+             mm_act_com_dia_cost = round(mm_act_com_dia * (params_sem$mm_assess_setting_sem_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+             mm_act_com_pha_cost = round(mm_act_com_pha * (params_sem$mm_assess_setting_sem_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+      ) |>
+      rowwise() |>
+      mutate(mm_act_cost_total = sum(c_across(c(mm_act_pc_gp_cost,
+                                                mm_act_pc_nur_cost,
+                                                mm_act_sc_hgc_cost,
+                                                mm_act_sc_hgn_cost,
+                                                mm_act_com_dia_cost,
+                                                mm_act_com_pha_cost)))
+      )
+    
+  })
+  
+  pre_treat_mm_assess_surv <- reactive({
+    
+    params_surv <- surv_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_surv() |>
+      select(c(simulation, treated_total)) |>
+      mutate(mm_act = round(treated_total * params_surv$mm_assess_prop_surv, 0),
+             mm_act_pc_gp = round(mm_act * params_surv$mm_assess_setting_surv_pc_gp, 0),
+             mm_act_pc_nur = round(mm_act * params_surv$mm_assess_setting_surv_pc_nur, 0),
+             mm_act_sc_hgc = round(mm_act * params_surv$mm_assess_setting_surv_sc_hgc, 0),
+             mm_act_sc_hgn = round(mm_act * params_surv$mm_assess_setting_surv_sc_hgn, 0),
+             mm_act_com_dia = round(mm_act * params_surv$mm_assess_setting_surv_com_dia, 0),
+             mm_act_com_pha = round(mm_act * params_surv$mm_assess_setting_surv_com_pha, 0),
+             mm_act_pc_gp_cost = round(mm_act_pc_gp * (params_surv$mm_assess_setting_surv_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+             mm_act_pc_nur_cost = round(mm_act_pc_nur * (params_surv$mm_assess_setting_surv_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+             mm_act_sc_hgc_cost = round(mm_act_sc_hgc * (params_surv$mm_assess_setting_surv_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+             mm_act_sc_hgn_cost = round(mm_act_sc_hgn * (params_surv$mm_assess_setting_surv_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+             mm_act_com_dia_cost = round(mm_act_com_dia * (params_surv$mm_assess_setting_surv_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+             mm_act_com_pha_cost = round(mm_act_com_pha * (params_surv$mm_assess_setting_surv_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+      ) |>
+      rowwise() |>
+      mutate(mm_act_cost_total = sum(c_across(c(mm_act_pc_gp_cost,
+                                                mm_act_pc_nur_cost,
+                                                mm_act_sc_hgc_cost,
+                                                mm_act_sc_hgn_cost,
+                                                mm_act_com_dia_cost,
+                                                mm_act_com_pha_cost)))
+      )
+    
+  })
+  
+  pre_treat_mm_assess_res <- reactive({
+    
+    params_res <- res_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_res() |>
+      select(c(simulation, treated_total)) |>
+      mutate(mm_act = round(treated_total * params_res$mm_assess_prop_res, 0),
+             mm_act_pc_gp = round(mm_act * params_res$mm_assess_setting_res_pc_gp, 0),
+             mm_act_pc_nur = round(mm_act * params_res$mm_assess_setting_res_pc_nur, 0),
+             mm_act_sc_hgc = round(mm_act * params_res$mm_assess_setting_res_sc_hgc, 0),
+             mm_act_sc_hgn = round(mm_act * params_res$mm_assess_setting_res_sc_hgn, 0),
+             mm_act_com_dia = round(mm_act * params_res$mm_assess_setting_res_com_dia, 0),
+             mm_act_com_pha = round(mm_act * params_res$mm_assess_setting_res_com_pha, 0),
+             mm_act_pc_gp_cost = round(mm_act_pc_gp * (params_res$mm_assess_setting_res_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+             mm_act_pc_nur_cost = round(mm_act_pc_nur * (params_res$mm_assess_setting_res_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+             mm_act_sc_hgc_cost = round(mm_act_sc_hgc * (params_res$mm_assess_setting_res_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+             mm_act_sc_hgn_cost = round(mm_act_sc_hgn * (params_res$mm_assess_setting_res_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+             mm_act_com_dia_cost = round(mm_act_com_dia * (params_res$mm_assess_setting_res_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+             mm_act_com_pha_cost = round(mm_act_com_pha * (params_res$mm_assess_setting_res_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+      ) |>
+      rowwise() |>
+      mutate(mm_act_cost_total = sum(c_across(c(mm_act_pc_gp_cost,
+                                                mm_act_pc_nur_cost,
+                                                mm_act_sc_hgc_cost,
+                                                mm_act_sc_hgn_cost,
+                                                mm_act_com_dia_cost,
+                                                mm_act_com_pha_cost)))
+      )
+    
+  })
+  
+  pre_treat_mm_assess_lan <- reactive({
+    
+    params_lan <- lan_pathway_assumptions()
+    params_fin <- fin_assumptions()
+    treat_pop_lan() |>
+      select(c(simulation, treated_total)) |>
+      mutate(mm_act = round(treated_total * params_lan$mm_assess_prop_lan, 0),
+             mm_act_pc_gp = round(mm_act * params_lan$mm_assess_setting_lan_pc_gp, 0),
+             mm_act_pc_nur = round(mm_act * params_lan$mm_assess_setting_lan_pc_nur, 0),
+             mm_act_sc_hgc = round(mm_act * params_lan$mm_assess_setting_lan_sc_hgc, 0),
+             mm_act_sc_hgn = round(mm_act * params_lan$mm_assess_setting_lan_sc_hgn, 0),
+             mm_act_com_dia = round(mm_act * params_lan$mm_assess_setting_lan_com_dia, 0),
+             mm_act_com_pha = round(mm_act * params_lan$mm_assess_setting_lan_com_pha, 0),
+             mm_act_pc_gp_cost = round(mm_act_pc_gp * (params_lan$mm_assess_setting_lan_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+             mm_act_pc_nur_cost = round(mm_act_pc_nur * (params_lan$mm_assess_setting_lan_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+             mm_act_sc_hgc_cost = round(mm_act_sc_hgc * (params_lan$mm_assess_setting_lan_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+             mm_act_sc_hgn_cost = round(mm_act_sc_hgn * (params_lan$mm_assess_setting_lan_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+             mm_act_com_dia_cost = round(mm_act_com_dia * (params_lan$mm_assess_setting_lan_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+             mm_act_com_pha_cost = round(mm_act_com_pha * (params_lan$mm_assess_setting_lan_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+      ) |>
+      rowwise() |>
+      mutate(mm_act_cost_total = sum(c_across(c(mm_act_pc_gp_cost,
+                                                mm_act_pc_nur_cost,
+                                                mm_act_sc_hgc_cost,
+                                                mm_act_sc_hgn_cost,
+                                                mm_act_com_dia_cost,
+                                                mm_act_com_pha_cost)))
+      )
+    
+  })
+  
+  pre_treat_mm_assess_all <- reactive({
+    
+    pre_treat_mm_assess_sem_all <- pre_treat_mm_assess_sem() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("mm_act_sem" = 2,
+             "mm_act_cost_total_sem" = 3,
+             "mm_act_pc_gp_sem" = 4,
+             "mm_act_pc_gp_cost_sem" = 5,
+             "mm_act_pc_nur_sem" = 6,
+             "mm_act_pc_nur_cost_sem" = 7,
+             "mm_act_sc_hgc_sem" = 8,
+             "mm_act_sc_hgc_cost_sem" = 9,
+             "mm_act_sc_hgn_sem" = 10,
+             "mm_act_sc_hgn_cost_sem" = 11,
+             "mm_act_com_dia_sem" = 12,
+             "mm_act_com_dia_cost_sem" = 13,
+             "mm_act_com_pha_sem" = 14,
+             "mm_act_com_pha_cost_sem" = 15
+      )
+    
+    pre_treat_mm_assess_surv_all <- pre_treat_mm_assess_surv() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("mm_act_surv" = 2,
+             "mm_act_cost_total_surv" = 3,
+             "mm_act_pc_gp_surv" = 4,
+             "mm_act_pc_gp_cost_surv" = 5,
+             "mm_act_pc_nur_surv" = 6,
+             "mm_act_pc_nur_cost_surv" = 7,
+             "mm_act_sc_hgc_surv" = 8,
+             "mm_act_sc_hgc_cost_surv" = 9,
+             "mm_act_sc_hgn_surv" = 10,
+             "mm_act_sc_hgn_cost_surv" = 11,
+             "mm_act_com_dia_surv" = 12,
+             "mm_act_com_dia_cost_surv" = 13,
+             "mm_act_com_pha_surv" = 14,
+             "mm_act_com_pha_cost_surv" = 15
+      )
+    
+    pre_treat_mm_assess_res_all <- pre_treat_mm_assess_res() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("mm_act_res" = 2,
+             "mm_act_cost_total_res" = 3,
+             "mm_act_pc_gp_res" = 4,
+             "mm_act_pc_gp_cost_res" = 5,
+             "mm_act_pc_nur_res" = 6,
+             "mm_act_pc_nur_cost_res" = 7,
+             "mm_act_sc_hgc_res" = 8,
+             "mm_act_sc_hgc_cost_res" = 9,
+             "mm_act_sc_hgn_res" = 10,
+             "mm_act_sc_hgn_cost_res" = 11,
+             "mm_act_com_dia_res" = 12,
+             "mm_act_com_dia_cost_res" = 13,
+             "mm_act_com_pha_res" = 14,
+             "mm_act_com_pha_cost_res" = 15
+      )
+    
+    pre_treat_mm_assess_lan_all <- pre_treat_mm_assess_lan() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("mm_act_lan" = 2,
+             "mm_act_cost_total_lan" = 3,
+             "mm_act_pc_gp_lan" = 4,
+             "mm_act_pc_gp_cost_lan" = 5,
+             "mm_act_pc_nur_lan" = 6,
+             "mm_act_pc_nur_cost_lan" = 7,
+             "mm_act_sc_hgc_lan" = 8,
+             "mm_act_sc_hgc_cost_lan" = 9,
+             "mm_act_sc_hgn_lan" = 10,
+             "mm_act_sc_hgn_cost_lan" = 11,
+             "mm_act_com_dia_lan" = 12,
+             "mm_act_com_dia_cost_lan" = 13,
+             "mm_act_com_pha_lan" = 14,
+             "mm_act_com_pha_cost_lan" = 15
+      )
+    
+    pre_treat_mm_assess_sem_all|>
+      left_join(pre_treat_mm_assess_surv_all, by = c("simulation")) |>
+      left_join(pre_treat_mm_assess_res_all, by = c("simulation")) |>
+      left_join(pre_treat_mm_assess_lan_all, by = c("simulation")) |>
+      rowwise() |>
+      mutate("mm_act_all" = sum(c_across(c(mm_act_sem,
+                                           mm_act_surv,
+                                           mm_act_res,
+                                           mm_act_lan))),
+             "mm_act_cost_all" = sum(c_across(c(mm_act_cost_total_sem,
+                                                mm_act_cost_total_surv,
+                                                mm_act_cost_total_res,
+                                                mm_act_cost_total_lan))),
+             "mm_act_pc_gp_all" = sum(c_across(c(mm_act_pc_gp_sem,
+                                                 mm_act_pc_gp_surv,
+                                                 mm_act_pc_gp_res,
+                                                 mm_act_pc_gp_lan))),
+             "mm_act_pc_gp_cost_all" = sum(c_across(c(mm_act_pc_gp_cost_sem,
+                                                      mm_act_pc_gp_cost_surv,
+                                                      mm_act_pc_gp_cost_res,
+                                                      mm_act_pc_gp_cost_lan))),
+             "mm_act_pc_nur_all" = sum(c_across(c(mm_act_pc_nur_sem,
+                                                  mm_act_pc_nur_surv,
+                                                  mm_act_pc_nur_res,
+                                                  mm_act_pc_nur_lan))),
+             "mm_act_pc_nur_cost_all" = sum(c_across(c(mm_act_pc_nur_cost_sem,
+                                                       mm_act_pc_nur_cost_surv,
+                                                       mm_act_pc_nur_cost_res,
+                                                       mm_act_pc_nur_cost_lan))),
+             "mm_act_sc_hgc_all" = sum(c_across(c(mm_act_sc_hgc_sem,
+                                                  mm_act_sc_hgc_surv,
+                                                  mm_act_sc_hgc_res,
+                                                  mm_act_sc_hgc_lan))),
+             "mm_act_sc_hgc_cost_all" = sum(c_across(c(mm_act_sc_hgc_cost_sem,
+                                                       mm_act_sc_hgc_cost_surv,
+                                                       mm_act_sc_hgc_cost_res,
+                                                       mm_act_sc_hgc_cost_lan))),
+             "mm_act_sc_hgn_all" = sum(c_across(c(mm_act_sc_hgn_sem,
+                                                  mm_act_sc_hgn_surv,
+                                                  mm_act_sc_hgn_res,
+                                                  mm_act_sc_hgn_lan))),
+             "mm_act_sc_hgn_cost_all" = sum(c_across(c(mm_act_sc_hgn_cost_sem,
+                                                       mm_act_sc_hgn_cost_surv,
+                                                       mm_act_sc_hgn_cost_res,
+                                                       mm_act_sc_hgn_cost_lan))),
+             "mm_act_com_dia_all" = sum(c_across(c(mm_act_com_dia_sem,
+                                                   mm_act_com_dia_surv,
+                                                   mm_act_com_dia_res,
+                                                   mm_act_com_dia_lan))),
+             "mm_act_com_dia_cost_all" = sum(c_across(c(mm_act_com_dia_cost_sem,
+                                                        mm_act_com_dia_cost_surv,
+                                                        mm_act_com_dia_cost_res,
+                                                        mm_act_com_dia_cost_lan))),
+             "mm_act_com_pha_all" = sum(c_across(c(mm_act_com_dia_sem,
+                                                   mm_act_com_dia_surv,
+                                                   mm_act_com_dia_res,
+                                                   mm_act_com_dia_lan))),
+             "mm_act_com_pha_cost_all" = sum(c_across(c(mm_act_com_dia_cost_sem,
+                                                        mm_act_com_dia_cost_surv,
+                                                        mm_act_com_dia_cost_res,
+                                                        mm_act_com_dia_cost_lan)))
+      )
     
   })
 
@@ -1218,7 +1593,7 @@ server <- function(input, output, session) {
   
   output$pre_treat_elf_sem_DT <- renderDT({
     pre_treat_elf_sem_DT <- pre_treat_elf_sem() |>
-      select(c(simulation, elf_act, elf_act_cost)) |>
+      select(c(simulation, elf_act, elf_cost)) |>
       rename("Simulation" = 1,
              "ELF Activity" = 2,
              "ELF Costs" = 3)
@@ -1231,7 +1606,7 @@ server <- function(input, output, session) {
   
   output$pre_treat_elf_surv_DT <- renderDT({
     pre_treat_elf_surv_DT <- pre_treat_elf_surv() |>
-      select(c(simulation, elf_act, elf_act_cost)) |>
+      select(c(simulation, elf_act, elf_cost)) |>
       rename("Simulation" = 1,
              "ELF Activity" = 2,
              "ELF Costs" = 3)
@@ -1244,7 +1619,7 @@ server <- function(input, output, session) {
   
   output$pre_treat_elf_res_DT <- renderDT({
     pre_treat_elf_res_DT <- pre_treat_elf_res() |>
-      select(c(simulation, elf_act, elf_act_cost)) |>
+      select(c(simulation, elf_act, elf_cost)) |>
       rename("Simulation" = 1,
              "ELF Activity" = 2,
              "ELF Costs" = 3)
@@ -1257,7 +1632,7 @@ server <- function(input, output, session) {
   
   output$pre_treat_elf_lan_DT <- renderDT({
     pre_treat_elf_lan_DT <- pre_treat_elf_lan() |>
-      select(c(simulation, elf_act, elf_act_cost)) |>
+      select(c(simulation, elf_act, elf_cost)) |>
       rename("Simulation" = 1,
              "ELF Activity" = 2,
              "ELF Costs" = 3)
@@ -1282,63 +1657,551 @@ server <- function(input, output, session) {
     
   })
   
+  output$pre_treat_biomarkers_sem_sum_1_act <- renderText({
+    scales::comma(pre_treat_biomarkers_sem()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_sem_sum_2_act <- renderText({
+    scales::comma(pre_treat_biomarkers_sem()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_sem_sum_3_act <- renderText({
+    scales::comma(pre_treat_biomarkers_sem()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_sem_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_sem()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_sem_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_sem()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_sem_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_sem()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_surv_sum_1_act <- renderText({
+    scales::comma(pre_treat_biomarkers_surv()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_surv_sum_2_act <- renderText({
+    scales::comma(pre_treat_biomarkers_surv()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_surv_sum_3_act <- renderText({
+    scales::comma(pre_treat_biomarkers_surv()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_surv_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_surv()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_surv_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_surv()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_surv_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_surv()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_res_sum_1_act <- renderText({
+    scales::comma(pre_treat_biomarkers_res()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_res_sum_2_act <- renderText({
+    scales::comma(pre_treat_biomarkers_res()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_res_sum_3_act <- renderText({
+    scales::comma(pre_treat_biomarkers_res()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_res_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_res()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_res_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_res()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_res_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_res()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_lan_sum_1_act <- renderText({
+    scales::comma(pre_treat_biomarkers_lan()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_lan_sum_2_act <- renderText({
+    scales::comma(pre_treat_biomarkers_lan()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_lan_sum_3_act <- renderText({
+    scales::comma(pre_treat_biomarkers_lan()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_lan_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_lan()[[1, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_lan_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_lan()[[2, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_lan_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_lan()[[3, 4]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_all_sum_1_act <- renderText({
+    scales::comma(pre_treat_biomarkers_all()[[1, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_all_sum_2_act <- renderText({
+    scales::comma(pre_treat_biomarkers_all()[[2, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_all_sum_3_act <- renderText({
+    scales::comma(pre_treat_biomarkers_all()[[3, 10]], big.mark = ",")
+  })
+  
+  output$pre_treat_biomarkers_all_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_all()[[1, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_all_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_all()[[2, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_biomarkers_all_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_biomarkers_all()[[3, 11]], big.mark = ",", prefix = "£", suffix = ".")
+  })
   
   output$pre_treat_biomarkers_sem_DT <- renderDT({
     pre_treat_biomarkers_sem_DT <- pre_treat_biomarkers_sem() |>
-      select(c(simulation, biomarkers_act)) |>
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
       rename("Simulation" = 1,
-             "Biomarkers Activity" = 2)
+             "Biomarkers Activity" = 2,
+             "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_sem_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biomarkers_surv_DT <- renderDT({
     pre_treat_biomarkers_surv_DT <- pre_treat_biomarkers_surv() |>
-      select(c(simulation, biomarkers_act)) |>
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
       rename("Simulation" = 1,
-             "Biomarkers Activity" = 2)
+             "Biomarkers Activity" = 2,
+             "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_surv_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biomarkers_res_DT <- renderDT({
     pre_treat_biomarkers_res_DT <- pre_treat_biomarkers_res() |>
-      select(c(simulation, biomarkers_act)) |>
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
       rename("Simulation" = 1,
-             "Biomarkers Activity" = 2)
+             "Biomarkers Activity" = 2,
+             "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_res_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biomarkers_lan_DT <- renderDT({
     pre_treat_biomarkers_lan_DT <- pre_treat_biomarkers_lan() |>
-      select(c(simulation, biomarkers_act)) |>
+      select(c(simulation, biomarkers_act, biomarkers_cost)) |>
       rename("Simulation" = 1,
-             "Biomarkers Activity" = 2)
+             "Biomarkers Activity" = 2,
+             "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_lan_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
   })
   
   output$pre_treat_biomarkers_all_DT <- renderDT({
     pre_treat_biomarkers_all_DT <- pre_treat_biomarkers_all() |>
-      select(c(simulation, biomarkers_act_all)) |>
+      select(c(simulation, biomarkers_act_all, biomarkers_act_cost_all)) |>
       rename("Simulation" = 1,
-             "Biomarkers Activity" = 2)
+             "Biomarkers Activity" = 2,
+             "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_all_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
     
   })
   
+  output$pre_treat_mm_assess_sem_sum_1_act <- renderText({
+    scales::comma(pre_treat_mm_assess_sem()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_sem_sum_2_act <- renderText({
+    scales::comma(pre_treat_mm_assess_sem()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_sem_sum_3_act <- renderText({
+    scales::comma(pre_treat_mm_assess_sem()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_sem_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_sem()[[1, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_sem_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_sem()[[2, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_sem_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_sem()[[3, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_surv_sum_1_act <- renderText({
+    scales::comma(pre_treat_mm_assess_surv()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_surv_sum_2_act <- renderText({
+    scales::comma(pre_treat_mm_assess_surv()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_surv_sum_3_act <- renderText({
+    scales::comma(pre_treat_mm_assess_surv()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_surv_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_surv()[[1, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_surv_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_surv()[[2, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_surv_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_surv()[[3, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_res_sum_1_act <- renderText({
+    scales::comma(pre_treat_mm_assess_res()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_res_sum_2_act <- renderText({
+    scales::comma(pre_treat_mm_assess_res()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_res_sum_3_act <- renderText({
+    scales::comma(pre_treat_mm_assess_res()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_res_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_res()[[1, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_res_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_res()[[2, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_res_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_res()[[3, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_lan_sum_1_act <- renderText({
+    scales::comma(pre_treat_mm_assess_lan()[[1, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_lan_sum_2_act <- renderText({
+    scales::comma(pre_treat_mm_assess_lan()[[2, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_lan_sum_3_act <- renderText({
+    scales::comma(pre_treat_mm_assess_lan()[[3, 3]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_lan_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_lan()[[1, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_lan_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_lan()[[2, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_lan_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_lan()[[3, 16]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_all_sum_1_act <- renderText({
+    scales::comma(pre_treat_mm_assess_all()[[1, 58]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_all_sum_2_act <- renderText({
+    scales::comma(pre_treat_mm_assess_all()[[2, 58]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_all_sum_3_act <- renderText({
+    scales::comma(pre_treat_mm_assess_all()[[3, 58]], big.mark = ",")
+  })
+  
+  output$pre_treat_mm_assess_all_sum_1_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_all()[[1, 59]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_all_sum_2_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_all()[[2, 59]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_all_sum_3_cost <- renderText({
+    scales::dollar(pre_treat_mm_assess_all()[[3, 59]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$pre_treat_mm_assess_sem_DT <- renderDT({
+    pre_treat_mm_assess_sem_DT <- pre_treat_mm_assess_sem() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("Simulation" = 1,
+             "Total Assessments" = 2,
+             "Total Assessments Costs" = 3,
+             "GP Assessments" = 4,
+             "GP Assessments Costs" = 5,
+             "Primary Care Nurse Assessments" = 6,
+             "Primary Care Nurse Costs" = 7,
+             "Hepatology / Gastro Consultant Assessments" = 8,
+             "Hepatology / Gastro Consutlant Costs" = 9,
+             "Hepatology / Gastro Nurse Led Assessments" = 10,
+             "Hepatology / Gastro Nurse Led Costs" = 11,
+             "Community Diagnostician Assessments" = 12,
+             "Community Diagnostician Costs" = 13,
+             "Community Pharmacist Assessments" = 14,
+             "Community Pharmacist Costs" = 15)
+    datatable(pre_treat_mm_assess_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Assessments Costs",
+                                 "GP Assessments Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consutlant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2)
+  })
+  
+  output$pre_treat_mm_assess_surv_DT <- renderDT({
+    pre_treat_mm_assess_surv_DT <- pre_treat_mm_assess_surv() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("Simulation" = 1,
+             "Total Assessments" = 2,
+             "Total Assessments Costs" = 3,
+             "GP Assessments" = 4,
+             "GP Assessments Costs" = 5,
+             "Primary Care Nurse Assessments" = 6,
+             "Primary Care Nurse Costs" = 7,
+             "Hepatology / Gastro Consultant Assessments" = 8,
+             "Hepatology / Gastro Consutlant Costs" = 9,
+             "Hepatology / Gastro Nurse Led Assessments" = 10,
+             "Hepatology / Gastro Nurse Led Costs" = 11,
+             "Community Diagnostician Assessments" = 12,
+             "Community Diagnostician Costs" = 13,
+             "Community Pharmacist Assessments" = 14,
+             "Community Pharmacist Costs" = 15)
+    datatable(pre_treat_mm_assess_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Assessments Costs",
+                                 "GP Assessments Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consutlant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2)
+  })
+  
+  output$pre_treat_mm_assess_res_DT <- renderDT({
+    pre_treat_mm_assess_res_DT <- pre_treat_mm_assess_res() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("Simulation" = 1,
+             "Total Assessments" = 2,
+             "Total Assessments Costs" = 3,
+             "GP Assessments" = 4,
+             "GP Assessments Costs" = 5,
+             "Primary Care Nurse Assessments" = 6,
+             "Primary Care Nurse Costs" = 7,
+             "Hepatology / Gastro Consultant Assessments" = 8,
+             "Hepatology / Gastro Consutlant Costs" = 9,
+             "Hepatology / Gastro Nurse Led Assessments" = 10,
+             "Hepatology / Gastro Nurse Led Costs" = 11,
+             "Community Diagnostician Assessments" = 12,
+             "Community Diagnostician Costs" = 13,
+             "Community Pharmacist Assessments" = 14,
+             "Community Pharmacist Costs" = 15)
+    datatable(pre_treat_mm_assess_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Assessments Costs",
+                                 "GP Assessments Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consutlant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2)
+  })
+  
+  output$pre_treat_mm_assess_lan_DT <- renderDT({
+    pre_treat_mm_assess_lan_DT <- pre_treat_mm_assess_lan() |>
+      select(c(simulation,
+               mm_act,
+               mm_act_cost_total,
+               mm_act_pc_gp,
+               mm_act_pc_gp_cost,
+               mm_act_pc_nur,
+               mm_act_pc_nur_cost,
+               mm_act_sc_hgc,
+               mm_act_sc_hgc_cost,
+               mm_act_sc_hgn,
+               mm_act_sc_hgn_cost,
+               mm_act_com_dia,
+               mm_act_com_dia_cost,
+               mm_act_com_pha,
+               mm_act_com_pha_cost)) |>
+      rename("Simulation" = 1,
+             "Total Assessments" = 2,
+             "Total Assessments Costs" = 3,
+             "GP Assessments" = 4,
+             "GP Assessments Costs" = 5,
+             "Primary Care Nurse Assessments" = 6,
+             "Primary Care Nurse Costs" = 7,
+             "Hepatology / Gastro Consultant Assessments" = 8,
+             "Hepatology / Gastro Consutlant Costs" = 9,
+             "Hepatology / Gastro Nurse Led Assessments" = 10,
+             "Hepatology / Gastro Nurse Led Costs" = 11,
+             "Community Diagnostician Assessments" = 12,
+             "Community Diagnostician Costs" = 13,
+             "Community Pharmacist Assessments" = 14,
+             "Community Pharmacist Costs" = 15)
+    datatable(pre_treat_mm_assess_lan_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Assessments Costs",
+                                 "GP Assessments Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consutlant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2)
+  })
+  
+  output$pre_treat_mm_assess_all_DT <- renderDT({
+    pre_treat_mm_assess_all_DT <- pre_treat_mm_assess_all() |>
+      select(c(simulation,
+               mm_act_all,
+               mm_act_cost_all,
+               mm_act_pc_gp_all,
+               mm_act_pc_gp_cost_all,
+               mm_act_pc_nur_all,
+               mm_act_pc_nur_cost_all,
+               mm_act_sc_hgc_all,
+               mm_act_sc_hgc_cost_all,
+               mm_act_sc_hgn_all,
+               mm_act_sc_hgn_cost_all,
+               mm_act_com_dia_all,
+               mm_act_com_dia_cost_all,
+               mm_act_com_pha_all,
+               mm_act_com_pha_cost_all)) |>
+      rename("Simulation" = 1,
+             "Total Assessments" = 2,
+             "Total Assessments Costs" = 3,
+             "GP Assessments" = 4,
+             "GP Assessments Costs" = 5,
+             "Primary Care Nurse Assessments" = 6,
+             "Primary Care Nurse Costs" = 7,
+             "Hepatology / Gastro Consultant Assessments" = 8,
+             "Hepatology / Gastro Consutlant Costs" = 9,
+             "Hepatology / Gastro Nurse Led Assessments" = 10,
+             "Hepatology / Gastro Nurse Led Costs" = 11,
+             "Community Diagnostician Assessments" = 12,
+             "Community Diagnostician Costs" = 13,
+             "Community Pharmacist Assessments" = 14,
+             "Community Pharmacist Costs" = 15)
+    datatable(pre_treat_mm_assess_all_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Assessments Costs",
+                                 "GP Assessments Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consutlant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2)
+  })
 
 # Downloads: Inputs -------------------------------------------------------
 
