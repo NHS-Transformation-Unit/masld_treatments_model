@@ -1,9 +1,352 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.15">
-  <diagram name="Page-1" id="eML3Yv7zEd0g_wJ0468h">
-    <mxGraphModel>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.16" pages="2">
+  <diagram name="Semaglutide" id="eML3Yv7zEd0g_wJ0468h">
+    <mxGraphModel dx="1647" dy="848" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <UserObject label="&lt;h2&gt;Click to show additional detail&lt;/h2&gt;" id="wsebQiRH0qJYWv4fe2xb-1">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#EDEDED);strokeWidth=3;strokeColor=#FF0000;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+            <mxGeometry x="40" y="153.6700000000002" width="150" height="87.11" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-2" value="&lt;h2&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Potential Real World Application&lt;/font&gt;&lt;/h2&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=15;arcSize=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40.000000000000114" width="150" height="84.78" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;h2&gt;Click to show additional detail&lt;/h2&gt;" link="data:page/id,H2DG2ICL9KMeq_GhM2K-" id="wsebQiRH0qJYWv4fe2xb-3">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#EDEDED);strokeWidth=3;strokeColor=#FF0000;" vertex="1" parent="1">
+            <mxGeometry x="40" y="153.6700000000002" width="150" height="87.11" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-6" target="wsebQiRH0qJYWv4fe2xb-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-5" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="wsebQiRH0qJYWv4fe2xb-4">
+          <mxGeometry x="-0.125" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Suspect MASLD diagnosis&amp;nbsp;" tooltip="" id="wsebQiRH0qJYWv4fe2xb-6">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCCC;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="266" y="124.7755555555558" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="FIB-4 Test" tooltip="" id="wsebQiRH0qJYWv4fe2xb-7">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#CCCCCC;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="690" y="123.8855555555557" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-10" target="wsebQiRH0qJYWv4fe2xb-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-9" value="Criteria Met" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="wsebQiRH0qJYWv4fe2xb-8">
+          <mxGeometry x="-0.1042" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Initial Eligibility Assessment" tooltip="" id="wsebQiRH0qJYWv4fe2xb-10">
+          <mxCell style="whiteSpace=wrap;html=1;fillColor=#CCCCCC;rounded=0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="470" y="123.8855555555557" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-11" value="&lt;h2&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Potential Real World Application&lt;/font&gt;&lt;/h2&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=15;arcSize=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40.000000000000114" width="150" height="84.78" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1401" y="159.33000000000004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-13" value="Indicative of&lt;div&gt;F2 - 3, Decision to treat&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="wsebQiRH0qJYWv4fe2xb-12">
+          <mxGeometry x="0.0783" relative="1" as="geometry">
+            <mxPoint x="-11" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Non-invasive testing (Imaging +/- Serum Biomarkers)" tooltip="" id="wsebQiRH0qJYWv4fe2xb-14">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#CCCCCC;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="929" y="124.77555555555557" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-7" target="wsebQiRH0qJYWv4fe2xb-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-16" value="Indicative of&amp;nbsp;&lt;div&gt;F2 - 3&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="wsebQiRH0qJYWv4fe2xb-15">
+          <mxGeometry x="0.0705" y="-2" relative="1" as="geometry">
+            <mxPoint x="-7" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1403" y="77.33000000000004" width="841" height="144.44" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="wsebQiRH0qJYWv4fe2xb-35">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2244" y="160.33000000000004" as="sourcePoint" />
+            <Array as="points" />
+            <mxPoint x="2284" y="160.33000000000004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-19" value="Drug Dose Escalation. One or more dose step can be prolonged or dose lowered if actual dose not tolerated." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1433" y="90.9955555555556" width="740" height="24.444444444444446" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-21" target="wsebQiRH0qJYWv4fe2xb-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-21" value="0.25 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1433" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-23" target="wsebQiRH0qJYWv4fe2xb-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-23" value="0.5 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1604" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-25" target="wsebQiRH0qJYWv4fe2xb-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-25" value="1.0 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1774" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-27" target="wsebQiRH0qJYWv4fe2xb-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-27" value="1.7 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1944" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-28" value="2.4 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="2108" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <UserObject label="Monitoring Biomarkers from week 2 every 3 months" tooltip="" id="wsebQiRH0qJYWv4fe2xb-29">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="1404" y="234.0000000000001" width="837" height="36.67" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-30" value="Ongoing support and intervention as required from interrelated service areas where available, including dietetic and weight management support, cardio renal metabolic services, psychological support, etc." style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0;dx=10;notch=0;fontSize=15;fillColor=light-dark(#7EA6E0,var(--ge-dark-color, #121212));" vertex="1" parent="1">
+          <mxGeometry x="1241" y="44.33000000000004" width="1945" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-31" value="Annual Efficacy and Medication Review" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="3025" y="294.32555555555575" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <UserObject label="Monitoring Biomarkers every 6 months (2 total)" tooltip="" id="wsebQiRH0qJYWv4fe2xb-32">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2791" y="234.33000000000004" width="390" height="36.34" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-34" target="wsebQiRH0qJYWv4fe2xb-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="Efficacy Assessment" tooltip="" id="wsebQiRH0qJYWv4fe2xb-34">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2461" y="294.32555555555575" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-35" value="Dosage&amp;nbsp;&lt;div&gt;maintenance&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="2272.25" y="123.88999999999999" width="908.75" height="73.33" as="geometry" />
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="wsebQiRH0qJYWv4fe2xb-38" target="wsebQiRH0qJYWv4fe2xb-31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2852" y="331.0200000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wsebQiRH0qJYWv4fe2xb-37" value="If deemed&amp;nbsp;&lt;div&gt;efficacious&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="wsebQiRH0qJYWv4fe2xb-36">
+          <mxGeometry x="0.2279" y="-4" relative="1" as="geometry">
+            <mxPoint x="-22" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Medication Review" tooltip="" id="wsebQiRH0qJYWv4fe2xb-38">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2616" y="294.32555555555575" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Monitoring Biomarkers every 3 months (4 total)" tooltip="" id="wsebQiRH0qJYWv4fe2xb-39">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2272.25" y="234.33000000000004" width="496" height="36.34" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="H2DG2ICL9KMeq_GhM2K-" name="Semaglutide AD">
+    <mxGraphModel dx="1647" dy="848" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="&lt;h2&gt;Click to show additional detail&lt;/h2&gt;" id="B219BzbRkNDhcYlqacxv-1">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#EDEDED);strokeWidth=3;strokeColor=#FF0000;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+            <mxGeometry x="40" y="153.6700000000002" width="150" height="87.11" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-2" value="&lt;h2&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Potential Real World Application&lt;/font&gt;&lt;/h2&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=15;arcSize=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40.000000000000114" width="150" height="84.78" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;h2&gt;Click to hide additional detail&lt;/h2&gt;" link="data:page/id,eML3Yv7zEd0g_wJ0468h" id="B219BzbRkNDhcYlqacxv-3">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#EDEDED);strokeWidth=3;strokeColor=#FF0000;" vertex="1" parent="1">
+            <mxGeometry x="40" y="153.6700000000002" width="150" height="87.11" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-6" target="B219BzbRkNDhcYlqacxv-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-5" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="B219BzbRkNDhcYlqacxv-4">
+          <mxGeometry x="-0.125" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Suspect MASLD diagnosis&amp;nbsp;" tooltip="" id="B219BzbRkNDhcYlqacxv-6">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCCCCC;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="266" y="124.7755555555558" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="FIB-4 Test" tooltip="" id="B219BzbRkNDhcYlqacxv-7">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#CCCCCC;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="690" y="123.8855555555557" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-10" target="B219BzbRkNDhcYlqacxv-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-9" value="Criteria Met" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="B219BzbRkNDhcYlqacxv-8">
+          <mxGeometry x="-0.1042" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Initial Eligibility Assessment" tooltip="" id="B219BzbRkNDhcYlqacxv-10">
+          <mxCell style="whiteSpace=wrap;html=1;fillColor=#CCCCCC;rounded=0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="470" y="123.8855555555557" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-11" value="&lt;h2&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Potential Real World Application&lt;/font&gt;&lt;/h2&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=15;arcSize=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40.000000000000114" width="150" height="84.78" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1401" y="159.33000000000004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-13" value="Indicative of&lt;div&gt;F2 - 3, Decision to treat&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="B219BzbRkNDhcYlqacxv-12">
+          <mxGeometry x="0.0783" relative="1" as="geometry">
+            <mxPoint x="-11" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Non-invasive testing (Imaging +/- Serum Biomarkers)" tooltip="" id="B219BzbRkNDhcYlqacxv-14">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#CCCCCC;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="929" y="124.77555555555557" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-7" target="B219BzbRkNDhcYlqacxv-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-16" value="Indicative of&amp;nbsp;&lt;div&gt;F2 - 3&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="B219BzbRkNDhcYlqacxv-15">
+          <mxGeometry x="0.0705" y="-2" relative="1" as="geometry">
+            <mxPoint x="-7" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-17" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- FIB-4 Score — between 1.3 and 2.67&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;align=center;verticalAlign=top;resizable=1;points=[];autosize=0;strokeColor=none;fillColor=#EBEBEB;html=1;labelPosition=center;verticalLabelPosition=middle;whiteSpace=wrap;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="686" y="236.33000000000004" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-18" value="&lt;span data-teams=&quot;true&quot;&gt;Initial eligibility assessment based on inclusion and exclusion criteria as provided by relevant NICE TA and assessment of overall metabolic status.&lt;/span&gt;" style="text;align=center;verticalAlign=top;resizable=1;points=[];autosize=0;strokeColor=none;fillColor=#EBEBEB;html=1;labelPosition=center;verticalLabelPosition=middle;whiteSpace=wrap;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="466" y="233.89" width="120" height="150.44" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-19" value="&lt;div&gt;Assessment in accordance with NICE guideline NG49&lt;/div&gt;" style="text;align=center;verticalAlign=top;resizable=1;points=[];autosize=0;strokeColor=none;fillColor=#EBEBEB;html=1;labelPosition=center;verticalLabelPosition=middle;whiteSpace=wrap;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="266" y="236.33000000000004" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-20" value="&lt;div&gt;Where available, ELF + Fibroscan is recommended with the below thresholds:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- ELF&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: if identified in primary care 9.8 - 11.3, if identified in secondary care 9.3-11.3,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;- Fibroscan: 8 - 20 kPa. If above 15 kPa, extra review of risk factors to exclude cirrhosis.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;align=left;verticalAlign=top;resizable=1;points=[];autosize=0;strokeColor=none;fillColor=#EBEBEB;html=1;labelPosition=center;verticalLabelPosition=middle;whiteSpace=wrap;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="904" y="233.89" width="170" height="190.44" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-21" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1403" y="77.33000000000004" width="841" height="144.44" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="B219BzbRkNDhcYlqacxv-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2244" y="160.33000000000004" as="sourcePoint" />
+            <Array as="points" />
+            <mxPoint x="2284" y="160.33000000000004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-23" value="Drug Dose Escalation. One or more dose step can be prolonged or dose lowered if actual dose not tolerated." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1433" y="90.9955555555556" width="740" height="24.444444444444446" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-25" target="B219BzbRkNDhcYlqacxv-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-25" value="0.25 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1433" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-27" target="B219BzbRkNDhcYlqacxv-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-27" value="0.5 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1604" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-29" target="B219BzbRkNDhcYlqacxv-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-29" value="1.0 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1774" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-31" target="B219BzbRkNDhcYlqacxv-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-31" value="1.7 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="1944" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-32" value="2.4 mg Semaglutide subcutaneous injection" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="2108" y="123.04555555555555" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <UserObject label="Monitoring Biomarkers from week 2 every 3 months" tooltip="" id="B219BzbRkNDhcYlqacxv-33">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="1404" y="234.0000000000001" width="837" height="36.67" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-34" value="Ongoing support and intervention as required from interrelated service areas where available, including dietetic and weight management support, cardio renal metabolic services, psychological support, etc." style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0;dx=10;notch=0;fontSize=15;fillColor=light-dark(#7EA6E0,var(--ge-dark-color, #121212));" vertex="1" parent="1">
+          <mxGeometry x="1241" y="44.33000000000004" width="1945" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-35" value="Annual Efficacy and Medication Review" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="3025" y="294.32555555555575" width="120" height="73.33333333333334" as="geometry" />
+        </mxCell>
+        <UserObject label="Monitoring Biomarkers every 6 months (2 total)" tooltip="" id="B219BzbRkNDhcYlqacxv-36">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2791" y="234.33000000000004" width="390" height="36.34" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=15;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-38" target="B219BzbRkNDhcYlqacxv-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="Efficacy Assessment" tooltip="" id="B219BzbRkNDhcYlqacxv-38">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2461" y="294.32555555555575" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-39" value="Dosage&amp;nbsp;&lt;div&gt;maintenance&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="2272.25" y="123.88999999999999" width="908.75" height="73.33" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="B219BzbRkNDhcYlqacxv-42" target="B219BzbRkNDhcYlqacxv-35">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2852" y="331.0200000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-41" value="If deemed&amp;nbsp;&lt;div&gt;efficacious&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" connectable="0" vertex="1" parent="B219BzbRkNDhcYlqacxv-40">
+          <mxGeometry x="0.2279" y="-4" relative="1" as="geometry">
+            <mxPoint x="-22" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Medication Review" tooltip="" id="B219BzbRkNDhcYlqacxv-42">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2616" y="294.32555555555575" width="120" height="73.33333333333334" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Monitoring Biomarkers every 3 months (4 total)" tooltip="" id="B219BzbRkNDhcYlqacxv-43">
+          <mxCell style="whiteSpace=wrap;html=1;rounded=0;fillColor=#7EA6E0;fontSize=15;" vertex="1" parent="1">
+            <mxGeometry x="2272.25" y="234.33000000000004" width="496" height="36.34" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="B219BzbRkNDhcYlqacxv-44" value="&lt;font style=&quot;font-size: 13px;&quot;&gt;Holistic assessment of medicines efficacy and metabolic status of patients.&amp;nbsp;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=15;fillColor=#D4E1F5;rotation=0;points=[[0,0,0,0,0],[0,0.25,0,0,0],[0,0.5,0,0,0],[0,0.75,0,0,0],[0,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[1,0,0,0,0],[1,0.25,0,0,0],[1,0.5,0,0,0],[1,0.75,0,0,0],[1,1,0,0,0]];" vertex="1" parent="1">
+          <mxGeometry x="2616" y="404.33000000000004" width="120" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-45" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- LFT&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- ELF&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;-&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;Fibroscan&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- BMI&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- Biomarkers as prev. described&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=13;fillColor=#D4E1F5;rotation=0;points=[[0,0,0,0,0],[0,0.25,0,0,0],[0,0.5,0,0,0],[0,0.75,0,0,0],[0,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[1,0,0,0,0],[1,0.25,0,0,0],[1,0.5,0,0,0],[1,0.75,0,0,0],[1,1,0,0,0]];" vertex="1" parent="1">
+          <mxGeometry x="2460.25" y="404.3299999999998" width="120" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="B219BzbRkNDhcYlqacxv-46" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- LFT&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- ELF&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Lipid levels&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- Glycaemic parameters (HbA1c and fasting glucose)&amp;nbsp;&lt;/div&gt;&lt;div&gt;- Blood pressure&lt;/div&gt;&lt;div&gt;- Bodyweight&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=13;fillColor=#D4E1F5;rotation=0;points=[[0,0,0,0,0],[0,0.25,0,0,0],[0,0.5,0,0,0],[0,0.75,0,0,0],[0,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[1,0,0,0,0],[1,0.25,0,0,0],[1,0.5,0,0,0],[1,0.75,0,0,0],[1,1,0,0,0]];" vertex="1" parent="1">
+          <mxGeometry x="1776" y="294.33000000000004" width="120" height="156.89" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
