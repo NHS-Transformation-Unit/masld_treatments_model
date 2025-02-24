@@ -1858,8 +1858,10 @@ ui <- navbarPage(
            fluidPage(
            h1("Model Outputs"),
            p("Some explanatory notes"),
-           h3("Patients Receiving Treatment"),
+           h3("Overall Pathway Costs"),
            navset_tab(
+             nav_panel("All Treatments"
+                       ),
              nav_panel("Semaglutide"
              ),
              nav_panel("Survodutide"
@@ -1867,8 +1869,6 @@ ui <- navbarPage(
              nav_panel("Resmetirom"
              ),
              nav_panel("Lanifibranor"
-             ),
-             nav_panel("All Treatments"
              )
            ),
            br(),
@@ -2639,6 +2639,103 @@ ui <- navbarPage(
                                    ))
                                   
                        )
+             ),
+             nav_panel("Survodutide",
+                       p("Survodutide treatment is modelled in two phases between weeks 0-24 and then dosage maintenance 
+                         until week 71 prior to a continuation decision."),
+                       navset_tab(
+                         nav_panel("Weeks 0-24",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Survodutide treatment 
+                                                 delivery between weeks 0 to 24 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("init_treat_surv_024_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_surv_024_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("init_treat_surv_024_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_surv_024_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("init_treat_surv_024_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_surv_024_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               p("The table below contains the activity and costs to deliver the treatment between weeks 0 and 24:"),
+                                               DTOutput("init_treat_surv_DT")
+                                               )
+                                   )
+                                   
+                       ),
+                       nav_panel("Weeks 24-71",
+                                 navset_tab(
+                                   nav_panel("Summary",
+                                             p("Based on the assumptions the modelled activity and costs for Survodutide treatment 
+                                                 delivery between weeks 24 to 71 are:",
+                                               tags$ul(
+                                                 tags$li("A central esimtate of ",
+                                                         textOutput("dm1_treat_surv_sum_1_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("dm1_treat_surv_sum_1_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("A lower esimtate of ",
+                                                         textOutput("dm1_treat_surv_sum_2_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("dm1_treat_surv_sum_2_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("An upper esimtate of ",
+                                                         textOutput("dm1_treat_surv_sum_3_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("dm1_treat_surv_sum_3_cost", inline = TRUE)
+                                                 )
+                                               ))
+                                   ),
+                                   nav_panel("Data Table",
+                                             p("The table below contains the activity and costs to deliver the treatment between weeks 24 and 71:"),
+                                             DTOutput("dm1_treat_surv_DT")
+                                   )
+                                 )
+                                 
+                       ),
+                       nav_panel("Combined Treatment to Week 72",
+                                 navset_tab(
+                                   nav_panel("Summary",
+                                             p("Based on the assumptions the modelled activity and costs for Survodutide treatment 
+                                                 delivery between weeks 0 to 72 are:",
+                                               tags$ul(
+                                                 tags$li("A central esimtate of ",
+                                                         textOutput("total_surv_treat_72_sum_1_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("total_surv_treat_72_sum_1_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("A lower esimtate of ",
+                                                         textOutput("total_surv_treat_72_sum_2_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("total_surv_treat_72_sum_2_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("An upper esimtate of ",
+                                                         textOutput("total_surv_treat_72_sum_3_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("total_surv_treat_72_sum_3_cost", inline = TRUE)
+                                                 )
+                                               ))
+                                   ),
+                                   nav_panel("Data Table",
+                                             p("The table below contains the activity and costs to deliver the treatment between weeks 0 and 72:"),
+                                             DTOutput("total_surv_treat_72_DT")
+                                   )
+                                 )
+                                 
+                       )
+                       )
+               
              )
            )
 

@@ -168,6 +168,12 @@ server <- function(input, output, session) {
       treatment_setting_0_24_matrix_surv_sc_hgn = (input$treatment_setting_0_24_matrix_surv[4, 1]) / 100,
       treatment_setting_0_24_matrix_surv_com_dia = (input$treatment_setting_0_24_matrix_surv[5, 1]) / 100,
       treatment_setting_0_24_matrix_surv_com_pha = (input$treatment_setting_0_24_matrix_surv[6, 1]) / 100,
+      treatment_setting_0_24_matrix_surv_pc_gp_mins = input$treatment_setting_0_24_matrix_surv[1, 1],
+      treatment_setting_0_24_matrix_surv_pc_nur_mins = input$treatment_setting_0_24_matrix_surv[2, 2],
+      treatment_setting_0_24_matrix_surv_sc_hgc_mins = input$treatment_setting_0_24_matrix_surv[3, 2],
+      treatment_setting_0_24_matrix_surv_sc_hgn_mins = input$treatment_setting_0_24_matrix_surv[4, 2],
+      treatment_setting_0_24_matrix_surv_com_dia_mins = input$treatment_setting_0_24_matrix_surv[5, 2],
+      treatment_setting_0_24_matrix_surv_com_pha_mins = input$treatment_setting_0_24_matrix_surv[6, 2],
       monitor_tests_0_71_num_surv = input$monitor_tests_0_71_num_surv,
       monitor_tests_0_71_elf_prop_surv = input$monitor_tests_0_71_elf_prop_surv / 100,
       monitor_tests_0_71_bio_prop_surv = input$monitor_tests_0_71_bio_prop_surv / 100,
@@ -178,6 +184,12 @@ server <- function(input, output, session) {
       treatment_setting_25_71_matrix_surv_sc_hgn = (input$treatment_setting_25_71_matrix_surv[4, 1]) / 100,
       treatment_setting_25_71_matrix_surv_com_dia = (input$treatment_setting_25_71_matrix_surv[5, 1]) / 100,
       treatment_setting_25_71_matrix_surv_com_pha = (input$treatment_setting_25_71_matrix_surv[6, 1]) / 100,
+      treatment_setting_25_71_matrix_surv_pc_gp_mins = input$treatment_setting_25_71_matrix_surv[1, 2],
+      treatment_setting_25_71_matrix_surv_pc_nur_mins = input$treatment_setting_25_71_matrix_surv[2, 2],
+      treatment_setting_25_71_matrix_surv_sc_hgc_mins = input$treatment_setting_25_71_matrix_surv[3, 2],
+      treatment_setting_25_71_matrix_surv_sc_hgn_mins = input$treatment_setting_25_71_matrix_surv[4, 2],
+      treatment_setting_25_71_matrix_surv_com_dia_mins = input$treatment_setting_25_71_matrix_surv[5, 2],
+      treatment_setting_25_71_matrix_surv_com_pha_mins = input$treatment_setting_25_71_matrix_surv[6, 2],
       efficacy_liver_biopsy_surv = input$efficacy_liver_biopsy_surv / 100,
       efficacy_elf_prop_surv = input$efficacy_elf_prop_surv / 100,
       efficacy_fibro_prop_surv = input$efficacy_fibro_prop_surv / 100,
@@ -1287,6 +1299,109 @@ total_sem_treat_72 <- reactive({
             treat_act_com_pha = sum(treat_act_com_pha),
             treat_act_com_pha_cost = sum(treat_act_com_pha_cost),
   )
+  
+})
+
+init_treat_surv <- reactive({
+  
+  params_surv <- surv_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  treat_pop_surv() |>
+    select(c(simulation, treated_total)) |>
+    mutate(treat_init_retained = round(treated_total * params_surv$retention_surv_0_24, 0)) |>
+    mutate(week = list(0:24)) |>
+    unnest(week) |>
+    mutate(retention_factor = 1 - (week * (1 - params_surv$retention_surv_0_24) / 24),
+           appts_week = round(treated_total * retention_factor, 0)) |>
+    group_by(simulation) |>
+    summarise(start_treat = mean(treated_total),
+              end_treat = mean(treat_init_retained),
+              treat_act = sum(appts_week), .groups = "drop") |>
+    mutate(treat_act_pc_gp = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_pc_gp, 0),
+           treat_act_pc_nur = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_pc_nur, 0),
+           treat_act_sc_hgc = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_sc_hgc, 0),
+           treat_act_sc_hgn = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_sc_hgn, 0),
+           treat_act_com_dia = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_com_dia, 0),
+           treat_act_com_pha = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_com_pha, 0),
+           treat_act_pc_gp_cost = round(treat_act_pc_gp * (params_surv$treatment_setting_0_24_matrix_surv_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+           treat_act_pc_nur_cost = round(treat_act_pc_nur * (params_surv$treatment_setting_0_24_matrix_surv_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+           treat_act_sc_hgc_cost = round(treat_act_sc_hgc * (params_surv$treatment_setting_0_24_matrix_surv_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+           treat_act_sc_hgn_cost = round(treat_act_sc_hgn * (params_surv$treatment_setting_0_24_matrix_surv_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+           treat_act_com_dia_cost = round(treat_act_com_dia * (params_surv$treatment_setting_0_24_matrix_surv_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+           treat_act_com_pha_cost = round(treat_act_com_pha * (params_surv$treatment_setting_0_24_matrix_surv_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+    ) |>
+    rowwise() |>
+    mutate(treat_act_cost_total = sum(c_across(c(treat_act_pc_gp_cost,
+                                                 treat_act_pc_nur_cost,
+                                                 treat_act_sc_hgc_cost,
+                                                 treat_act_sc_hgn_cost,
+                                                 treat_act_com_dia_cost,
+                                                 treat_act_com_pha_cost)))
+    )
+  
+})
+
+dm1_treat_surv <- reactive({
+  
+  params_surv <- surv_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  init_treat_surv() |>
+    select(c(simulation, end_treat)) |>
+    rename("start_treat" = 2) |>
+    mutate(treat_dm1_retained = round(start_treat * params_surv$retention_25_71_surv, 0)) |>
+    mutate(week = list(24:71)) |>
+    unnest(week) |>
+    mutate(retention_factor = 1 - (week * (1 - params_surv$retention_25_71_surv) / 47),
+           appts_week = round(start_treat * retention_factor, 0)) |>
+    group_by(simulation) |>
+    summarise(start_treat = mean(start_treat),
+              end_treat = mean(treat_dm1_retained),
+              treat_act = sum(appts_week), .groups = "drop") |>
+    mutate(treat_act_pc_gp = round(treat_act * params_surv$treatment_setting_25_71_matrix_surv_pc_gp, 0),
+           treat_act_pc_nur = round(treat_act * params_surv$treatment_setting_25_71_matrix_surv_pc_nur, 0),
+           treat_act_sc_hgc = round(treat_act * params_surv$treatment_setting_25_71_matrix_surv_sc_hgc, 0),
+           treat_act_sc_hgn = round(treat_act * params_surv$treatment_setting_25_71_matrix_surv_sc_hgn, 0),
+           treat_act_com_dia = round(treat_act * params_surv$treatment_setting_25_71_matrix_surv_com_dia, 0),
+           treat_act_com_pha = round(treat_act * params_surv$treatment_setting_25_71_matrix_surv_com_pha, 0),
+           treat_act_pc_gp_cost = round(treat_act_pc_gp * (params_surv$treatment_setting_25_71_matrix_surv_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+           treat_act_pc_nur_cost = round(treat_act_pc_nur * (params_surv$treatment_setting_25_71_matrix_surv_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+           treat_act_sc_hgc_cost = round(treat_act_sc_hgc * (params_surv$treatment_setting_25_71_matrix_surv_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+           treat_act_sc_hgn_cost = round(treat_act_sc_hgn * (params_surv$treatment_setting_25_71_matrix_surv_sc_hgn / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+           treat_act_com_dia_cost = round(treat_act_com_dia * (params_surv$treatment_setting_25_71_matrix_surv_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+           treat_act_com_pha_cost = round(treat_act_com_pha * (params_surv$treatment_setting_25_71_matrix_surv_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+    )|>
+    rowwise() |>
+    mutate(treat_act_cost_total = sum(c_across(c(treat_act_pc_gp_cost,
+                                                 treat_act_pc_nur_cost,
+                                                 treat_act_sc_hgc_cost,
+                                                 treat_act_sc_hgn_cost,
+                                                 treat_act_com_dia_cost,
+                                                 treat_act_com_pha_cost)))
+    )
+  
+})
+
+total_surv_treat_72 <- reactive({
+  
+  init_treat_surv() |>
+    rename("start_treat" = 2) |>
+    rbind(dm1_treat_surv()) |>
+    group_by(simulation) |>
+    summarise(treat_act = sum(treat_act),
+              treat_act_cost_total = sum(treat_act_cost_total),
+              treat_act_pc_gp = sum(treat_act_pc_gp),
+              treat_act_pc_gp_cost = sum(treat_act_pc_gp_cost),
+              treat_act_pc_nur = sum(treat_act_pc_nur),
+              treat_act_pc_nur_cost = sum(treat_act_pc_nur_cost),
+              treat_act_sc_hgc = sum(treat_act_sc_hgc),
+              treat_act_sc_hgc_cost = sum(treat_act_sc_hgc_cost),
+              treat_act_sc_hgn = sum(treat_act_sc_hgn),
+              treat_act_sc_hgn_cost = sum(treat_act_sc_hgn_cost),
+              treat_act_com_dia = sum(treat_act_com_dia),
+              treat_act_com_dia_cost = sum(treat_act_com_dia_cost),
+              treat_act_com_pha = sum(treat_act_com_pha),
+              treat_act_com_pha_cost = sum(treat_act_com_pha_cost),
+    )
   
 })
 
@@ -2593,6 +2708,9 @@ total_sem_treat_72 <- reactive({
                      ,digits = 2)
   })
   
+
+# Outputs: Treatment Delivery ---------------------------------------------
+  
   output$init_treat_sem_016_sum_1_act <- renderText({
     scales::comma(init_treat_sem()[[1, 4]], big.mark = ",")
   })
@@ -2808,6 +2926,244 @@ total_sem_treat_72 <- reactive({
              "Community Pharmacist Activities" = 14,
              "Community Pharmacist Costs" = 15)
     datatable(total_sem_treat_72_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Treatment Activities Costs",
+                                 "GP Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consultant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2) |>
+      formatRound(columns = c("Total Treatment Activities",
+                              "GP Activities",
+                              "Primary Care Nurse Activities",
+                              "Hepatology / Gastro Consultant Activities",
+                              "Hepatology / Gastro Nurse Led Activities",
+                              "Community Diagnostician Activities",
+                              "Community Pharmacist Activities"),
+                  digits = 0)
+  })
+  
+  output$init_treat_surv_024_sum_1_act <- renderText({
+    scales::comma(init_treat_surv()[[1, 4]], big.mark = ",")
+  })
+  
+  output$init_treat_surv_024_sum_2_act <- renderText({
+    scales::comma(init_treat_surv()[[2, 4]], big.mark = ",")
+  })
+  
+  output$init_treat_surv_024_sum_3_act <- renderText({
+    scales::comma(init_treat_surv()[[3, 4]], big.mark = ",")
+  })
+  
+  output$init_treat_surv_024_sum_1_cost <- renderText({
+    scales::dollar(init_treat_surv()[[1, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$init_treat_surv_024_sum_2_cost <- renderText({
+    scales::dollar(init_treat_surv()[[2, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$init_treat_surv_024_sum_3_cost <- renderText({
+    scales::dollar(init_treat_surv()[[3, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$init_treat_surv_DT <- renderDT({
+    init_treat_surv_DT <- init_treat_surv() |>
+      select(c(simulation,
+               start_treat,
+               end_treat,
+               treat_act,
+               treat_act_cost_total,
+               treat_act_pc_gp,
+               treat_act_pc_gp_cost,
+               treat_act_pc_nur,
+               treat_act_pc_nur_cost,
+               treat_act_sc_hgc,
+               treat_act_sc_hgc_cost,
+               treat_act_sc_hgn,
+               treat_act_sc_hgn_cost,
+               treat_act_com_dia,
+               treat_act_com_dia_cost,
+               treat_act_com_pha,
+               treat_act_com_pha_cost)) |>
+      rename("Simulation" = 1,
+             "Population Starting Treatment" = 2,
+             "Population Retained at Week 24" = 3,
+             "Total Treatment Activities" = 4,
+             "Total Treatment Activities Costs" = 5,
+             "GP Activities" = 6,
+             "GP Costs" = 7,
+             "Primary Care Nurse Activities" = 8,
+             "Primary Care Nurse Costs" = 9,
+             "Hepatology / Gastro Consultant Activities" = 10,
+             "Hepatology / Gastro Consultant Costs" = 11,
+             "Hepatology / Gastro Nurs Led Activities" = 12,
+             "Hepatology / Gastro Nurse Led Costs" = 13,
+             "Community Diagnostician Activities" = 14,
+             "Community Diagnostician Costs" = 15,
+             "Community Pharmacist Activities" = 16,
+             "Community Pharmacist Costs" = 17)
+    datatable(init_treat_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Treatment Activities Costs",
+                                 "GP Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consultant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2) |>
+      formatRound(columns = c("Population Starting Treatment",
+                              "Population Retained at Week 24",
+                              "Total Treatment Activities",
+                              "GP Activities",
+                              "Primary Care Nurse Activities",
+                              "Hepatology / Gastro Consultant Activities",
+                              "Hepatology / Gastro Nurs Led Activities",
+                              "Community Diagnostician Activities",
+                              "Community Pharmacist Activities"),
+                  digits = 0)
+  })
+  
+  output$dm1_treat_surv_sum_1_act <- renderText({
+    scales::comma(dm1_treat_surv()[[1, 4]], big.mark = ",")
+  })
+  
+  output$dm1_treat_surv_sum_2_act <- renderText({
+    scales::comma(dm1_treat_surv()[[2, 4]], big.mark = ",")
+  })
+  
+  output$dm1_treat_surv_sum_3_act <- renderText({
+    scales::comma(dm1_treat_surv()[[3, 4]], big.mark = ",")
+  })
+  
+  output$dm1_treat_surv_sum_1_cost <- renderText({
+    scales::dollar(dm1_treat_surv()[[1, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$dm1_treat_surv_sum_2_cost <- renderText({
+    scales::dollar(dm1_treat_surv()[[2, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$dm1_treat_surv_sum_3_cost <- renderText({
+    scales::dollar(dm1_treat_surv()[[3, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$dm1_treat_surv_DT <- renderDT({
+    dm1_treat_surv_DT <- dm1_treat_surv() |>
+      select(c(simulation,
+               start_treat,
+               end_treat,
+               treat_act,
+               treat_act_cost_total,
+               treat_act_pc_gp,
+               treat_act_pc_gp_cost,
+               treat_act_pc_nur,
+               treat_act_pc_nur_cost,
+               treat_act_sc_hgc,
+               treat_act_sc_hgc_cost,
+               treat_act_sc_hgn,
+               treat_act_sc_hgn_cost,
+               treat_act_com_dia,
+               treat_act_com_dia_cost,
+               treat_act_com_pha,
+               treat_act_com_pha_cost)) |>
+      rename("Simulation" = 1,
+             "Population Continuing Treatment at Week 24" = 2,
+             "Population Retained at Week 71" = 3,
+             "Total Treatment Activities" = 4,
+             "Total Treatment Activities Costs" = 5,
+             "GP Activities" = 6,
+             "GP Costs" = 7,
+             "Primary Care Nurse Activities" = 8,
+             "Primary Care Nurse Costs" = 9,
+             "Hepatology / Gastro Consultant Activities" = 10,
+             "Hepatology / Gastro Consultant Costs" = 11,
+             "Hepatology / Gastro Nurse Led Activities" = 12,
+             "Hepatology / Gastro Nurse Led Costs" = 13,
+             "Community Diagnostician Activities" = 14,
+             "Community Diagnostician Costs" = 15,
+             "Community Pharmacist Activities" = 16,
+             "Community Pharmacist Costs" = 17)
+    datatable(dm1_treat_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Treatment Activities Costs",
+                                 "GP Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consultant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs")
+                     ,currency = "£"
+                     ,digits = 2) |>
+      formatRound(columns = c("Population Continuing Treatment at Week 24",
+                              "Population Retained at Week 71",
+                              "Total Treatment Activities",
+                              "GP Activities",
+                              "Primary Care Nurse Activities",
+                              "Hepatology / Gastro Consultant Activities",
+                              "Hepatology / Gastro Nurse Led Activities",
+                              "Community Diagnostician Activities",
+                              "Community Pharmacist Activities"),
+                  digits = 0)
+    
+  })
+  
+  output$total_surv_treat_72_sum_1_act <- renderText({
+    scales::comma(total_surv_treat_72()[[1, 2]], big.mark = ",")
+  })
+  
+  output$total_surv_treat_72_sum_2_act <- renderText({
+    scales::comma(total_surv_treat_72()[[2, 2]], big.mark = ",")
+  })
+  
+  output$total_surv_treat_72_sum_3_act <- renderText({
+    scales::comma(total_surv_treat_72()[[3, 2]], big.mark = ",")
+  })
+  
+  output$total_surv_treat_72_sum_1_cost <- renderText({
+    scales::dollar(total_surv_treat_72()[[1, 3]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$total_surv_treat_72_sum_2_cost <- renderText({
+    scales::dollar(total_surv_treat_72()[[2, 3]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$total_surv_treat_72_sum_3_cost <- renderText({
+    scales::dollar(total_surv_treat_72()[[3, 3]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$total_surv_treat_72_DT <- renderDT({
+    total_surv_treat_72_DT <- total_surv_treat_72() |>
+      rename("Simulation" = 1,
+             "Total Treatment Activities" = 2,
+             "Total Treatment Activities Costs" = 3,
+             "GP Activities" = 4,
+             "GP Costs" = 5,
+             "Primary Care Nurse Activities" = 6,
+             "Primary Care Nurse Costs" = 7,
+             "Hepatology / Gastro Consultant Activities" = 8,
+             "Hepatology / Gastro Consultant Costs" = 9,
+             "Hepatology / Gastro Nurse Led Activities" = 10,
+             "Hepatology / Gastro Nurse Led Costs" = 11,
+             "Community Diagnostician Activities" = 12,
+             "Community Diagnostician Costs" = 13,
+             "Community Pharmacist Activities" = 14,
+             "Community Pharmacist Costs" = 15)
+    datatable(total_surv_treat_72_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
                              autoWidth = TRUE,
