@@ -790,7 +790,7 @@ ui <- navbarPage(
                  )
                ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Semaglutide Modelling.drawio.html")
              )
             )
            )
@@ -1127,7 +1127,7 @@ ui <- navbarPage(
                          )
                          ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Survodutide Modelling.drawio.html")
                )
              )
            )
@@ -1443,7 +1443,7 @@ ui <- navbarPage(
                          )
                ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Resmetirom Modelling.drawio.html")
                )
              )
            )
@@ -1759,7 +1759,7 @@ ui <- navbarPage(
                          )
                ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Lanifibranor Real World.drawio.html")
                )
              )
            )
