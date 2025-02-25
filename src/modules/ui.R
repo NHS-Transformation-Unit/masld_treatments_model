@@ -637,7 +637,7 @@ ui <- navbarPage(
                                       class = "numeric",
                           ),
                           numericInput("appts_20_71_sem",
-                                       "Select the number of appointments over weeks 0-16:",
+                                       "Select the number of appointments over weeks 20-71:",
                                        value = 10,
                                        min = 1,
                                        max = 55,
@@ -2770,7 +2770,33 @@ ui <- navbarPage(
            navset_tab(
              nav_panel("Semaglutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the assumptions in the modelled activity and costs for the diagnostics 
+                                     required at the week 72 continuation decision are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("cont_dec_diag_sem_sum_1_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_sem_sum_1_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_sem_sum_1_cost", inline = TRUE)
+                                               ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("cont_dec_diag_sem_sum_2_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_sem_sum_2_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_sem_sum_2_cost", inline = TRUE)
+                                               ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("cont_dec_diag_sem_sum_3_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_sem_sum_3_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_sem_sum_3_cost", inline = TRUE)
+                                               )
+                                     ))
+                                   ),
                          nav_panel("Data Table",
                                    DTOutput("cont_dec_diag_sem_DT"))
                        )

@@ -3338,6 +3338,42 @@ cont_dec_diag_all <- reactive({
 
 # Outputs: Continuation Decision ------------------------------------------
 
+  output$cont_dec_diag_sem_sum_1_pop <- renderText({
+    scales::comma(cont_dec_diag_sem()[[1, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_sem_sum_1_act <- renderText({
+    scales::comma(cont_dec_diag_sem()[[1, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_sem_sum_1_cost <- renderText({
+    scales::dollar(cont_dec_diag_sem()[[1, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$cont_dec_diag_sem_sum_2_pop <- renderText({
+    scales::comma(cont_dec_diag_sem()[[2, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_sem_sum_2_act <- renderText({
+    scales::comma(cont_dec_diag_sem()[[2, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_sem_sum_2_cost <- renderText({
+    scales::dollar(cont_dec_diag_sem()[[2, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$cont_dec_diag_sem_sum_3_pop <- renderText({
+    scales::comma(cont_dec_diag_sem()[[3, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_sem_sum_3_act <- renderText({
+    scales::comma(cont_dec_diag_sem()[[3, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_sem_sum_3_cost <- renderText({
+    scales::dollar(cont_dec_diag_sem()[[3, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })  
+  
 output$cont_dec_diag_sem_DT <- renderDT({
   
   cont_dec_diag_sem_DT <- cont_dec_diag_sem() |>
