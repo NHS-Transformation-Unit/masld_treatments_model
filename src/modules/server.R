@@ -94,6 +94,7 @@ server <- function(input, output, session) {
       treatment_setting_0_16_matrix_sem_sc_hgn_mins = input$treatment_setting_0_16_matrix_sem[4, 2],
       treatment_setting_0_16_matrix_sem_com_dia_mins = input$treatment_setting_0_16_matrix_sem[5, 2],
       treatment_setting_0_16_matrix_sem_com_pha_mins = input$treatment_setting_0_16_matrix_sem[6, 2],
+      appts_0_16_sem = input$appts_0_16_sem,
       monitoring_tests_number_sem = input$monitoring_tests_number_sem,
       monitoring_elf_prop_sem = input$monitoring_elf_prop_sem / 100,
       monitoring_bio_prop_sem = input$monitoring_bio_prop_sem / 100,
@@ -110,8 +111,10 @@ server <- function(input, output, session) {
       semaglutide_20_71_delivery_setting_sc_hgn_mins = input$semaglutide_20_71_delivery_setting[4, 2],
       semaglutide_20_71_delivery_setting_com_dia_mins = input$semaglutide_20_71_delivery_setting[5, 2],
       semaglutide_20_71_delivery_setting_com_pha_mins = input$semaglutide_20_71_delivery_setting[6, 2],
+      appts_20_71_sem = input$appts_20_71_sem,
       efficacy_liver_biopsy_prop_sem = input$efficacy_liver_biopsy_prop_sem / 100,
       efficacy_elf_prop_sem = input$efficacy_elf_prop_sem / 100,
+      efficacy_fibro_prop_sem = input$efficacy_fibro_prop_surv / 100,
       efficacy_biomarkers_prop_sem = input$efficacy_biomarkers_prop_sem / 100,
       continuation_prop_sem = input$continuation_prop_sem / 100,
       continuation_delivery_setting_sem_pc_gp = (input$continuation_delivery_setting_sem[1, 1] / 100),
@@ -174,6 +177,7 @@ server <- function(input, output, session) {
       treatment_setting_0_24_matrix_surv_sc_hgn_mins = input$treatment_setting_0_24_matrix_surv[4, 2],
       treatment_setting_0_24_matrix_surv_com_dia_mins = input$treatment_setting_0_24_matrix_surv[5, 2],
       treatment_setting_0_24_matrix_surv_com_pha_mins = input$treatment_setting_0_24_matrix_surv[6, 2],
+      appts_0_24_surv = input$appts_0_24_surv,
       monitor_tests_0_71_num_surv = input$monitor_tests_0_71_num_surv,
       monitor_tests_0_71_elf_prop_surv = input$monitor_tests_0_71_elf_prop_surv / 100,
       monitor_tests_0_71_bio_prop_surv = input$monitor_tests_0_71_bio_prop_surv / 100,
@@ -1213,7 +1217,7 @@ init_treat_sem <- reactive({
     group_by(simulation) |>
     summarise(start_treat = mean(treated_total),
               end_treat = mean(treat_init_retained),
-              treat_act = sum(appts_week), .groups = "drop") |>
+              treat_act = sum(appts_week) * (params_sem$appts_0_16_sem / 16), .groups = "drop") |>
     mutate(treat_act_pc_gp = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_pc_gp, 0),
            treat_act_pc_nur = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_pc_nur, 0),
            treat_act_sc_hgc = round(treat_act * params_sem$treatment_setting_0_16_matrix_sem_sc_hgc, 0),
@@ -1253,7 +1257,7 @@ dm1_treat_sem <- reactive({
     group_by(simulation) |>
     summarise(start_treat = mean(start_treat),
               end_treat = mean(treat_dm1_retained),
-              treat_act = sum(appts_week), .groups = "drop") |>
+              treat_act = sum(appts_week) * (params_sem$appts_20_71_sem / 55), .groups = "drop") |>
     mutate(treat_act_pc_gp = round(treat_act * params_sem$semaglutide_20_71_delivery_setting_pc_gp, 0),
            treat_act_pc_nur = round(treat_act * params_sem$semaglutide_20_71_delivery_setting_pc_nur, 0),
            treat_act_sc_hgc = round(treat_act * params_sem$semaglutide_20_71_delivery_setting_sc_hgc, 0),
@@ -1316,7 +1320,7 @@ init_treat_surv <- reactive({
     group_by(simulation) |>
     summarise(start_treat = mean(treated_total),
               end_treat = mean(treat_init_retained),
-              treat_act = sum(appts_week), .groups = "drop") |>
+              treat_act = sum(appts_week) * (params_surv$appts_0_24_surv / 24), .groups = "drop") |>
     mutate(treat_act_pc_gp = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_pc_gp, 0),
            treat_act_pc_nur = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_pc_nur, 0),
            treat_act_sc_hgc = round(treat_act * params_surv$treatment_setting_0_24_matrix_surv_sc_hgc, 0),
@@ -1405,6 +1409,149 @@ total_surv_treat_72 <- reactive({
   
 })
 
+
+# Continuation Decision ---------------------------------------------------
+
+cont_dec_diag_sem <- reactive({
+  
+  params_sem <- sem_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  dm1_treat_sem() |>
+    select(c(simulation, end_treat)) |>
+    rename(treat_dm1_retained = 2) |>
+    mutate(liv_bio_act = round(treat_dm1_retained * params_sem$efficacy_liver_biopsy_prop_sem, 0),
+           liv_bio_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2),
+           elf_act = round(treat_dm1_retained * params_sem$efficacy_elf_prop_sem, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           fibro_act = round(treat_dm1_retained * params_sem$efficacy_fibro_prop_sem, 0),
+           fibro_cost = round(fibro_act * params_fin$fin_fibro, 2),
+           biomarkers_act = round(treat_dm1_retained * params_sem$efficacy_biomarkers_prop_sem, 0),
+           biomarkers_cost = round(elf_act * params_fin$fin_biomarkers, 2)
+    ) |>
+    rowwise() |>
+    mutate(cont_diag_act = sum(c_across(c(liv_bio_act,
+                                          elf_act,
+                                          fibro_act,
+                                          biomarkers_act))),
+           cont_diag_cost = sum(c_across(c(liv_bio_cost,
+                                           elf_cost,
+                                           fibro_cost,
+                                           biomarkers_cost)))
+           )
+  
+})
+
+cont_dec_diag_surv <- reactive({
+  
+  params_surv <- surv_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  dm1_treat_surv() |>
+    select(c(simulation, end_treat)) |>
+    rename(treat_dm1_retained = 2) |>
+    mutate(liv_bio_act = round(treat_dm1_retained * params_surv$efficacy_liver_biopsy_surv, 0),
+           liv_bio_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2),
+           elf_act = round(treat_dm1_retained * params_surv$efficacy_elf_prop_surv, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           fibro_act = round(treat_dm1_retained * params_surv$efficacy_fibro_prop_surv, 0),
+           fibro_cost = round(fibro_act * params_fin$fin_fibro, 2),
+           biomarkers_act = round(treat_dm1_retained * params_surv$efficacy_biomarkers_prop_surv, 0),
+           biomarkers_cost = round(elf_act * params_fin$fin_biomarkers, 2)
+    ) |>
+    rowwise() |>
+    mutate(cont_diag_act = sum(c_across(c(liv_bio_act,
+                                          elf_act,
+                                          fibro_act,
+                                          biomarkers_act))),
+           cont_diag_cost = sum(c_across(c(liv_bio_cost,
+                                           elf_cost,
+                                           fibro_cost,
+                                           biomarkers_cost)))
+    )
+  
+})
+
+cont_dec_diag_res <- reactive({
+  
+  params_res <- res_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  dm1_treat_res() |>
+    select(c(simulation, end_treat)) |>
+    rename(treat_dm1_retained = 2) |>
+    mutate(liv_bio_act = round(treat_dm1_retained * params_res$efficacy_liver_biopsy_prop_res, 0),
+           liv_bio_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2),
+           elf_act = round(treat_dm1_retained * params_res$efficacy_elf_prop_res, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           fibro_act = round(treat_dm1_retained * params_res$efficacy_fibro_prop_res, 0),
+           fibro_cost = round(fibro_act * params_fin$fin_fibro, 2),
+           biomarkers_act = round(treat_dm1_retained * params_res$efficacy_biomarkers_prop_res, 0),
+           biomarkers_cost = round(elf_act * params_fin$fin_biomarkers, 2)
+    ) |>
+    rowwise() |>
+    mutate(cont_diag_act = sum(c_across(c(liv_bio_act,
+                                          elf_act,
+                                          fibro_act,
+                                          biomarkers_act))),
+           cont_diag_cost = sum(c_across(c(liv_bio_cost,
+                                           elf_cost,
+                                           fibro_cost,
+                                           biomarkers_cost)))
+    )
+  
+})
+
+cont_dec_diag_lan <- reactive({
+  
+  params_lan <- lan_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  dm1_treat_lan() |>
+    select(c(simulation, end_treat)) |>
+    rename(treat_dm1_retained = 2) |>
+    mutate(liv_bio_act = round(treat_dm1_retained * params_lan$efficacy_liver_biopsy_prop_lan, 0),
+           liv_bio_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2),
+           elf_act = round(treat_dm1_retained * params_lan$efficacy_elf_prop_lan, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           fibro_act = round(treat_dm1_retained * params_lan$efficacy_fibro_prop_lan, 0),
+           fibro_cost = round(fibro_act * params_fin$fin_fibro, 2),
+           biomarkers_act = round(treat_dm1_retained * params_lan$efficacy_biomarkers_prop_lan, 0),
+           biomarkers_cost = round(elf_act * params_fin$fin_biomarkers, 2)
+    ) |>
+    rowwise() |>
+    mutate(cont_diag_act = sum(c_across(c(liv_bio_act,
+                                          elf_act,
+                                          fibro_act,
+                                          biomarkers_act))),
+           cont_diag_cost = sum(c_across(c(liv_bio_cost,
+                                           elf_cost,
+                                           fibro_cost,
+                                           biomarkers_cost)))
+    )
+  
+})
+
+cont_dec_diag_all <- reactive({
+  
+  cont_dec_diag_sem() |>
+  rbind(cont_dec_diag_surv, cont_dec_diag_res, cont_dec_diag_lan) |>
+  group_by(simulation) |>
+  summarise(treat_dm1_retained = sum(treat_dm1_retained),
+            cont_diag_act = sum(cont_diag_act),
+            cont_diag_cost = sum(cont_diag_cost),
+            liv_bio_act = sum(liv_bio_act),
+            liv_bio_cost = sum(liv_bio_cost),
+            elf_act = sum(elf_act),
+            elf_cost = sum(elf_cost),
+            fibro_act = sum(fibro_act),
+            fibro_cost = sum(fibro_cost),
+            biomarkers_act = sum(biomarkers_act),
+            biomarkers_cost = sum(biomarkers_cost)
+            )
+
+})
+  
 # Outputs: Population -----------------------------------------------------
 
   output$masld_pop_histogram <- renderPlot({
@@ -3187,6 +3334,124 @@ total_surv_treat_72 <- reactive({
                   digits = 0)
   })
   
+  
+
+# Outputs: Continuation Decision ------------------------------------------
+
+output$cont_dec_diag_sem_DT <- renderDT({
+  
+  cont_dec_diag_sem_DT <- cont_dec_diag_sem() |>
+    rename("Simulation" = 1,
+           "Patients at Continuation" = 2,
+           "Liver Biopsy Activity" = 3,
+           "Liver Biopsy Costs" = 4,
+           "ELF Activity" = 5,
+           "ELF Costs" = 6,
+           "Fibroscan Activity" = 7,
+           "Fibroscan Costs" = 8,
+           "Biomarkers Activity" = 9,
+           "Biomarkers Costs" = 10,
+           "Total Diagnostic Activity" = 11,
+           "Total Diagnostic Costs" = 12) |>
+    select(c(1, 11:12, 2:10))
+  datatable(cont_dec_diag_sem_DT,
+            rownames = FALSE,
+            options = list(pageLength = 10,
+                           autoWidth = TRUE,
+                           scrollX = TRUE)) |>
+    formatCurrency(columns = c("Total Diagnostic Costs",
+                               "Liver Biopsy Costs",
+                               "ELF Costs",
+                               "Fibroscan Costs",
+                               "Biomarkers Costs"),
+                   currency = "£",
+                   digits = 2) |>
+    formatRound(columns = c("Total Diagnostic Activity",
+                            "Patients at Continuation",
+                            "Liver Biopsy Activity",
+                            "ELF Activity",
+                            "Fibroscan Activity",
+                            "Biomarkers Activity"),
+                digits = 0)
+  
+})  
+
+  output$cont_dec_diag_surv_DT <- renderDT({
+    
+    cont_dec_diag_surv_DT <- cont_dec_diag_surv() |>
+      rename("Simulation" = 1,
+             "Patients at Continuation" = 2,
+             "Liver Biopsy Activity" = 3,
+             "Liver Biopsy Costs" = 4,
+             "ELF Activity" = 5,
+             "ELF Costs" = 6,
+             "Fibroscan Activity" = 7,
+             "Fibroscan Costs" = 8,
+             "Biomarkers Activity" = 9,
+             "Biomarkers Costs" = 10,
+             "Total Diagnostic Activity" = 11,
+             "Total Diagnostic Costs" = 12) |>
+      select(c(1, 11:12, 2:10))
+    datatable(cont_dec_diag_surv_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Diagnostic Costs",
+                                 "Liver Biopsy Costs",
+                                 "ELF Costs",
+                                 "Fibroscan Costs",
+                                 "Biomarkers Costs"),
+                     currency = "£",
+                     digits = 2) |>
+      formatRound(columns = c("Total Diagnostic Activity",
+                              "Patients at Continuation",
+                              "Liver Biopsy Activity",
+                              "ELF Activity",
+                              "Fibroscan Activity",
+                              "Biomarkers Activity"),
+                  digits = 0)
+    
+  })
+  
+  output$cont_dec_diag_res_DT <- renderDT({
+    
+    cont_dec_diag_res_DT <- cont_dec_diag_res() |>
+      rename("Simulation" = 1,
+             "Patients at Continuation" = 2,
+             "Liver Biopsy Activity" = 3,
+             "Liver Biopsy Costs" = 4,
+             "ELF Activity" = 5,
+             "ELF Costs" = 6,
+             "Fibroscan Activity" = 7,
+             "Fibroscan Costs" = 8,
+             "Biomarkers Activity" = 9,
+             "Biomarkers Costs" = 10,
+             "Total Diagnostic Activity" = 11,
+             "Total Diagnostic Costs" = 12) |>
+      select(c(1, 11:12, 2:10))
+    datatable(cont_dec_diag_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Diagnostic Costs",
+                                 "Liver Biopsy Costs",
+                                 "ELF Costs",
+                                 "Fibroscan Costs",
+                                 "Biomarkers Costs"),
+                     currency = "£",
+                     digits = 2) |>
+      formatRound(columns = c("Total Diagnostic Activity",
+                              "Patients at Continuation",
+                              "Liver Biopsy Activity",
+                              "ELF Activity",
+                              "Fibroscan Activity",
+                              "Biomarkers Activity"),
+                  digits = 0)
+    
+  }) 
+
 # Downloads: Inputs -------------------------------------------------------
 
   

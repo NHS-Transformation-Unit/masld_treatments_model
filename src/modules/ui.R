@@ -505,7 +505,7 @@ ui <- navbarPage(
                                       max = 100,
                                       post= "%"),
                           sliderInput("pre_biomarkers_prop_sem",
-                                      "Set percentage undergoing other biomarker testing:",
+                                      "Set percentage undergoing other biomarker testing (inc. LFTs and FIB-4):",
                                       value = 50,
                                       min = 0,
                                       max = 100,
@@ -577,7 +577,13 @@ ui <- navbarPage(
                                                                      c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
-                          )
+                          ),
+                          numericInput("appts_0_16_sem",
+                                       "Select the number of appointments over weeks 0-16:",
+                                       value = 4,
+                                       min = 1,
+                                       max = 16,
+                                       step = 1)
                           
                    ),
                    column(2,
@@ -629,10 +635,16 @@ ui <- navbarPage(
                                                                      c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
-                          )
+                          ),
+                          numericInput("appts_20_71_sem",
+                                       "Select the number of appointments over weeks 0-16:",
+                                       value = 10,
+                                       min = 1,
+                                       max = 55,
+                                       step = 1)
                    ),
                    column(2,
-                          h3("Week 72: Continuation"),
+                          h3("Week 72: Continuation Decision"),
                           hr(),
                           h4("Efficacy Assessment"),
                           sliderInput("efficacy_liver_biopsy_prop_sem",
@@ -644,6 +656,12 @@ ui <- navbarPage(
                           sliderInput("efficacy_elf_prop_sem",
                                       "Select the percentage of patients undergoing ELF testing:",
                                       value = 70,
+                                      min = 0,
+                                      max = 100,
+                                      post = "%"),
+                          sliderInput("efficacy_fibro_prop_sem",
+                                      "Set the percentage of patients undergoing a Fibroscan:",
+                                      value = 35,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
@@ -875,7 +893,13 @@ ui <- navbarPage(
                                                                              c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
-                                  )
+                                  ),
+                                  numericInput("appts_0_24_surv",
+                                               "Select the number of appointments over weeks 0-24:",
+                                               value = 4,
+                                               min = 1,
+                                               max = 16,
+                                               step = 1)
                                   
                            ),
                            column(2,
@@ -2546,6 +2570,7 @@ ui <- navbarPage(
            ),
            br(),
            h3("Treatment Delivery"),
+           hr(),
            p("As each of the treatment pathways are slightly different this is split across different sections to 
              demonstrate the activities and costs associated with each stage of treatment. There is an ", 
              strong("all treatments section"), " that captures all treatment delivery costs between weeks 0 and 72."),
@@ -2737,7 +2762,39 @@ ui <- navbarPage(
                        )
                
              )
-           )
+           ),
+           br(),
+           h3("Continuation Decision"),
+           hr(),
+           h4("Continuation Diagnostics"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_surv_DT"))
+                       )
+                       ),
+             nav_panel("Resmetiron",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_res_DT"))
+                       )
+             ),
+  
+                                  
+             )
+           
+           
+           
 
            )
   )
