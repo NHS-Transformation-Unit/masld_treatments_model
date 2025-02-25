@@ -11,6 +11,7 @@ ui <- navbarPage(
   
   tags$link(rel = "stylesheet", type = "text/css", href = "config/app_theme.css"),
 
+
   tabPanel("Introduction",
            fluidPage(
              h1("Introduction to the MASLD Treatment Activity and Costs Model"),
@@ -113,7 +114,7 @@ ui <- navbarPage(
                  h4("Set Adult Population:"),
                  numericInput("adult_pop",
                               "Set Adult Population:",
-                              value = 10000,
+                              value = 45691677,
                               min = 0,
                               step = 10000),
                  h4("Set the MASLD and MASH Prevalence:"),
@@ -504,7 +505,7 @@ ui <- navbarPage(
                                       max = 100,
                                       post= "%"),
                           sliderInput("pre_biomarkers_prop_sem",
-                                      "Set percentage undergoing other biomarker testing:",
+                                      "Set percentage undergoing other biomarker testing (inc. LFTs and FIB-4):",
                                       value = 50,
                                       min = 0,
                                       max = 100,
@@ -524,22 +525,22 @@ ui <- navbarPage(
                                       max = 100,
                                       post = "%"),
                           matrixInput("mm_assess_setting_sem",
-                                      "Input setting for multimorbidity assessment:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input setting and minutes for multimorbidity assessment:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
                           )
@@ -558,25 +559,31 @@ ui <- navbarPage(
                           hr(),
                           h4("Treatment Setting"),
                           matrixInput("treatment_setting_0_16_matrix_sem",
-                                      "Input setting for delivery of initial treatment:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input setting and minutes for delivery of initial treatment:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
-                          )
+                          ),
+                          numericInput("appts_0_16_sem",
+                                       "Select the number of appointments over weeks 0-16:",
+                                       value = 4,
+                                       min = 1,
+                                       max = 16,
+                                       step = 1)
                           
                    ),
                    column(2,
@@ -610,28 +617,34 @@ ui <- navbarPage(
                                       max = 100,
                                       post = "%"),
                           matrixInput("semaglutide_20_71_delivery_setting",
-                                      "Input setting for delivery of treatment for weeks 20-71:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input setting and minutes for delivery of treatment for weeks 20-71:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
-                          )
+                          ),
+                          numericInput("appts_20_71_sem",
+                                       "Select the number of appointments over weeks 20-71:",
+                                       value = 10,
+                                       min = 1,
+                                       max = 55,
+                                       step = 1)
                    ),
                    column(2,
-                          h3("Week 72: Continuation"),
+                          h3("Week 72: Continuation Decision"),
                           hr(),
                           h4("Efficacy Assessment"),
                           sliderInput("efficacy_liver_biopsy_prop_sem",
@@ -643,6 +656,12 @@ ui <- navbarPage(
                           sliderInput("efficacy_elf_prop_sem",
                                       "Select the percentage of patients undergoing ELF testing:",
                                       value = 70,
+                                      min = 0,
+                                      max = 100,
+                                      post = "%"),
+                          sliderInput("efficacy_fibro_prop_sem",
+                                      "Set the percentage of patients undergoing a Fibroscan:",
+                                      value = 35,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
@@ -661,22 +680,22 @@ ui <- navbarPage(
                                       max = 100,
                                       post = "%"),
                           matrixInput("continuation_delivery_setting_sem",
-                                      "Input the setting for continuation decision appointment:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input the setting and minutes for continuation decision appointment:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
                           )
@@ -693,22 +712,22 @@ ui <- navbarPage(
                                       max = 100,
                                       post = "%"),
                           matrixInput("semaglutide_73_103_delivery_setting",
-                                      "Input the setting for delivery of Semaglutide for weeks 73-103:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input the setting and minutes for delivery of Semaglutide for weeks 73-103:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
                           ),
@@ -748,22 +767,22 @@ ui <- navbarPage(
                           hr(),
                           h4("Ongoing Treatment Setting"),
                           matrixInput("semaglutide_ongoing_delivery_setting",
-                                      "Input the setting for delivery of Semaglutide until end-point:",
-                                      value = matrix(c(10,
-                                                       5,
-                                                       75,
-                                                       10,
-                                                       0,
-                                                       0),
-                                                     ncol = 1,
+                                      "Input the setting and minutes for delivery of Semaglutide until end-point:",
+                                      value = matrix(c(10, 20,
+                                                       5, 20,
+                                                       75, 20,
+                                                       10, 20,
+                                                       0, 30,
+                                                       0, 30),
+                                                     ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
                                                                        "Primary Care - Nurse Led",
-                                                                       "Secondary Care - Hepatology/Gastro Consultant",
-                                                                       "Secondary Care - Hepatology/Gastro CNS",
+                                                                       "Hepatology / Gastro Consultant",
+                                                                       "Hepatology / Gastro CNS",
                                                                        "Community - Diagnostician",
                                                                        "Community - Pharmacist"),
-                                                                     c("Percentage (%)")
+                                                                     c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
                           )
@@ -771,7 +790,7 @@ ui <- navbarPage(
                  )
                ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Semaglutide Modelling.drawio.html")
              )
             )
            )
@@ -823,22 +842,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("mm_assess_setting_surv",
-                                              "Input setting for multimorbidity assessment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for multimorbidity assessment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -856,25 +875,31 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_0_24_matrix_surv",
-                                              "Input setting for delivery of initial treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of initial treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
-                                  )
+                                  ),
+                                  numericInput("appts_0_24_surv",
+                                               "Select the number of appointments over weeks 0-24:",
+                                               value = 4,
+                                               min = 1,
+                                               max = 16,
+                                               step = 1)
                                   
                            ),
                            column(2,
@@ -908,22 +933,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("treatment_setting_25_71_matrix_surv",
-                                              "Input setting for delivery of treatment for weeks 25 - 71:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment for weeks 25 - 71:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -965,22 +990,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_delivery_setting_surv",
-                                              "Input setting for appointment of conitnuation decision:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for appointment of conitnuation decision:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -998,22 +1023,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_73_103_matrix_surv",
-                                              "Input setting for delivery of treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   ),
@@ -1059,22 +1084,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Ongoing Treatment Setting"),
                                   matrixInput("survodutide_ongoing_delivery_setting",
-                                              "Input setting for delivery of treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   ),
@@ -1102,7 +1127,7 @@ ui <- navbarPage(
                          )
                          ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Survodutide Modelling.drawio.html")
                )
              )
            )
@@ -1154,22 +1179,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("mm_assess_setting_res",
-                                              "Input setting for multimorbidity assessment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for multimorbidity assessment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1195,22 +1220,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_0_71_matrix_res",
-                                              "Input setting for delivery of initial treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of initial treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1281,22 +1306,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_delivery_setting_res",
-                                              "Input setting for appointment of conitnuation decision:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for appointment of conitnuation decision:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1314,22 +1339,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_73_103_matrix_res",
-                                              "Input setting for delivery of treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   ),
@@ -1375,22 +1400,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Ongoing Treatment Setting"),
                                   matrixInput("resmetirom_ongoing_delivery_setting",
-                                              "Input setting for delivery of treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   ),
@@ -1418,7 +1443,7 @@ ui <- navbarPage(
                          )
                ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Resmetirom Modelling.drawio.html")
                )
              )
            )
@@ -1470,22 +1495,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("mm_assess_setting_lan",
-                                              "Input setting for multimorbidity assessment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for multimorbidity assessment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1511,22 +1536,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_0_71_matrix_lan",
-                                              "Input setting for delivery of initial treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of initial treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1597,22 +1622,22 @@ ui <- navbarPage(
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_delivery_setting_lan",
-                                              "Input setting for appointment of conitnuation decision:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for appointment of conitnuation decision:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   )
@@ -1630,22 +1655,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_73_103_matrix_lan",
-                                              "Input setting for delivery of treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   ),
@@ -1691,22 +1716,22 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Ongoing Treatment Setting"),
                                   matrixInput("lan_ongoing_delivery_setting",
-                                              "Input setting for delivery of treatment:",
-                                              value = matrix(c(10,
-                                                               5,
-                                                               75,
-                                                               10,
-                                                               0,
-                                                               0),
-                                                             ncol = 1,
+                                              "Input setting and minutes for delivery of treatment:",
+                                              value = matrix(c(10, 20,
+                                                               5, 20,
+                                                               75, 20,
+                                                               10, 20,
+                                                               0, 30,
+                                                               0, 30),
+                                                             ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
                                                                                "Primary Care - Nurse Led",
-                                                                               "Secondary Care - Hepatology/Gastro Consultant",
-                                                                               "Secondary Care - Hepatology/Gastro CNS",
+                                                                               "Hepatology / Gastro Consultant",
+                                                                               "Hepatology / Gastro CNS",
                                                                                "Community - Diagnostician",
                                                                                "Community - Pharmacist"),
-                                                                             c("Percentage (%)")
+                                                                             c("Percentage (%)", "Mins")
                                                              )),
                                               class = "numeric",
                                   ),
@@ -1734,7 +1759,7 @@ ui <- navbarPage(
                          )
                ),
                nav_panel("Pathway Map",
-                         includeHTML("www/images/DRAFT MASLD Treatment Formatted v0.6 for AB.drawio.html")
+                         includeHTML("www/images/Lanifibranor Real World.drawio.html")
                )
              )
            )
@@ -1744,22 +1769,123 @@ ui <- navbarPage(
              h1("Financial Assumptions"),
              p("This section contains the assumptions covering the costs of treatments and associated 
                clinical activities. These can be amended in each of the sections below:"),
-             navset_tab(
-               nav_panel("Diagnostic investigation costs"
-               ),
-               nav_panel("Appointment costs"
-               ),
-               nav_panel("Drug costs"
-               )
-             )
+             column(3,
+                    h3("Diagnostic Investigations"),
+                    hr(),
+                    h4("Liver Biopsy"),
+                    numericInput("fin_liv_bio",
+                                 "Specify the cost of a liver biopsy:",
+                                 value = 962,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("ELF Test"),
+                    numericInput("fin_elf",
+                                 "Specify the cost of an ELF test:",
+                                 value = 136,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Biomarker Tests"),
+                    numericInput("fin_biomarkers",
+                                 "Specify the cost of other Biomarker tests:",
+                                 value = 38,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Fibroscanning"),
+                    numericInput("fin_fibro",
+                                 "Specify the cost of Fibroscanning:",
+                                 value = 70,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1)
+             ),
+             column(3,
+                    h3("Appointment Costs per Patient Hour"),
+                    hr(),
+                    h4("GP Appointment"),
+                    numericInput("fin_appt_pc_gp_pph",
+                                 "Select the cost per patient hour of a GP appointment:",
+                                 value = 296,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Practice Nurse Appointment"),
+                    numericInput("fin_appt_pc_nur_pph",
+                                 "Select the cost per patient hour of a Practice Nurse appointment:",
+                                 value = 74,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Secondary Care Hepatology/Gastroenterology Consultant"),
+                    numericInput("fin_appt_sc_hgc_pph",
+                                 "Select the cost per patient hour of a Consultant:",
+                                 value = 141,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Secondary Care Hepatology/Gastroenterology Nurse"),
+                    numericInput("fin_appt_sc_hgn_pph",
+                                 "Select the cost per patient hour of a secondary care nurse:",
+                                 value = 61,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Community Diagnostician"),
+                    numericInput("fin_appt_com_dia_pph",
+                                 "Select the cost per patient hour of a community diagnostician:",
+                                 value = 72,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    h4("Community Pharmacist"),
+                    numericInput("fin_appt_com_pha_pph",
+                                 "Select the cost per patient hour of a community pharmacist:",
+                                 value = 63,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1)
+                    ),
+             column(3,
+                    h3("Activity Costs"),
+                    hr(),
+                    h4("Face to Face Appointments - Secondary Care"),
+                    numericInput("fin_appt_sc_f2f_first_cons",
+                                 "Select the cost of a consultant led first appointment - face to face:",
+                                 value = 279,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    numericInput("fin_appt_sc_f2f_fu_cons",
+                                 "Select the cost of a consultant lef follow-up appointment - face to face:",
+                                 value = 316,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    numericInput("fin_appt_sc_f2f_first_noncons",
+                                 "Select the cost of a non-consultant led first appointment - face to face:",
+                                 value = 166,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1),
+                    numericInput("fin_appt_sc_f2f_fu_noncons",
+                                 "Select the cost of a non-consultant led follow-up appointment - face to face:",
+                                 value = 225,
+                                 min = 0,
+                                 max = NA,
+                                 step = 1)
+                    )
            )
   ),
   tabPanel(title = "Model Outputs - Activity and Costs",
            fluidPage(
            h1("Model Outputs"),
            p("Some explanatory notes"),
-           h3("Patients Receiving Treatment"),
+           h3("Overall Pathway Costs"),
            navset_tab(
+             nav_panel("All Treatments"
+                       ),
              nav_panel("Semaglutide"
              ),
              nav_panel("Survodutide"
@@ -1767,8 +1893,6 @@ ui <- navbarPage(
              nav_panel("Resmetirom"
              ),
              nav_panel("Lanifibranor"
-             ),
-             nav_panel("All Treamtents"
              )
            ),
            br(),
@@ -1776,23 +1900,928 @@ ui <- navbarPage(
            h4("Liver Biopsies"),
            p("Some text on Liver Biopsies"),
            navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_all_DT"))
+                       )
+             ),
              nav_panel("Semaglutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
                          nav_panel("Data Table", DTOutput("pre_treat_biopsy_sem_DT"))
                        )
              ),
-             nav_panel("Survodutide"
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_surv_DT"))
+                       )
              ),
-             nav_panel("Resmetirom"
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_res_DT"))
+                       )
              ),
-             nav_panel("Lanifibranor"
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment liver biopsies are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biopsy_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biopsy_lan_DT"))
+                       )
+             )
+             
+           ),
+           br(),
+           h4("ELF Testing"),
+           p("Some text on ELF Testing"),
+           navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment ELF testing are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_all_DT"))
+                       )
              ),
-             nav_panel("All Treamtents"
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment ELF testing are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment ELF testing are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment ELF testing are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment ELF testing are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_elf_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_elf_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_elf_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_elf_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_elf_lan_DT"))
+                       )
+             )
+             
+           ),
+           br(),
+           h4("Biomarkers"),
+           p("Some biomarker text"),
+           navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_all_DT"))
+                       )
+             ),
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment biomarkers are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_biomarkers_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_biomarkers_lan_DT"))
+                       )
              )
            ),
            br(),
+           h4("Fibroscans"),
+           p("Some Fibroscan text"),
+           navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment fibroscans are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_fibro_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_fibro_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_fibro_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_fibro_all_DT"))
+                       )
+             ),
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment fibroscans are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_fibro_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_fibro_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_fibro_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_fibro_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment fibroscans are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_fibro_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_fibro_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_fibro_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_fibro_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment fibroscans are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_fibro_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_fibro_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_fibro_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_fibro_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for 
+                                     pre-treatment fibroscans are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_fibro_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_fibro_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_fibro_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_fibro_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table", DTOutput("pre_treat_fibro_lan_DT"))
+                       )
+             )
+           ),
+           br(),
+           h4("Multimorbidity Assessment"),
+           p("Some MM Assessment text"),
+           navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_all_DT"))
+                       )
+             ),
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_sem_DT"))
+                       )
+                       ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_surv_DT"))
+                       )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_res_DT"))
+                       )
+             ),
+             nav_panel("Lanifibranor",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for pre-treatment 
+                                     multimorbidity assessments are:",
+                                     tags$ul(
+                                       tags$li("A central estimate of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_1_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_2_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_3_act", inline = TRUE),
+                                               " at a cost of ",
+                                               textOutput("pre_treat_mm_assess_lan_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))),
+                         nav_panel("Data Table", DTOutput("pre_treat_mm_assess_lan_DT"))
+                       )
+             )
+           ),
+           br(),
+           h3("Treatment Delivery"),
+           hr(),
+           p("As each of the treatment pathways are slightly different this is split across different sections to 
+             demonstrate the activities and costs associated with each stage of treatment. There is an ", 
+             strong("all treatments section"), " that captures all treatment delivery costs between weeks 0 and 72."),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       p("Semaglutide treatment is modelled in two phases between weeks 0-16 and then dosage maintenance 
+                         until week 71 prior to a continuation decision."),
+                       navset_tab(
+                         nav_panel("Weeks 0-16",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Semaglutide treatment 
+                                                 delivery between weeks 0 to 16 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("init_treat_sem_016_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_sem_016_sum_1_cost", inline = TRUE)
+                                                           ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("init_treat_sem_016_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_sem_016_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("init_treat_sem_016_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_sem_016_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               p("The table below contains the activity and costs to deliver the treatment between weeks 0 and 16:"),
+                                               DTOutput("init_treat_sem_DT"))
+                                   )
+
+                         ),
+                         nav_panel("Weeks 16-71",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Semaglutide treatment 
+                                                 delivery between weeks 16 to 71 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("dm1_treat_sem_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("dm1_treat_sem_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("dm1_treat_sem_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("dm1_treat_sem_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("dm1_treat_sem_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("dm1_treat_sem_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               p("The table below contains the activity and costs to deliver the treatment between weeks 16 and 71:"),
+                                               DTOutput("dm1_treat_sem_DT"))
+                                   )
+                         ),
+                         nav_panel("Combined Treatment to Week 72",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Semaglutide treatment 
+                                                 delivery between weeks 0 to 71 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("total_sem_treat_72_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("total_sem_treat_72_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("total_sem_treat_72_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("total_sem_treat_72_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("total_sem_treat_72_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("total_sem_treat_72_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               DTOutput("total_sem_treat_72_DT"))
+                                   ))
+                                  
+                       )
+             ),
+             nav_panel("Survodutide",
+                       p("Survodutide treatment is modelled in two phases between weeks 0-24 and then dosage maintenance 
+                         until week 71 prior to a continuation decision."),
+                       navset_tab(
+                         nav_panel("Weeks 0-24",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions the modelled activity and costs for Survodutide treatment 
+                                                 delivery between weeks 0 to 24 are:",
+                                                 tags$ul(
+                                                   tags$li("A central esimtate of ",
+                                                           textOutput("init_treat_surv_024_sum_1_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_surv_024_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower esimtate of ",
+                                                           textOutput("init_treat_surv_024_sum_2_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_surv_024_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper esimtate of ",
+                                                           textOutput("init_treat_surv_024_sum_3_act", inline = TRUE),
+                                                           " activities at a cost of ",
+                                                           textOutput("init_treat_surv_024_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                               ),
+                                     nav_panel("Data Table",
+                                               p("The table below contains the activity and costs to deliver the treatment between weeks 0 and 24:"),
+                                               DTOutput("init_treat_surv_DT")
+                                               )
+                                   )
+                                   
+                       ),
+                       nav_panel("Weeks 24-71",
+                                 navset_tab(
+                                   nav_panel("Summary",
+                                             p("Based on the assumptions the modelled activity and costs for Survodutide treatment 
+                                                 delivery between weeks 24 to 71 are:",
+                                               tags$ul(
+                                                 tags$li("A central esimtate of ",
+                                                         textOutput("dm1_treat_surv_sum_1_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("dm1_treat_surv_sum_1_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("A lower esimtate of ",
+                                                         textOutput("dm1_treat_surv_sum_2_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("dm1_treat_surv_sum_2_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("An upper esimtate of ",
+                                                         textOutput("dm1_treat_surv_sum_3_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("dm1_treat_surv_sum_3_cost", inline = TRUE)
+                                                 )
+                                               ))
+                                   ),
+                                   nav_panel("Data Table",
+                                             p("The table below contains the activity and costs to deliver the treatment between weeks 24 and 71:"),
+                                             DTOutput("dm1_treat_surv_DT")
+                                   )
+                                 )
+                                 
+                       ),
+                       nav_panel("Combined Treatment to Week 72",
+                                 navset_tab(
+                                   nav_panel("Summary",
+                                             p("Based on the assumptions the modelled activity and costs for Survodutide treatment 
+                                                 delivery between weeks 0 to 72 are:",
+                                               tags$ul(
+                                                 tags$li("A central esimtate of ",
+                                                         textOutput("total_surv_treat_72_sum_1_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("total_surv_treat_72_sum_1_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("A lower esimtate of ",
+                                                         textOutput("total_surv_treat_72_sum_2_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("total_surv_treat_72_sum_2_cost", inline = TRUE)
+                                                 ),
+                                                 tags$li("An upper esimtate of ",
+                                                         textOutput("total_surv_treat_72_sum_3_act", inline = TRUE),
+                                                         " activities at a cost of ",
+                                                         textOutput("total_surv_treat_72_sum_3_cost", inline = TRUE)
+                                                 )
+                                               ))
+                                   ),
+                                   nav_panel("Data Table",
+                                             p("The table below contains the activity and costs to deliver the treatment between weeks 0 and 72:"),
+                                             DTOutput("total_surv_treat_72_DT")
+                                   )
+                                 )
+                                 
+                       )
+                       )
+               
+             )
+           ),
+           br(),
+           h3("Continuation Decision"),
+           hr(),
+           h4("Continuation Diagnostics"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the assumptions in the modelled activity and costs for the diagnostics 
+                                     required at the week 72 continuation decision are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("cont_dec_diag_sem_sum_1_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_sem_sum_1_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_sem_sum_1_cost", inline = TRUE)
+                                               ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("cont_dec_diag_sem_sum_2_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_sem_sum_2_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_sem_sum_2_cost", inline = TRUE)
+                                               ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("cont_dec_diag_sem_sum_3_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_sem_sum_3_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_sem_sum_3_cost", inline = TRUE)
+                                               )
+                                     ))
+                                   ),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_sem_DT"))
+                       )
+             ),
+             nav_panel("Survodutide",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_surv_DT"))
+                       )
+                       ),
+             nav_panel("Resmetiron",
+                       navset_tab(
+                         nav_panel("Summary"),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_res_DT"))
+                       )
+             ),
+  
+                                  
+             )
            
+           
+           
+
            )
   )
 )
