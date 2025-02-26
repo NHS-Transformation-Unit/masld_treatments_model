@@ -592,7 +592,7 @@ ui <- navbarPage(
                           h4("Monitoring Tests"),
                           numericInput("monitoring_tests_number_sem",
                                        "Select number of monitoring tests:",
-                                       value = 9,
+                                       value = 5,
                                        min = 0,
                                        max = NA,
                                        step = 1),
@@ -731,6 +731,12 @@ ui <- navbarPage(
                                                      )),
                                       class = "numeric",
                           ),
+                          numericInput("appts_73_103_sem",
+                                       "Select the number of appointments over weeks 73-103:",
+                                       value = 2,
+                                       min = 1,
+                                       max = 30,
+                                       step = 1),
                           hr(),
                           h4("Monitoring Testing"),
                           numericInput("monitoring_tests_number_73_103_sem",
@@ -2764,6 +2770,43 @@ ui <- navbarPage(
              )
            ),
            br(),
+           h3("Diagnostic Monitoring During Treatment"),
+           hr(),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for the monitoring diagnostics 
+                                     are:",
+                                     tags$ul(
+                                       tags$li(
+                                         "A central estimate of ",
+                                         textOutput("diag_mon_sem_sum_1_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_sem_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li(
+                                         "An upper estimate of ",
+                                         textOutput("diag_mon_sem_sum_2_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                         "A lower estimate of ",
+                                         textOutput("diag_mon_sem_sum_3_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     )
+                           
+                         ),
+                         nav_panel("Data Table",
+                                   DTOutput("diag_mon_sem_DT")
+                           
+                         )
+                       )
+             )
+           ),
+           br(),
            h3("Continuation Decision"),
            hr(),
            h4("Continuation Diagnostics"),
@@ -2803,21 +2846,123 @@ ui <- navbarPage(
              ),
              nav_panel("Survodutide",
                        navset_tab(
-                         nav_panel("Summary"),
+                         nav_panel("Summary",
+                                   p("Based on the assumptions in the modelled activity and costs for the diagnostics 
+                                     required at the week 72 continuation decision are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("cont_dec_diag_surv_sum_1_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_surv_sum_1_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_surv_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("cont_dec_diag_surv_sum_2_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_surv_sum_2_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_surv_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("cont_dec_diag_surv_sum_3_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                               This equates to ",
+                                               textOutput("cont_dec_diag_surv_sum_3_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_surv_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
                          nav_panel("Data Table",
                                    DTOutput("cont_dec_diag_surv_DT"))
                        )
-                       ),
-             nav_panel("Resmetiron",
-                       navset_tab(
-                         nav_panel("Summary"),
-                         nav_panel("Data Table",
-                                   DTOutput("cont_dec_diag_res_DT"))
-                       )
-             ),
+             )
+             
   
                                   
+             ),
+           br(),
+           h4("Continuation Appointment"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the assumptions in the model the required acitvity and costs assocaited with 
+                                     the continuation decision at 72 weeks are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("cont_dec_appt_sem_sum_1_pop", inline = TRUE),
+                                               " patients attending for a continuation appointment. Of these ",
+                                               textOutput("cont_dec_appt_sem_sum_1_pop_end", inline = TRUE),
+                                               " will continue with treatment. The associated costs of these appointments 
+                                               will be ",
+                                               textOutput("cont_dec_appt_sem_sum_1_cost", inline = TRUE)
+                                         
+                                       ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("cont_dec_appt_sem_sum_2_pop", inline = TRUE),
+                                               " patients attending for a continuation appointment. Of these ",
+                                               textOutput("cont_dec_appt_sem_sum_2_pop_end", inline = TRUE),
+                                               " will continue with treatment. The associated costs of these appointments 
+                                               will be ",
+                                               textOutput("cont_dec_appt_sem_sum_2_cost", inline = TRUE)
+                                               
+                                       ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("cont_dec_appt_sem_sum_3_pop", inline = TRUE),
+                                               " patients attending for a continuation appointment. Of these ",
+                                               textOutput("cont_dec_appt_sem_sum_3_pop_end", inline = TRUE),
+                                               " will continue with treatment. The associated costs of these appointments 
+                                               will be ",
+                                               textOutput("cont_dec_appt_sem_sum_3_cost", inline = TRUE)
+                                               
+                                       )
+                                     )
+                                   ) 
+                        ),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_appt_sem_DT")
+                         )
+                       )
              )
+                       
+           ),
+           br(),
+           h3("Dosage Maintenance"),
+           hr(),
+           h4("Dosage Maintenance Delivery"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activities and costs associated with 
+                                     delivery the dosage maintenance treatments between weeks 73 and 103 are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("dos_main_sem_sum_1_act", inline = TRUE),
+                                               " appointment activities at a cost of ",
+                                               textOutput("dos_main_sem_sum_1_cost", inline = TRUE)
+                                               ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("dos_main_sem_sum_2_act", inline = TRUE),
+                                               " appointment activities at a cost of ",
+                                               textOutput("dos_main_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("dos_main_sem_sum_3_act", inline = TRUE),
+                                               " appointment activities at a cost of ",
+                                               textOutput("dos_main_sem_sum_3_cost", inline = TRUE)
+                                       ),
+                                     ))
+                                   ),
+                         nav_panel("Data Table",
+                                   DTOutput("dos_main_sem_DT")
+                         )
+                       )
+             )
+           )
+           
+
            
            
            
