@@ -750,6 +750,12 @@ ui <- navbarPage(
                                       value = 75,
                                       min = 0,
                                       max = 100,
+                                      post = "%"),
+                          sliderInput("monitoring_tests_73_103_biomarkers_sem",
+                                      "Select the percentage of patients undergoing Biomarker testing:",
+                                      value = 75,
+                                      min = 0,
+                                      max = 100,
                                       post = "%")
                    ),
                    column(2,
@@ -791,7 +797,13 @@ ui <- navbarPage(
                                                                      c("Percentage (%)", "Mins")
                                                      )),
                                       class = "numeric",
-                          )
+                          ),
+                          numericInput("appts_ongoing_sem",
+                                       "Select the number of appointments post 104 weeks:",
+                                       value = 2,
+                                       min = 1,
+                                       max = NA,
+                                       step = 1)
                    )
                  )
                ),
@@ -1903,6 +1915,7 @@ ui <- navbarPage(
            ),
            br(),
            h3("Pre-Treatment"),
+           hr(),
            h4("Liver Biopsies"),
            p("Some text on Liver Biopsies"),
            navset_tab(
@@ -2791,10 +2804,11 @@ ui <- navbarPage(
                                          " monitoring tests at a cost of ",
                                          textOutput("diag_mon_sem_sum_2_cost", inline = TRUE)
                                        ),
-                                         "A lower estimate of ",
+                                       tags$li("A lower estimate of ",
                                          textOutput("diag_mon_sem_sum_3_act", inline = TRUE),
                                          " monitoring tests at a cost of ",
                                          textOutput("diag_mon_sem_sum_3_cost", inline = TRUE)
+                                       )
                                        )
                                      )
                            
@@ -2960,7 +2974,76 @@ ui <- navbarPage(
                          )
                        )
              )
+           ),
+           h4("Dosage Maintenance Diagnostic Monitoring"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied modelling assumptions the modelled activities and costs 
+                                     associated with the diagnostic monitoring between weeks 73 and 103 are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("dos_main_diag_mon_sem_sum_1_act", inline = TRUE),
+                                               " diagnostic testing points with an associated cost of ",
+                                               textOutput("dos_main_diag_mon_sem_sum_1_cost", inline = TRUE)
+                                               ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("dos_main_diag_mon_sem_sum_2_act", inline = TRUE),
+                                               " diagnostic testing points with an associated cost of ",
+                                               textOutput("dos_main_diag_mon_sem_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("dos_main_diag_mon_sem_sum_3_act", inline = TRUE),
+                                               " diagnostic testing points with an associated cost of ",
+                                               textOutput("dos_main_diag_mon_sem_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
+                         nav_panel("Data Table",
+                                   DTOutput("dos_main_diag_mon_sem_DT")
+                         )
+                       )
+             )
+           ),
+           br(),
+           h3("On-going Treatment"),
+           hr(),
+           h4("On-going Treatment Delivery"),
+           navset_tab(
+             nav_panel("Semaglutide",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activities and costs associated with 
+                                     delivery of treatment after 104+ weeks are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("ongoing_sem_sum_1_act", inline = TRUE),
+                                               "appointments with an associated cost of ",
+                                               textOutput("ongoing_sem_sum_1_cost", inline = TRUE)
+                                         
+                                       ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("ongoing_sem_sum_2_act", inline = TRUE),
+                                               "appointments with an associated cost of ",
+                                               textOutput("ongoing_sem_sum_2_cost", inline = TRUE)
+                                               
+                                       ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("ongoing_sem_sum_3_act", inline = TRUE),
+                                               "appointments with an associated cost of ",
+                                               textOutput("ongoing_sem_sum_3_cost", inline = TRUE)
+                                               
+                                       )
+                                     ))
+                         ),
+                         nav_panel("Data Table",
+                                   DTOutput("ongoing_sem_DT")),
+                         
+                       )
+                       )
            )
+
            
 
            

@@ -145,6 +145,7 @@ server <- function(input, output, session) {
       appts_73_103_sem = input$appts_73_103_sem,
       monitoring_tests_number_73_103_sem = input$monitoring_tests_number_73_103_sem,
       monitoring_tests_73_103_elf_sem = input$monitoring_tests_73_103_elf_sem / 100,
+      monitoring_tests_73_103_biomarkers_sem = input$monitoring_tests_73_103_biomarkers_sem / 100,
       ongoing_period_sem = input$ongoing_period_sem,
       retention_end_sem = input$retention_end_sem / 100,
       semaglutide_ongoing_delivery_setting_pc_gp = (input$semaglutide_ongoing_delivery_setting[1, 1]) / 100,
@@ -152,7 +153,14 @@ server <- function(input, output, session) {
       semaglutide_ongoing_delivery_setting_sc_hgc = (input$semaglutide_ongoing_delivery_setting[3, 1]) / 100,
       semaglutide_ongoing_delivery_setting_sc_hgn = (input$semaglutide_ongoing_delivery_setting[4, 1]) / 100,
       semaglutide_ongoing_delivery_setting_com_dia = (input$semaglutide_ongoing_delivery_setting[5, 1]) / 100,
-      semaglutide_ongoing_delivery_setting_com_pha = (input$semaglutide_ongoing_delivery_setting[6, 1]) / 100
+      semaglutide_ongoing_delivery_setting_com_pha = (input$semaglutide_ongoing_delivery_setting[6, 1]) / 100,
+      semaglutide_ongoing_delivery_setting_pc_gp_mins = input$semaglutide_ongoing_delivery_setting[1, 2],
+      semaglutide_ongoing_delivery_setting_pc_nur_mins = input$semaglutide_ongoing_delivery_setting[2, 2],
+      semaglutide_ongoing_delivery_setting_sc_hgc_mins = input$semaglutide_ongoing_delivery_setting[3, 2],
+      semaglutide_ongoing_delivery_setting_sc_hgn_mins = input$semaglutide_ongoing_delivery_setting[4, 2],
+      semaglutide_ongoing_delivery_setting_com_dia_mins = input$semaglutide_ongoing_delivery_setting[5, 2],
+      semaglutide_ongoing_delivery_setting_com_pha_mins = input$semaglutide_ongoing_delivery_setting[6, 2],
+      appts_ongoing_sem = input$appts_ongoing_sem
     )
     
   })
@@ -1667,7 +1675,71 @@ dos_main_sem <- reactive({
     )
   
 })
+
+dos_main_diag_mon_sem <- reactive({
   
+  params_sem <- sem_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  dos_main_sem() |>
+    select(c(simulation, start_treat, end_treat)) |>
+    mutate(central_treat = (start_treat + end_treat) / 2,
+           mon_tests_act = round(central_treat * params_sem$monitoring_tests_number_73_103_sem, 0),
+           elf_act = round(mon_tests_act * params_sem$monitoring_tests_73_103_elf_sem, 0),
+           biomarkers_act = round(mon_tests_act * params_sem$monitoring_tests_73_103_biomarkers_sem, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           biomarkers_cost = round(biomarkers_act * params_fin$fin_biomarkers, 2)
+    ) |>
+    rowwise() |>
+    mutate(mon_tests_cost = sum(c_across(c(elf_cost,
+                                           biomarkers_cost)))
+    )
+  
+})
+
+
+# On-going Treatment ------------------------------------------------------
+
+ongoing_sem <- reactive({
+  
+  params_sem <- sem_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  dos_main_sem() |>
+    select(c(simulation, end_treat)) |>
+    mutate(treat_end_retained = round(end_treat * params_sem$retention_end_sem, 0)) |>
+    mutate(week = list(0:params_sem$ongoing_period_sem)) |>
+    unnest(week) |>
+    mutate(retention_factor = 1 - (week * (1 - params_sem$retention_end_sem) / params_sem$ongoing_period_sem),
+           appts_week = round(end_treat * retention_factor, 0)) |>
+    group_by(simulation) |>
+    summarise(start_treat = mean(end_treat),
+              end_treat = mean(treat_end_retained),
+              treat_act = round(sum(appts_week * (params_sem$appts_ongoing_sem / params_sem$ongoing_period_sem)),0), .groups = "drop") |>
+    mutate(treat_act_pc_gp = round(treat_act * params_sem$semaglutide_ongoing_delivery_setting_pc_gp, 0),
+           treat_act_pc_nur = round(treat_act * params_sem$semaglutide_ongoing_delivery_setting_pc_nur, 0),
+           treat_act_sc_hgc = round(treat_act * params_sem$semaglutide_ongoing_delivery_setting_sc_hgc, 0),
+           treat_act_sc_hgn = round(treat_act * params_sem$semaglutide_ongoing_delivery_setting_sc_hgn, 0),
+           treat_act_com_dia = round(treat_act * params_sem$semaglutide_ongoing_delivery_setting_com_dia, 0),
+           treat_act_com_pha = round(treat_act * params_sem$semaglutide_ongoing_delivery_setting_com_pha, 0),
+           treat_act_pc_gp_cost = round(treat_act_pc_gp * (params_sem$semaglutide_ongoing_delivery_setting_pc_gp_mins / 60) * params_fin$fin_appt_pc_gp_pph, 2),
+           treat_act_pc_nur_cost = round(treat_act_pc_nur * (params_sem$semaglutide_ongoing_delivery_setting_pc_nur_mins / 60) * params_fin$fin_appt_pc_nur_pph, 2),
+           treat_act_sc_hgc_cost = round(treat_act_sc_hgc * (params_sem$semaglutide_ongoing_delivery_setting_sc_hgc_mins / 60) * params_fin$fin_appt_sc_hgc_pph, 2),
+           treat_act_sc_hgn_cost = round(treat_act_sc_hgn * (params_sem$semaglutide_ongoing_delivery_setting_sc_hgn_mins / 60) * params_fin$fin_appt_sc_hgn_pph, 2),
+           treat_act_com_dia_cost = round(treat_act_com_dia * (params_sem$semaglutide_ongoing_delivery_setting_com_dia_mins / 60) * params_fin$fin_appt_com_dia_pph, 2),
+           treat_act_com_pha_cost = round(treat_act_com_pha * (params_sem$semaglutide_ongoing_delivery_setting_com_pha_mins / 60) * params_fin$fin_appt_com_pha_pph, 2)
+    ) |>
+    rowwise() |>
+    mutate(treat_act_cost_total = sum(c_across(c(treat_act_pc_gp_cost,
+                                                 treat_act_pc_nur_cost,
+                                                 treat_act_sc_hgc_cost,
+                                                 treat_act_sc_hgn_cost,
+                                                 treat_act_com_dia_cost,
+                                                 treat_act_com_pha_cost)))
+    )
+  
+})
+
 # Outputs: Population -----------------------------------------------------
 
   output$masld_pop_histogram <- renderPlot({
@@ -3799,6 +3871,7 @@ output$cont_dec_diag_sem_DT <- renderDT({
              "Community Pharmacist Activities" = 16,
              "Community Pharmacist Costs" = 17)
     datatable(dos_main_sem_DT,
+              rownames = FALSE,
               options = list(pageLength = 10,
                              autoWidth = TRUE,
                              scrollX = TRUE)) |>
@@ -3822,8 +3895,134 @@ output$cont_dec_diag_sem_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })  
+  })
   
+  output$dos_main_diag_mon_sem_sum_1_act <- renderText({
+    scales::comma(dos_main_diag_mon_sem()[[1, 5]], big.mark = ",")
+  })
+  
+  output$dos_main_diag_mon_sem_sum_1_cost <- renderText({
+    scales::dollar(dos_main_diag_mon_sem()[[1, 10]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$dos_main_diag_mon_sem_sum_2_act <- renderText({
+    scales::comma(dos_main_diag_mon_sem()[[2, 5]], big.mark = ",")
+  })
+  
+  output$dos_main_diag_mon_sem_sum_2_cost <- renderText({
+    scales::dollar(dos_main_diag_mon_sem()[[2, 10]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$dos_main_diag_mon_sem_sum_3_act <- renderText({
+    scales::comma(dos_main_diag_mon_sem()[[3, 5]], big.mark = ",")
+  })
+  
+  output$dos_main_diag_mon_sem_sum_3_cost <- renderText({
+    scales::dollar(dos_main_diag_mon_sem()[[3, 10]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$dos_main_diag_mon_sem_DT <- renderDT({
+    
+    dos_main_diag_mon_sem_DT <- dos_main_diag_mon_sem()|>
+      rename("Simulation" = 1,
+             "Monitoring Tests" = 5,
+             "ELF Activity" = 6,
+             "Biomarkers Activity" = 7,
+             "ELF Costs" = 8,
+             "Biomarkers Costs" = 9,
+             "Total Monitoring Costs" = 10) |>
+      select(c(1, 5, 10, 6:9))
+    datatable(dos_main_diag_mon_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("Monitoring Tests",
+                              "ELF Activity",
+                              "Biomarkers Activity"),
+                  digits = 0) |>
+      formatCurrency(columns = c("Total Monitoring Costs",
+                                 "ELF Costs",
+                                 "Biomarkers Costs"),
+                     currency = "£",
+                     digits = 2)
+    
+  })
+ 
+
+# Outputs: Ongoing Treatment ----------------------------------------------
+
+  output$ongoing_sem_sum_1_act <- renderText({
+    scales::comma(ongoing_sem()[[1, 4]], big.mark = ",")
+  })
+  
+  output$ongoing_sem_sum_1_cost <- renderText({
+    scales::dollar(ongoing_sem()[[1, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$ongoing_sem_sum_2_act <- renderText({
+    scales::comma(ongoing_sem()[[2, 4]], big.mark = ",")
+  })
+  
+  output$ongoing_sem_sum_2_cost <- renderText({
+    scales::dollar(ongoing_sem()[[2, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$ongoing_sem_sum_3_act <- renderText({
+    scales::comma(ongoing_sem()[[3, 4]], big.mark = ",")
+  })
+  
+  output$ongoing_sem_sum_3_cost <- renderText({
+    scales::dollar(ongoing_sem()[[3, 17]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$ongoing_sem_DT <- renderDT({
+    
+    ongoing_sem_DT <- ongoing_sem() |>
+      select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16)) |>
+      rename("Simulation" = 1,
+             "Patients on dosage maintenance at week 104" = 2,
+             "Patients remaining at end-point" = 3,
+             "Total Dosage Maintenance Appointments" = 4,
+             "Total Appointment Costs" = 5,
+             "GP Activities" = 6,
+             "GP Costs" = 7,
+             "Primary Care Nurse Activities" = 8,
+             "Primary Care Nurse Costs" = 9,
+             "Hepatology / Gastro Consultant Activities" = 10,
+             "Hepatology / Gastro Consultant Costs" = 11,
+             "Hepatology / Gastro Nurse Led Activities" = 12,
+             "Hepatology / Gastro Nurse Led Costs" = 13,
+             "Community Diagnostician Activities" = 14,
+             "Community Diagnostician Costs" = 15,
+             "Community Pharmacist Activities" = 16,
+             "Community Pharmacist Costs" = 17)
+    datatable(ongoing_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Appointment Costs",
+                                 "GP Costs",
+                                 "Primary Care Nurse Costs",
+                                 "Hepatology / Gastro Consultant Costs",
+                                 "Hepatology / Gastro Nurse Led Costs",
+                                 "Community Diagnostician Costs",
+                                 "Community Pharmacist Costs"),
+                     currency = "£",
+                     digits = 2) |>
+      formatRound(columns = c("Patients on dosage maintenance at week 104",
+                              "Patients remaining at end-point",
+                              "Total Dosage Maintenance Appointments",
+                              "GP Activities",
+                              "Primary Care Nurse Activities",
+                              "Hepatology / Gastro Consultant Activities",
+                              "Hepatology / Gastro Nurse Led Activities",
+                              "Community Diagnostician Activities",
+                              "Community Pharmacist Activities"),
+                  digits = 0)
+    
+  })  
+   
 # Downloads: Inputs -------------------------------------------------------
 
   
