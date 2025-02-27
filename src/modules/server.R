@@ -1537,7 +1537,8 @@ dm1_treat_res <- reactive({
   init_treat_res() |>
     select(c(simulation, end_treat)) |>
     rename("start_treat" = 2) |>
-    mutate(treat_dm1_retained = round(start_treat * params_res$retention_res_52_71, 0)) |>
+    mutate(start_treat = start_treat * params_res$continuation_52_prop_res) |>
+    mutate(treat_dm1_retained = round(start_treat *  params_res$retention_res_52_71, 0)) |>
     mutate(week = list(0:20)) |>
     unnest(week) |>
     mutate(retention_factor = 1 - (week * (1 - params_res$retention_res_52_71) / 20),
@@ -1643,6 +1644,32 @@ diag_mon_surv <- reactive({
   
 })
 
+diag_mon_res <- reactive({
+  
+  params_res <- res_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  treat_pop_res() |>
+    select(c(simulation, treated_total)) |>
+    rename("start_treat" = 2) |>
+    mutate(end_treat = round(start_treat * params_res$retention_res_0_52 * params_res$retention_res_52_71, 0),
+           central_treat = (start_treat + end_treat) / 2,
+           mon_tests_act = round(central_treat * params_res$monitor_tests_0_52_res, 0),
+           elf_act = round(mon_tests_act * params_res$monitor_tests_0_52_elf_res, 0),
+           biomarkers_act = round(mon_tests_act * params_res$monitor_tests_0_52_biomarkers_res, 0),
+           fibro_act = round(mon_tests_act * params_res$monitor_tests_0_52_fibro_res, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           biomarkers_cost = round(biomarkers_act * params_fin$fin_biomarkers, 2),
+           fibro_cost = round(fibro_act * params_fin$fin_fibro, 2)
+    ) |>
+    rowwise() |>
+    mutate(mon_tests_cost = sum(c_across(c(elf_cost,
+                                           biomarkers_cost,
+                                           fibro_cost)))
+    )
+  
+})
+
 # Continuation Decision ---------------------------------------------------
 
 cont_dec_diag_sem <- reactive({
@@ -1705,6 +1732,36 @@ cont_dec_diag_surv <- reactive({
   
 })
 
+cont_dec_diag_res_52 <- reactive({
+  
+  params_res <- res_pathway_assumptions()
+  params_fin <- fin_assumptions()
+  
+  init_treat_res() |>
+    select(c(simulation, end_treat)) |>
+    rename(treat_dm1_retained = 2) |>
+    mutate(liv_bio_act = round(treat_dm1_retained * params_res$efficacy_52_liver_biopsy_res, 0),
+           liv_bio_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2),
+           elf_act = round(treat_dm1_retained * params_res$efficacy_52_elf_prop_res, 0),
+           elf_cost = round(elf_act * params_fin$fin_elf, 2),
+           fibro_act = round(treat_dm1_retained * params_res$efficacy_52_fibro_prop_res, 0),
+           fibro_cost = round(fibro_act * params_fin$fin_fibro, 2),
+           biomarkers_act = round(treat_dm1_retained * params_res$efficacy_52_biomarkers_prop_res, 0),
+           biomarkers_cost = round(elf_act * params_fin$fin_biomarkers, 2)
+    ) |>
+    rowwise() |>
+    mutate(cont_diag_act = sum(c_across(c(liv_bio_act,
+                                          elf_act,
+                                          fibro_act,
+                                          biomarkers_act))),
+           cont_diag_cost = sum(c_across(c(liv_bio_cost,
+                                           elf_cost,
+                                           fibro_cost,
+                                           biomarkers_cost)))
+    )
+  
+})
+
 cont_dec_diag_res <- reactive({
   
   params_res <- res_pathway_assumptions()
@@ -1713,7 +1770,7 @@ cont_dec_diag_res <- reactive({
   dm1_treat_res() |>
     select(c(simulation, end_treat)) |>
     rename(treat_dm1_retained = 2) |>
-    mutate(liv_bio_act = round(treat_dm1_retained * params_res$efficacy_liver_biopsy_prop_res, 0),
+    mutate(liv_bio_act = round(treat_dm1_retained * params_res$efficacy_liver_biopsy_res, 0),
            liv_bio_cost = round(liv_bio_act * params_fin$fin_liv_bio, 2),
            elf_act = round(treat_dm1_retained * params_res$efficacy_elf_prop_res, 0),
            elf_cost = round(elf_act * params_fin$fin_elf, 2),
@@ -4234,6 +4291,61 @@ ongoing_diag_mon_surv <- reactive({
     
   })
   
+  output$diag_mon_res_sum_1_act <- renderText({
+    scales::comma(diag_mon_res()[[1, 5]], big.mark = ",")
+  })
+  
+  output$diag_mon_res_sum_1_cost <- renderText({
+    scales::dollar(diag_mon_res()[[1, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$diag_mon_res_sum_2_act <- renderText({
+    scales::comma(diag_mon_res()[[2, 5]], big.mark = ",")
+  })
+  
+  output$diag_mon_res_sum_2_cost <- renderText({
+    scales::dollar(diag_mon_res()[[2, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$diag_mon_res_sum_3_act <- renderText({
+    scales::comma(diag_mon_res()[[3, 5]], big.mark = ",")
+  })
+  
+  output$diag_mon_res_sum_3_cost <- renderText({
+    scales::dollar(diag_mon_res()[[3, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$diag_mon_res_DT <- renderDT({
+    
+    diag_mon_res_DT <- diag_mon_res() |>
+      rename("Simulation" = 1,
+             "Monitoring Tests" = 5,
+             "ELF Activity" = 6,
+             "Biomarkers Activity" = 7,
+             "Fibroscan Activity" = 8,
+             "ELF Costs" = 9,
+             "Biomarkers Costs" = 10,
+             "Fibroscan Costs" = 11,
+             "Total Monitoring Costs" = 12) |>
+      select(c(1, 5, 12, 6:11))
+    datatable(diag_mon_res_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("Monitoring Tests",
+                              "ELF Activity",
+                              "Biomarkers Activity",
+                              "Fibroscan Activity"),
+                  digits = 0) |>
+      formatCurrency(columns = c("Total Monitoring Costs",
+                                 "ELF Costs",
+                                 "Biomarkers Costs",
+                                 "Fibroscan Costs"),
+                     currency = "£",
+                     digits = 2)
+    
+  })
+  
 # Outputs: Continuation Decision ------------------------------------------
 
   output$cont_dec_diag_sem_sum_1_pop <- renderText({
@@ -4386,7 +4498,234 @@ output$cont_dec_diag_sem_DT <- renderDT({
     
   })
   
+  output$cont_dec_diag_res_52_sum_1_pop <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[1, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_1_act <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[1, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_1_cost <- renderText({
+    scales::dollar(cont_dec_diag_res_52()[[1, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$cont_dec_diag_res_52_sum_2_pop <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[2, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_2_act <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[2, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_2_cost <- renderText({
+    scales::dollar(cont_dec_diag_res_52()[[2, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$cont_dec_diag_res_52_sum_3_pop <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[3, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_3_act <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[3, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_3_cost <- renderText({
+    scales::dollar(cont_dec_diag_res_52()[[3, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })  
+  
+  
+  
+  output$cont_dec_diag_res_52_DT <- renderDT({
+    
+    cont_dec_diag_res_52_DT <- cont_dec_diag_res_52() |>
+      rename("Simulation" = 1,
+             "Patients at Continuation" = 2,
+             "Liver Biopsy Activity" = 3,
+             "Liver Biopsy Costs" = 4,
+             "ELF Activity" = 5,
+             "ELF Costs" = 6,
+             "Fibroscan Activity" = 7,
+             "Fibroscan Costs" = 8,
+             "Biomarkers Activity" = 9,
+             "Biomarkers Costs" = 10,
+             "Total Diagnostic Activity" = 11,
+             "Total Diagnostic Costs" = 12) |>
+      select(c(1, 11:12, 2:10))
+    datatable(cont_dec_diag_res_52_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Diagnostic Costs",
+                                 "Liver Biopsy Costs",
+                                 "ELF Costs",
+                                 "Fibroscan Costs",
+                                 "Biomarkers Costs"),
+                     currency = "£",
+                     digits = 2) |>
+      formatRound(columns = c("Total Diagnostic Activity",
+                              "Patients at Continuation",
+                              "Liver Biopsy Activity",
+                              "ELF Activity",
+                              "Fibroscan Activity",
+                              "Biomarkers Activity"),
+                  digits = 0)
+    
+  })
+  
+  output$cont_dec_diag_res_52_sum_1_pop <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[1, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_1_act <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[1, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_1_cost <- renderText({
+    scales::dollar(cont_dec_diag_res_52()[[1, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$cont_dec_diag_res_52_sum_2_pop <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[2, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_2_act <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[2, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_2_cost <- renderText({
+    scales::dollar(cont_dec_diag_res_52()[[2, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })
+  
+  output$cont_dec_diag_res_52_sum_3_pop <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[3, 2]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_3_act <- renderText({
+    scales::comma(cont_dec_diag_res_52()[[3, 11]], big.mark = ",")
+  })
+  
+  output$cont_dec_diag_res_52_sum_3_cost <- renderText({
+    scales::dollar(cont_dec_diag_res_52()[[3, 12]], big.mark = ",", prefix = "£", suffix = ".")
+  })  
+  
+  
+  
+  output$cont_dec_diag_res_52_DT <- renderDT({
+    
+    cont_dec_diag_res_52_DT <- cont_dec_diag_res_52() |>
+      rename("Simulation" = 1,
+             "Patients at Continuation" = 2,
+             "Liver Biopsy Activity" = 3,
+             "Liver Biopsy Costs" = 4,
+             "ELF Activity" = 5,
+             "ELF Costs" = 6,
+             "Fibroscan Activity" = 7,
+             "Fibroscan Costs" = 8,
+             "Biomarkers Activity" = 9,
+             "Biomarkers Costs" = 10,
+             "Total Diagnostic Activity" = 11,
+             "Total Diagnostic Costs" = 12) |>
+      select(c(1, 11:12, 2:10))
+    datatable(cont_dec_diag_res_52_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatCurrency(columns = c("Total Diagnostic Costs",
+                                 "Liver Biopsy Costs",
+                                 "ELF Costs",
+                                 "Fibroscan Costs",
+                                 "Biomarkers Costs"),
+                     currency = "£",
+                     digits = 2) |>
+      formatRound(columns = c("Total Diagnostic Activity",
+                              "Patients at Continuation",
+                              "Liver Biopsy Activity",
+                              "ELF Activity",
+                              "Fibroscan Activity",
+                              "Biomarkers Activity"),
+                  digits = 0)
+    
+  })
 
+ output$cont_dec_diag_res_sum_1_pop <- renderText({
+    scales::comma(cont_dec_diag_res()[[1, 2]], big.mark = ",")
+  })
+  
+  
+output$cont_dec_diag_res_sum_1_act <- renderText({
+  scales::comma(cont_dec_diag_res()[[1, 11]], big.mark = ",")
+})
+
+output$cont_dec_diag_res_sum_1_cost <- renderText({
+  scales::dollar(cont_dec_diag_res()[[1, 12]], big.mark = ",", prefix = "£", suffix = ".")
+})
+
+output$cont_dec_diag_res_sum_2_pop <- renderText({
+  scales::comma(cont_dec_diag_res()[[2, 2]], big.mark = ",")
+})
+
+output$cont_dec_diag_res_sum_2_act <- renderText({
+  scales::comma(cont_dec_diag_res()[[2, 11]], big.mark = ",")
+})
+
+output$cont_dec_diag_res_sum_2_cost <- renderText({
+  scales::dollar(cont_dec_diag_res()[[2, 12]], big.mark = ",", prefix = "£", suffix = ".")
+})
+
+output$cont_dec_diag_res_sum_3_pop <- renderText({
+  scales::comma(cont_dec_diag_res()[[3, 2]], big.mark = ",")
+})
+
+output$cont_dec_diag_res_sum_3_act <- renderText({
+  scales::comma(cont_dec_diag_res()[[3, 11]], big.mark = ",")
+})
+
+output$cont_dec_diag_res_sum_3_cost <- renderText({
+  scales::dollar(cont_dec_diag_res()[[3, 12]], big.mark = ",", prefix = "£", suffix = ".")
+})  
+
+
+
+output$cont_dec_diag_res_DT <- renderDT({
+  
+  cont_dec_diag_res_DT <- cont_dec_diag_res() |>
+    rename("Simulation" = 1,
+           "Patients at Continuation" = 2,
+           "Liver Biopsy Activity" = 3,
+           "Liver Biopsy Costs" = 4,
+           "ELF Activity" = 5,
+           "ELF Costs" = 6,
+           "Fibroscan Activity" = 7,
+           "Fibroscan Costs" = 8,
+           "Biomarkers Activity" = 9,
+           "Biomarkers Costs" = 10,
+           "Total Diagnostic Activity" = 11,
+           "Total Diagnostic Costs" = 12) |>
+    select(c(1, 11:12, 2:10))
+  datatable(cont_dec_diag_res_DT,
+            rownames = FALSE,
+            options = list(pageLength = 10,
+                           autoWidth = TRUE,
+                           scrollX = TRUE)) |>
+    formatCurrency(columns = c("Total Diagnostic Costs",
+                               "Liver Biopsy Costs",
+                               "ELF Costs",
+                               "Fibroscan Costs",
+                               "Biomarkers Costs"),
+                   currency = "£",
+                   digits = 2) |>
+    formatRound(columns = c("Total Diagnostic Activity",
+                            "Patients at Continuation",
+                            "Liver Biopsy Activity",
+                            "ELF Activity",
+                            "Fibroscan Activity",
+                            "Biomarkers Activity"),
+                digits = 0)
+  
+})
   
 
 # Outputs: Continuation Decision Appointment ------------------------------

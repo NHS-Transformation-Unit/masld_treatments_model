@@ -3071,6 +3071,39 @@ ui <- navbarPage(
                                    
                          )
                        )
+             ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for the monitoring diagnostics 
+                                     are:",
+                                     tags$ul(
+                                       tags$li(
+                                         "A central estimate of ",
+                                         textOutput("diag_mon_res_sum_1_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_res_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li(
+                                         "An upper estimate of ",
+                                         textOutput("diag_mon_res_sum_2_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_res_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("diag_mon_res_sum_3_act", inline = TRUE),
+                                               " monitoring tests at a cost of ",
+                                               textOutput("diag_mon_res_sum_3_cost", inline = TRUE)
+                                       )
+                                     )
+                                   )
+                                   
+                         ),
+                         nav_panel("Data Table",
+                                   DTOutput("diag_mon_res_DT")
+                                   
+                         )
+                       )
              )
            ),
            br(),
@@ -3143,11 +3176,82 @@ ui <- navbarPage(
                          nav_panel("Data Table",
                                    DTOutput("cont_dec_diag_surv_DT"))
                        )
-             )
-             
-  
-                                  
              ),
+             nav_panel("Resmetirom",
+                       navset_tab(
+                         nav_panel("Week 52 Efficacy Assessment",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions in the modelled activity and costs for the diagnostics 
+                                         required at the week 52 continuation decision are:",
+                                                 tags$ul(
+                                                   tags$li("A central estimate will result in ",
+                                                           textOutput("cont_dec_diag_res_52_sum_1_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                                   This equates to ",
+                                                           textOutput("cont_dec_diag_res_52_sum_1_act", inline = TRUE),
+                                                           "diagnostic activities at a cost of ",
+                                                           textOutput("cont_dec_diag_res_52_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower estimate will result in ",
+                                                           textOutput("cont_dec_diag_res_52_sum_2_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                                   This equates to ",
+                                                           textOutput("cont_dec_diag_res_52_sum_2_act", inline = TRUE),
+                                                           "diagnostic activities at a cost of ",
+                                                           textOutput("cont_dec_diag_res_52_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper estimate will result in ",
+                                                           textOutput("cont_dec_diag_res_52_sum_3_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                                   This equates to ",
+                                                           textOutput("cont_dec_diag_res_52_sum_3_act", inline = TRUE),
+                                                           "diagnostic activities at a cost of ",
+                                                           textOutput("cont_dec_diag_res_52_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                     ),
+                                     nav_panel("Data Table",
+                                               DTOutput("cont_dec_diag_res_52_DT")
+                                     )
+                                   )
+                         ),
+                         nav_panel("Week 72 Efficacy Assessment",
+                                   navset_tab(
+                                     nav_panel("Summary",
+                                               p("Based on the assumptions in the modelled activity and costs for the diagnostics 
+                                         required at the week 72 continuation decision are:",
+                                                 tags$ul(
+                                                   tags$li("A central estimate will result in ",
+                                                           textOutput("cont_dec_diag_res_sum_1_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                                   This equates to ",
+                                                           textOutput("cont_dec_diag_res_sum_1_act", inline = TRUE),
+                                                           "diagnostic activities at a cost of ",
+                                                           textOutput("cont_dec_diag_res_sum_1_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("A lower estimate will result in ",
+                                                           textOutput("cont_dec_diag_res_sum_2_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                                   This equates to ",
+                                                           textOutput("cont_dec_diag_res_sum_2_act", inline = TRUE),
+                                                           "diagnostic activities at a cost of ",
+                                                           textOutput("cont_dec_diag_res_sum_2_cost", inline = TRUE)
+                                                   ),
+                                                   tags$li("An upper estimate will result in ",
+                                                           textOutput("cont_dec_diag_res_sum_3_pop", inline = TRUE), "patients reach undergoing diagnostics. 
+                                                   This equates to ",
+                                                           textOutput("cont_dec_diag_res_sum_3_act", inline = TRUE),
+                                                           "diagnostic activities at a cost of ",
+                                                           textOutput("cont_dec_diag_res_sum_3_cost", inline = TRUE)
+                                                   )
+                                                 ))
+                                     ),
+                                     nav_panel("Data Table",
+                                               DTOutput("cont_dec_diag_res_DT")
+                                     )
+                                   )
+                         )
+                       )
+             )
+           ),
+
+        
            br(),
            h4("Continuation Appointment"),
            navset_tab(
