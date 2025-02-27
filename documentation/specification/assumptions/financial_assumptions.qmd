@@ -1,0 +1,76 @@
+---
+title: "MASLD Treatment Model Financial Assumptions"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "02/27/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  out.width = '100%'
+)
+
+library(here)
+
+```
+
+```{r logo}
+
+htmltools::img(src = knitr::image_uri(paste0(here(), "/images/nhse_logo.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:5%; padding:10px;',
+               width = "180px",
+               heigth = "180px")
+
+```
+
+# Introduction
+The purpose of this document is to provide an overview of the financial assumptions that are applied in the MASLD Treatment model and the source for these.
+
+::: {.callout-note}
+This document contains the current default costs that will be applied within the MASLD Treatment model. Within the model itself there will be the option to manually change costs for these activities where required.
+:::
+
+# Diagnostic Assumptions
+The table below provides a summary of the costs applied to diangostic investigations within the model:
+
+| **Model Assumption** | **Description**    | **Cost**            | **Source**                | **Comments**     |
+|----------------------|--------------------|-------------------------|---------------------------|------------------|
+| Liver Biopsy     | Captures the costs associated with undergoing a liver biopsy to confirm fibrosis stage | £962  | [National Cost Collection Data Publication](https://app.powerbi.com/view?r=eyJrIjoiZGQxYjNkOGUtOTIwMC00N2VjLWEyM2EtYjAzOGMwNWU5ODQ1IiwidCI6IjM3YzM1NGIyLTg1YjAtNDdmNS1iMjIyLTA3YjQ4ZDc3NGVlMyJ9) | Previous analysis of secondary care diagnostics revealed that vast majority of procedures were undertaken as a daycase. Therefore, daycase cost applied. |
+| ELF Test             | Cost of undergoing ELF test | £136        | [NICE Costing of Standard Care](https://www.nice.org.uk/advice/mib317/chapter/The-technology) | Cost of an enhanced liver fibrosis test inflated to December 2022.
+| Biomarker Tests     | Other blood biomarkers such as LFTs, Fib-4 | £38   | [Interactive Costing Tool Tariff - NIHR](https://www.nihr.ac.uk/how-interactive-costing-tool-ict-calculates-costs-studies-sites) | Costings taken for FBCs, LFTs using 2024/25 data |
+| Fibroscan           | Cost of undertaking and evaluating scan | £70   | [NICE - FibroScan for assessing liver fibrosis and cirrhosis outside secondary and specialist care](https://www.nice.org.uk/guidance/dg48/resources/fibroscan-for-assessing-liver-fibrosis-and-cirrhosis-outside-secondary-and-specialist-care-pdf-1053817906885) | NICE guidance published June 2023 |
+
+# Patient Contact Costs per Hour
+For the model to be as flexible as possible unit costs per patient contact hour have been utilised. This enables the model to calculate costs based on the staff member a patient is in contact with and the duration of that contact. Therefore, unit costs per hour have been sourced that enable this to be captured. These are summarised in the table below:
+
+| **Model Assumption** | **Description**    | **Cost**            | **Source**                | **Comments**     |
+|----------------------|--------------------|-------------------------|---------------------------|------------------|
+| GP Appointment       | Unit cost per hour of General Practitioner | £296    | [Unit Costs of Health and Social Care 2023](https://kar.kent.ac.uk/105685/) | Includes direct care costs with qualifications |
+| Practice Nurse Appointment    | Unit cost per hour of a practice nurse | £74  | [Unit Costs of Health and Social Care 2023](https://kar.kent.ac.uk/105685/) | Unit cost per hour of Band 7 nurse including qualifications |
+| Secondary Care Hepatology / Gastroenterology Consultant | Unit cost per hour of hospital based surgical consultant | £141 | [Unit Costs of Health and Social Care 2023](https://kar.kent.ac.uk/105685/) | Unit cost per hour of Surgical Consultant including qualifications |
+| Secondary Care Hepatology / Gastroenterology Nurse | Unit cost per hour of hospital based Band 7 nurse | £61 | [Unit Costs of Health and Social Care 2023](https://kar.kent.ac.uk/105685/) | Unit cost per hour of Band 7 nurse |
+| Community Diagnostician | Unit cost per hour of community-based professional and scientific staff | £72 | [Unit Costs of Health and Social Care 2023](https://kar.kent.ac.uk/105685/) | Unit cost per hour of Band 8a community scientific and professional staff |
+| Community Pharmacist | Unit cost per hour of community-based professional and scientific staff | £63 | [Unit Costs of Health and Social Care 2023](https://kar.kent.ac.uk/105685/) | Unit cost per hour of Band 7 community scientific and professional staff |
+
+# Activity Costs
+Where non-unit costs need to be used within the model these can be set using estimated costs for activity rates. The costs of these activities are summarised in the table below:
+
+| **Model Assumption** | **Description**    | **Cost**            | **Source**                | **Comments**     |
+|----------------------|--------------------|-------------------------|---------------------------|------------------|
+| Consultant Led First Appointment - Face to Face | Cost of non-admitted face to face appointment | £279 | [National Cost Collection Data Publication](https://app.powerbi.com/view?r=eyJrIjoiZGQxYjNkOGUtOTIwMC00N2VjLWEyM2EtYjAzOGMwNWU5ODQ1IiwidCI6IjM3YzM1NGIyLTg1YjAtNDdmNS1iMjIyLTA3YjQ4ZDc3NGVlMyJ9) | 2023/24 costs for Hepatobiliary and Pancreatic Surgery service | 
+| Consultant Led Follow-up Appointment - Face to Face | Cost of non-admitted face to face appointment | £316 | [National Cost Collection Data Publication](https://app.powerbi.com/view?r=eyJrIjoiZGQxYjNkOGUtOTIwMC00N2VjLWEyM2EtYjAzOGMwNWU5ODQ1IiwidCI6IjM3YzM1NGIyLTg1YjAtNDdmNS1iMjIyLTA3YjQ4ZDc3NGVlMyJ9) | 2023/24 costs for Hepatobiliary and Pancreatic Surgery service |
+| Non-Consultant Led First Appointment - Face to Face | Cost of non-admitted face to face appointment | £166 | [National Cost Collection Data Publication](https://app.powerbi.com/view?r=eyJrIjoiZGQxYjNkOGUtOTIwMC00N2VjLWEyM2EtYjAzOGMwNWU5ODQ1IiwidCI6IjM3YzM1NGIyLTg1YjAtNDdmNS1iMjIyLTA3YjQ4ZDc3NGVlMyJ9) | 2023/24 costs for Hepatobiliary and Pancreatic Surgery service |
+| Non-Consultant Led First Appointment - Face to Face | Cost of non-admitted face to face appointment | £225 | [National Cost Collection Data Publication](https://app.powerbi.com/view?r=eyJrIjoiZGQxYjNkOGUtOTIwMC00N2VjLWEyM2EtYjAzOGMwNWU5ODQ1IiwidCI6IjM3YzM1NGIyLTg1YjAtNDdmNS1iMjIyLTA3YjQ4ZDc3NGVlMyJ9) | 2023/24 costs for Hepatobiliary and Pancreatic Surgery service |
