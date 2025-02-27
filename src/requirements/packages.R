@@ -8,7 +8,8 @@ packages <- c("shiny",
               "ggplot2",
               "dplyr",
               "tidyr",
-              "DT")
+              "DT",
+              "shinyMatrix")
 
 # Package Load ------------------------------------------------------------
 
