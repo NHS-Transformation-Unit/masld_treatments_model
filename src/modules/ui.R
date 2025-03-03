@@ -2843,6 +2843,36 @@ ui <- navbarPage(
              demonstrate the activities and costs associated with each stage of treatment. There is an ", 
              strong("all treatments section"), " that captures all treatment delivery costs between weeks 0 and 72."),
            navset_tab(
+             nav_panel("All Treatment",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the assumptions the modelled activity and costs for all treatment 
+                                                 delivery between weeks 0 to 71 are:",
+                                     tags$ul(
+                                       tags$li("A central esimtate of ",
+                                               textOutput("total_all_treat_72_sum_1_act", inline = TRUE),
+                                               " activities at a cost of ",
+                                               textOutput("total_all_treat_72_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower esimtate of ",
+                                               textOutput("total_all_treat_72_sum_2_act", inline = TRUE),
+                                               " activities at a cost of ",
+                                               textOutput("total_all_treat_72_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper esimtate of ",
+                                               textOutput("total_all_treat_72_sum_3_act", inline = TRUE),
+                                               " activities at a cost of ",
+                                               textOutput("total_all_treat_72_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   
+                         ),
+                         nav_panel("Data Table",
+                                   DTOutput("total_all_treat_72_DT")
+                         )
+                       )
+                       
+             ),
              nav_panel("Semaglutide",
                        p("Semaglutide treatment is modelled in two phases between weeks 0-16 and then dosage maintenance 
                          until week 71 prior to a continuation decision."),
@@ -3210,11 +3240,43 @@ ui <- navbarPage(
                          
                        )
              )
+             
            ),
            br(),
            h3("Diagnostic Monitoring During Treatment"),
            hr(),
            navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the applied assumptions the modelled activity and costs for the monitoring diagnostics 
+                                     are:",
+                                     tags$ul(
+                                       tags$li(
+                                         "A central estimate of ",
+                                         textOutput("diag_mon_all_sum_1_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li(
+                                         "An upper estimate of ",
+                                         textOutput("diag_mon_all_sum_2_act", inline = TRUE),
+                                         " monitoring tests at a cost of ",
+                                         textOutput("diag_mon_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate of ",
+                                               textOutput("diag_mon_all_sum_3_act", inline = TRUE),
+                                               " monitoring tests at a cost of ",
+                                               textOutput("diag_mon_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     )
+                                   )
+                                   ),
+                         nav_panel("Data Table",
+                                   DTOutput("diag_mon_all_DT")
+                                   )
+                       )
+                       ),
              nav_panel("Semaglutide",
                        navset_tab(
                          nav_panel("Summary",
@@ -3353,6 +3415,33 @@ ui <- navbarPage(
            hr(),
            h4("Continuation Diagnostics"),
            navset_tab(
+             nav_panel("All Treatments",
+                       navset_tab(
+                         nav_panel("Summary",
+                                   p("Based on the assumptions in the modelled activity and costs for the diagnostics 
+                                     required at the week 52 and 72 continuation decisions are:",
+                                     tags$ul(
+                                       tags$li("A central estimate will result in ",
+                                               textOutput("cont_dec_diag_all_sum_1_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_all_sum_1_cost", inline = TRUE)
+                                       ),
+                                       tags$li("A lower estimate will result in ",
+                                               textOutput("cont_dec_diag_all_sum_2_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_all_sum_2_cost", inline = TRUE)
+                                       ),
+                                       tags$li("An upper estimate will result in ",
+                                               textOutput("cont_dec_diag_all_sum_3_act", inline = TRUE),
+                                               "diagnostic activities at a cost of ",
+                                               textOutput("cont_dec_diag_all_sum_3_cost", inline = TRUE)
+                                       )
+                                     ))
+                                   ),
+                         nav_panel("Data Table",
+                                   DTOutput("cont_dec_diag_all_DT"))
+                       )
+                       ),
              nav_panel("Semaglutide",
                        navset_tab(
                          nav_panel("Summary",
