@@ -473,7 +473,11 @@ ui <- navbarPage(
                              DTOutput("treat_pop_lan_DT")
                            )
                          )
-               )
+               ),
+               nav_panel("All Treatments",
+                         h4("Table of Total Population Receiving Treatments"),
+                         DTOutput("treat_pop_all_DT")
+                         )
                          
              )
            )
@@ -2153,7 +2157,10 @@ ui <- navbarPage(
            navset_tab(
              nav_panel("All Treatments"
                        ),
-             nav_panel("Semaglutide"
+             nav_panel("Semaglutide",
+                       
+                       DTOutput("combined_sem_DT")
+                       
              ),
              nav_panel("Survodutide"
              ),

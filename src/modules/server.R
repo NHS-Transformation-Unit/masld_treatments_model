@@ -692,6 +692,23 @@ server <- function(input, output, session) {
     
   })
   
+  treat_pop_all <- reactive({
+    
+    treat_pop_sem() |>
+      rbind(treat_pop_surv(),
+            treat_pop_res(),
+            treat_pop_lan()) |>
+      group_by(simulation) |>
+      summarise(F0_treat = sum(F0_treat, na.rm = TRUE),
+                F1_treat = sum(F1_treat, na.rm = TRUE),
+                F2_treat = sum(F2_treat, na.rm = TRUE),
+                F3_treat = sum(F3_treat, na.rm = TRUE),
+                F4_treat = sum(F4_treat, na.rm = TRUE),
+                treated_total = sum(treated_total, na.rm = TRUE)
+      )
+    
+  })
+  
 
 # Pre-Treatment: Biopsies -------------------------------------------------
 
@@ -2989,6 +3006,25 @@ ongoing_diag_mon_all <- reactive({
   
 })
 
+
+# Combined Pathways -------------------------------------------------------
+
+combined_sem_patients <- reactive({
+  
+  combined_sem_pop <- treat_pop_sem() |>
+    left_join(ongoing_sem(), by = "simulation") |>
+    select(c(simulation, treated_total, end_treat))
+  
+  combined_sem_mm <- pre_treat_mm_assess_sem() |>
+    select(c(simulation, mm_act, mm_act_cost_total))
+  
+  combined_sem_pop |>
+    left_join(combined_sem_mm, by = "simulation")
+    
+    
+
+})
+  
 # Outputs: Population -----------------------------------------------------
 
   output$masld_pop_histogram <- renderPlot({
@@ -3023,8 +3059,10 @@ ongoing_diag_mon_all <- reactive({
     datatable(masld_pop_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                                           autoWidth = TRUE
-                                           ))
+                             autoWidth = TRUE
+                                           )) |>
+      formatRound(columns = c("MASLD Population"),
+                  digits = 0)
   })
   
   output$mash_prev_summary <- renderPrint({
@@ -3059,7 +3097,9 @@ ongoing_diag_mon_all <- reactive({
     datatable(mash_pop_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                                          autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("MASH Population"),
+                  digits = 0)
   })
   
   output$f_stage_pop_histogram <- renderPlot({
@@ -3083,7 +3123,9 @@ ongoing_diag_mon_all <- reactive({
     datatable(f_stage_pop_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4"),
+                  digits = 0)
   })
   
   output$f_stage_pop_DT_long <- renderDT({
@@ -3119,7 +3161,9 @@ ongoing_diag_mon_all <- reactive({
     datatable(f_stage_diag_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4"),
+                  digits = 0)
   })
   
 
@@ -3137,7 +3181,9 @@ ongoing_diag_mon_all <- reactive({
     datatable(treat_pop_sem,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
+                  digits = 0)
   })
   
   output$treat_pop_surv_DT <- renderDT({
@@ -3152,7 +3198,9 @@ ongoing_diag_mon_all <- reactive({
     datatable(treat_pop_surv,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
+                  digits = 0)
   })
   
   output$treat_pop_res_DT <- renderDT({
@@ -3167,7 +3215,9 @@ ongoing_diag_mon_all <- reactive({
     datatable(treat_pop_res,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
+                  digits = 0)
   })
   
   output$treat_pop_lan_DT <- renderDT({
@@ -3182,7 +3232,26 @@ ongoing_diag_mon_all <- reactive({
     datatable(treat_pop_lan,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
+                  digits = 0)
+  })
+  
+  output$treat_pop_all_DT <- renderDT({
+    treat_pop_all <- treat_pop_all() |>
+      rename("Simulation" = 1,
+             "F0" = 2,
+             "F1" = 3,
+             "F2" = 4,
+             "F3" = 5,
+             "F4" = 6,
+             "Total Starting Treatment" = 7)
+    datatable(treat_pop_all,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE)) |>
+      formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
+                  digits = 0)
   })
   
 
@@ -7961,6 +8030,24 @@ output$cont_dec_diag_all_DT <- renderDT({
                      digits = 2)
     
   })
+  
+
+# Outputs: Overall Pathway ------------------------------------------------
+
+  output$combined_sem_DT <- renderDT({
+    
+    combined_sem_DT <- combined_sem_patients()
+    datatable(combined_sem_DT,
+              rownames = FALSE,
+              options = list(pageLength = 10,
+                             autoWidth = TRUE))
+    
+  })
+  
+  
+  
+  
+
   
 # Downloads: Inputs -------------------------------------------------------
 
