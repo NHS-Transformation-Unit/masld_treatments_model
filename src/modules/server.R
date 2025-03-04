@@ -3016,10 +3016,72 @@ combined_sem_patients <- reactive({
     select(c(simulation, treated_total, end_treat))
   
   combined_sem_mm <- pre_treat_mm_assess_sem() |>
-    select(c(simulation, mm_act, mm_act_cost_total))
+    select(c(simulation, mm_act_cost_total))
+  
+  combined_sem_pt_lb <- pre_treat_biopsy_sem() |>
+    select(c(simulation, liv_bio_act_cost))
+  
+  combined_sem_pt_elf <- pre_treat_elf_sem() |>
+    select(c(simulation, elf_cost))
+  
+  combined_sem_pt_biomarkers <- pre_treat_biomarkers_sem() |>
+    select(c(simulation, biomarkers_cost))
+  
+  combined_sem_pt_fibro <- pre_treat_fibro_sem() |>
+    select(c(simulation, fibro_cost))
+  
+  combined_sem_pt <- combined_sem_pt_lb |>
+    left_join(combined_sem_pt_elf, by = "simulation") |>
+    left_join(combined_sem_pt_biomarkers, by = "simulation") |>
+    left_join(combined_sem_pt_fibro, by = "simulation")
+  
+  combined_sem_treat <- total_sem_treat_72() |>
+    select(c(simulation, treat_act_cost_total))
+  
+  combined_sem_treat_diag <- diag_mon_sem() |>
+    select(c(simulation, mon_tests_cost))
+  
+  combined_sem_cont_diag <- cont_dec_diag_sem() |>
+    select(c(simulation, cont_diag_cost))
+  
+  combined_sem_cont_appt <- cont_dec_appt_sem() |>
+    select(c(simulation, cd_cost_total))
+  
+  combined_sem_dos_main <- dos_main_sem() |>
+    select(c(simulation, treat_act_cost_total)) |>
+    rename("treat_dm_act_cost_total" = 2)
+  
+  combined_sem_dos_main_diag_mon <- dos_main_diag_mon_sem() |>
+    select(c(simulation, mon_tests_cost)) |>
+    rename("mon_dm_tests_cost" = 2)
+  
+  combined_sem_ongoing <- ongoing_sem() |>
+    select(c(simulation, treat_act_cost_total)) |>
+    rename("treat_ongoing_act_cost_total" = 2)
+  
+  combined_sem_ongoing_diag_mon <- ongoing_diag_mon_sem() |>
+    select(c(simulation, mon_tests_cost)) |>
+    rename("ongoing_mon_tests_cost" = 2)
   
   combined_sem_pop |>
-    left_join(combined_sem_mm, by = "simulation")
+    left_join(combined_sem_mm, by = "simulation") |>
+    left_join(combined_sem_pt, by = "simulation") |>
+    left_join(combined_sem_treat, by = "simulation") |>
+    left_join(combined_sem_treat_diag, by = "simulation") |>
+    left_join(combined_sem_cont_diag, by = "simulation") |>
+    left_join(combined_sem_cont_appt, by = "simulation") |>
+    left_join(combined_sem_dos_main, by = "simulation") |>
+    left_join(combined_sem_dos_main_diag_mon, by = "simulation") |>
+    left_join(combined_sem_ongoing, by = "simulation") |>
+    left_join(combined_sem_ongoing_diag_mon, by = "simulation") |>
+    rowwise() |>
+    mutate(pre_treatment_diag_cost = sum(c_across(c(liv_bio_act_cost,
+                                                    elf_cost,
+                                                    biomarkers_cost,
+                                                    fibro_cost))),
+           total_pathway_cost = sum(c_across(c(mm_act_cost_total:ongoing_mon_tests_cost))),
+           cost_per_patient_starting = total_pathway_cost / treated_total
+    )
     
     
 
@@ -8036,11 +8098,50 @@ output$cont_dec_diag_all_DT <- renderDT({
 
   output$combined_sem_DT <- renderDT({
     
-    combined_sem_DT <- combined_sem_patients()
+    combined_sem_DT <- combined_sem_patients() |>
+      rename("Simulation" = 1,
+             "Starting Treatment" = 2,
+             "Reaching Treatment End-point" = 3,
+             "Initial Assessment Costs" = 4,
+             "Pre-Treatment Liver Biopsy Costs" = 5,
+             "Pre-Treatment ELF Costs" = 6,
+             "Pre-Treatment Biomarkers Costs" = 7,
+             "Pre-Treatment Fibroscan Costs" = 8,
+             "Treatment Delivery Costs - Week 72" = 9,
+             "Treatment Monitoring Costs - Week 72" = 10,
+             "Continuation Diagnostic Costs" = 11,
+             "Continuation Assessment Costs" = 12,
+             "Treatment Delivery Costs - Week 73 - 103" = 13,
+             "Treatment Monitoring Costs - Week 73 - 103" = 14,
+             "Ongoing Treatment Delivery Costs - Week 104+" = 15,
+             "Ongoing Treatment Monitoring Costs" = 16,
+             "Pre-Treatment Diagnostic Costs" = 17,
+             "Total Pathway Cost" = 18,
+             "Cost Per Patient" = 19) |>
+      select(c(1, 2, 3, 18, 19, 4, 17, 9:16))
     datatable(combined_sem_DT,
               rownames = FALSE,
               options = list(pageLength = 10,
-                             autoWidth = TRUE))
+                             autoWidth = TRUE,
+                             scrollX = TRUE)) |>
+      formatRound(columns = c("Starting Treatment",
+                              "Reaching Treatment End-point"),
+                  digits = 0) |>
+      formatCurrency(columns = c("Initial Assessment Costs",
+                                 "Treatment Delivery Costs - Week 72",
+                                 "Treatment Monitoring Costs - Week 72",
+                                 "Continuation Diagnostic Costs",
+                                 "Continuation Assessment Costs",
+                                 "Treatment Delivery Costs - Week 73 - 103",
+                                 "Treatment Monitoring Costs - Week 73 - 103",
+                                 "Ongoing Treatment Delivery Costs - Week 104+",
+                                 "Ongoing Treatment Monitoring Costs",
+                                 "Pre-Treatment Diagnostic Costs",
+                                 "Total Pathway Cost",
+                                 "Cost Per Patient"),
+                     currency = "£",
+                     digits = 2
+                     )
     
   })
   
