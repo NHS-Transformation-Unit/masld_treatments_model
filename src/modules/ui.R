@@ -2164,7 +2164,14 @@ ui <- navbarPage(
              a view of activity and costs overall and for each treatment individually."),
            h3("Overall Pathway Costs"),
            navset_tab(
-             nav_panel("All Treatments"
+             nav_panel("All Treatments",
+                       p("The table below provides a summary of:",
+                         tags$ul(
+                           tags$li("The number of patients starting treatment and reaching the modelling end-point"),
+                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("Costs for the main stages of the pathway")
+                         )),
+                       DTOutput("combined_all_DT")
                        ),
              nav_panel("Semaglutide",
                        p("The table below provides a summary of:",
@@ -2176,11 +2183,32 @@ ui <- navbarPage(
                        DTOutput("combined_sem_DT")
                        
              ),
-             nav_panel("Survodutide"
+             nav_panel("Survodutide",
+                       p("The table below provides a summary of:",
+                         tags$ul(
+                           tags$li("The number of patients starting treatment and reaching the modelling end-point"),
+                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("Costs for the main stages of the pathway")
+                         )),
+                       DTOutput("combined_surv_DT")
              ),
-             nav_panel("Resmetirom"
+             nav_panel("Resmetirom",
+                       p("The table below provides a summary of:",
+                         tags$ul(
+                           tags$li("The number of patients starting treatment and reaching the modelling end-point"),
+                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("Costs for the main stages of the pathway")
+                         )),
+                       DTOutput("combined_res_DT")
              ),
-             nav_panel("Lanifibranor"
+             nav_panel("Lanifibranor",
+                       p("The table below provides a summary of:",
+                         tags$ul(
+                           tags$li("The number of patients starting treatment and reaching the modelling end-point"),
+                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("Costs for the main stages of the pathway")
+                         )),
+                       DTOutput("combined_lan_DT")
              )
            ),
            br(),
