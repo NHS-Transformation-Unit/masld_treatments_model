@@ -3420,14 +3420,25 @@ combined_all_patients <- reactive({
     masld_pop_DT <- masld_pop_sim() |>
       rename("Simulation" = 1,
              "MASLD Population" = 2)
+    
     datatable(masld_pop_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE
-                                           )) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  # Ensures buttons appear
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "masld_pop_csv"
+                  )
+                )  # Ensures only CSV appears
+              )) |>
       formatRound(columns = c("MASLD Population"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$mash_prev_summary <- renderPrint({
     mash_pop <- mash_estimates() 
@@ -8642,17 +8653,90 @@ output$cont_dec_diag_all_DT <- renderDT({
       )
     
   })
-  
-# Downloads: Inputs -------------------------------------------------------
 
-  
-  output$download_assumptions <- downloadHandler(
-    filename = function() { "population_assumptions_pop.csv" },
-    content = function(file) {
-      
-      df <- as.data.frame(t(unlist(assumptions())))
-      write.csv(df, file, row.names = FALSE)
-    }
+
+# Download Model Parameters -----------------------------------------------
+
+convert_to_df <- function(assumption_list) {
+  data.frame(
+    assumption = names(assumption_list),
+    value = unlist(assumption_list),
+    row.names = NULL,
+    stringsAsFactors = FALSE
   )
-  
+}
+
+assumptions_df <- reactive({ convert_to_df(assumptions()) })
+treat_imp_assumptions_df <- reactive({ convert_to_df(treat_imp_assumptions()) })
+sem_pathway_assumptions_df <- reactive({ convert_to_df(sem_pathway_assumptions()) })
+surv_pathway_assumptions_df <- reactive({ convert_to_df(surv_pathway_assumptions()) })
+res_pathway_assumptions_df <- reactive({ convert_to_df(res_pathway_assumptions()) })
+lan_pathway_assumptions_df <- reactive({ convert_to_df(lan_pathway_assumptions()) })
+fin_assumptions_df <- reactive({ convert_to_df(fin_assumptions()) })
+
+
+output$download_population_assumptions <- downloadHandler(
+  filename = function() { "population_assumptions_pop.csv" },
+  content = function(file) { write.csv(assumptions_df(), file, row.names = FALSE) }
+)
+
+
+output$download_treat_imp_assumptions <- downloadHandler(
+  filename = function() { "treat_imp_assumptions.csv" },
+  content = function(file) { write.csv(treat_imp_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_sem_pathway_assumptions <- downloadHandler(
+  filename = function() { "sem_pathway_assumptions.csv" },
+  content = function(file) { write.csv(sem_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_surv_pathway_assumptions <- downloadHandler(
+  filename = function() { "surv_pathway_assumptions.csv" },
+  content = function(file) { write.csv(surv_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_res_pathway_assumptions <- downloadHandler(
+  filename = function() { "res_pathway_assumptions.csv" },
+  content = function(file) { write.csv(res_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_lan_pathway_assumptions <- downloadHandler(
+  filename = function() { "lan_pathway_assumptions.csv" },
+  content = function(file) { write.csv(lan_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_fin_assumptions <- downloadHandler(
+  filename = function() { "fin_assumptions.csv" },
+  content = function(file) { write.csv(fin_assumptions_df(), file, row.names = FALSE) }
+)
+
+
+output$download_sem_pathway_assumptions <- downloadHandler(
+  filename = function() { "sem_pathway_assumptions.csv" },
+  content = function(file) { write.csv(sem_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_surv_pathway_assumptions <- downloadHandler(
+  filename = function() { "surv_pathway_assumptions.csv" },
+  content = function(file) { write.csv(surv_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_res_pathway_assumptions <- downloadHandler(
+  filename = function() { "res_pathway_assumptions.csv" },
+  content = function(file) { write.csv(res_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_lan_pathway_assumptions <- downloadHandler(
+  filename = function() { "lan_pathway_assumptions.csv" },
+  content = function(file) { write.csv(lan_pathway_assumptions_df(), file, row.names = FALSE) }
+)
+
+output$download_fin_assumptions <- downloadHandler(
+  filename = function() { "fin_assumptions.csv" },
+  content = function(file) { write.csv(fin_assumptions_df(), file, row.names = FALSE) }
+)
+
+
+
 }

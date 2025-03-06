@@ -252,7 +252,7 @@ ui <- navbarPage(
                              post = "%"),
                  br(),
                  h4("Download Assumptions"),
-                 downloadButton("download_assumptions", "Download Population Assumptions")
+                 downloadButton("download_population_assumptions", "Download Population Assumptions")
                ),
                mainPanel(
                  h1("Population Assumptions"),
@@ -340,7 +340,7 @@ ui <- navbarPage(
                                             value = 0,
                                             min = 0,
                                             max = 100,
-                                            post = "%")
+                                            post = "%"),
                                 ),
                            mainPanel(
                                 h4("Table of treatment population"),
@@ -382,7 +382,7 @@ ui <- navbarPage(
                                          value = 0,
                                          min = 0,
                                          max = 100,
-                                         post = "%")
+                                         post = "%"),
                            ),
                            mainPanel(
                              h4("Table of treatment population"),
@@ -476,7 +476,9 @@ ui <- navbarPage(
                ),
                nav_panel("All Treatments",
                          h4("Table of Total Population Receiving Treatments"),
-                         DTOutput("treat_pop_all_DT")
+                         DTOutput("treat_pop_all_DT"),
+                         br(),
+                         downloadButton("download_treat_imp_assumptions", "Download Treatment Implementation Assumptions")
                          )
                          
              )
@@ -489,6 +491,7 @@ ui <- navbarPage(
                These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
                to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
                pathway."),
+             downloadButton("download_sem_pathway_assumptions", "Download Semaglutide Pathway Assumptions"),
              navset_tab(
                nav_panel("Pathway Assumptions",
                  fluidRow(
@@ -844,6 +847,7 @@ ui <- navbarPage(
                These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
                to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
                pathway."),
+             downloadButton("download_surv_pathway_assumptions", "Download Survodutide Pathway Assumptions"),
              navset_tab(
                nav_panel("Pathway Assumptions",
                          fluidRow(
@@ -1194,6 +1198,7 @@ ui <- navbarPage(
                These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
                to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
                pathway."),
+             downloadButton("download_res_pathway_assumptions", "Download Resmetirom Pathway Assumptions"),
              navset_tab(
                nav_panel("Pathway Assumptions",
                          fluidRow(
@@ -1618,6 +1623,7 @@ ui <- navbarPage(
                These assumptions will then be applied in conjunction with the number starting this treatment and financial assumptions 
                to generate the associated activities and costs. Please refer to the ", strong("Pathway Map"), " tab to review the 
                pathway."),
+             downloadButton("download_lan_pathway_assumptions", "Download Lanifibranor Pathway Assumptions"),
              navset_tab(
                nav_panel("Pathway Assumptions",
                          fluidRow(
@@ -1684,7 +1690,7 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Dosage"),
                                   sliderInput("dosage_0_52_lan",
-                                              "Set proportion of those starting treatment under 100kg:",
+                                              "Set proportion of those starting treatment on 1200mg:",
                                               value = 80,
                                               min = 0,
                                               max = 100,
@@ -2040,6 +2046,8 @@ ui <- navbarPage(
              h1("Financial Assumptions"),
              p("This section contains the assumptions covering the costs of treatments and associated 
                clinical activities. These can be amended in each of the sections below:"),
+             downloadButton("download_fin_assumptions", "Download Finance Assumptions"),
+             br(),
              column(3,
                     h3("Diagnostic Investigations"),
                     hr(),
