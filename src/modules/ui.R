@@ -4,12 +4,779 @@ library(bslib)
 library(DT)
 library(shinyMatrix)
 
-ui <- navbarPage(
+ui <- fluidPage( 
+  
+  tags$link(rel = "stylesheet", type = "text/css", href = "config/app_theme.css"),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_sem table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_sem th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_sem td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_sem td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_16_matrix_sem table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_16_matrix_sem th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_16_matrix_sem td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_16_matrix_sem td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #semaglutide_20_71_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #semaglutide_20_71_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #semaglutide_20_71_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #semaglutide_20_71_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_sem table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_sem th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_sem td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_sem td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #semaglutide_73_103_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #semaglutide_73_103_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #semaglutide_73_103_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #semaglutide_73_103_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #semaglutide_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #semaglutide_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #semaglutide_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #semaglutide_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_24_matrix_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_24_matrix_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_24_matrix_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_24_matrix_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_25_71_matrix_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_25_71_matrix_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_25_71_matrix_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_25_71_matrix_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_73_103_matrix_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_73_103_matrix_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_73_103_matrix_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_73_103_matrix_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #survodutide_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #survodutide_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #survodutide_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #survodutide_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_52_matrix_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_52_matrix_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_52_matrix_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_52_matrix_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #continuation_52_delivery_setting_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_52_delivery_setting_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_52_delivery_setting_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_52_delivery_setting_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_52_71_matrix_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_52_71_matrix_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_52_71_matrix_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_52_71_matrix_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_73_103_matrix_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_73_103_matrix_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_73_103_matrix_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_73_103_matrix_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #resmetirom_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #resmetirom_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #resmetirom_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #resmetirom_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_52_matrix_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_52_matrix_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_52_matrix_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_52_matrix_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #continuation_52_delivery_setting_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_52_delivery_setting_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_52_delivery_setting_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_52_delivery_setting_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_52_71_matrix_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_52_71_matrix_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_52_71_matrix_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_52_71_matrix_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_73_103_matrix_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_73_103_matrix_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_73_103_matrix_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_73_103_matrix_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #lanifibranor_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #lanifibranor_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #lanifibranor_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #lanifibranor_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  
+  
+  navbarPage(
   
   title = "MASLD Treatment Activity and Costs Modelling",
   id = "navbar",
   
-  tags$link(rel = "stylesheet", type = "text/css", href = "config/app_theme.css"),
+  
+  
 
 
   tabPanel("Introduction",
@@ -20,7 +787,7 @@ ui <- navbarPage(
              p("These four new treatment pathways include the use of the following treatments:",
                tags$ul(
                  tags$li("Semaglutide"),
-                 tags$li("Servodutide"),
+                 tags$li("Survodutide"),
                  tags$li("Resmetirom"),
                  tags$li("Lanifibranor")
                )),
@@ -50,7 +817,7 @@ ui <- navbarPage(
                            tags$ul(
                              tags$li(strong("Population Assumptions:"), "These assumptions are used to determine the size of 
                                      population of patients that are potentially eligible for treatment. Therefore, this includes 
-                                     assumptions such as the prevalence of MASLD, the breakdown of Fibrosis Stage and rates of 
+                                     assumptions such as the prevalence of MASLD, the breakdown of fibrosis stage (in accordance with NASH CRN system) and rates of 
                                      diagnosis for each Fibrosis Stage. The assumptions applied in this section will output an 
                                      estimate of the diagnosed population of patients at each Fibrosis Stage. These estimates are 
                                      then taken forward into the next section."),
@@ -61,7 +828,7 @@ ui <- navbarPage(
                              tags$li(strong("Semaglutide Pathway Activity Assumptions:"), "The assumptions within this section relate 
                                      to how the new treatment pathway for Semaglutide is expected to be delivered. These assumptions 
                                      cover areas such as retention rates, the number of monitoring tests and the proportion of these 
-                                     tests including specific diagnostics such as Fibroscanning or Liver biopsies. These assumptions 
+                                     tests including specific diagnostics such as FibroScan or liver biopsies. These assumptions 
                                      are applied to the estimated number of patients starting the Semaglutide treatment pathway to 
                                      determine the number of each clinical activity along this pathway."),
                              tags$li(strong("Survodutide Pathway Activity Assumptions:"), "Similarly to the Semaglutide pathway above, 
@@ -73,7 +840,7 @@ ui <- navbarPage(
                              tags$li(strong("Financial Assumptions:"), "The assumptions within this section cover the costs associated 
                                      with the delivery of each treatment. These include the costs of the treatments and associated 
                                      activities such as the cost of an appointment with a Heptalogist in secondary care or the cost of 
-                                     a Liver biopsy. These assumptions are applied to the pathway activities determined in the previous 
+                                     a liver biopsy. These assumptions are applied to the pathway activities determined in the previous 
                                      sections to determine the cost implications of each treatment pathway."),
                              tags$li(strong("Model Outputs - Activity and Costs:"), "This section contains the outputs of the model. 
                                      These outputs include the volume of patients treated, the clinical activities undertaken for these 
@@ -90,8 +857,7 @@ ui <- navbarPage(
                         h3("Changing model assumptions"),
                         p("This model has been created to enable the ability to create bespoke scenarios for delivering these new treatments. 
                           Consequently, each of the model assumptions can be amended to simulate activities and costs under those conditions. 
-                          By default each assumption within the model will be set to the specified value as determined by the modelling group. 
-                          This will be based on available literature, input from clinical experts and feedback from the pathway mapping 
+                          The default assumptions will be based on available literature, input from clinical experts and feedback from the pathway mapping 
                           workstream. To amend any of these assumptions simply:",
                           tags$ul(
                             tags$li("Change the value of the slider input to the desired value"),
@@ -325,13 +1091,13 @@ ui <- navbarPage(
                                             post = "%"),
                                 sliderInput("treat_pop_F2_sem",
                                             "Select the proportion of F2 patients receiving treatment:",
-                                            value = 40,
+                                            value = 20,
                                             min = 0,
                                             max = 100,
                                             post = "%"),
                                 sliderInput("treat_pop_F3_sem",
                                             "Select the proportion of F3 patients receiving treatment:",
-                                            value = 85,
+                                            value = 35,
                                             min = 0,
                                             max = 100,
                                             post = "%"),
@@ -409,13 +1175,13 @@ ui <- navbarPage(
                                          post = "%"),
                              sliderInput("treat_pop_F2_res",
                                          "Select the proportion of F2 patients receiving treatment:",
-                                         value = 5,
+                                         value = 10,
                                          min = 0,
                                          max = 100,
                                          post = "%"),
                              sliderInput("treat_pop_F3_res",
                                          "Select the proportion of F3 patients receiving treatment:",
-                                         value = 5,
+                                         value = 10,
                                          min = 0,
                                          max = 100,
                                          post = "%"),
@@ -546,7 +1312,7 @@ ui <- navbarPage(
                                       max = 100,
                                       post= "%"),
                           sliderInput("pre_fibro_prop_sem",
-                                      "Set percentage undergoing Fibroscan:",
+                                      "Set percentage undergoing FibroScan:",
                                       value = 70,
                                       min = 0,
                                       max = 100,
@@ -567,12 +1333,12 @@ ui <- navbarPage(
                           h4("Treatment Setting"),
                           matrixInput("treatment_setting_0_16_matrix_sem",
                                       "Input setting and minutes for delivery of initial treatment:",
-                                      value = matrix(c(35, 20,
-                                                       0, 20,
-                                                       45, 20,
-                                                       15, 20,
+                                      value = matrix(c(5, 20,
+                                                       5, 20,
+                                                       20, 20,
+                                                       70, 20,
                                                        0, 30,
-                                                       5, 30),
+                                                       0, 30),
                                                      ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
@@ -625,12 +1391,12 @@ ui <- navbarPage(
                                       post = "%"),
                           matrixInput("semaglutide_20_71_delivery_setting",
                                       "Input setting and minutes for delivery of treatment for weeks 20-71:",
-                                      value = matrix(c(35, 20,
+                                      value = matrix(c(10, 20,
+                                                       50, 20,
                                                        0, 20,
-                                                       45, 20,
-                                                       15, 20,
+                                                       40, 20,
                                                        0, 30,
-                                                       5, 30),
+                                                       0, 30),
                                                      ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
@@ -662,7 +1428,7 @@ ui <- navbarPage(
                                       post = "%"),
                           sliderInput("efficacy_elf_prop_sem",
                                       "Select the percentage of patients undergoing ELF testing:",
-                                      value = 70,
+                                      value = 35,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
@@ -674,7 +1440,7 @@ ui <- navbarPage(
                                       post = "%"),
                           sliderInput("efficacy_biomarkers_prop_sem",
                                       "Select the percentage of patients undergoing biomarker testing:",
-                                      value = 30,
+                                      value = 100,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
@@ -682,18 +1448,18 @@ ui <- navbarPage(
                           h4("Continuation Decision"),
                           sliderInput("continuation_prop_sem",
                                       "Select the percentage of patients continuing with treatment:",
-                                      value = 60,
+                                      value = 67,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
                           matrixInput("continuation_delivery_setting_sem",
                                       "Input the setting and minutes for continuation decision appointment:",
-                                      value = matrix(c(35, 20,
+                                      value = matrix(c(5, 20,
                                                        0, 20,
-                                                       45, 20,
-                                                       15, 20,
+                                                       95, 20,
+                                                       0, 20,
                                                        0, 30,
-                                                       5, 30),
+                                                       0, 30),
                                                      ncol = 2,
                                                      byrow = TRUE,
                                                      dimnames = list(c("Primary Care - GP",
@@ -720,10 +1486,10 @@ ui <- navbarPage(
                                       post = "%"),
                           matrixInput("semaglutide_73_103_delivery_setting",
                                       "Input the setting and minutes for delivery of Semaglutide for weeks 73-103:",
-                                      value = matrix(c(35, 20,
+                                      value = matrix(c(15, 20,
+                                                       60, 20,
                                                        0, 20,
-                                                       45, 20,
-                                                       15, 20,
+                                                       20, 20,
                                                        0, 30,
                                                        5, 30),
                                                      ncol = 2,
@@ -787,10 +1553,10 @@ ui <- navbarPage(
                           h4("Ongoing Treatment Setting"),
                           matrixInput("semaglutide_ongoing_delivery_setting",
                                       "Input the setting and minutes for delivery of Semaglutide until end-point:",
-                                      value = matrix(c(35, 20,
+                                      value = matrix(c(5, 20,
+                                                       90, 20,
                                                        0, 20,
-                                                       45, 20,
-                                                       15, 20,
+                                                       0, 20,
                                                        0, 30,
                                                        5, 30),
                                                      ncol = 2,
@@ -814,20 +1580,20 @@ ui <- navbarPage(
                           hr(),
                           h4("Annual Assessment"),
                           sliderInput("ongoing_annual_prop_elf_sem",
-                                      "Set the proportion of annual assessments requiring ELF test:",
-                                      value = 90,
+                                      "Set the proportion of annual assessments undergoing ELF test:",
+                                      value = 35,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
                           sliderInput("ongoing_annual_prop_biomarkers_sem",
-                                      "Set the proportion of annual assessments requiring other biomarkers:",
-                                      value = 65,
+                                      "Set the proportion of annual assessments undergoing other biomarkers:",
+                                      value = 100,
                                       min = 0,
                                       max = 100,
                                       post = "%"),
                           sliderInput("ongoing_annual_prop_fibro_sem",
-                                      "Set the proportion of annual assessments requiring Fibroscan:",
-                                      value = 25,
+                                      "Set the proportion of annual assessments undergoing FibroScan:",
+                                      value = 70,
                                       min = 0,
                                       max = 100,
                                       post = "%")
@@ -863,12 +1629,12 @@ ui <- navbarPage(
                                               post = "%"),
                                   matrixInput("mm_assess_setting_surv",
                                               "Input setting and minutes for initial eligibility assessment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(35, 20,
+                                                               0, 20,
+                                                               45, 20,
+                                                               15, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -885,25 +1651,25 @@ ui <- navbarPage(
                                   h4("Diagnostics"),
                                   sliderInput("pre_liver_biopsy_prop_surv",
                                               "Set percentage undergoing biopsy:",
-                                              value = 10,
+                                              value = 5,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_elf_prop_surv",
                                               "Set percentage undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_biomarkers_prop_surv",
                                               "Set percentage undergoing other biomarker testing (inc. LFTs and FIB-4):",
-                                              value = 50,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_fibro_prop_surv",
-                                              "Set percentage undergoing Fibroscan:",
-                                              value = 65,
+                                              "Set percentage undergoing FibroScan:",
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post= "%")
@@ -915,7 +1681,7 @@ ui <- navbarPage(
                                   h4("Treatment Retention"),
                                   sliderInput("retention_surv_0_24",
                                               "Set the retention rate for weeks 0 - 24:",
-                                              value = 85,
+                                              value = 95,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -923,10 +1689,10 @@ ui <- navbarPage(
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_0_24_matrix_surv",
                                               "Input setting and minutes for delivery of initial treatment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               25, 20,
                                                                75, 20,
-                                                               10, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -961,13 +1727,13 @@ ui <- navbarPage(
                                                step = 1),
                                   sliderInput("monitor_tests_0_71_elf_prop_surv",
                                               "Set the percentage receiving an ELF test:",
-                                              value = 85,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("monitor_tests_0_71_bio_prop_surv",
                                               "Set the percentage receiving other biomarker tests:",
-                                              value = 75,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -981,10 +1747,10 @@ ui <- navbarPage(
                                               post = "%"),
                                   matrixInput("treatment_setting_25_71_matrix_surv",
                                               "Input setting and minutes for delivery of treatment for weeks 25 - 71:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(5, 20,
+                                                               0, 20,
+                                                               15, 20,
+                                                               80, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1006,25 +1772,25 @@ ui <- navbarPage(
                                   h4("Efficacy Assessment"),
                                   sliderInput("efficacy_liver_biopsy_surv",
                                               "Set the percentage of paitents undergoing a liver biopsy:",
-                                              value = 25,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_elf_prop_surv",
                                               "Set the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_fibro_prop_surv",
                                               "Set the percentage of patients undergoing a Fibroscan:",
-                                              value = 35,
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_biomarkers_prop_surv",
-                                              "Set the percentage of patients undergoing other Biomarkers:",
-                                              value = 65,
+                                              "Set the percentage of patients undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1032,16 +1798,16 @@ ui <- navbarPage(
                                   h4("Continuation Decision"),
                                   sliderInput("continuation_prop_surv",
                                               "Select the percentage of patients continuing with treatment:",
-                                              value = 60,
+                                              value = 49,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_delivery_setting_surv",
                                               "Input setting and minutes for appointment of conitnuation decision:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               100, 20,
+                                                               0, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1063,7 +1829,7 @@ ui <- navbarPage(
                                   h4("Retention Rate"),
                                   sliderInput("retention_73_103_surv",
                                               "Select the retention rate for patients receiving dosage maintenance:",
-                                              value = 90,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1072,11 +1838,11 @@ ui <- navbarPage(
                                   matrixInput("treatment_setting_73_103_matrix_surv",
                                               "Input setting and minutes for delivery of treatment:",
                                               value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
+                                                               0, 20,
                                                                10, 20,
+                                                               75, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1105,13 +1871,13 @@ ui <- navbarPage(
                                                step = 1),
                                   sliderInput("monitoring_tests_73_103_elf_surv",
                                               "Select the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("monitoring_tests_73_103_biomarkers_surv",
                                               "Select the percentage of patients undergoing Biomarker testing:",
-                                              value = 60,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -1130,7 +1896,7 @@ ui <- navbarPage(
                                   h4("Retention by End-point"),
                                   sliderInput("retention_end_surv",
                                               "Select the retention rate by the end-point of the model:",
-                                              value = 75,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1138,12 +1904,12 @@ ui <- navbarPage(
                                   h4("Ongoing Treatment Setting"),
                                   matrixInput("survodutide_ongoing_delivery_setting",
                                               "Input setting and minutes for delivery of treatment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(5, 20,
+                                                               70, 20,
+                                                               0, 20,
+                                                               20, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1165,20 +1931,20 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Annual Assessment"),
                                   sliderInput("ongoing_annual_prop_elf_surv",
-                                              "Set the proportion of annual assessments requiring ELF test:",
-                                              value = 90,
+                                              "Set the proportion of annual assessments undergoing ELF test:",
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("ongoing_annual_prop_biomarkers_surv",
-                                              "Set the proportion of annual assessments requiring other biomarkers:",
-                                              value = 65,
+                                              "Set the proportion of annual assessments undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("ongoing_annual_prop_fibro_surv",
-                                              "Set the proportion of annual assessments requiring Fibroscan:",
-                                              value = 25,
+                                              "Set the proportion of annual assessments undergoing FibroScan:",
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -1214,12 +1980,12 @@ ui <- navbarPage(
                                               post = "%"),
                                   matrixInput("mm_assess_setting_res",
                                               "Input setting and minutes for initial eligibility assessment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(35, 20,
+                                                               0, 20,
+                                                               45, 20,
+                                                               15, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1236,25 +2002,25 @@ ui <- navbarPage(
                                   h4("Diagnostics"),
                                   sliderInput("pre_liver_biopsy_prop_res",
                                               "Set percentage undergoing biopsy:",
-                                              value = 10,
+                                              value = 5,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_elf_prop_res",
                                               "Set percentage undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_biomarkers_prop_res",
                                               "Set percentage undergoing other biomarker testing (inc. LFTs and FIB-4):",
-                                              value = 50,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_fibro_prop_res",
-                                              "Set percentage undergoing Fibroscan:",
-                                              value = 65,
+                                              "Set percentage undergoing FibroScan:",
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post= "%")
@@ -1274,7 +2040,7 @@ ui <- navbarPage(
                                   h4("Treatment Retention"),
                                   sliderInput("retention_res_0_52",
                                               "Set the retention rate for weeks 0 - 52:",
-                                              value = 95,
+                                              value = 97,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1282,10 +2048,10 @@ ui <- navbarPage(
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_0_52_matrix_res",
                                               "Input setting and minutes for delivery of initial treatment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               25, 20,
                                                                75, 20,
-                                                               10, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1345,18 +2111,18 @@ ui <- navbarPage(
                                               post = "%"),
                                   sliderInput("efficacy_52_elf_prop_res",
                                               "Set the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_52_fibro_prop_res",
                                               "Set the percentage of patients undergoing a Fibroscan:",
-                                              value = 65,
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_52_biomarkers_prop_res",
-                                              "Set the percentage of patients undergoing other Biomarkers:",
+                                              "Set the percentage of patients undergoing other biomarkers:",
                                               value = 100,
                                               min = 0,
                                               max = 100,
@@ -1365,16 +2131,16 @@ ui <- navbarPage(
                                   h4("Continuation Decision"),
                                   sliderInput("continuation_52_prop_res",
                                               "Select the percentage of patients continuing with treatment:",
-                                              value = 60,
+                                              value = 49,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_52_delivery_setting_res",
                                               "Input setting and minutes for appointment of conitnuation decision:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               100, 20,
+                                                               0, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1393,18 +2159,18 @@ ui <- navbarPage(
                                   h4("Week 52 - 71 Treatment Delivery"),
                                   sliderInput("retention_res_52_71",
                                               "Set the retention rate for weeks 52 - 71:",
-                                              value = 85,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("treatment_setting_52_71_matrix_res",
                                               "Input setting and minutes for delivery of continued treatment:",
                                               value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
+                                                               0, 20,
                                                                10, 20,
+                                                               75, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1431,25 +2197,25 @@ ui <- navbarPage(
                                   h4("Efficacy Assessment"),
                                   sliderInput("efficacy_liver_biopsy_res",
                                               "Set the percentage of paitents undergoing a liver biopsy:",
-                                              value = 25,
+                                              value = 5,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_elf_prop_res",
                                               "Set the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_fibro_prop_res",
                                               "Set the percentage of patients undergoing a Fibroscan:",
-                                              value = 35,
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_biomarkers_prop_res",
-                                              "Set the percentage of patients undergoing other Biomarkers:",
-                                              value = 65,
+                                              "Set the percentage of patients undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1457,16 +2223,16 @@ ui <- navbarPage(
                                   h4("Continuation Decision"),
                                   sliderInput("continuation_prop_res",
                                               "Select the percentage of patients continuing with treatment:",
-                                              value = 60,
+                                              value = 80,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_delivery_setting_res",
                                               "Input setting and minutes for appointment of conitnuation decision:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               100, 20,
+                                                               0, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1488,7 +2254,7 @@ ui <- navbarPage(
                                   h4("Retention Rate"),
                                   sliderInput("retention_73_103_res",
                                               "Select the retention rate for patients receiving dosage maintenance:",
-                                              value = 90,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1497,11 +2263,11 @@ ui <- navbarPage(
                                   matrixInput("treatment_setting_73_103_matrix_res",
                                               "Input setting and minutes for delivery of treatment:",
                                               value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
+                                                               0, 20,
                                                                10, 20,
+                                                               75, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1530,13 +2296,13 @@ ui <- navbarPage(
                                                step = 1),
                                   sliderInput("monitoring_tests_73_103_elf_res",
                                               "Select the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("monitoring_tests_73_103_biomarkers_res",
                                               "Select the percentage of patients undergoing Biomarker testing:",
-                                              value = 60,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -1555,7 +2321,7 @@ ui <- navbarPage(
                                   h4("Retention by End-point"),
                                   sliderInput("retention_end_res",
                                               "Select the retention rate by the end-point of the model:",
-                                              value = 75,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1563,12 +2329,12 @@ ui <- navbarPage(
                                   h4("Ongoing Treatment Setting"),
                                   matrixInput("resmetirom_ongoing_delivery_setting",
                                               "Input setting and minutes for delivery of treatment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(5, 20,
+                                                               70, 20,
+                                                               0, 20,
+                                                               20, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1590,20 +2356,20 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Annual Assessment"),
                                   sliderInput("ongoing_annual_prop_elf_res",
-                                              "Set the proportion of annual assessments requiring ELF test:",
-                                              value = 90,
+                                              "Set the proportion of annual assessments undergoing ELF test:",
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("ongoing_annual_prop_biomarkers_res",
-                                              "Set the proportion of annual assessments requiring other biomarkers:",
-                                              value = 65,
+                                              "Set the proportion of annual assessments undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("ongoing_annual_prop_fibro_res",
-                                              "Set the proportion of annual assessments requiring Fibroscan:",
-                                              value = 25,
+                                              "Set the proportion of annual assessments undergoing FibroScan:",
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -1639,12 +2405,12 @@ ui <- navbarPage(
                                               post = "%"),
                                   matrixInput("mm_assess_setting_lan",
                                               "Input setting and minutes for initial eligibility assessment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(35, 20,
+                                                               0, 20,
+                                                               45, 20,
+                                                               15, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1661,25 +2427,25 @@ ui <- navbarPage(
                                   h4("Diagnostics"),
                                   sliderInput("pre_liver_biopsy_prop_lan",
                                               "Set percentage undergoing biopsy:",
-                                              value = 10,
+                                              value = 5,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_elf_prop_lan",
                                               "Set percentage undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_biomarkers_prop_lan",
                                               "Set percentage undergoing other biomarker testing (inc. LFTs and FIB-4):",
-                                              value = 50,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post= "%"),
                                   sliderInput("pre_fibro_prop_lan",
-                                              "Set percentage undergoing Fibroscan:",
-                                              value = 65,
+                                              "Set percentage undergoing FibroScan:",
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post= "%")
@@ -1691,7 +2457,7 @@ ui <- navbarPage(
                                   h4("Dosage"),
                                   sliderInput("dosage_0_52_lan",
                                               "Set proportion of those starting treatment on 1200mg:",
-                                              value = 80,
+                                              value = 50,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1699,7 +2465,7 @@ ui <- navbarPage(
                                   h4("Treatment Retention"),
                                   sliderInput("retention_lan_0_52",
                                               "Set the retention rate for weeks 0 - 52:",
-                                              value = 85,
+                                              value = 95,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1707,10 +2473,10 @@ ui <- navbarPage(
                                   h4("Treatment Setting"),
                                   matrixInput("treatment_setting_0_52_matrix_lan",
                                               "Input setting and minutes for delivery of initial treatment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               25, 20,
                                                                75, 20,
-                                                               10, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1741,19 +2507,19 @@ ui <- navbarPage(
                                                step = 1),
                                   sliderInput("monitor_tests_0_52_elf_lan",
                                               "Set the proportion of monitoring tests including ELF testing:",
-                                              value = 85,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("monitor_tests_0_52_biomarkers_lan",
                                               "Set the proportion of monitoring tests including other biomarkers:",
-                                              value = 45,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("monitor_tests_0_52_fibro_lan",
                                               "Se the proportion of monitoring tests including a Fibroscan:",
-                                              value = 35,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -1764,25 +2530,25 @@ ui <- navbarPage(
                                   h4("Efficacy Assessment Diagnostics"),
                                   sliderInput("efficacy_52_liver_biopsy_lan",
                                               "Set the percentage of paitents undergoing a liver biopsy:",
-                                              value = 25,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_52_elf_prop_lan",
                                               "Set the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_52_fibro_prop_lan",
                                               "Set the percentage of patients undergoing a Fibroscan:",
-                                              value = 35,
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_52_biomarkers_prop_lan",
-                                              "Set the percentage of patients undergoing other Biomarkers:",
-                                              value = 65,
+                                              "Set the percentage of patients undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1790,16 +2556,16 @@ ui <- navbarPage(
                                   h4("Continuation Decision"),
                                   sliderInput("continuation_52_prop_lan",
                                               "Select the percentage of patients continuing with treatment:",
-                                              value = 60,
+                                              value = 49,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_52_delivery_setting_lan",
                                               "Input setting and minutes for appointment of conitnuation decision:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               100, 20,
+                                                               0, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1818,18 +2584,18 @@ ui <- navbarPage(
                                   h4("Week 52 - 71 Treatment Delivery"),
                                   sliderInput("retention_lan_52_71",
                                               "Set the retention rate for weeks 52 - 71:",
-                                              value = 85,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("treatment_setting_52_71_matrix_lan",
                                               "Input setting and minutes for delivery of continued treatment:",
                                               value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
+                                                               0, 20,
                                                                10, 20,
+                                                               75, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1856,25 +2622,25 @@ ui <- navbarPage(
                                   h4("Efficacy Assessment"),
                                   sliderInput("efficacy_liver_biopsy_lan",
                                               "Set the percentage of paitents undergoing a liver biopsy:",
-                                              value = 25,
+                                              value = 5,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_elf_prop_lan",
                                               "Set the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_fibro_prop_lan",
                                               "Set the percentage of patients undergoing a Fibroscan:",
-                                              value = 35,
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("efficacy_biomarkers_prop_lan",
-                                              "Set the percentage of patients undergoing other Biomarkers:",
-                                              value = 65,
+                                              "Set the percentage of patients undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1882,16 +2648,16 @@ ui <- navbarPage(
                                   h4("Continuation Decision"),
                                   sliderInput("continuation_prop_lan",
                                               "Select the percentage of patients continuing with treatment:",
-                                              value = 60,
+                                              value = 80,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   matrixInput("continuation_delivery_setting_lan",
                                               "Input setting and minutes for appointment of conitnuation decision:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(0, 20,
+                                                               0, 20,
+                                                               100, 20,
+                                                               0, 20,
                                                                0, 30,
                                                                0, 30),
                                                              ncol = 2,
@@ -1913,7 +2679,7 @@ ui <- navbarPage(
                                   h4("Retention Rate"),
                                   sliderInput("retention_73_103_lan",
                                               "Select the retention rate for patients receiving dosage maintenance:",
-                                              value = 90,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1922,11 +2688,11 @@ ui <- navbarPage(
                                   matrixInput("treatment_setting_73_103_matrix_lan",
                                               "Input setting and minutes for delivery of treatment:",
                                               value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
+                                                               0, 20,
                                                                10, 20,
+                                                               75, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -1955,13 +2721,13 @@ ui <- navbarPage(
                                                step = 1),
                                   sliderInput("monitoring_tests_73_103_elf_lan",
                                               "Select the percentage of patients undergoing ELF testing:",
-                                              value = 85,
+                                              value = 0,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("monitoring_tests_73_103_biomarkers_lan",
                                               "Select the percentage of patients undergoing Biomarker testing:",
-                                              value = 60,
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -1980,7 +2746,7 @@ ui <- navbarPage(
                                   h4("Retention by End-point"),
                                   sliderInput("retention_end_lan",
                                               "Select the retention rate by the end-point of the model:",
-                                              value = 75,
+                                              value = 99,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
@@ -1988,12 +2754,12 @@ ui <- navbarPage(
                                   h4("Ongoing Treatment Setting"),
                                   matrixInput("lanifibranor_ongoing_delivery_setting",
                                               "Input setting and minutes for delivery of treatment:",
-                                              value = matrix(c(10, 20,
-                                                               5, 20,
-                                                               75, 20,
-                                                               10, 20,
+                                              value = matrix(c(5, 20,
+                                                               70, 20,
+                                                               0, 20,
+                                                               20, 20,
                                                                0, 30,
-                                                               0, 30),
+                                                               5, 30),
                                                              ncol = 2,
                                                              byrow = TRUE,
                                                              dimnames = list(c("Primary Care - GP",
@@ -2015,20 +2781,20 @@ ui <- navbarPage(
                                   hr(),
                                   h4("Annual Assessment"),
                                   sliderInput("ongoing_annual_prop_elf_lan",
-                                              "Set the proportion of annual assessments requiring ELF test:",
-                                              value = 90,
+                                              "Set the proportion of annual assessments undergoing ELF test:",
+                                              value = 35,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("ongoing_annual_prop_biomarkers_lan",
-                                              "Set the proportion of annual assessments requiring other biomarkers:",
-                                              value = 65,
+                                              "Set the proportion of annual assessments undergoing other biomarkers:",
+                                              value = 100,
                                               min = 0,
                                               max = 100,
                                               post = "%"),
                                   sliderInput("ongoing_annual_prop_fibro_lan",
-                                              "Set the proportion of annual assessments requiring Fibroscan:",
-                                              value = 25,
+                                              "Set the proportion of annual assessments undergoing FibroScan:",
+                                              value = 70,
                                               min = 0,
                                               max = 100,
                                               post = "%")
@@ -4628,5 +5394,6 @@ ui <- navbarPage(
            
 
            )
+  )
   )
 )
