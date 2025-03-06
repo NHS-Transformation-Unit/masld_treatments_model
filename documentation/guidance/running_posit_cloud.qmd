@@ -33,7 +33,7 @@ The purpose of this document is to provide guidance on how to run the model usin
 # Logging into Posit Cloud
 1. Open your web browser and go to the [Posit Cloud Login](https://login.posit.cloud/login?redirect=%2Foauth%2Fauthorize%3Fredirect_uri%3Dhttps%253A%252F%252Fposit.cloud%252Flogin%26client_id%3Dposit-cloud%26response_type%3Dcode%26show_auth%3D0&product=cloud).
 
-![Posit Cloud Login](/images/rpc_login.PNG)
+![Posit Cloud Login](images/rpc_login.png)
 
 
 
@@ -43,47 +43,47 @@ The purpose of this document is to provide guidance on how to run the model usin
 1. Once logged in click on the **New Project** button in the top-right of the screen.
 2. Then select **New Project from Git Repository**.
 
-![New Project](/images/rpc_new_project.PNG)
+![New Project](images/rpc_new_project.png)
 
 3. This will open up a box asking for the URL of the GitHub repository. Please enter: `https://github.com/NHS-Transformation-Unit/masld_treatments_model`
 
-![New Project URL](/images/rpc_new_project_url.PNG)
+![New Project URL](images/rpc_new_project_url.png)
 
 4. The project will then set-up the repository within RStudio.
 
-![Project Loaded](/images/rpc_project.PNG)
+![Project Loaded](images/rpc_project.png)
 
 # Loading Dependencies
 The model has been written in the statistical programming language R. To run the model it is necessary to install the R packages that the model depends on. This should only be required the first time you create the project on Posit Cloud.
 
 1. The bottom right quadrant of the screen will show a file explorer tab. Navigate to the file `src/requirements/packages.R`. When you click on the file this will open in a new window in the top left.
 
-![Navigating to packages.R](/images/rpc_file_explorer_packages1.PNG)
+![Navigating to packages.R](images/rpc_file_explorer_packages1.png)
 
-![Opening packages.R](/images/rpc_file_explorer_packages2.PNG)
+![Opening packages.R](images/rpc_file_explorer_packages2.png)
 
 2. This file contains a list of the required packages and the code to install these. To run the script either:
     - Select all the code and type `Ctrl` + `Enter`
     - Or alternatively, click on the **Source** button.
     
-    ![Source](/images/rpc_source_button.PNG)
+    ![Source](images/rpc_source_button.png)
     
 3. In the **Console** screen in the bottom left you will see the program installing the required dependencies. This will be complete once the red **STOP** button has disappeared.
 
-![Installing Packages](/images/rpc_packages_loading.PNG)
+![Installing Packages](images/rpc_packages_loading.png)
 
 # Running the Model
 1. Now in the file explorer navigate back to `project`.
 2. There is a file called `run_app.R`. Click on this file to open it up in a new window in the top left.
 
-![Open `run_app.R`](/images/rpc_open_run_app.PNG)
+![Open `run_app.R`](images/rpc_open_run_app.png)
 
 3. You will see a button **Run App** with a green triangle. Click this to run the app.
 
-![Run App](/images/rpc_run_app.PNG)
+![Run App](images/rpc_run_app.png)
 
 4. After a few seconds the app will load up in a new window.
 5. You can use the app within this window or click **Open in Browser** to launch within a browser window if preferred.
 
-![Running App Window](/images/rpc_app.PNG)
+![Running App Window](images/rpc_app.png)
 
