@@ -3044,7 +3044,10 @@ ui <- fluidPage(
            h3("Pre-Treatment"),
            hr(),
            h4("Initial Eligibility Assessment"),
-           p("Some IE Assessment text"),
+           p("Prior to treatment, all patients will require an initial eligibility assessment. Below is a summary of the modelled activity and costs associated with these. 
+             The first tab shows the total activity and costs estimated for all treatment options. 
+             This is then broken down by the four treatments across the remaining tabs.  
+             The full data set behind these estimates is also included within the Data Table."),
            navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
@@ -3174,7 +3177,11 @@ ui <- fluidPage(
            ),
            br(),
            h4("Liver Biopsies"),
-           p("Some text on Liver Biopsies"),
+           p("A liver biopsy may be required to confirm suitability for treatment in some instances. 
+              Below is a summary of the modelled activity and costs associated with liver biopsies as part of this pathway. 
+             The first tab shows the total activity and costs estimated for all treatment options. 
+             This is then broken down by the four treatments across the remaining tabs. 
+             The full data set behind these estimates is also included within the Data Table."),
            navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
@@ -3310,7 +3317,11 @@ ui <- fluidPage(
            ),
            br(),
            h4("ELF Testing"),
-           p("Some text on ELF Testing"),
+           p("Where available, ELF testing is the preferred non-invasive serum biomarker for staging fibrosis. 
+           Below is a summary of the modelled activity and costs associated with ELF testing as part of this pathway. 
+           The first tab shows the total activity and costs estimated for all treatment options. 
+           This is then broken down by the four treatments across the remaining tabs. 
+             The full data set behind these estimates is also included within the Data Table."),
            navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
@@ -3446,7 +3457,11 @@ ui <- fluidPage(
            ),
            br(),
            h4("Biomarkers"),
-           p("Some biomarker text"),
+           p("Biomarkers should also be assessed prior to starting treatment. 
+           Below is a summary of the modelled activity and costs associated with monitoring biomarkers as part of this pathway. 
+           The first tab shows the total activity and costs estimated for all treatment options. 
+           This is then broken down by the four treatments across the remaining tabs.  
+             The full data set behind these estimates is also included within the Data Table."),
            navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
@@ -3581,7 +3596,11 @@ ui <- fluidPage(
            ),
            br(),
            h4("Fibroscans"),
-           p("Some Fibroscan text"),
+           p("FibroScans are the preferred imaging diagnostic for staging fibrosis prior to treatment. 
+           Below is a summary of the modelled activity and costs associated with pre-treatment FibroScanning. 
+           The first tab shows the total activity and costs estimated for all treatment options. 
+           This is then broken down by the four treatments across the remaining tabs. 
+             The full data set behind these estimates is also included within the Data Table."),
            navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
@@ -4123,6 +4142,7 @@ ui <- fluidPage(
            br(),
            h3("Diagnostic Monitoring During Treatment"),
            hr(),
+           p("Patients receiving treatment will also undergo diagnostic procedures to monitor their treatment. The activities and costs associated with this are detailed below:"),
            navset_tab(
              nav_panel("All Treatments",
                        navset_tab(
@@ -4291,6 +4311,7 @@ ui <- fluidPage(
            br(),
            h3("Continuation Decision"),
            hr(),
+           p("The modelled activity and costs associated with the decision to continue treatment are summarised below for each treatment and for all treatments combined."),
            h4("Continuation Diagnostics"),
            navset_tab(
              nav_panel("All Treatments",
@@ -4825,6 +4846,8 @@ ui <- fluidPage(
            br(),
            h3("Dosage Maintenance"),
            hr(),
+           p("Following decision to continue treatment, patients require continued delivery of treatment at maintained dosage with regular diagnostic monitoring. 
+             The below section summarises the modelled activities and costs associated with this stage of the treatment pathway for each treatment option, as well as all treatments."),
            h4("Dosage Maintenance Delivery"),
            navset_tab(
              nav_panel("All Treatments",
@@ -5116,6 +5139,8 @@ ui <- fluidPage(
            br(),
            h3("On-going Treatment"),
            hr(),
+           p("Treatment may be continued beyond 104 weeks (2 years). The costs associated with delivering treatment and 
+             monitoring patients beyond this point are summarised below"),
            h4("On-going Treatment Delivery"),
            navset_tab(
              nav_panel("All Treatments",
