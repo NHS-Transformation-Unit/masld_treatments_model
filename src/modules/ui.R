@@ -980,7 +980,7 @@ ui <- fluidPage(
                              step = 1,
                              post = "%"),
                  br(),
-                 h4("Set the diagnosis rates for each Fibrosis Stage:"),
+                 h4("Set the diagnosis rates for each fibrosis stage:"),
                  sliderInput("diag_F0",
                              "Set the diagnosis rate for F0:",
                              value = 2,
@@ -1017,11 +1017,50 @@ ui <- fluidPage(
                              step = 1,
                              post = "%"),
                  br(),
+                 h4("Set assumptions for already receiving treatment"),
+                 p("Some patients may be receiving treatment under a Type 2 Diabetes or Obesity pathway."),
+                 sliderInput("treat_other_F0",
+                             "Set the already receiving treatment rate for F0:",
+                             value = 1,
+                             min = 0,
+                             max = 100,
+                             step = 1,
+                             post = "%"),
+                 sliderInput("treat_other_F1",
+                             "Set the already receiving treatment rate for F1:",
+                             value = 1,
+                             min = 0,
+                             max = 100,
+                             step = 1,
+                             post = "%"),
+                 sliderInput("treat_other_F2",
+                             "Set the already receiving treatment rate for F2:",
+                             value = 1,
+                             min = 0,
+                             max = 100,
+                             step = 1,
+                             post = "%"),
+                 sliderInput("treat_other_F3",
+                             "Set the already receiving treatment rate for F3:",
+                             value = 1,
+                             min = 0,
+                             max = 100,
+                             step = 1,
+                             post = "%"),
+                 sliderInput("treat_other_F4",
+                             "Set the already receiving treatment rate for F4:",
+                             value = 1,
+                             min = 0,
+                             max = 100,
+                             step = 1,
+                             post = "%"),
+                 br(),
                  h4("Download Assumptions"),
                  downloadButton("download_population_assumptions", "Download Population Assumptions")
                ),
                mainPanel(
                  h1("Population Assumptions"),
+                 hr(),
                  p("The section below shows the impact of each of the assumptions to the left on determining the population 
                    of patients that would be eligible for the new treatment pathways. Each section below will contain:",
                    tags$ul(
@@ -1035,6 +1074,7 @@ ui <- fluidPage(
                              ))
                    )),
                  h3("MASLD Prevalence"),
+                 hr(),
                  p("The tabs below show the simulated MASLD populations to be used within the model as either a histogram or table:"),
                  textOutput("masld_prev"),
                  navset_tab(
@@ -1042,25 +1082,40 @@ ui <- fluidPage(
                    nav_panel("Table", DTOutput("masld_pop_DT"))
                  ),
                  h3("MASH Prevalence"),
+                 hr(),
                  p("The tabs below show the simulated MASH populations to be used within the model as either a histogram or table:"),
                  navset_tab(
                    nav_panel("Histogram", plotOutput("mash_pop_histogram")),
                    nav_panel("Table", DTOutput("mash_pop_DT"))
                  ),
                  h3("Fibrosis Stage Populations"),
-                 p("The tabs below show the simulated MASH populations by Fibrosis stage that will be used within the model as either a histogram or table:"),
+                 hr(),
+                 p("The tabs below show the simulated MASH populations by fibrosis stage that will be used within the model as either a histogram or table:"),
                  navset_tab(
                    nav_panel("Histogram", plotOutput("f_stage_pop_histogram")),
                    nav_panel("Table", DTOutput("f_stage_pop_DT"))
                  ),
                  h3("Co-morbidities"),
-                 p("TODO"),
+                 hr(),
+                 p("The tabs below shows the estimates for the population of patients by fibrosis stage that have either Obesity or Type 2 Diabetesas as either a histogram or table:"),
+                 navset_tab(
+                   nav_panel("Histogram", plotOutput("f_stage_joint_histogram")),
+                   nav_panel("Table", DTOutput("f_stage_joint_DT"))
+                 ),
                  h3("Diagnosed Population Estimates"),
-                 p("The tabs below show the estimated population at each Fibrosis stage that is diagnosed. This is shown as either a histogram or a table:"),
+                 hr(),
+                 p("The tabs below show the estimated population at each fibrosis stage that is diagnosed. This is shown as either a histogram or a table:"),
                  navset_tab(
                    nav_panel("Histogram", plotOutput("f_stage_diag_histogram")),
                    nav_panel("Table", DTOutput("f_stage_diag_DT"))
                  ),
+                 h3("Already Receiving Treatment"),
+                 hr(),
+                 p("The tabs below shows the estimates for the population of diagnosed patients already receiving treatment via another pathway by fibrosis stage:"),
+                 navset_tab(
+                   nav_panel("Histogram", plotOutput("f_stage_other_treat_histogram")),
+                   nav_panel("Table", DTOutput("f_stage_other_treat_DT"))
+                 )
                  
                )
              )

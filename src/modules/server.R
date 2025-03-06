@@ -22,6 +22,10 @@ server <- function(input, output, session) {
       masld_prev_tol = input$masld_prev_tol / 100,
       mash_prev = input$mash_prev / 100,
       mash_prev_tol = input$mash_prev_tol / 100,
+      ob_prev = input$ob_prev / 100,
+      ob_prev_tol = input$ob_prev_tol / 100,
+      t2d_prev = input$t2d_prev / 100,
+      t2d_prev_tol = input$t2d_prev_tol / 100,
       F0_prop = input$F0_prop / 100,
       F1_prop = input$F1_prop / 100,
       F2_prop = input$F2_prop / 100,
@@ -31,7 +35,12 @@ server <- function(input, output, session) {
       F1_diag_prop = input$diag_F1 / 100,
       F2_diag_prop = input$diag_F2 / 100,
       F3_diag_prop = input$diag_F3 / 100,
-      F4_diag_prop = input$diag_F4 / 100
+      F4_diag_prop = input$diag_F4 / 100,
+      treat_other_F0 = input$treat_other_F0 / 100,
+      treat_other_F1 = input$treat_other_F1 / 100,
+      treat_other_F2 = input$treat_other_F2 / 100,
+      treat_other_F3 = input$treat_other_F3 / 100,
+      treat_other_F4 = input$treat_other_F4 / 100
       )
     
   })
@@ -619,6 +628,112 @@ server <- function(input, output, session) {
       gather("Fibrosis_Stage", "Estimate", -c("simulation"))
   })
   
+  f_stage_ob <- reactive({
+    
+    params <- assumptions()
+    f_stage_estimates() |>
+      mutate("F0_ob" = case_when(simulation == 1 ~ round(F0 * params$ob_prev, 0),
+                                 simulation == 2 ~ round(F0 * (params$ob_prev - params$ob_prev_tol), 0),
+                                 simulation == 3 ~ round(F0 * (params$ob_prev + params$ob_prev_tol), 0),
+                                 TRUE ~ round(F0 * (params$ob_prev + rtri(n = 1, min = -params$ob_prev_tol, max = params$ob_prev_tol, mode = 0)), 0)
+                                 ),
+             "F1_ob" = case_when(simulation == 1 ~ round(F1 * params$ob_prev, 0),
+                                 simulation == 2 ~ round(F1 * (params$ob_prev - params$ob_prev_tol), 0),
+                                 simulation == 3 ~ round(F1 * (params$ob_prev + params$ob_prev_tol), 0),
+                                 TRUE ~ round(F1 * (params$ob_prev + rtri(n = 1, min = -params$ob_prev_tol, max = params$ob_prev_tol, mode = 0)), 0)
+             ),
+             "F2_ob" = case_when(simulation == 1 ~ round(F2 * params$ob_prev, 0),
+                                 simulation == 2 ~ round(F2 * (params$ob_prev - params$ob_prev_tol), 0),
+                                 simulation == 3 ~ round(F2 * (params$ob_prev + params$ob_prev_tol), 0),
+                                 TRUE ~ round(F2 * (params$ob_prev + rtri(n = 1, min = -params$ob_prev_tol, max = params$ob_prev_tol, mode = 0)), 0)
+             ),
+             "F3_ob" = case_when(simulation == 1 ~ round(F3 * params$ob_prev, 0),
+                                 simulation == 2 ~ round(F3 * (params$ob_prev - params$ob_prev_tol), 0),
+                                 simulation == 3 ~ round(F3 * (params$ob_prev + params$ob_prev_tol), 0),
+                                 TRUE ~ round(F3 * (params$ob_prev + rtri(n = 1, min = -params$ob_prev_tol, max = params$ob_prev_tol, mode = 0)), 0)
+             ),
+             "F4_ob" = case_when(simulation == 1 ~ round(F4 * params$ob_prev, 0),
+                                 simulation == 2 ~ round(F4 * (params$ob_prev - params$ob_prev_tol), 0),
+                                 simulation == 3 ~ round(F4 * (params$ob_prev + params$ob_prev_tol), 0),
+                                 TRUE ~ round(F4 * (params$ob_prev + rtri(n = 1, min = -params$ob_prev_tol, max = params$ob_prev_tol, mode = 0)), 0)
+             )
+             
+      ) |>
+      select(-c(F0, F1, F2, F3, F4))
+    
+  })
+  
+  f_stage_t2d <- reactive({
+    
+    params <- assumptions()
+    f_stage_estimates() |>
+      mutate("F0_t2d" = case_when(simulation == 1 ~ round(F0 * params$t2d_prev, 0),
+                                  simulation == 2 ~ round(F0 * (params$t2d_prev - params$t2d_prev_tol), 0),
+                                  simulation == 3 ~ round(F0 * (params$t2d_prev + params$t2d_prev_tol), 0),
+                                  TRUE ~ round(F0 * (params$t2d_prev + rtri(n = 1, min = -params$t2d_prev_tol, max = params$t2d_prev_tol, mode = 0)), 0)
+      ),
+      "F1_t2d" = case_when(simulation == 1 ~ round(F1 * params$t2d_prev, 0),
+                           simulation == 2 ~ round(F1 * (params$t2d_prev - params$t2d_prev_tol), 0),
+                           simulation == 3 ~ round(F1 * (params$t2d_prev + params$t2d_prev_tol), 0),
+                           TRUE ~ round(F1 * (params$t2d_prev + rtri(n = 1, min = -params$t2d_prev_tol, max = params$t2d_prev_tol, mode = 0)), 0)
+      ),
+      "F2_t2d" = case_when(simulation == 1 ~ round(F2 * params$t2d_prev, 0),
+                           simulation == 2 ~ round(F2 * (params$t2d_prev - params$t2d_prev_tol), 0),
+                           simulation == 3 ~ round(F2 * (params$t2d_prev + params$t2d_prev_tol), 0),
+                           TRUE ~ round(F2 * (params$t2d_prev + rtri(n = 1, min = -params$t2d_prev_tol, max = params$t2d_prev_tol, mode = 0)), 0)
+      ),
+      "F3_t2d" = case_when(simulation == 1 ~ round(F3 * params$t2d_prev, 0),
+                           simulation == 2 ~ round(F3 * (params$t2d_prev - params$t2d_prev_tol), 0),
+                           simulation == 3 ~ round(F3 * (params$t2d_prev + params$t2d_prev_tol), 0),
+                           TRUE ~ round(F3 * (params$t2d_prev + rtri(n = 1, min = -params$t2d_prev_tol, max = params$t2d_prev_tol, mode = 0)), 0)
+      ),
+      "F4_t2d" = case_when(simulation == 1 ~ round(F4 * params$t2d_prev, 0),
+                           simulation == 2 ~ round(F4 * (params$t2d_prev - params$t2d_prev_tol), 0),
+                           simulation == 3 ~ round(F4 * (params$t2d_prev + params$t2d_prev_tol), 0),
+                           TRUE ~ round(F4 * (params$t2d_prev + rtri(n = 1, min = -params$t2d_prev_tol, max = params$t2d_prev_tol, mode = 0)), 0)
+      )
+      
+      ) |>
+      select(-c(F0, F1, F2, F3, F4))
+    
+  })
+  
+  f_stage_joint <- reactive({
+    
+    params <- assumptions()
+    f_stage_estimates() |>
+      left_join(f_stage_ob(), by = "simulation") |>
+      left_join(f_stage_t2d(), by = "simulation") |>
+      rowwise() |>
+      mutate(F0_joint_naive = min(F0, F0_ob + F0_t2d),
+             F1_joint_naive = min(F1, F1_ob + F1_t2d),
+             F2_joint_naive = min(F2, F2_ob + F2_t2d),
+             F3_joint_naive = min(F3, F3_ob + F3_t2d),
+             F4_joint_naive = min(F4, F4_ob + F4_t2d),
+             F0_joint_est = round(F0_joint_naive - (0.124 * F0), 0),
+             F1_joint_est = round(F1_joint_naive - (0.124 * F1), 0),
+             F2_joint_est = round(F2_joint_naive - (0.124 * F2), 0),
+             F3_joint_est = round(F3_joint_naive - (0.124 * F3), 0),
+             F4_joint_est = round(F4_joint_naive - (0.124 * F4), 0),
+      )
+    
+  })
+  
+  f_stage_joint_long <- reactive({
+    
+    f_stage_joint() |>
+      select(c(simulation, F0_joint_est, F1_joint_est, F2_joint_est, F3_joint_est, F4_joint_est)) |>
+      gather("Fibrosis_Stage", "Estimate", -c("simulation")) |>
+      mutate(Fibrosis_Stage = case_when(Fibrosis_Stage == "F0_joint_est" ~ "F0",
+                                        Fibrosis_Stage == "F1_joint_est" ~ "F1",
+                                        Fibrosis_Stage == "F2_joint_est" ~ "F2",
+                                        Fibrosis_Stage == "F3_joint_est" ~ "F3",
+                                        Fibrosis_Stage == "F4_joint_est" ~ "F4",))
+    
+  })
+  
+
+  
   f_stage_diagnosed <- reactive({
     params <- assumptions()
     f_stage_estimates() |>
@@ -633,18 +748,64 @@ server <- function(input, output, session) {
   
   f_stage_diagnosed_long <- reactive({
     f_stage_diagnosed() |>
-      gather("Fibrosis_Stage", "Estimate", -c("simulation"))
+      gather("Fibrosis_Stage", "Estimate", -c("simulation")) |>
+      mutate(Fibrosis_Stage = case_when(Fibrosis_Stage == "F0_diag" ~ "F0",
+                                        Fibrosis_Stage == "F1_diag" ~ "F1",
+                                        Fibrosis_Stage == "F2_diag" ~ "F2",
+                                        Fibrosis_Stage == "F3_diag" ~ "F3",
+                                        Fibrosis_Stage == "F4_diag" ~ "F4"))
+  })
+  
+  f_stage_treat_other <- reactive({
+    
+    params <- assumptions()
+    f_stage_joint() |>
+      mutate("F0_other_treat" = round(F0_joint_est * params$F0_diag_prop * params$treat_other_F0, 0),
+             "F1_other_treat" = round(F1_joint_est * params$F1_diag_prop * params$treat_other_F1, 0),
+             "F2_other_treat" = round(F2_joint_est * params$F2_diag_prop * params$treat_other_F2, 0),
+             "F3_other_treat" = round(F3_joint_est * params$F3_diag_prop * params$treat_other_F3, 0),
+             "F4_other_treat" = round(F4_joint_est * params$F4_diag_prop * params$treat_other_F4, 0),
+             ) |>
+      select(c(simulation, F0_other_treat, F1_other_treat, F2_other_treat, F3_other_treat, F4_other_treat))
+    
+    
+  })
+  
+  f_stage_treat_other_long <- reactive({
+    f_stage_treat_other() |>
+      gather("Fibrosis_Stage", "Estimate", -c("simulation")) |>
+      mutate(Fibrosis_Stage = case_when(Fibrosis_Stage == "F0_other_treat" ~ "F0",
+                                        Fibrosis_Stage == "F1_other_treat" ~ "F1",
+                                        Fibrosis_Stage == "F2_other_treat" ~ "F2",
+                                        Fibrosis_Stage == "F3_other_treat" ~ "F3",
+                                        Fibrosis_Stage == "F4_other_treat" ~ "F4"))
+    
+    
+  })
+  
+  f_stage_diagnosed_rem_ot <- reactive({
+    
+    f_stage_diagnosed() |>
+      left_join(f_stage_treat_other(), by = "simulation") |>
+      rowwise() |>
+      mutate("F0_diag_adj" = F0_diag - F0_other_treat,
+             "F1_diag_adj" = F1_diag - F1_other_treat,
+             "F2_diag_adj" = F2_diag - F2_other_treat,
+             "F3_diag_adj" = F3_diag - F3_other_treat,
+             "F4_diag_adj" = F4_diag - F4_other_treat) |>
+      select(c(simulation, F0_diag_adj, F1_diag_adj, F2_diag_adj, F3_diag_adj, F4_diag_adj))
+    
   })
   
   treat_pop_sem <- reactive({
     params <- treat_imp_assumptions()
-    f_stage_diagnosed() |>
-      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_sem, 0),
-             "F1_treat" = round(F1_diag * params$treat_prop_F1_sem, 0),
-             "F2_treat" = round(F2_diag * params$treat_prop_F2_sem, 0),
-             "F3_treat" = round(F3_diag * params$treat_prop_F3_sem, 0),
-             "F4_treat" = round(F4_diag * params$treat_prop_F4_sem, 0)) |>
-      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+    f_stage_diagnosed_rem_ot() |>
+      mutate("F0_treat" = round(F0_diag_adj * params$treat_prop_F0_sem, 0),
+             "F1_treat" = round(F1_diag_adj * params$treat_prop_F1_sem, 0),
+             "F2_treat" = round(F2_diag_adj * params$treat_prop_F2_sem, 0),
+             "F3_treat" = round(F3_diag_adj * params$treat_prop_F3_sem, 0),
+             "F4_treat" = round(F4_diag_adj * params$treat_prop_F4_sem, 0)) |>
+      select(-c(F0_diag_adj, F1_diag_adj, F2_diag_adj, F3_diag_adj, F4_diag_adj)) |>
       rowwise() |>
       mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
     
@@ -652,13 +813,13 @@ server <- function(input, output, session) {
   
   treat_pop_surv <- reactive({
     params <- treat_imp_assumptions()
-    f_stage_diagnosed() |>
-      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_surv, 0),
-             "F1_treat" = round(F1_diag * params$treat_prop_F1_surv, 0),
-             "F2_treat" = round(F2_diag * params$treat_prop_F2_surv, 0),
-             "F3_treat" = round(F3_diag * params$treat_prop_F3_surv, 0),
-             "F4_treat" = round(F4_diag * params$treat_prop_F4_surv, 0)) |>
-      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+    f_stage_diagnosed_rem_ot() |>
+      mutate("F0_treat" = round(F0_diag_adj * params$treat_prop_F0_surv, 0),
+             "F1_treat" = round(F1_diag_adj * params$treat_prop_F1_surv, 0),
+             "F2_treat" = round(F2_diag_adj * params$treat_prop_F2_surv, 0),
+             "F3_treat" = round(F3_diag_adj * params$treat_prop_F3_surv, 0),
+             "F4_treat" = round(F4_diag_adj * params$treat_prop_F4_surv, 0)) |>
+      select(-c(F0_diag_adj, F1_diag_adj, F2_diag_adj, F3_diag_adj, F4_diag_adj)) |>
       rowwise() |>
       mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
     
@@ -666,13 +827,13 @@ server <- function(input, output, session) {
   
   treat_pop_res <- reactive({
     params <- treat_imp_assumptions()
-    f_stage_diagnosed() |>
-      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_res, 0),
-             "F1_treat" = round(F1_diag * params$treat_prop_F1_res, 0),
-             "F2_treat" = round(F2_diag * params$treat_prop_F2_res, 0),
-             "F3_treat" = round(F3_diag * params$treat_prop_F3_res, 0),
-             "F4_treat" = round(F4_diag * params$treat_prop_F4_res, 0)) |>
-      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+    f_stage_diagnosed_rem_ot() |>
+      mutate("F0_treat" = round(F0_diag_adj * params$treat_prop_F0_res, 0),
+             "F1_treat" = round(F1_diag_adj * params$treat_prop_F1_res, 0),
+             "F2_treat" = round(F2_diag_adj * params$treat_prop_F2_res, 0),
+             "F3_treat" = round(F3_diag_adj * params$treat_prop_F3_res, 0),
+             "F4_treat" = round(F4_diag_adj * params$treat_prop_F4_res, 0)) |>
+      select(-c(F0_diag_adj, F1_diag_adj, F2_diag_adj, F3_diag_adj, F4_diag_adj)) |>
       rowwise() |>
       mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
     
@@ -680,13 +841,13 @@ server <- function(input, output, session) {
   
   treat_pop_lan <- reactive({
     params <- treat_imp_assumptions()
-    f_stage_diagnosed() |>
-      mutate("F0_treat" = round(F0_diag * params$treat_prop_F0_lan, 0),
-             "F1_treat" = round(F1_diag * params$treat_prop_F1_lan, 0),
-             "F2_treat" = round(F2_diag * params$treat_prop_F2_lan, 0),
-             "F3_treat" = round(F3_diag * params$treat_prop_F3_lan, 0),
-             "F4_treat" = round(F4_diag * params$treat_prop_F4_lan, 0)) |>
-      select(-c(F0_diag, F1_diag, F2_diag, F3_diag, F4_diag)) |>
+    f_stage_diagnosed_rem_ot() |>
+      mutate("F0_treat" = round(F0_diag_adj * params$treat_prop_F0_lan, 0),
+             "F1_treat" = round(F1_diag_adj * params$treat_prop_F1_lan, 0),
+             "F2_treat" = round(F2_diag_adj * params$treat_prop_F2_lan, 0),
+             "F3_treat" = round(F3_diag_adj * params$treat_prop_F3_lan, 0),
+             "F4_treat" = round(F4_diag_adj * params$treat_prop_F4_lan, 0)) |>
+      select(-c(F0_diag_adj, F1_diag_adj, F2_diag_adj, F3_diag_adj, F4_diag_adj)) |>
       rowwise() |>
       mutate("treated_total" = sum(c_across(F0_treat:F4_treat)))
     
@@ -3402,7 +3563,21 @@ combined_all_patients <- reactive({
       scale_x_continuous(labels = comma_format()) +
       labs(title = "Simulated MASLD Population",
            x = "MASLD Population",
-           y = "Count")
+           y = "Count") +
+      theme(strip.background = element_rect(fill = "#407EC9"),
+            strip.text = element_text(colour = "#ffffff", size = 14),
+            axis.text = element_text(size = 11),
+            axis.title = element_text(size = 12),
+            plot.title = element_text(size = 16, color = "#407EC9"),
+            plot.subtitle = element_text(size = 12),
+            panel.background = element_rect(fill = "#ffffff"),
+            panel.grid.major.y = element_line(color = "#cecece", linewidth = 0.1),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_line(color = "#cecece", linewidth = 0.1),
+            axis.line = element_line(color = "#000000"),
+            legend.position = "right",
+            legend.text = element_text(size = 12)
+      )
   })
   
   output$masld_prev_summary <- renderPrint({
@@ -3462,7 +3637,21 @@ combined_all_patients <- reactive({
       scale_x_continuous(labels = comma_format()) +
       labs(title = "Simulated MASH Population",
            x = "MASH Population",
-           y = "Count")
+           y = "Count") +
+      theme(strip.background = element_rect(fill = "#407EC9"),
+            strip.text = element_text(colour = "#ffffff", size = 14),
+            axis.text = element_text(size = 11),
+            axis.title = element_text(size = 12),
+            plot.title = element_text(size = 16, color = "#407EC9"),
+            plot.subtitle = element_text(size = 12),
+            panel.background = element_rect(fill = "#ffffff"),
+            panel.grid.major.y = element_line(color = "#cecece", linewidth = 0.1),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_line(color = "#cecece", linewidth = 0.1),
+            axis.line = element_line(color = "#000000"),
+            legend.position = "right",
+            legend.text = element_text(size = 12)
+      )
   })
   
   output$mash_pop_DT <- renderDT({
@@ -3500,7 +3689,21 @@ combined_all_patients <- reactive({
       facet_wrap(~Fibrosis_Stage, scales = "free") +
       labs(title = "Simulated Fibrosis Stage Populations",
            x = "Population",
-           y = "Count")
+           y = "Count") +
+      theme(strip.background = element_rect(fill = "#407EC9"),
+            strip.text = element_text(colour = "#ffffff", size = 14),
+            axis.text = element_text(size = 11),
+            axis.title = element_text(size = 12),
+            plot.title = element_text(size = 16, color = "#407EC9"),
+            plot.subtitle = element_text(size = 12),
+            panel.background = element_rect(fill = "#ffffff"),
+            panel.grid.major.y = element_line(color = "#cecece", linewidth = 0.1),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_line(color = "#cecece", linewidth = 0.1),
+            axis.line = element_line(color = "#000000"),
+            legend.position = "right",
+            legend.text = element_text(size = 12)
+      )
   })
   
   output$f_stage_pop_DT <- renderDT({
@@ -3544,7 +3747,21 @@ combined_all_patients <- reactive({
       facet_wrap(~Fibrosis_Stage, scales = "free") +
       labs(title = "Simulated Fibrosis Stage Populations Diagnosed",
            x = "Diagnosed Population",
-           y = "Count")
+           y = "Count") +
+      theme(strip.background = element_rect(fill = "#407EC9"),
+            strip.text = element_text(colour = "#ffffff", size = 14),
+            axis.text = element_text(size = 11),
+            axis.title = element_text(size = 12),
+            plot.title = element_text(size = 16, color = "#407EC9"),
+            plot.subtitle = element_text(size = 12),
+            panel.background = element_rect(fill = "#ffffff"),
+            panel.grid.major.y = element_line(color = "#cecece", linewidth = 0.1),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_line(color = "#cecece", linewidth = 0.1),
+            axis.line = element_line(color = "#000000"),
+            legend.position = "right",
+            legend.text = element_text(size = 12)
+      )
   })
   
   output$f_stage_diag_DT <- renderDT({
@@ -3573,6 +3790,145 @@ combined_all_patients <- reactive({
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4"),
                   digits = 0)
   }, server = FALSE)
+  
+  output$f_stage_ob_DT <- renderDT({
+    f_stage_ob_DT <- f_stage_ob()
+    datatable(f_stage_ob_DT)
+    
+    
+  })
+  
+  output$f_stage_t2d_DT <- renderDT({
+    f_stage_t2d_DT <- f_stage_t2d()
+    datatable(f_stage_t2d_DT)
+    
+    
+  })
+  
+  output$f_stage_joint_DT <- renderDT({
+    f_stage_joint_DT <- f_stage_joint() |>
+      select(c(1, 22:26)) |>
+      rename("Simulation" = 1,
+             "F0 - Either Comorbidity" = 2,
+             "F1 - Either Comorbidity" = 3,
+             "F2 - Either Comorbidity" = 4,
+             "F3 - Either Comorbidity" = 5,
+             "F4 - Either Comorbidity" = 6)
+    datatable(f_stage_joint_DT,
+              rownames = FALSE,
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "f_stage_joint_comorbid_csv"
+                  )
+                )  
+              )) |>
+      formatRound(columns = c("F0 - Either Comorbidity",
+                              "F1 - Either Comorbidity",
+                              "F2 - Either Comorbidity",
+                              "F3 - Either Comorbidity",
+                              "F4 - Either Comorbidity"),
+                  digits = 0)
+    
+    
+  })
+  
+  output$f_stage_joint_histogram <- renderPlot({
+    f_stage_joint_hist_df <- f_stage_joint_long()
+    ggplot(f_stage_joint_hist_df, aes(x = Estimate))+
+      geom_histogram(bins = 20,
+                     fill = "#407EC9",
+                     color = "#000000",
+                     alpha = 0.5) +
+      scale_y_continuous(labels = comma_format()) +
+      scale_x_continuous(labels = comma_format()) +
+      facet_wrap(~Fibrosis_Stage, scales = "free") +
+      labs(title = "Simulated Populations with either comorbidity",
+           x = "Population",
+           y = "Count") +
+      theme(strip.background = element_rect(fill = "#407EC9"),
+            strip.text = element_text(colour = "#ffffff", size = 14),
+            axis.text = element_text(size = 11),
+            axis.title = element_text(size = 12),
+            plot.title = element_text(size = 16, color = "#407EC9"),
+            plot.subtitle = element_text(size = 12),
+            panel.background = element_rect(fill = "#ffffff"),
+            panel.grid.major.y = element_line(color = "#cecece", linewidth = 0.1),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_line(color = "#cecece", linewidth = 0.1),
+            axis.line = element_line(color = "#000000"),
+            legend.position = "right",
+            legend.text = element_text(size = 12)
+      )
+  })
+  
+  output$f_stage_other_treat_DT <- renderDT({
+    f_stage_other_treat_DT <- f_stage_treat_other() |>
+      rename("Simulation" = 1,
+             "F0 - Receiving Treatment" = 2,
+             "F1 - Receiving Treatment" = 3,
+             "F2 - Receiving Treatment" = 4,
+             "F3 - Receiving Treatment" = 5,
+             "F4 - Receiving Treatment" = 6)
+    datatable(f_stage_other_treat_DT,
+              rownames = FALSE,
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "f_stage_joint_comorbid_csv"
+                  )
+                )  
+              )) |>
+      formatRound(columns = c("F0 - Receiving Treatment",
+                              "F1 - Receiving Treatment",
+                              "F2 - Receiving Treatment",
+                              "F3 - Receiving Treatment",
+                              "F4 - Receiving Treatment"),
+                  digits = 0)
+    
+    
+  })
+  
+  output$f_stage_other_treat_histogram <- renderPlot({
+    f_stage_other_treat_hist_df <- f_stage_treat_other_long()
+    ggplot(f_stage_other_treat_hist_df, aes(x = Estimate))+
+      geom_histogram(bins = 20,
+                     fill = "#407EC9",
+                     color = "#000000",
+                     alpha = 0.5) +
+      scale_y_continuous(labels = comma_format()) +
+      scale_x_continuous(labels = comma_format()) +
+      facet_wrap(~Fibrosis_Stage, scales = "free") +
+      labs(title = "Simulated Populations receving treatment via other pathways",
+           x = "Population",
+           y = "Count") +
+      theme(strip.background = element_rect(fill = "#407EC9"),
+            strip.text = element_text(colour = "#ffffff", size = 14),
+            axis.text = element_text(size = 11),
+            axis.title = element_text(size = 12),
+            plot.title = element_text(size = 16, color = "#407EC9"),
+            plot.subtitle = element_text(size = 12),
+            panel.background = element_rect(fill = "#ffffff"),
+            panel.grid.major.y = element_line(color = "#cecece", linewidth = 0.1),
+            panel.grid.minor.y = element_blank(),
+            panel.grid.major.x = element_line(color = "#cecece", linewidth = 0.1),
+            axis.line = element_line(color = "#000000"),
+            legend.position = "right",
+            legend.text = element_text(size = 12)
+      )
+  })
   
 
 # Outputs: Treatment Implementation ---------------------------------------
