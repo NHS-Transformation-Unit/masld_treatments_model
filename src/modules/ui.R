@@ -4,12 +4,506 @@ library(bslib)
 library(DT)
 library(shinyMatrix)
 
-ui <- navbarPage(
-  
-  title = "MASLD Treatment Activity and Costs Modelling",
-  id = "navbar",
+ui <- fluidPage( 
   
   tags$link(rel = "stylesheet", type = "text/css", href = "config/app_theme.css"),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_sem table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_sem th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_sem td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_sem td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_16_matrix_sem table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_16_matrix_sem th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_16_matrix_sem td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_16_matrix_sem td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #semaglutide_20_71_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #semaglutide_20_71_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #semaglutide_20_71_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #semaglutide_20_71_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_sem table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_sem th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_sem td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_sem td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #semaglutide_73_103_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #semaglutide_73_103_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #semaglutide_73_103_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #semaglutide_73_103_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #semaglutide_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #semaglutide_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #semaglutide_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #semaglutide_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_24_matrix_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_24_matrix_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_24_matrix_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_24_matrix_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_25_71_matrix_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_25_71_matrix_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_25_71_matrix_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_25_71_matrix_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_73_103_matrix_surv table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_73_103_matrix_surv th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_73_103_matrix_surv td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_73_103_matrix_surv td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #survodutide_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #survodutide_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #survodutide_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #survodutide_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_52_matrix_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_52_matrix_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_52_matrix_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_52_matrix_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #continuation_52_delivery_setting_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_52_delivery_setting_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_52_delivery_setting_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_52_delivery_setting_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_52_71_matrix_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_52_71_matrix_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_52_71_matrix_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_52_71_matrix_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_res table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_res th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_res td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_res td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
   
   tags$head(tags$style(HTML("
   #treatment_setting_73_103_matrix_res table {
@@ -39,6 +533,249 @@ ui <- navbarPage(
     font-size: 12px; /* Adjust font size */
   }
 "))),
+  
+  tags$head(tags$style(HTML("
+  #resmetirom_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #resmetirom_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #resmetirom_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #resmetirom_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #mm_assess_setting_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #mm_assess_setting_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #mm_assess_setting_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #mm_assess_setting_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_0_52_matrix_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_0_52_matrix_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_0_52_matrix_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_0_52_matrix_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #continuation_52_delivery_setting_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_52_delivery_setting_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_52_delivery_setting_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_52_delivery_setting_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_52_71_matrix_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_52_71_matrix_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_52_71_matrix_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_52_71_matrix_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+
+  
+  
+  tags$head(tags$style(HTML("
+  #continuation_delivery_setting_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #continuation_delivery_setting_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #continuation_delivery_setting_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #continuation_delivery_setting_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #treatment_setting_73_103_matrix_lan table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #treatment_setting_73_103_matrix_lan th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #treatment_setting_73_103_matrix_lan td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #treatment_setting_73_103_matrix_lan td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  tags$head(tags$style(HTML("
+  #lanifibranor_ongoing_delivery_setting table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px; /* Adjust font size for entire table */
+  }
+
+  #lanifibranor_ongoing_delivery_setting th {
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    text-align: center;
+    font-size: 12px; /* Make column headers smaller */
+  }
+
+  /* Apply wrapping only to the first column (row labels) */
+  #lanifibranor_ongoing_delivery_setting td:first-child {
+    max-width: 180px; /* Adjust width as needed */
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: 12px; /* Make first column text smaller */
+  }
+
+  /* Adjust font size for all table cells */
+  #lanifibranor_ongoing_delivery_setting td {
+    font-size: 12px; /* Adjust font size */
+  }
+"))),
+  
+  
+  
+  navbarPage(
+  
+  title = "MASLD Treatment Activity and Costs Modelling",
+  id = "navbar",
+  
+  
   
 
 
@@ -4657,5 +5394,6 @@ ui <- navbarPage(
            
 
            )
+  )
   )
 )
