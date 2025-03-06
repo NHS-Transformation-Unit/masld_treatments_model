@@ -3427,14 +3427,14 @@ combined_all_patients <- reactive({
               options = list(
                 pageLength = 10,
                 autoWidth = TRUE,
-                dom = "Bfrtip",  # Ensures buttons appear
+                dom = "Bfrtip",  
                 buttons = list(
                   list(
                     extend = "csv",
                     text = "Download CSV",
                     filename = "masld_pop_csv"
                   )
-                )  # Ensures only CSV appears
+                )  
               )) |>
       formatRound(columns = c("MASLD Population"),
                   digits = 0)
@@ -3471,11 +3471,22 @@ combined_all_patients <- reactive({
              "MASH Population" = 2)
     datatable(mash_pop_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "mash_pop_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("MASH Population"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$f_stage_pop_histogram <- renderPlot({
     f_stage_pop_hist_df <- f_stage_estimates_long()
@@ -3497,11 +3508,22 @@ combined_all_patients <- reactive({
       rename("Simulation" = 1)
     datatable(f_stage_pop_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "f_stage_pop_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$f_stage_pop_DT_long <- renderDT({
     f_stage_pop_DT_long <- f_stage_estimates_long()
@@ -3535,11 +3557,22 @@ combined_all_patients <- reactive({
              "F4" = 6)
     datatable(f_stage_diag_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "f_stage_diag_pop_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
 
 # Outputs: Treatment Implementation ---------------------------------------
@@ -3555,11 +3588,22 @@ combined_all_patients <- reactive({
              "Total Starting Treatment" = 7)
     datatable(treat_pop_sem,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "treat_pop_sem_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$treat_pop_surv_DT <- renderDT({
     treat_pop_surv <- treat_pop_surv() |>
@@ -3572,11 +3616,22 @@ combined_all_patients <- reactive({
              "Total Starting Treatment" = 7)
     datatable(treat_pop_surv,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "treat_pop_surv_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$treat_pop_res_DT <- renderDT({
     treat_pop_res <- treat_pop_res() |>
@@ -3589,11 +3644,22 @@ combined_all_patients <- reactive({
              "Total Starting Treatment" = 7)
     datatable(treat_pop_res,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "treat_pop_res_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$treat_pop_lan_DT <- renderDT({
     treat_pop_lan <- treat_pop_lan() |>
@@ -3606,11 +3672,22 @@ combined_all_patients <- reactive({
              "Total Starting Treatment" = 7)
     datatable(treat_pop_lan,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "treat_pop_lan_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$treat_pop_all_DT <- renderDT({
     treat_pop_all <- treat_pop_all() |>
@@ -3623,11 +3700,22 @@ combined_all_patients <- reactive({
              "Total Starting Treatment" = 7)
     datatable(treat_pop_all,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "treat_pop_sem_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("F0", "F1", "F2", "F3", "F4", "Total Starting Treatment"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
 
 # Outputs: Pre-Treatment --------------------------------------------------
@@ -3760,10 +3848,21 @@ combined_all_patients <- reactive({
              "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_biopsy_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biopsy_surv_DT <- renderDT({
     pre_treat_biopsy_surv_DT <- pre_treat_biopsy_surv() |>
@@ -3773,10 +3872,21 @@ combined_all_patients <- reactive({
              "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_biopsy_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biopsy_res_DT <- renderDT({
     pre_treat_biopsy_res_DT <- pre_treat_biopsy_res() |>
@@ -3786,10 +3896,21 @@ combined_all_patients <- reactive({
              "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_biopsy_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biopsy_lan_DT <- renderDT({
     pre_treat_biopsy_lan_DT <- pre_treat_biopsy_lan() |>
@@ -3799,10 +3920,21 @@ combined_all_patients <- reactive({
              "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_biopsy_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
-  })
+  }, sevrer = FALSE)
   
   output$pre_treat_biopsy_all_DT <- renderDT({
     pre_treat_biopsy_all_DT <- pre_treat_biopsy_all() |>
@@ -3812,11 +3944,22 @@ combined_all_patients <- reactive({
              "Liver Biopsy Costs" = 3)
     datatable(pre_treat_biopsy_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_biopsy_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Liver Biopsy Costs", currency = "£", digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$pre_treat_elf_sem_sum_1_act <- renderText({
     scales::comma(pre_treat_elf_sem()[[1, 3]], big.mark = ",")
@@ -3946,10 +4089,21 @@ combined_all_patients <- reactive({
              "ELF Costs" = 3)
     datatable(pre_treat_elf_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_elf_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_elf_surv_DT <- renderDT({
     pre_treat_elf_surv_DT <- pre_treat_elf_surv() |>
@@ -3959,10 +4113,21 @@ combined_all_patients <- reactive({
              "ELF Costs" = 3)
     datatable(pre_treat_elf_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_elf_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_elf_res_DT <- renderDT({
     pre_treat_elf_res_DT <- pre_treat_elf_res() |>
@@ -3972,10 +4137,21 @@ combined_all_patients <- reactive({
              "ELF Costs" = 3)
     datatable(pre_treat_elf_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_elf_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_elf_lan_DT <- renderDT({
     pre_treat_elf_lan_DT <- pre_treat_elf_lan() |>
@@ -3985,10 +4161,21 @@ combined_all_patients <- reactive({
              "ELF Costs" = 3)
     datatable(pre_treat_elf_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_elf_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_elf_all_DT <- renderDT({
     pre_treat_elf_all_DT <- pre_treat_elf_all() |>
@@ -3998,11 +4185,22 @@ combined_all_patients <- reactive({
              "ELF Costs" = 3)
     datatable(pre_treat_elf_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_elf_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "ELF Costs", currency = "£", digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$pre_treat_biomarkers_sem_sum_1_act <- renderText({
     scales::comma(pre_treat_biomarkers_sem()[[1, 3]], big.mark = ",")
@@ -4132,10 +4330,21 @@ combined_all_patients <- reactive({
              "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_bio_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biomarkers_surv_DT <- renderDT({
     pre_treat_biomarkers_surv_DT <- pre_treat_biomarkers_surv() |>
@@ -4145,10 +4354,21 @@ combined_all_patients <- reactive({
              "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_bio_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biomarkers_res_DT <- renderDT({
     pre_treat_biomarkers_res_DT <- pre_treat_biomarkers_res() |>
@@ -4158,10 +4378,21 @@ combined_all_patients <- reactive({
              "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_bio_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biomarkers_lan_DT <- renderDT({
     pre_treat_biomarkers_lan_DT <- pre_treat_biomarkers_lan() |>
@@ -4171,10 +4402,21 @@ combined_all_patients <- reactive({
              "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_bio_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_biomarkers_all_DT <- renderDT({
     pre_treat_biomarkers_all_DT <- pre_treat_biomarkers_all() |>
@@ -4184,11 +4426,22 @@ combined_all_patients <- reactive({
              "Biomarkers Costs" = 3)
     datatable(pre_treat_biomarkers_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_bio_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Biomarkers Costs", currency = "£", digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$pre_treat_fibro_sem_sum_1_act <- renderText({
     scales::comma(pre_treat_fibro_sem()[[1, 3]], big.mark = ",")
@@ -4318,10 +4571,21 @@ combined_all_patients <- reactive({
              "Fibroscan Costs" = 3)
     datatable(pre_treat_fibro_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_fibro_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_fibro_surv_DT <- renderDT({
     pre_treat_fibro_surv_DT <- pre_treat_fibro_surv() |>
@@ -4331,10 +4595,21 @@ combined_all_patients <- reactive({
              "Fibroscan Costs" = 3)
     datatable(pre_treat_fibro_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_fibro_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_fibro_res_DT <- renderDT({
     pre_treat_fibro_res_DT <- pre_treat_fibro_res() |>
@@ -4344,10 +4619,21 @@ combined_all_patients <- reactive({
              "Fibroscan Costs" = 3)
     datatable(pre_treat_fibro_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_fibro_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_fibro_lan_DT <- renderDT({
     pre_treat_fibro_lan_DT <- pre_treat_fibro_lan() |>
@@ -4357,10 +4643,21 @@ combined_all_patients <- reactive({
              "Fibroscan Costs" = 3)
     datatable(pre_treat_fibro_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_fibro_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_fibro_all_DT <- renderDT({
     pre_treat_fibro_all_DT <- pre_treat_fibro_all() |>
@@ -4370,11 +4667,22 @@ combined_all_patients <- reactive({
              "Fibroscan Costs" = 3)
     datatable(pre_treat_fibro_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_fibro_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = "Fibroscan Costs", currency = "£", digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$pre_treat_mm_assess_sem_sum_1_act <- renderText({
     scales::comma(pre_treat_mm_assess_sem()[[1, 3]], big.mark = ",")
@@ -4530,9 +4838,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(pre_treat_mm_assess_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_ie_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Assessments Costs",
                                  "GP Assessments Costs",
                                  "Primary Care Nurse Costs",
@@ -4542,7 +4860,7 @@ combined_all_patients <- reactive({
                                  "Community Pharmacist Costs")
                      ,currency = "£"
                      ,digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_mm_assess_surv_DT <- renderDT({
     pre_treat_mm_assess_surv_DT <- pre_treat_mm_assess_surv() |>
@@ -4578,9 +4896,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(pre_treat_mm_assess_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_ie_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Assessments Costs",
                                  "GP Assessments Costs",
                                  "Primary Care Nurse Costs",
@@ -4590,7 +4918,7 @@ combined_all_patients <- reactive({
                                  "Community Pharmacist Costs")
                      ,currency = "£"
                      ,digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_mm_assess_res_DT <- renderDT({
     pre_treat_mm_assess_res_DT <- pre_treat_mm_assess_res() |>
@@ -4626,9 +4954,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(pre_treat_mm_assess_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_ie_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Assessments Costs",
                                  "GP Assessments Costs",
                                  "Primary Care Nurse Costs",
@@ -4638,7 +4976,7 @@ combined_all_patients <- reactive({
                                  "Community Pharmacist Costs")
                      ,currency = "£"
                      ,digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_mm_assess_lan_DT <- renderDT({
     pre_treat_mm_assess_lan_DT <- pre_treat_mm_assess_lan() |>
@@ -4674,9 +5012,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(pre_treat_mm_assess_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_ie_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Assessments Costs",
                                  "GP Assessments Costs",
                                  "Primary Care Nurse Costs",
@@ -4686,7 +5034,7 @@ combined_all_patients <- reactive({
                                  "Community Pharmacist Costs")
                      ,currency = "£"
                      ,digits = 2)
-  })
+  }, server = FALSE)
   
   output$pre_treat_mm_assess_all_DT <- renderDT({
     pre_treat_mm_assess_all_DT <- pre_treat_mm_assess_all() |>
@@ -4722,9 +5070,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(pre_treat_mm_assess_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "pre_treat_ie_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Assessments Costs",
                                  "GP Assessments Costs",
                                  "Primary Care Nurse Costs",
@@ -4734,7 +5092,7 @@ combined_all_patients <- reactive({
                                  "Community Pharmacist Costs")
                      ,currency = "£"
                      ,digits = 2)
-  })
+  }, server = FALSE)
   
 
 # Outputs: Treatment Delivery ---------------------------------------------
@@ -4801,9 +5159,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(init_treat_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "init_treat_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -4823,7 +5191,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$dm1_treat_sem_sum_1_act <- renderText({
     scales::comma(dm1_treat_sem()[[1, 4]], big.mark = ",")
@@ -4887,9 +5255,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(dm1_treat_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dm1_treat_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -4910,7 +5288,7 @@ combined_all_patients <- reactive({
                               "Community Pharmacist Activities"),
                   digits = 0)
 
-  })
+  }, server = FALSE)
   
   output$total_sem_treat_72_sum_1_act <- renderText({
     scales::comma(total_sem_treat_72()[[1, 2]], big.mark = ",")
@@ -4955,9 +5333,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(total_sem_treat_72_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "total_72_treat_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -4975,7 +5363,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$init_treat_surv_024_sum_1_act <- renderText({
     scales::comma(init_treat_surv()[[1, 4]], big.mark = ",")
@@ -5039,9 +5427,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(init_treat_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "init_treat_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5061,7 +5459,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$dm1_treat_surv_sum_1_act <- renderText({
     scales::comma(dm1_treat_surv()[[1, 4]], big.mark = ",")
@@ -5125,9 +5523,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(dm1_treat_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dm1_treat_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5148,7 +5556,7 @@ combined_all_patients <- reactive({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$total_surv_treat_72_sum_1_act <- renderText({
     scales::comma(total_surv_treat_72()[[1, 2]], big.mark = ",")
@@ -5193,9 +5601,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(total_surv_treat_72_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "total_72_treat_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5213,7 +5631,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$init_treat_res_052_sum_1_act <- renderText({
     scales::comma(init_treat_res()[[1, 4]], big.mark = ",")
@@ -5277,9 +5695,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(init_treat_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "init_treat_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5299,7 +5727,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$dm1_treat_res_sum_1_act <- renderText({
     scales::comma(dm1_treat_res()[[1, 4]], big.mark = ",")
@@ -5363,9 +5791,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(dm1_treat_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dm1_treat_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5386,7 +5824,7 @@ combined_all_patients <- reactive({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$total_res_treat_72_sum_1_act <- renderText({
     scales::comma(total_res_treat_72()[[1, 2]], big.mark = ",")
@@ -5431,9 +5869,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(total_res_treat_72_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "total_72_treat_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5451,7 +5899,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$init_treat_lan_052_sum_1_act <- renderText({
     scales::comma(init_treat_lan()[[1, 4]], big.mark = ",")
@@ -5515,9 +5963,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(init_treat_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "init_treat_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5537,7 +5995,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   output$dm1_treat_lan_sum_1_act <- renderText({
     scales::comma(dm1_treat_lan()[[1, 4]], big.mark = ",")
@@ -5601,9 +6059,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 17)
     datatable(dm1_treat_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dm1_treat_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5624,7 +6092,7 @@ combined_all_patients <- reactive({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$total_lan_treat_72_sum_1_act <- renderText({
     scales::comma(total_lan_treat_72()[[1, 2]], big.mark = ",")
@@ -5669,9 +6137,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(total_lan_treat_72_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "total_72_treat_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5689,7 +6167,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
   
   
   output$total_all_treat_72_sum_1_act <- renderText({
@@ -5735,9 +6213,19 @@ combined_all_patients <- reactive({
              "Community Pharmacist Costs" = 15)
     datatable(total_all_treat_72_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "total_72_treat_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Treatment Activities Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -5755,7 +6243,7 @@ combined_all_patients <- reactive({
                               "Community Diagnostician Activities",
                               "Community Pharmacist Activities"),
                   digits = 0)
-  })
+  }, server = FALSE)
 
 # Outputs: Treatment Diagnostic Monitoring --------------------------------
 
@@ -5796,8 +6284,19 @@ combined_all_patients <- reactive({
       select(c(1, 5, 10, 6:9))
     datatable(diag_mon_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "diag_mon_sem_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -5808,7 +6307,7 @@ combined_all_patients <- reactive({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$diag_mon_surv_sum_1_act <- renderText({
     scales::comma(diag_mon_surv()[[1, 5]], big.mark = ",")
@@ -5847,8 +6346,19 @@ combined_all_patients <- reactive({
       select(c(1, 5, 10, 6:9))
     datatable(diag_mon_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "diag_mon_surv_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -5859,7 +6369,7 @@ combined_all_patients <- reactive({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$diag_mon_res_sum_1_act <- renderText({
     scales::comma(diag_mon_res()[[1, 5]], big.mark = ",")
@@ -5900,8 +6410,19 @@ combined_all_patients <- reactive({
       select(c(1, 5, 12, 6:11))
     datatable(diag_mon_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "diag_mon_res_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -5914,7 +6435,7 @@ combined_all_patients <- reactive({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$diag_mon_lan_sum_1_act <- renderText({
     scales::comma(diag_mon_lan()[[1, 5]], big.mark = ",")
@@ -5955,8 +6476,19 @@ combined_all_patients <- reactive({
       select(c(1, 5, 12, 6:11))
     datatable(diag_mon_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "diag_mon_lan_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -5969,7 +6501,7 @@ combined_all_patients <- reactive({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$diag_mon_all_sum_1_act <- renderText({
     scales::comma(diag_mon_all()[[1, 5]], big.mark = ",")
@@ -6010,8 +6542,19 @@ combined_all_patients <- reactive({
       select(c(1, 5, 12, 6:11))
     datatable(diag_mon_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "diag_mon_all_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -6024,7 +6567,7 @@ combined_all_patients <- reactive({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
 # Outputs: Continuation Decision ------------------------------------------
 
@@ -6082,9 +6625,19 @@ output$cont_dec_diag_sem_DT <- renderDT({
     select(c(1, 11:12, 2:10))
   datatable(cont_dec_diag_sem_DT,
             rownames = FALSE,
-            options = list(pageLength = 10,
-                           autoWidth = TRUE,
-                           scrollX = TRUE)) |>
+            extensions = "Buttons",
+            options = list(
+              pageLength = 10,
+              autoWidth = TRUE,
+              dom = "Bfrtip",  
+              buttons = list(
+                list(
+                  extend = "csv",
+                  text = "Download CSV",
+                  filename = "cont_dec_diag_sem_csv"
+                )
+              )  
+            )) |>
     formatCurrency(columns = c("Total Diagnostic Costs",
                                "Liver Biopsy Costs",
                                "ELF Costs",
@@ -6100,7 +6653,7 @@ output$cont_dec_diag_sem_DT <- renderDT({
                             "Biomarkers Activity"),
                 digits = 0)
   
-})
+}, server = FALSE)
 
   output$cont_dec_diag_surv_sum_1_pop <- renderText({
     scales::comma(cont_dec_diag_surv()[[1, 2]], big.mark = ",")
@@ -6158,9 +6711,19 @@ output$cont_dec_diag_sem_DT <- renderDT({
       select(c(1, 11:12, 2:10))
     datatable(cont_dec_diag_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_diag_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Diagnostic Costs",
                                  "Liver Biopsy Costs",
                                  "ELF Costs",
@@ -6176,7 +6739,7 @@ output$cont_dec_diag_sem_DT <- renderDT({
                               "Biomarkers Activity"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$cont_dec_diag_res_52_sum_1_pop <- renderText({
     scales::comma(cont_dec_diag_res_52()[[1, 2]], big.mark = ",")
@@ -6234,9 +6797,19 @@ output$cont_dec_diag_sem_DT <- renderDT({
       select(c(1, 11:12, 2:10))
     datatable(cont_dec_diag_res_52_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_diag_res_52_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Diagnostic Costs",
                                  "Liver Biopsy Costs",
                                  "ELF Costs",
@@ -6252,7 +6825,7 @@ output$cont_dec_diag_sem_DT <- renderDT({
                               "Biomarkers Activity"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
 
  output$cont_dec_diag_res_sum_1_pop <- renderText({
@@ -6312,9 +6885,19 @@ output$cont_dec_diag_res_DT <- renderDT({
     select(c(1, 11:12, 2:10))
   datatable(cont_dec_diag_res_DT,
             rownames = FALSE,
-            options = list(pageLength = 10,
-                           autoWidth = TRUE,
-                           scrollX = TRUE)) |>
+            extensions = "Buttons",
+            options = list(
+              pageLength = 10,
+              autoWidth = TRUE,
+              dom = "Bfrtip",  
+              buttons = list(
+                list(
+                  extend = "csv",
+                  text = "Download CSV",
+                  filename = "cont_dec_diag_res_csv"
+                )
+              )  
+            )) |>
     formatCurrency(columns = c("Total Diagnostic Costs",
                                "Liver Biopsy Costs",
                                "ELF Costs",
@@ -6330,7 +6913,7 @@ output$cont_dec_diag_res_DT <- renderDT({
                             "Biomarkers Activity"),
                 digits = 0)
   
-})
+}, server = FALSE)
 
 output$cont_dec_diag_lan_52_sum_1_pop <- renderText({
   scales::comma(cont_dec_diag_lan_52()[[1, 2]], big.mark = ",")
@@ -6388,9 +6971,19 @@ output$cont_dec_diag_lan_52_DT <- renderDT({
     select(c(1, 11:12, 2:10))
   datatable(cont_dec_diag_lan_52_DT,
             rownames = FALSE,
-            options = list(pageLength = 10,
-                           autoWidth = TRUE,
-                           scrollX = TRUE)) |>
+            extensions = "Buttons",
+            options = list(
+              pageLength = 10,
+              autoWidth = TRUE,
+              dom = "Bfrtip",  
+              buttons = list(
+                list(
+                  extend = "csv",
+                  text = "Download CSV",
+                  filename = "cont_dec_diag_lan_52_csv"
+                )
+              )  
+            )) |>
     formatCurrency(columns = c("Total Diagnostic Costs",
                                "Liver Biopsy Costs",
                                "ELF Costs",
@@ -6406,7 +6999,7 @@ output$cont_dec_diag_lan_52_DT <- renderDT({
                             "Biomarkers Activity"),
                 digits = 0)
   
-})
+}, server = FALSE)
 
 
 output$cont_dec_diag_lan_sum_1_pop <- renderText({
@@ -6484,7 +7077,7 @@ output$cont_dec_diag_lan_DT <- renderDT({
                             "Biomarkers Activity"),
                 digits = 0)
   
-})
+}, server = FALSE)
 
 
 output$cont_dec_diag_all_sum_1_act <- renderText({
@@ -6531,9 +7124,19 @@ output$cont_dec_diag_all_DT <- renderDT({
     select(c(1, 11:12, 2:10))
   datatable(cont_dec_diag_all_DT,
             rownames = FALSE,
-            options = list(pageLength = 10,
-                           autoWidth = TRUE,
-                           scrollX = TRUE)) |>
+            extensions = "Buttons",
+            options = list(
+              pageLength = 10,
+              autoWidth = TRUE,
+              dom = "Bfrtip",  
+              buttons = list(
+                list(
+                  extend = "csv",
+                  text = "Download CSV",
+                  filename = "cont_dec_diag_all_csv"
+                )
+              )  
+            )) |>
     formatCurrency(columns = c("Total Diagnostic Costs",
                                "Liver Biopsy Costs",
                                "ELF Costs",
@@ -6549,7 +7152,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                             "Biomarkers Activity"),
                 digits = 0)
   
-})
+}, server = FALSE)
   
 
 # Outputs: Continuation Decision Appointment ------------------------------
@@ -6615,9 +7218,19 @@ output$cont_dec_diag_all_DT <- renderDT({
     select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16))
   datatable(cont_dec_appt_sem_DT,
             rownames = FALSE,
-            options = list(pageLength = 10,
-                           autoWidth = TRUE,
-                           scrollX = TRUE)) |>
+            extensions = "Buttons",
+            options = list(
+              pageLength = 10,
+              autoWidth = TRUE,
+              dom = "Bfrtip",  
+              buttons = list(
+                list(
+                  extend = "csv",
+                  text = "Download CSV",
+                  filename = "cont_dec_appt_sem_csv"
+                )
+              )  
+            )) |>
     formatCurrency(columns = c("Continuation Decision Costs",
                                "GP Costs",
                                "Primary Care Nurse Costs",
@@ -6638,7 +7251,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                             "Community Pharmacist Activities"),
                 digits = 0)
   
-})
+}, server = FALSE)
   
   output$cont_dec_appt_surv_sum_1_pop <- renderText({
     scales::comma(cont_dec_appt_surv()[[1, 2]], big.mark = ",")
@@ -6701,9 +7314,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16))
     datatable(cont_dec_appt_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_appt_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Continuation Decision Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -6724,7 +7347,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$cont_dec_appt_res_52_sum_1_pop <- renderText({
     scales::comma(cont_dec_appt_res_52()[[1, 2]], big.mark = ",")
@@ -6787,9 +7410,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16))
     datatable(cont_dec_appt_res_52_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_appt_res_52_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Continuation Decision Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -6810,7 +7443,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$cont_dec_appt_res_sum_1_pop <- renderText({
     scales::comma(cont_dec_appt_res()[[1, 2]], big.mark = ",")
@@ -6873,9 +7506,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16))
     datatable(cont_dec_appt_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_appt_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Continuation Decision Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -6896,7 +7539,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
 
   output$cont_dec_appt_lan_52_sum_1_pop <- renderText({
     scales::comma(cont_dec_appt_lan_52()[[1, 2]], big.mark = ",")
@@ -6959,9 +7602,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16))
     datatable(cont_dec_appt_lan_52_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_appt_lan_52_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Continuation Decision Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -6982,7 +7635,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$cont_dec_appt_lan_sum_1_pop <- renderText({
     scales::comma(cont_dec_appt_lan()[[1, 2]], big.mark = ",")
@@ -7045,9 +7698,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1:4, 17, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16))
     datatable(cont_dec_appt_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_appt_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Continuation Decision Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7068,7 +7731,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$cont_dec_appt_all_sum_1_act <- renderText({
     scales::comma(cont_dec_appt_all()[[1, 2]], big.mark = ",")
@@ -7118,9 +7781,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1:2, 15, 3, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 14))
     datatable(cont_dec_appt_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "cont_dec_appt_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Continuation Decision Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7139,7 +7812,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
 
 # Outputs: Dosage Maintenance ---------------------------------------------
 
@@ -7192,9 +7865,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(dos_main_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7215,7 +7898,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_surv_sum_1_act <- renderText({
     scales::comma(dos_main_surv()[[1, 4]], big.mark = ",")
@@ -7266,9 +7949,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(dos_main_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7289,7 +7982,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_res_sum_1_act <- renderText({
     scales::comma(dos_main_res()[[1, 4]], big.mark = ",")
@@ -7340,9 +8033,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(dos_main_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7363,7 +8066,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_lan_sum_1_act <- renderText({
     scales::comma(dos_main_lan()[[1, 4]], big.mark = ",")
@@ -7414,9 +8117,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(dos_main_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7437,7 +8150,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_all_sum_1_act <- renderText({
     scales::comma(dos_main_all()[[1, 4]], big.mark = ",")
@@ -7488,9 +8201,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(dos_main_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7511,7 +8234,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_diag_mon_sem_sum_1_act <- renderText({
     scales::comma(dos_main_diag_mon_sem()[[1, 5]], big.mark = ",")
@@ -7550,8 +8273,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 10, 6:9))
     datatable(dos_main_diag_mon_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_diag_mon_sem_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -7562,7 +8296,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_diag_mon_surv_sum_1_act <- renderText({
     scales::comma(dos_main_diag_mon_surv()[[1, 5]], big.mark = ",")
@@ -7601,8 +8335,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 10, 6:9))
     datatable(dos_main_diag_mon_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_diag_mon_surv_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -7613,7 +8358,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_diag_mon_res_sum_1_act <- renderText({
     scales::comma(dos_main_diag_mon_res()[[1, 5]], big.mark = ",")
@@ -7652,8 +8397,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 10, 6:9))
     datatable(dos_main_diag_mon_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_diag_mon_res_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -7664,7 +8420,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_diag_mon_lan_sum_1_act <- renderText({
     scales::comma(dos_main_diag_mon_lan()[[1, 5]], big.mark = ",")
@@ -7703,8 +8459,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 10, 6:9))
     datatable(dos_main_diag_mon_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_diag_mon_lan_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -7715,7 +8482,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$dos_main_diag_mon_all_sum_1_act <- renderText({
     scales::comma(dos_main_diag_mon_all()[[1, 5]], big.mark = ",")
@@ -7754,8 +8521,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 10, 6:9))
     datatable(dos_main_diag_mon_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "dos_main_diag_mon_all_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity"),
@@ -7766,7 +8544,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
  
 
 # Outputs: Ongoing Treatment ----------------------------------------------
@@ -7818,9 +8596,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(ongoing_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_sem_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7841,7 +8629,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_surv_sum_1_act <- renderText({
     scales::comma(ongoing_surv()[[1, 4]], big.mark = ",")
@@ -7890,9 +8678,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(ongoing_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_surv_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7913,7 +8711,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_res_sum_1_act <- renderText({
     scales::comma(ongoing_res()[[1, 4]], big.mark = ",")
@@ -7962,9 +8760,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(ongoing_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_res_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -7985,7 +8793,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_lan_sum_1_act <- renderText({
     scales::comma(ongoing_lan()[[1, 4]], big.mark = ",")
@@ -8034,9 +8842,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(ongoing_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_lan_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -8057,7 +8875,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_all_sum_1_act <- renderText({
     scales::comma(ongoing_all()[[1, 4]], big.mark = ",")
@@ -8106,9 +8924,19 @@ output$cont_dec_diag_all_DT <- renderDT({
              "Community Pharmacist Costs" = 17)
     datatable(ongoing_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_all_csv"
+                  )
+                )  
+              )) |>
       formatCurrency(columns = c("Total Appointment Costs",
                                  "GP Costs",
                                  "Primary Care Nurse Costs",
@@ -8129,7 +8957,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                               "Community Pharmacist Activities"),
                   digits = 0)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_diag_mon_sem_sum_1_act <- renderText({
     scales::comma(ongoing_diag_mon_sem()[[1, 5]], big.mark = ",")
@@ -8170,8 +8998,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 12, 6:11))
     datatable(ongoing_diag_mon_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_diag_mon_sem_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -8184,7 +9023,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_diag_mon_surv_sum_1_act <- renderText({
     scales::comma(ongoing_diag_mon_surv()[[1, 5]], big.mark = ",")
@@ -8225,8 +9064,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 12, 6:11))
     datatable(ongoing_diag_mon_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_diag_mon_surv_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -8239,7 +9089,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_diag_mon_res_sum_1_act <- renderText({
     scales::comma(ongoing_diag_mon_res()[[1, 5]], big.mark = ",")
@@ -8280,8 +9130,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 12, 6:11))
     datatable(ongoing_diag_mon_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_diag_mon_res_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -8294,7 +9155,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_diag_mon_lan_sum_1_act <- renderText({
     scales::comma(ongoing_diag_mon_lan()[[1, 5]], big.mark = ",")
@@ -8335,8 +9196,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 12, 6:11))
     datatable(ongoing_diag_mon_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_diag_mon_lan_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -8349,7 +9221,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
   output$ongoing_diag_mon_all_sum_1_act <- renderText({
     scales::comma(ongoing_diag_mon_all()[[1, 5]], big.mark = ",")
@@ -8390,8 +9262,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 5, 12, 6:11))
     datatable(ongoing_diag_mon_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "ongoing_diag_mon_all_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Monitoring Tests",
                               "ELF Activity",
                               "Biomarkers Activity",
@@ -8404,7 +9287,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      currency = "£",
                      digits = 2)
     
-  })
+  }, server = FALSE)
   
 
 # Outputs: Overall Pathway ------------------------------------------------
@@ -8434,9 +9317,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 2, 3, 18, 19, 4, 17, 9:16))
     datatable(combined_sem_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "combined_sem_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Starting Treatment",
                               "Reaching Treatment End-point"),
                   digits = 0) |>
@@ -8456,7 +9349,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      digits = 2
                      )
     
-  })
+  }, server = FALSE)
   
   output$combined_surv_DT <- renderDT({
     
@@ -8483,9 +9376,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 2, 3, 18, 19, 4, 17, 9:16))
     datatable(combined_surv_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "combined_surv_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Starting Treatment",
                               "Reaching Treatment End-point"),
                   digits = 0) |>
@@ -8505,7 +9408,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      digits = 2
       )
     
-  })
+  }, server = FALSE)
   
   output$combined_res_DT <- renderDT({
     
@@ -8532,9 +9435,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 2, 3, 18, 19, 4, 17, 9:16))
     datatable(combined_res_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "combined_res_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Starting Treatment",
                               "Reaching Treatment End-point"),
                   digits = 0) |>
@@ -8554,7 +9467,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      digits = 2
       )
     
-  })
+  }, server = FALSE)
   
   output$combined_lan_DT <- renderDT({
     
@@ -8581,9 +9494,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 2, 3, 18, 19, 4, 17, 9:16))
     datatable(combined_lan_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "combined_lan_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Starting Treatment",
                               "Reaching Treatment End-point"),
                   digits = 0) |>
@@ -8603,7 +9526,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      digits = 2
       )
     
-  })
+  }, server = FALSE)
   
   output$combined_all_DT <- renderDT({
     
@@ -8630,9 +9553,19 @@ output$cont_dec_diag_all_DT <- renderDT({
       select(c(1, 2, 3, 18, 19, 4, 17, 9:16))
     datatable(combined_all_DT,
               rownames = FALSE,
-              options = list(pageLength = 10,
-                             autoWidth = TRUE,
-                             scrollX = TRUE)) |>
+              extensions = "Buttons",
+              options = list(
+                pageLength = 10,
+                autoWidth = TRUE,
+                dom = "Bfrtip",  
+                buttons = list(
+                  list(
+                    extend = "csv",
+                    text = "Download CSV",
+                    filename = "combined_all_csv"
+                  )
+                )  
+              )) |>
       formatRound(columns = c("Starting Treatment",
                               "Reaching Treatment End-point"),
                   digits = 0) |>
@@ -8652,7 +9585,7 @@ output$cont_dec_diag_all_DT <- renderDT({
                      digits = 2
       )
     
-  })
+  }, server = FALSE)
 
 
 # Download Model Parameters -----------------------------------------------

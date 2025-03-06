@@ -2176,7 +2176,7 @@ ui <- navbarPage(
                        p("The table below provides a summary of:",
                          tags$ul(
                            tags$li("The number of patients starting treatment and reaching the modelling end-point"),
-                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("The total cost to treat these patients and an average cost per pathway"),
                            tags$li("Costs for the main stages of the pathway")
                          )),
                        DTOutput("combined_all_DT")
@@ -2185,7 +2185,7 @@ ui <- navbarPage(
                        p("The table below provides a summary of:",
                          tags$ul(
                            tags$li("The number of patients starting treatment and reaching the modelling end-point"),
-                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("The total cost to treat these patients and an average cost per pathway"),
                            tags$li("Costs for the main stages of the pathway")
                          )),
                        DTOutput("combined_sem_DT")
@@ -2195,7 +2195,7 @@ ui <- navbarPage(
                        p("The table below provides a summary of:",
                          tags$ul(
                            tags$li("The number of patients starting treatment and reaching the modelling end-point"),
-                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("The total cost to treat these patients and an average cost per pathway"),
                            tags$li("Costs for the main stages of the pathway")
                          )),
                        DTOutput("combined_surv_DT")
@@ -2204,7 +2204,7 @@ ui <- navbarPage(
                        p("The table below provides a summary of:",
                          tags$ul(
                            tags$li("The number of patients starting treatment and reaching the modelling end-point"),
-                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("The total cost to treat these patients and an average cost per pathway"),
                            tags$li("Costs for the main stages of the pathway")
                          )),
                        DTOutput("combined_res_DT")
@@ -2213,7 +2213,7 @@ ui <- navbarPage(
                        p("The table below provides a summary of:",
                          tags$ul(
                            tags$li("The number of patients starting treatment and reaching the modelling end-point"),
-                           tags$li("The total cost of to treat these patients and an average cost per pathway"),
+                           tags$li("The total cost to treat these patients and an average cost per pathway"),
                            tags$li("Costs for the main stages of the pathway")
                          )),
                        DTOutput("combined_lan_DT")
