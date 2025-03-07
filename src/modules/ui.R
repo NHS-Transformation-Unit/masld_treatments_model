@@ -867,8 +867,30 @@ ui <- fluidPage(
                         p("Some of the assumptions will have data validation or limits applied to stop impossible assumptions being applied. 
                           For example, applying negative percentages.")
                          ),
-               nav_panel("Explanation of Assumptions"),
-               nav_panel("Modelling Documentation")
+               nav_panel("Modelling Documentation",
+                         h3("Modelling Documentation"),
+                         hr(),
+                         p("The model has been created and developed with the aim of being transparent and reproducible. 
+                           Therefore, we have created documentation covering how the model has been developed and how key 
+                           assumptions have been developed. This documentation has been developed alongside the codebase 
+                           for the model and resides on the ",
+                           a("GitHub Repository", href = "https://github.com/NHS-Transformation-Unit/masld_treatments_model", target = "_blank"),
+                           ". Key documentation includes: ",
+                           tags$ul(
+                             tags$li("Population Assumptions Development: Documentation on how the population assumptions were developed 
+                                     and links to relevant literature. The documentation can be accessed ", a("here.", href = "https://github.com/NHS-Transformation-Unit/masld_treatments_model/blob/main/documentation/specification/assumptions/Development%20of%20MASLD%20Treatment%20Model%20Assumptions.html", target = "_blank")
+                             ),
+                             tags$li("Finance Assumptions: Documentation covering the sources for finance assumptions used within the model can be found ",
+                                     a("here.", href = "https://github.com/NHS-Transformation-Unit/masld_treatments_model/blob/main/documentation/specification/assumptions/financial_assumptions.html")
+                             ),
+                             tags$li("Running the Model on Posit Cloud: This model can be run on RStudio which is also accessible through a browser via Posit Cloud. 
+                                     The guidance on how to do this is available ", a("here.", href = "https://github.com/NHS-Transformation-Unit/masld_treatments_model/blob/main/documentation/guidance/running_posit_cloud.html", target = "_blank")
+                             )
+                             
+                           )
+                         )
+                         
+                         )
              )
            )
   ),
