@@ -31,8 +31,8 @@ The current structure of the repository is detailed below:
 ├───images
 └───src
     └───config
-    └───config
-    └───config
+    └───modules
+    └───requirements
     
 ```
 
@@ -68,8 +68,8 @@ This repository has been created and developed by:
 
 The development of the pathways and reviewing the model has also been supported by:
 
-- [Molly Glynn](https://github.com/MollyGlynn),
-- [Martha Holt](https://github.com/marthaholt1),
+- [Molly Glynn](https://github.com/MollyGlynn)
+- [Martha Holt](https://github.com/marthaholt1)
 - [Kira Maguire](https://github.com/kiramaguire)
 - Claire Bickerton
 - Jason Carrigan
