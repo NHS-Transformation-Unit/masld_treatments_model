@@ -110,3 +110,8 @@ To remove patients who are already receiving treatment these assumptions are app
 | **Pop_6.5** | `treat_other_F4` | The percentage of the diagnosed F4 population with a comorbidity that are already receiving treatment | Percentage | Limited to between 0 and 100% | Applied to the population of diagnosed F4 patients who have either comorbidity. This is determined as the sum of the two comorbidities minus 12.4% to account for the intersection of both. |
 
 <br/>
+
+
+
+
+test
