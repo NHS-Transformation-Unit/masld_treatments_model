@@ -1,0 +1,112 @@
+---
+title: "MASLD Treatment Model Assumptions Guidance"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "03/10/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  out.width = '100%'
+)
+
+library(here)
+
+```
+
+# Introduction
+The purpose of this documentation is to provide guidance on all model input parameters. This guidance covers:
+
+* A description of the purpose of the input
+* The format the input takes and any restrictions (i.e. percentage)
+* Interactions or dependencies with other inputs
+* The calculations the input is utilised in
+
+<br/>
+
+# Population Assumptions
+This section contains the guidance on the assumptions applied within **Population Assumptions** tab.
+
+## Population
+The first assumption to apply is the adult population for the geography being modelled.
+
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Pop_1**  | `adult_pop`    | This input sets the adult population for the area you are intending to model and can be taken from ONS population estimates for those aged 18+ years | Integer    | N/A   | This is used with calculations to model the number of patients with MASLD or MASH based on input prevalence rates |
+
+<br/>
+
+## Prevalence Rates
+Prevalence rates for MASLD and MASH are required to determine the number of patients who have the conditions (whether diagnosed or undiagnosed).
+
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Pop_2.1.1**| `masld_prev`   | The prevalence of MASLD within the adult population. | Percentage | Limited to between 0 and 100% | Used in conjunction with **Pop_1** to determine the number of patients with MASLD |
+| **Pop_2.1.2**| `masld_prev_tol` | The tolerance range to apply for sensitivities to the MASLD disease prevalence. For example, if the prevalence is set at 24% and a tolerance range of 5% this would set a lower tolerance of 19% prevalence and an upper of 29% prevalence. | Percentage | Used to calculate the percentage of patients with MASLD for the lower and upper estimates. Also used for simulations 4:100 as limits to sample from. | Used in conjunction with **Pop_1** to determine the number of patients with MASLD for sensitivities. | 
+| **Pop_2.2.1** | `mash_prev` | The prevalence of MASH within the adult population. | Percentage | Limited to between 0 and 100% | Used in conjunction with **Pop_1** to determine the number of patients with MASH | 
+| **Pop_2.2.2**| `mash_prev_tol` | The tolerance range to apply for sensitivities to the MASH disease prevalence. For example, if the prevalence is set at 4% and a tolerance range of 2% this would set a lower tolerance of 2% prevalence and an upper of 6% prevalence. | Percentage | Used to calculate the percentage of patients with MASH for the lower and upper estimates. Also used for simulations 4:100 as limits to sample from. | Used in conjunction with **Pop_1** to determine the number of patients with MASH for sensitivities. | 
+
+<br/>
+
+## Fibrosis Stage Assumptions
+Next it is necessary to determine the breakdown of patients with MASH by fibrosis stage. The **Treatment Intentions** assumptions applied later apply assumptions to the population at each fibrosis stage.
+
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Pop_3.1.1** | `F0_prop`   | The percentage of MASH patients who are at fibrosis stage 0 | Percentage | Alongside other fibrosis stages assumptions **Pop_3.1.2**, **Pop_3.1.3**, **Pop_3.1.4**, **Pop_3.1.5** these need to sum to 100%. | Applied to **Pop_2.2.1** to determine the number of patients at stage F0. |
+| **Pop_3.1.2** | `F1_prop`   | The percentage of MASH patients who are at fibrosis stage 1 | Percentage | Alongside other fibrosis stages assumptions **Pop_3.1.1**, **Pop_3.1.3**, **Pop_3.1.4**, **Pop_3.1.5** these need to sum to 100%. | Applied to **Pop_2.2.1** to determine the number of patients at stage F1. |
+| **Pop_3.1.3** | `F2_prop`   | The percentage of MASH patients who are at fibrosis stage 2 | Percentage | Alongside other fibrosis stages assumptions **Pop_3.1.1**, **Pop_3.1.2**, **Pop_3.1.4**, **Pop_3.1.5** these need to sum to 100%. | Applied to **Pop_2.2.1** to determine the number of patients at stage F2. |
+| **Pop_3.1.4** | `F3_prop`   | The percentage of MASH patients who are at fibrosis stage 3 | Percentage | Alongside other fibrosis stages assumptions **Pop_3.1.1**, **Pop_3.1.2**, **Pop_3.1.3**, **Pop_3.1.5** these need to sum to 100%. | Applied to **Pop_2.2.1** to determine the number of patients at stage F3. |
+| **Pop_3.1.5** | `F4_prop`   | The percentage of MASH patients who are at fibrosis stage 4 | Percentage | Alongside other fibrosis stages assumptions **Pop_3.1.1**, **Pop_3.1.2**, **Pop_3.1.3**, **Pop_3.1.4** these need to sum to 100%. | Applied to **Pop_2.2.1** to determine the number of patients at stage F4. |
+
+<br/>
+
+## Comorbidity Prevalence
+A key part of the determining the population who are eligible for treatment involves understanding those who may be receiving treatment via another pathway such as obesity or diabetes. Therefore, modelling the population of patients with these comorbidities is a critical first step.
+
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Pop_4.1.1** | `ob_prev`   | The prevalence of obesity in the population of patients with MASLD/MASH | Percentage | Limited to between 0 and 100% | Applied to population of patients at each fibrosis stage to determine number of those who are obese. | 
+| **Pop_4.1.2** | `ob_prev_tol` | The tolerance range to apply for sensitivities to the obesity prevalence. | Percentage | Limited to between 0 and 20% | Applied to the population of patients at each fibrosis stage to calculate the lower and upper sensitivities and for setting limits for generating the other 97 simulations. |
+| **Pop_4.2.1** | `t2d_prev`   | The prevalence of type 2 diabetes in the population of patients with MASLD/MASH | Percentage | Limited to between 0 and 100% | Applied to population of patients at each fibrosis stage to determine number of those who have type 2 diabetes. | 
+| **Pop_4.2.2** | `t2d_prev_tol` | The tolerance range to apply for sensitivities to the type 2 diabetes prevalence. | Percentage | Limited to between 0 and 25% | Applied to the population of patients at each fibrosis stage to calculate the lower and upper sensitivities and for setting limits for generating the other 97 simulations. |
+
+<br/>
+
+## Diagnosis Rates
+These assumptions are applied to determine the **diagnosed (i.e. known) population ** of patients by fibrosis stage.
+
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Pop_5.1** | `diag_F0` | The percentage of the F0 population who are diagnosed | Percentage | Limited to between 0 and 100% | Applied to the population of patients at F0. |
+| **Pop_5.2** | `diag_F1` | The percentage of the F1 population who are diagnosed | Percentage | Limited to between 0 and 100% | Applied to the population of patients at F1. |
+| **Pop_5.3** | `diag_F2` | The percentage of the F2 population who are diagnosed | Percentage | Limited to between 0 and 100% | Applied to the population of patients at F2. |
+| **Pop_5.4** | `diag_F3` | The percentage of the F3 population who are diagnosed | Percentage | Limited to between 0 and 100% | Applied to the population of patients at F3. |
+| **Pop_5.5** | `diag_F4` | The percentage of the F4 population who are diagnosed | Percentage | Limited to between 0 and 100% | Applied to the population of patients at F4. |
+
+<br/>
+
+## Already Receiving Treatment
+To remove patients who are already receiving treatment these assumptions are applied to those patients with either comorbidity.
+
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Pop_6.1** | `treat_other_F0` | The percentage of the diagnosed F0 population with a comorbidity that are already receiving treatment | Percentage | Limited to between 0 and 100% | Applied to the population of diagnosed F0 patients who have either comorbidity. This is determined as the sum of the two comorbidities minus 12.4% to account for the intersection of both. |
+| **Pop_6.2** | `treat_other_F1` | The percentage of the diagnosed F1 population with a comorbidity that are already receiving treatment | Percentage | Limited to between 0 and 100% | Applied to the population of diagnosed F1 patients who have either comorbidity. This is determined as the sum of the two comorbidities minus 12.4% to account for the intersection of both. |
+| **Pop_6.3** | `treat_other_F2` | The percentage of the diagnosed F2 population with a comorbidity that are already receiving treatment | Percentage | Limited to between 0 and 100% | Applied to the population of diagnosed F2 patients who have either comorbidity. This is determined as the sum of the two comorbidities minus 12.4% to account for the intersection of both. |
+| **Pop_6.4** | `treat_other_F3` | The percentage of the diagnosed F3 population with a comorbidity that are already receiving treatment | Percentage | Limited to between 0 and 100% | Applied to the population of diagnosed F3 patients who have either comorbidity. This is determined as the sum of the two comorbidities minus 12.4% to account for the intersection of both. |
+| **Pop_6.5** | `treat_other_F4` | The percentage of the diagnosed F4 population with a comorbidity that are already receiving treatment | Percentage | Limited to between 0 and 100% | Applied to the population of diagnosed F4 patients who have either comorbidity. This is determined as the sum of the two comorbidities minus 12.4% to account for the intersection of both. |
+
+<br/>
