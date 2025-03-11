@@ -3002,6 +3002,22 @@ vertical-align: -.125em;
   <li><a href="#diagnosis-rates" id="toc-diagnosis-rates" class="nav-link" data-scroll-target="#diagnosis-rates"><span class="header-section-number">2.5</span> Diagnosis Rates</a></li>
   <li><a href="#already-receiving-treatment" id="toc-already-receiving-treatment" class="nav-link" data-scroll-target="#already-receiving-treatment"><span class="header-section-number">2.6</span> Already Receiving Treatment</a></li>
   </ul></li>
+  <li><a href="#treatment-implementation" id="toc-treatment-implementation" class="nav-link" data-scroll-target="#treatment-implementation"><span class="header-section-number">3</span> Treatment Implementation</a>
+  <ul class="collapse">
+  <li><a href="#semaglutide" id="toc-semaglutide" class="nav-link" data-scroll-target="#semaglutide"><span class="header-section-number">3.1</span> Semaglutide</a></li>
+  <li><a href="#survodutide" id="toc-survodutide" class="nav-link" data-scroll-target="#survodutide"><span class="header-section-number">3.2</span> Survodutide</a></li>
+  <li><a href="#resmetirom" id="toc-resmetirom" class="nav-link" data-scroll-target="#resmetirom"><span class="header-section-number">3.3</span> Resmetirom</a></li>
+  <li><a href="#lanifibranor" id="toc-lanifibranor" class="nav-link" data-scroll-target="#lanifibranor"><span class="header-section-number">3.4</span> Lanifibranor</a></li>
+  </ul></li>
+  <li><a href="#semaglutide-pathway-activity-assumptions" id="toc-semaglutide-pathway-activity-assumptions" class="nav-link" data-scroll-target="#semaglutide-pathway-activity-assumptions"><span class="header-section-number">4</span> Semaglutide Pathway Activity Assumptions</a>
+  <ul class="collapse">
+  <li><a href="#pre-treament" id="toc-pre-treament" class="nav-link" data-scroll-target="#pre-treament"><span class="header-section-number">4.1</span> Pre-Treament</a></li>
+  <li><a href="#week-0-treatment-delivery" id="toc-week-0-treatment-delivery" class="nav-link" data-scroll-target="#week-0-treatment-delivery"><span class="header-section-number">4.2</span> Week 0: Treatment Delivery</a></li>
+  <li><a href="#weeks-4-71-monitoring-and-dosage-maintenance" id="toc-weeks-4-71-monitoring-and-dosage-maintenance" class="nav-link" data-scroll-target="#weeks-4-71-monitoring-and-dosage-maintenance"><span class="header-section-number">4.3</span> Weeks 4-71: Monitoring and Dosage Maintenance</a></li>
+  <li><a href="#week-72-continuation-decision" id="toc-week-72-continuation-decision" class="nav-link" data-scroll-target="#week-72-continuation-decision"><span class="header-section-number">4.4</span> Week 72: Continuation Decision</a></li>
+  <li><a href="#week-73-103-dosage-maintenance" id="toc-week-73-103-dosage-maintenance" class="nav-link" data-scroll-target="#week-73-103-dosage-maintenance"><span class="header-section-number">4.5</span> Week 73-103: Dosage Maintenance</a></li>
+  <li><a href="#week-104-ongoing-treatment" id="toc-week-104-ongoing-treatment" class="nav-link" data-scroll-target="#week-104-ongoing-treatment"><span class="header-section-number">4.6</span> Week 104+: Ongoing Treatment</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -3040,6 +3056,7 @@ vertical-align: -.125em;
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<hr>
 <p>The purpose of this documentation is to provide guidance on all model input parameters. This guidance covers:</p>
 <ul>
 <li>A description of the purpose of the input</li>
@@ -3051,6 +3068,7 @@ vertical-align: -.125em;
 </section>
 <section id="population-assumptions" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Population Assumptions</h1>
+<hr>
 <p>This section contains the guidance on the assumptions applied within <strong>Population Assumptions</strong> tab.</p>
 <section id="population" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="population"><span class="header-section-number">2.1</span> Population</h2>
@@ -3405,6 +3423,13 @@ vertical-align: -.125em;
 </tbody>
 </table>
 <p><br></p>
+</section>
+</section>
+<section id="treatment-implementation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Treatment Implementation</h1>
+<p>These assumptions are applied to the diagnosed populations who aren’t receiving treatment to determine the number of patients that are intended to start treatment within the model. They are split into four sections, one for each treatment pathway.</p>
+<section id="semaglutide" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="semaglutide"><span class="header-section-number">3.1</span> Semaglutide</h2>
 <table class="table">
 <colgroup>
 <col style="width: 9%">
@@ -3426,15 +3451,300 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>test id</strong></td>
-<td><code>dummy</code></td>
-<td>This is the description</td>
-<td>Number</td>
-<td>N/A</td>
-<td>N/A</td>
+<td><strong>TI_Sem_1.1</strong></td>
+<td><code>treat_pop_F0_sem</code></td>
+<td>The percentage of the F0 population to start treatment with Semaglutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Surv_1.1</strong>, <strong>TI_Res_1.1</strong> and <strong>TI_Lan_1.1</strong> to ensure that no more than 100% of F0 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F0 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Sem_1.2</strong></td>
+<td><code>treat_pop_F1_sem</code></td>
+<td>The percentage of the F1 population to start treatment with Semaglutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Surv_1.2</strong>, <strong>TI_Res_1.2</strong> and <strong>TI_Lan_1.2</strong> to ensure that no more than 100% of F1 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F1 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Sem_1.3</strong></td>
+<td><code>treat_pop_F2_sem</code></td>
+<td>The percentage of the F2 population to start treatment with Semaglutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Surv_1.3</strong>, <strong>TI_Res_1.3</strong> and <strong>TI_Lan_1.3</strong> to ensure that no more than 100% of F2 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F2 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Sem_1.4</strong></td>
+<td><code>treat_pop_F3_sem</code></td>
+<td>The percentage of the F3 population to start treatment with Semaglutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Surv_1.4</strong>, <strong>TI_Res_1.4</strong> and <strong>TI_Lan_1.4</strong> to ensure that no more than 100% of F3 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F3 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Sem_1.5</strong></td>
+<td><code>treat_pop_F4_sem</code></td>
+<td>The percentage of the F4 population to start treatment with Semaglutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Surv_1.5</strong>, <strong>TI_Res_1.5</strong> and <strong>TI_Lan_1.5</strong> to ensure that no more than 100% of F4 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F4 patients not receiving treatment to calculate the number starting treatment.</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
+</section>
+<section id="survodutide" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="survodutide"><span class="header-section-number">3.2</span> Survodutide</h2>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>TI_Surv_1.1</strong></td>
+<td><code>treat_pop_F0_surv</code></td>
+<td>The percentage of the F0 population to start treatment with Survodutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.1</strong>, <strong>TI_Res_1.1</strong> and <strong>TI_Lan_1.1</strong> to ensure that no more than 100% of F0 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F0 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Surv_1.2</strong></td>
+<td><code>treat_pop_F1_surv</code></td>
+<td>The percentage of the F1 population to start treatment with Survodutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.2</strong>, <strong>TI_Res_1.2</strong> and <strong>TI_Lan_1.2</strong> to ensure that no more than 100% of F1 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F1 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Surv_1.3</strong></td>
+<td><code>treat_pop_F2_surv</code></td>
+<td>The percentage of the F2 population to start treatment with Survodutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.3</strong>, <strong>TI_Res_1.3</strong> and <strong>TI_Lan_1.3</strong> to ensure that no more than 100% of F2 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F2 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Surv_1.4</strong></td>
+<td><code>treat_pop_F3_surv</code></td>
+<td>The percentage of the F3 population to start treatment with Survodutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.4</strong>, <strong>TI_Res_1.4</strong> and <strong>TI_Lan_1.4</strong> to ensure that no more than 100% of F3 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F3 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Surv_1.5</strong></td>
+<td><code>treat_pop_F4_surv</code></td>
+<td>The percentage of the F4 population to start treatment with Survodutide</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.5</strong>, <strong>TI_Res_1.5</strong> and <strong>TI_Lan_1.5</strong> to ensure that no more than 100% of F4 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F4 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="resmetirom" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="resmetirom"><span class="header-section-number">3.3</span> Resmetirom</h2>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>TI_Res_1.1</strong></td>
+<td><code>treat_pop_F0_res</code></td>
+<td>The percentage of the F0 population to start treatment with Resmetirom</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.1</strong>, <strong>TI_Surv_1.1</strong> and <strong>TI_Lan_1.1</strong> to ensure that no more than 100% of F0 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F0 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Res_1.2</strong></td>
+<td><code>treat_pop_F1_res</code></td>
+<td>The percentage of the F1 population to start treatment with Resmetirom</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.2</strong>, <strong>TI_Surv_1.2</strong> and <strong>TI_Lan_1.2</strong> to ensure that no more than 100% of F1 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F1 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Res_1.3</strong></td>
+<td><code>treat_pop_F2_res</code></td>
+<td>The percentage of the F2 population to start treatment with Resmetirom</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.3</strong>, <strong>TI_Surv_1.3</strong> and <strong>TI_Lan_1.3</strong> to ensure that no more than 100% of F2 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F2 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Res_1.4</strong></td>
+<td><code>treat_pop_F3_res</code></td>
+<td>The percentage of the F3 population to start treatment with Resmetirom</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.4</strong>, <strong>TI_Surv_1.4</strong> and <strong>TI_Lan_1.4</strong> to ensure that no more than 100% of F3 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F3 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Res_1.5</strong></td>
+<td><code>treat_pop_F4_res</code></td>
+<td>The percentage of the F4 population to start treatment with Resmetirom</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.5</strong>, <strong>TI_Surv_1.5</strong> and <strong>TI_Lan_1.5</strong> to ensure that no more than 100% of F4 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F4 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="lanifibranor" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="lanifibranor"><span class="header-section-number">3.4</span> Lanifibranor</h2>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>TI_Lan_1.1</strong></td>
+<td><code>treat_pop_F0_lan</code></td>
+<td>The percentage of the F0 population to start treatment with Lanifibranor</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.1</strong>, <strong>TI_Surv_1.1</strong> and <strong>TI_Res_1.1</strong> to ensure that no more than 100% of F0 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F0 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Lan_1.2</strong></td>
+<td><code>treat_pop_F1_lan</code></td>
+<td>The percentage of the F1 population to start treatment with Lanifibranor</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.2</strong>, <strong>TI_Surv_1.2</strong> and <strong>TI_Res_1.2</strong> to ensure that no more than 100% of F1 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F1 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Lan_1.3</strong></td>
+<td><code>treat_pop_F2_lan</code></td>
+<td>The percentage of the F2 population to start treatment with Lanifibranor</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.3</strong>, <strong>TI_Surv_1.3</strong> and <strong>TI_Res_1.3</strong> to ensure that no more than 100% of F2 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F2 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>TI_Lan_1.4</strong></td>
+<td><code>treat_pop_F3_lan</code></td>
+<td>The percentage of the F3 population to start treatment with Lanifibranor</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.4</strong>, <strong>TI_Surv_1.4</strong> and <strong>TI_Res_1.4</strong> to ensure that no more than 100% of F3 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F3 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>TI_Lan_1.5</strong></td>
+<td><code>treat_pop_F4_lan</code></td>
+<td>The percentage of the F4 population to start treatment with Lanifibranor</td>
+<td>Percentage</td>
+<td>Limited to between 0 and 100. Needs to be considered against <strong>TI_Sem_1.5</strong>, <strong>TI_Surv_1.5</strong> and <strong>TI_Res_1.5</strong> to ensure that no more than 100% of F4 patients start treatment. Unless you are modelling patients receiving multiple treatments.</td>
+<td>Applied to the population of diagnosed F4 patients not receiving treatment to calculate the number starting treatment.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+</section>
+<section id="semaglutide-pathway-activity-assumptions" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Semaglutide Pathway Activity Assumptions</h1>
+<hr>
+<p>The following assumptions relate to activities for patients on the Semaglutide treatment pathway.</p>
+<section id="pre-treament" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="pre-treament"><span class="header-section-number">4.1</span> Pre-Treament</h2>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sem_1.1</strong></td>
+<td><code>mm_assess_prop_sem</code></td>
+<td>Percentage of patients starting treatment who will undergo an initial eligibility assessment.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patients starting treatment.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="week-0-treatment-delivery" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="week-0-treatment-delivery"><span class="header-section-number">4.2</span> Week 0: Treatment Delivery</h2>
+</section>
+<section id="weeks-4-71-monitoring-and-dosage-maintenance" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="weeks-4-71-monitoring-and-dosage-maintenance"><span class="header-section-number">4.3</span> Weeks 4-71: Monitoring and Dosage Maintenance</h2>
+</section>
+<section id="week-72-continuation-decision" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="week-72-continuation-decision"><span class="header-section-number">4.4</span> Week 72: Continuation Decision</h2>
+</section>
+<section id="week-73-103-dosage-maintenance" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="week-73-103-dosage-maintenance"><span class="header-section-number">4.5</span> Week 73-103: Dosage Maintenance</h2>
+</section>
+<section id="week-104-ongoing-treatment" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="week-104-ongoing-treatment"><span class="header-section-number">4.6</span> Week 104+: Ongoing Treatment</h2>
 </section>
 </section>
 
