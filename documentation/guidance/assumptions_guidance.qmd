@@ -178,7 +178,12 @@ The following assumptions relate to activities for patients on the Semaglutide t
 
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Sem_1.1** | `mm_assess_prop_sem` | Percentage of patients starting treatment who will undergo an initial eligibility assessment. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
+| **Sem_1.1.1** | `mm_assess_prop_sem` | Percentage of patients starting treatment who will undergo an initial eligibility assessment. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
+| **Sem_1.1.2** | `mm_assess_setting_sem` | Set the percentage of initial eligibility assessments taking place across the six locations. Also set the number of minutes for each assessment | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the total population starting treatment with Semaglutide. The number of minutes are then applied to this activity. |
+| **Sem_1.2** | `pre_liver_biopsy_prop_sem` | The percentage of population starting treatment with Semaglutide undergoing a liver biopsy at baseline. | Percentage | Limited from 0 to 100% | Applied to the population starting treatment to determine liver biopsy activities. |
+| **Sem_1.3** | `pre_elf_prop_sem` | The percentage of population starting treatment with Semaglutide undergoing an ELF test at baseline. | Percentage | Limited from 0 to 100% | Applied to the population starting treatment to determine ELF activities. |
+| **Sem_1.4** | `pre_biomarkers_prop_sem` | The percentage of population starting treatment with Semaglutide undergoing biomarker testing at baseline. | Percentage | Limited from 0 to 100% | Applied to the population starting treatment to determine biomarker activities. |
+| **Sem_1.5** | `pre_fibro_prop_sem` | The percentage of population starting treatment with Semaglutide undergoing FibroScan at baseline. | Percentage | Limited from 0 to 100% | Applied to the population starting treatment to determine FibroScan activities. |
 
 
 <br/>

@@ -3720,12 +3720,52 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Sem_1.1</strong></td>
+<td><strong>Sem_1.1.1</strong></td>
 <td><code>mm_assess_prop_sem</code></td>
 <td>Percentage of patients starting treatment who will undergo an initial eligibility assessment.</td>
 <td>Percentage</td>
 <td>Limited to 0 and 100%</td>
 <td>This percentage is applied to the number of patients starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>Sem_1.1.2</strong></td>
+<td><code>mm_assess_setting_sem</code></td>
+<td>Set the percentage of initial eligibility assessments taking place across the six locations. Also set the number of minutes for each assessment</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the total population starting treatment with Semaglutide. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sem_1.2</strong></td>
+<td><code>pre_liver_biopsy_prop_sem</code></td>
+<td>The percentage of population starting treatment with Semaglutide undergoing a liver biopsy at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine liver biopsy activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Sem_1.3</strong></td>
+<td><code>pre_elf_prop_sem</code></td>
+<td>The percentage of population starting treatment with Semaglutide undergoing an ELF test at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine ELF activities.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sem_1.4</strong></td>
+<td><code>pre_biomarkers_prop_sem</code></td>
+<td>The percentage of population starting treatment with Semaglutide undergoing biomarker testing at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine biomarker activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Sem_1.5</strong></td>
+<td><code>pre_fibro_prop_sem</code></td>
+<td>The percentage of population starting treatment with Semaglutide undergoing FibroScan at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine FibroScan activities.</td>
 </tr>
 </tbody>
 </table>
