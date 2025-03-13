@@ -3142,10 +3142,15 @@ margin-bottom: 20px;
   <li><a href="#week-73-103-dosage-mainenance" id="toc-week-73-103-dosage-mainenance" class="nav-link" data-scroll-target="#week-73-103-dosage-mainenance"><span class="header-section-number">5.5</span> Week 73-103: Dosage Mainenance</a></li>
   <li><a href="#week-104-ongoing-treatment-1" id="toc-week-104-ongoing-treatment-1" class="nav-link" data-scroll-target="#week-104-ongoing-treatment-1"><span class="header-section-number">5.6</span> Week 104+: Ongoing Treatment</a></li>
   </ul></li>
-  <li><a href="#survodutide-pathway-activity-assumptions-1" id="toc-survodutide-pathway-activity-assumptions-1" class="nav-link" data-scroll-target="#survodutide-pathway-activity-assumptions-1"><span class="header-section-number">6</span> Survodutide Pathway Activity Assumptions</a>
+  <li><a href="#resmetirom-pathway-activity-assumptions" id="toc-resmetirom-pathway-activity-assumptions" class="nav-link" data-scroll-target="#resmetirom-pathway-activity-assumptions"><span class="header-section-number">6</span> Resmetirom Pathway Activity Assumptions</a>
   <ul class="collapse">
   <li><a href="#pre-treament-2" id="toc-pre-treament-2" class="nav-link" data-scroll-target="#pre-treament-2"><span class="header-section-number">6.1</span> Pre-Treament</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6.2</span> </a></li>
+  <li><a href="#weeks-0-52-initial-treatment" id="toc-weeks-0-52-initial-treatment" class="nav-link" data-scroll-target="#weeks-0-52-initial-treatment"><span class="header-section-number">6.2</span> Weeks 0-52: Initial Treatment</a></li>
+  <li><a href="#weeks-52-71-efficacy-and-continuation" id="toc-weeks-52-71-efficacy-and-continuation" class="nav-link" data-scroll-target="#weeks-52-71-efficacy-and-continuation"><span class="header-section-number">6.3</span> Weeks 52-71: Efficacy and Continuation</a></li>
+  <li><a href="#week-72-continuation-decision-2" id="toc-week-72-continuation-decision-2" class="nav-link" data-scroll-target="#week-72-continuation-decision-2"><span class="header-section-number">6.4</span> Week 72: Continuation Decision</a></li>
+  <li><a href="#week-73-103-dosage-maintenance-1" id="toc-week-73-103-dosage-maintenance-1" class="nav-link" data-scroll-target="#week-73-103-dosage-maintenance-1"><span class="header-section-number">6.5</span> Week 73-103: Dosage Maintenance</a></li>
+  <li><a href="#week-104-ongoing-treatment-2" id="toc-week-104-ongoing-treatment-2" class="nav-link" data-scroll-target="#week-104-ongoing-treatment-2"><span class="header-section-number">6.6</span> Week 104+: Ongoing Treatment</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6.7</span> </a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4297,7 +4302,7 @@ margin-bottom: 20px;
 <tr class="odd">
 <td><strong>Surv_1.2</strong></td>
 <td><code>pre_liver_biopsy_prop_surv</code></td>
-<td>The percentage of population starting treatment with Semaglutide undergoing a liver biopsy at baseline.</td>
+<td>The percentage of population starting treatment with Survodutide undergoing a liver biopsy at baseline.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
 <td>Applied to the population starting treatment to determine liver biopsy activities.</td>
@@ -4313,7 +4318,7 @@ margin-bottom: 20px;
 <tr class="odd">
 <td><strong>Surv_1.4</strong></td>
 <td><code>pre_biomarkers_prop_surv</code></td>
-<td>The percentage of population starting treatment with Semaglutide undergoing biomarker testing at baseline.</td>
+<td>The percentage of population starting treatment with Survodutide undergoing biomarker testing at baseline.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
 <td>Applied to the population starting treatment to determine biomarker activities.</td>
@@ -4671,13 +4676,13 @@ margin-bottom: 20px;
 </table>
 </section>
 </section>
-<section id="survodutide-pathway-activity-assumptions-1" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Survodutide Pathway Activity Assumptions</h1>
+<section id="resmetirom-pathway-activity-assumptions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Resmetirom Pathway Activity Assumptions</h1>
 <hr>
-<p>The following assumptions relate to activities for patients on the Survodutide treatment pathway.</p>
+<p>The following assumptions relate to activities for patients on the Resmetirom treatment pathway.</p>
 <section id="pre-treament-2" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="pre-treament-2"><span class="header-section-number">6.1</span> Pre-Treament</h2>
-<table class="caption-top">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
 <col style="width: 12%">
@@ -4697,11 +4702,472 @@ margin-bottom: 20px;
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td><strong>Res_1.1.1</strong></td>
+<td><code>mm_assess_prop_res</code></td>
+<td>Percentage of patients starting treatment who will undergo an initial eligibility assessment.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patients starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_1.1.2</strong></td>
+<td><code>mm_assess_setting_res</code></td>
+<td>Set the percentage of initial eligibility assessments taking place across the six locations. Also set the number of minutes for each assessment</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the total population starting treatment with Resmetirom. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_1.2</strong></td>
+<td><code>pre_liver_biopsy_prop_res</code></td>
+<td>The percentage of population starting treatment with Resmetirom, undergoing a liver biopsy at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine liver biopsy activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_1.3</strong></td>
+<td><code>pre_elf_prop_res</code></td>
+<td>The percentage of population starting treatment with Resmetirom undergoing an ELF test at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine ELF activities.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_1.4</strong></td>
+<td><code>pre_biomarkers_prop_res</code></td>
+<td>The percentage of population starting treatment with Resmetirom undergoing biomarker testing at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine biomarker activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_1.5</strong></td>
+<td><code>pre_fibro_prop_res</code></td>
+<td>The percentage of population starting treatment with Resmetirom undergoing FibroScan at baseline.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population starting treatment to determine FibroScan activities.</td>
+</tr>
 </tbody>
 </table>
 </section>
-<section id="section" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="section"><span class="header-section-number">6.2</span> </h2>
+<section id="weeks-0-52-initial-treatment" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="weeks-0-52-initial-treatment"><span class="header-section-number">6.2</span> Weeks 0-52: Initial Treatment</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Res_2.1</strong></td>
+<td><code>dosage_0_52_res</code></td>
+<td>Percentage of patients starting treatment who are under 100kg.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patient starting treatment.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_2.2</strong></td>
+<td><code>retention_res_0_52</code></td>
+<td>Percentage of patients who started treatment who remain on treatment at 52 weeks.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patients starting treatment.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_2.3.1</strong></td>
+<td><code>treatment_setting_0_52_matrix_res</code></td>
+<td>Set the percentage of initial treatment delivery appointments taking place across the six locations. Also set the number of minutes for each treatment appointment.</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the total population starting treatment with Resmetirom. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_2.3.2</strong></td>
+<td><code>appts_0_52_res</code></td>
+<td>Set the number of appointments taking place over weeks 0-52.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_2.4.1</strong></td>
+<td><code>monitor_tests_0_52_res</code></td>
+<td>Set the number of monitoring tests taking place over weeks 0-52.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Res_2.4.2</strong></td>
+<td><code>monitor_tests_0_52_elf_res</code></td>
+<td>The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_2.4.3</strong></td>
+<td><code>monitor_tests_0_52_biomarkers_res</code></td>
+<td>The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Res_2.4.4</strong></td>
+<td><code>monitor_tests_0_52_fibro_res</code></td>
+<td>The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="weeks-52-71-efficacy-and-continuation" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="weeks-52-71-efficacy-and-continuation"><span class="header-section-number">6.3</span> Weeks 52-71: Efficacy and Continuation</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Res_3.1</strong></td>
+<td><code>efficacy_52_liver_biopsy_res</code></td>
+<td>The percentage of population receiving treatment with Resmetirom at week 52 undergoing a liver biopsy to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 52 to determine liver biopsy activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_3.2</strong></td>
+<td><code>efficacy_52_elf_prop_res</code></td>
+<td>The percentage of population receiving treatment with Resmetirom at week 52 undergoing an ELF test to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 52 to determine ELF activities.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_3.3</strong></td>
+<td><code>efficacy_52_fibro_prop_res</code></td>
+<td>The percentage of population receiving treatment with Resmetirom at week 52 undergoing FibroScan to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 52 to determine FibroScan activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_3.4</strong></td>
+<td><code>efficacy_52_biomarkers_prop_res</code></td>
+<td>The percentage of population receiving treatment with Resmetirom at week 52 undergoing biomarker testing to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 52 to determine biomarker activities.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_3.5.1</strong></td>
+<td><code>continuation_52_prop_res</code></td>
+<td>The percentage of the population continuing on treatment after week 52.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>Applied to the population remaining on treatment at week 52.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_3.5.2</strong></td>
+<td><code>continuation_52_delivery_setting_res</code></td>
+<td>Set the percentage of continuation decision appointments taking place across the six locations. Also set the number of minutes for each assessment</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the population remaining on treatment at week 52. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_3.6</strong></td>
+<td><code>retention_res_52_71</code></td>
+<td>Percentage of patients who continued treatment at week 52 who remain on treatment at week 71.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patients who continued treatment at week 52.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_3.7.1</strong></td>
+<td><code>treatment_setting_52_71_matrix_res</code></td>
+<td>Set the percentage of treatment delivery appointments taking place across the six locations over weeks 52-71. Also set the number of minutes for each treatment appointment.</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the number of patients who continued treatment at week 52. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_3.7.2</strong></td>
+<td><code>appts_52_71_res</code></td>
+<td>Set the number of appointments taking place over weeks 52-71.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="week-72-continuation-decision-2" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="week-72-continuation-decision-2"><span class="header-section-number">6.4</span> Week 72: Continuation Decision</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Res_4.1</strong></td>
+<td><code>efficacy_liver_biopsy_res</code></td>
+<td>The percentage of the population receiving treatment with Resmetirom at week 72 undergoing a liver biopsy to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 72 to determine liver biopsy activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_4.2</strong></td>
+<td><code>efficacy_elf_prop_res</code></td>
+<td>The percentage of population receiving treatment with Resmetirom at week 72 undergoing an ELF test to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 72 to determine ELF activities.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_4.3</strong></td>
+<td><code>efficacy_fibro_prop_res</code></td>
+<td>The percentage of population receiving treatment with Resmetirom at week 72 undergoing FibroScan to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 72 to determine FibroScan activities.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_4.4</strong></td>
+<td><code>efficacy_biomarkers_prop_res</code></td>
+<td>TThe percentage of population receiving treatment with Resmetirom at week 72 undergoing biomarker testing to assess treatment efficacy.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>Applied to the population receiving treatment at week 72 to determine biomarker activities.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_4.5.1</strong></td>
+<td><code>continuation_prop_res</code></td>
+<td>The percentage of the population continuing on treatment after week 72.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>Applied to the population remaining on treatment at week 72.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_4.5.2</strong></td>
+<td><code>continuation_delivery_setting_res</code></td>
+<td>Set the percentage of continuation decision appointments taking place across the six locations. Also set the number of minutes for each assessment</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the population remaining on treatment at week 72. The number of minutes are then applied to this activity.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="week-73-103-dosage-maintenance-1" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="week-73-103-dosage-maintenance-1"><span class="header-section-number">6.5</span> Week 73-103: Dosage Maintenance</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Res_5.1</strong></td>
+<td><code>retention_73_103_res</code></td>
+<td>Percentage of patients on treatment at week 73 who remain on treatment at week 103.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patients receiving treatment at week 73.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_5.2.1</strong></td>
+<td><code>treatment_setting_73_103_matrix_res</code></td>
+<td>Set the percentage of treatment delivery appointments over weeks 73-103 taking place across the six locations. Also set the number of minutes for each treatment appointment.</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the population receiving treatment with Resmetirom at week 73. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_5.2.2</strong></td>
+<td><code>appts_73_103_res</code></td>
+<td>Set the number of appointments taking place over weeks 73-103.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Res_5.3.1</strong></td>
+<td><code>monitoring_tests_number_73_103_res</code></td>
+<td>Set the number of monitoring tests taking place over weeks 73-103.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_5.3.2</strong></td>
+<td><code>monitoring_tests_73_103_elf_res</code></td>
+<td>The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Res_5.3.3</strong></td>
+<td><code>monitoring_tests_73_103_biomarkers_res</code></td>
+<td>The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="week-104-ongoing-treatment-2" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="week-104-ongoing-treatment-2"><span class="header-section-number">6.6</span> Week 104+: Ongoing Treatment</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input ID</th>
+<th>ID in Codebase</th>
+<th>Description</th>
+<th>Format</th>
+<th>Interactions or Dependencies</th>
+<th>Calculations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Res_6.1</strong></td>
+<td><code>ongoing_period_res</code></td>
+<td>Set the number of weeks treatment is continued.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Res_6.2</strong></td>
+<td><code>retention_end_res</code></td>
+<td>Percentage of patients who were receiving treatment at week 103 who remain on treatment at the end of the model.</td>
+<td>Percentage</td>
+<td>Limited to 0 and 100%</td>
+<td>This percentage is applied to the number of patients on treatment at week 103.</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_6.3.1</strong></td>
+<td><code>resmetirom_ongoing_delivery_setting</code></td>
+<td>Set the percentage of treatment delivery appointments from week 104 to end point taking place across the six locations. Also set the number of minutes for each treatment appointment.</td>
+<td>Percentage for activity and numeric value for number of minutes</td>
+<td>The sum of the percentages across each of the six settings should sum to 100%</td>
+<td>The percentages are applied to the population receiving treatment with Resmetirom at week 103. The number of minutes are then applied to this activity.</td>
+</tr>
+<tr class="even">
+<td><strong>Res_6.3.2</strong></td>
+<td><code>appts_ongoing_res</code></td>
+<td>Set the number of appointments taking place from week 104 to end point.</td>
+<td>Numeric value</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_6.4</strong></td>
+<td><code>ongoing_annual_prop_elf_res</code></td>
+<td>The percentage of annual assessments for Resmetirom including an ELF test.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Res_6.5</strong></td>
+<td><code>ongoing_annual_prop_biomarkers_res</code></td>
+<td>The percentage of annual assessments for Resmetirom including biomarkers.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>Res_6.6</strong></td>
+<td><code>ongoing_annual_prop_fibro_res</code></td>
+<td>The percentage of annual assessments for Resmetirom including FibroScan.</td>
+<td>Percentage</td>
+<td>Limited from 0 to 100%</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="section"><span class="header-section-number">6.7</span> </h2>
 </section>
 </section>
 
