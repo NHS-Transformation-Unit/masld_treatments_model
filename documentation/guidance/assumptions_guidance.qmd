@@ -189,15 +189,50 @@ The following assumptions relate to activities for patients on the Semaglutide t
 <br/>
 
 ## Week 0: Treatment Delivery
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Sem_2.1** | `retention_sem_0_16` | Percentage of patients who started treatment who remain on treatment at 16 weeks. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
+| **Sem_2.2.1** | `treatment_setting_0_16_matrix_sem` | Set the percentage of initial treatment delivery appointments taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the total population starting treatment with Semaglutide. The number of minutes are then applied to this activity. |
+| **Sem_2.2.2** | `appts_0_16_sem` | Set the number of appointments taking place over weeks 0-16.| Numeric value | N/A | N/A |
 
 
 ## Weeks 4-71: Monitoring and Dosage Maintenance
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Sem_3.1.1** | `monitoring_tests_number_sem` | Set the number of monitoring tests taking place over weeks 4-71.| Numeric value | N/A | N/A |
+| **Sem_3.1.2** | `monitoring_elf_prop_sem` | The percentage of monitoring tests taking place over weeks 4-71 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_3.1.2** | `monitoring_bio_prop_sem` | The percentage of monitoring tests taking place over weeks 4-71 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_3.2** | `dosage_retention_20_71_sem` | Percentage of patients who were receiving treatment at week 16 who remain on treatment at week 71. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 16. |
+| **Sem_3.3** | `semaglutide_20_71_delivery_setting` | Set the percentage of treatment delivery appointments taking place over weeks 20-71 across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population on treatment with Semaglutide at week 16. The number of minutes are then applied to this activity. |
+| **Sem_3.4** | `appts_20_71_sem` | Set the number of appointments taking place over weeks 20-71.| Numeric value | N/A | N/A |
 
 
 ## Week 72: Continuation Decision
-
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Sem_4.1** | `efficacy_liver_biopsy_prop_sem` | The percentage of population remaining on treatment at week 72 undergoing a liver biopsy to assess efficacy. | Percentage | Limited from 0 to 100% | Applied to the population remaining on treatment at week 72 to determine liver biopsy activities. |
+| **Sem_4.2** | `efficacy_elf_prop_sem` | The percentage of population remaining on treatment at week 72 undergoing ELF testing to assess efficacy. | Percentage | Limited from 0 to 100% | Applied to the population remaining on treatment at week 72 to determine ELF activities. |
+| **Sem_4.3** | `efficacy_fibro_prop_sem` | The percentage of population remaining on treatment at week 72 undergoing a FibroScan to assess efficacy. | Percentage | Limited from 0 to 100% | Applied to the population remaining on treatment at week 72 to determine FibroScan activities. |
+| **Sem_4.4** | `efficacy_biomarkers_prop_sem` | The percentage of population remaining on treatment at week 72 undergoing biomarker testing to assess efficacy.| Percentage | Limited from 0 to 100% | Applied to the population remaining on treatment at week 72 to determine biomarker activities. |
+| **Sem_4.5.1** | `continuation_prop_sem` | The percentage of population remaining on treatment at week 72 continuing with treatment. | Percentage | Limited to 0 and 100% | Applied to the population remaining on treatment at week 72.|
+| **Sem_4.5.2** | `continuation_delivery_setting_sem` | Set the percentage of continuation decision appointments taking place across the six locations. Also set the number of minutes for each assessment | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population remaining on treatment at week 72. The number of minutes are then applied to this activity. |
 
 ## Week 73-103: Dosage Maintenance
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Sem_5.1** | `retention_73_103_sem` | Percentage of patients on treatment at week 73 who remain on treatment at week 103. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients receiving treatment at week 73. |
+| **Sem_5.2.1** | `semaglutide_73_103_delivery_setting` | Set the percentage of treatment delivery appointments over weeks 73-103 taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Semaglutide at week 73. The number of minutes are then applied to this activity. |
+| **Sem_5.2.2** | `appts_73_103_sem` | Set the number of appointments taking place over weeks 73-103.| Numeric value | N/A | N/A |
 
 
 ## Week 104+: Ongoing Treatment
+| Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
+|------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
+| **Sem_6.1** | `ongoing_period_sem` | Set the number of weeks treatment is continued.| Numeric value | N/A | N/A |
+| **Sem_6.2** | `retention_end_sem` | Percentage of patients who were receiving treatment at week 103 who remain on treatment at the end of the model. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 103. |
+| **Sem_6.3.1** | `semaglutide_ongoing_delivery_setting` | Set the percentage of treatment delivery appointments from week 104 to end point taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Semaglutide at week 103. The number of minutes are then applied to this activity. |
+| **Sem_6.3.2** | `appts_ongoing_sem` | Set the number of appointments taking place from week 104 to end point.| Numeric value | N/A | N/A |
+| **Sem_6.4** | `ongoing_annual_prop_elf_sem` | The percentage of annual assessments for Semaglutide including an ELF test. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_6.5** | `ongoing_annual_prop_biomarkers_sem` | The percentage of annual assessments for Semaglutide including an biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_6.6** | `ongoing_annual_prop_fibro_sem` | The percentage of annual assessments for Semaglutide including an FibroScan. | Percentage | Limited from 0 to 100% | N/A |
+
