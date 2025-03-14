@@ -890,6 +890,15 @@ ui <- fluidPage(
                            )
                          )
                          
+                         ),
+               nav_panel("Assumptions Guidance",
+                         tags$iframe(
+                           src = "guidance/assumptions_guidance.html",
+                           width = "100%",
+                           height = "800px",
+                           style = "border:none;"
+                         )
+                         
                          )
              )
            )
@@ -901,8 +910,8 @@ ui <- fluidPage(
                sidebarPanel(
                  h4("Set Adult Population:"),
                  numericInput("adult_pop",
-                              "Set Adult Population:",
-                              value = 45691677,
+                              "Set Adult Population (18-75):",
+                              value = 40926542,
                               min = 0,
                               step = 1),
                  h4("Set the MASLD and MASH Prevalence:"),
