@@ -50,7 +50,7 @@ The first assumption to apply is the adult population for the geography being mo
 
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Pop_1**  | `adult_pop`    | This input sets the adult population for the area you are intending to model and can be taken from ONS population estimates for those aged 18+ years | Integer    | N/A   | This is used with calculations to model the number of patients with MASLD or MASH based on input prevalence rates |
+| **Pop_1**  | `adult_pop`    | This input sets the adult population for the area you are intending to model and can be taken from ONS population estimates for those aged 18-75 years | Integer    | N/A   | This is used with calculations to model the number of patients with MASLD or MASH based on input prevalence rates |
 
 <br/>
 

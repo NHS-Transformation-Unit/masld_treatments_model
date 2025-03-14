@@ -11,6 +11,7 @@ library(EnvStats)
 server <- function(input, output, session) {
   
   addResourcePath(prefix = "config", directoryPath = "www/config")
+  addResourcePath(prefix = "guidance", directoryPath = "www/guidance")
   
 # Load Inputs -------------------------------------------------------------
   
