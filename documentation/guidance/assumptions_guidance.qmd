@@ -1,6 +1,6 @@
 ---
 title: "MASLD Treatment Model Assumptions Guidance"
-author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://github.com/marthaholt1'>Martha Holt</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
 date: "03/10/2025"
 date-format: "DD MMMM YYYY"
 format:
@@ -193,18 +193,18 @@ The following assumptions relate to activities for patients on the Semaglutide t
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
 | **Sem_2.1** | `retention_sem_0_16` | Percentage of patients who started treatment who remain on treatment at 16 weeks. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
 | **Sem_2.2.1** | `treatment_setting_0_16_matrix_sem` | Set the percentage of initial treatment delivery appointments taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the total population starting treatment with Semaglutide. The number of minutes are then applied to this activity. |
-| **Sem_2.2.2** | `appts_0_16_sem` | Set the number of appointments taking place over weeks 0-16.| Numeric value | N/A | N/A |
+| **Sem_2.2.2** | `appts_0_16_sem` | Set the number of appointments taking place over weeks 0-16.| Numeric value | Limited to maximum of 1 appointment per week | Used with **Sem_2.2.1** and **Sem_2.1** to determine the number of appointments taking place in each setting. |
 
 
 ## Weeks 4-71: Monitoring and Dosage Maintenance
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Sem_3.1.1** | `monitoring_tests_number_sem` | Set the number of monitoring tests taking place over weeks 4-71.| Numeric value | N/A | N/A |
-| **Sem_3.1.2** | `monitoring_elf_prop_sem` | The percentage of monitoring tests taking place over weeks 4-71 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Sem_3.1.3** | `monitoring_bio_prop_sem` | The percentage of monitoring tests taking place over weeks 4-71 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_3.1.1** | `monitoring_tests_number_sem` | Set the number of monitoring tests taking place over weeks 4-71.| Numeric value | None | Applied to population of patients starting treatment with retention rates applied (**Sem_2.1** and **Sem_3.2**) |
+| **Sem_3.1.2** | `monitoring_elf_prop_sem` | The percentage of monitoring tests taking place over weeks 4-71 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
+| **Sem_3.1.3** | `monitoring_bio_prop_sem` | The percentage of monitoring tests taking place over weeks 4-71 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
 | **Sem_3.2** | `dosage_retention_20_71_sem` | Percentage of patients who were receiving treatment at week 16 who remain on treatment at week 71. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 16. |
 | **Sem_3.3** | `semaglutide_20_71_delivery_setting` | Set the percentage of treatment delivery appointments taking place over weeks 20-71 across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population on treatment with Semaglutide at week 16. The number of minutes are then applied to this activity. |
-| **Sem_3.4** | `appts_20_71_sem` | Set the number of appointments taking place over weeks 20-71.| Numeric value | N/A | N/A |
+| **Sem_3.4** | `appts_20_71_sem` | Set the number of appointments taking place over weeks 20-71.| Numeric value | Limited to max of 1 appointment per week | Used with **Sem_3.3** and **Sem_3.2** to determine the number of appointments taking place in each setting. |
 
 
 ## Week 72: Continuation Decision
@@ -222,24 +222,24 @@ The following assumptions relate to activities for patients on the Semaglutide t
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
 | **Sem_5.1** | `retention_73_103_sem` | Percentage of patients on treatment at week 73 who remain on treatment at week 103. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients receiving treatment at week 73. |
 | **Sem_5.2.1** | `semaglutide_73_103_delivery_setting` | Set the percentage of treatment delivery appointments over weeks 73-103 taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Semaglutide at week 73. The number of minutes are then applied to this activity. |
-| **Sem_5.2.2** | `appts_73_103_sem` | Set the number of appointments taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Sem_5.3.1** | `monitoring_tests_number_73_103_sem` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Sem_5.3.2** | `monitoring_tests_73_103_elf_sem` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Sem_5.3.3** | `monitoring_tests_73_103_biomarkers_sem` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_5.2.2** | `appts_73_103_sem` | Set the number of appointments taking place over weeks 73-103.| Numeric value | None | Applied to population of patients continuing treatment at week 73 and **Sem_5.1** |
+| **Sem_5.3.1** | `monitoring_tests_number_73_103_sem` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | None | None |
+| **Sem_5.3.2** | `monitoring_tests_73_103_elf_sem` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Sem_5.3.1**) multiplied by number of patients continuing treatment |
+| **Sem_5.3.3** | `monitoring_tests_73_103_biomarkers_sem` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Sem_5.3.1**) multiplied by number of patients continuing treatment |
 
 
 ## Week 104+: Ongoing Treatment
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Sem_6.1** | `ongoing_period_sem` | Set the number of weeks treatment is continued.| Numeric value | N/A | N/A |
+| **Sem_6.1** | `ongoing_period_sem` | Set the number of weeks treatment is continued.| Numeric value | Limited to 208 weeks (4 years)| Used alongside **Sem_6.2** to determine number of patients still receiving treatment for the ongoing treatment period. |
 | **Sem_6.2** | `retention_end_sem` | Percentage of patients who were receiving treatment at week 103 who remain on treatment at the end of the model. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 103. |
 | **Sem_6.3.1** | `semaglutide_ongoing_delivery_setting` | Set the percentage of treatment delivery appointments from week 104 to end point taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Semaglutide at week 103. The number of minutes are then applied to this activity. |
-| **Sem_6.3.2** | `appts_ongoing_sem` | Set the number of appointments taking place from week 104 to end point.| Numeric value | N/A | N/A |
-| **Sem_6.4** | `ongoing_annual_prop_elf_sem` | The percentage of annual assessments for Semaglutide including an ELF test. | Percentage | Limited from 0 to 100% | N/A |
-| **Sem_6.5** | `ongoing_annual_prop_biomarkers_sem` | The percentage of annual assessments for Semaglutide including biomarkers. | Percentage | Limited from 0 to 100% | N/A |
-| **Sem_6.6** | `ongoing_annual_prop_fibro_sem` | The percentage of annual assessments for Semaglutide including FibroScan. | Percentage | Limited from 0 to 100% | N/A |
+| **Sem_6.3.2** | `appts_ongoing_sem` | Set the number of appointments taking place from week 104 to end point.| Numeric value | None | Applied with **Sem_6.3.1** and diagnostics to determine number of annual appointments post week 104. |
+| **Sem_6.4** | `ongoing_annual_prop_elf_sem` | The percentage of annual assessments for Semaglutide including an ELF test. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Sem_6.5** | `ongoing_annual_prop_biomarkers_sem` | The percentage of annual assessments for Semaglutide including biomarkers. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Sem_6.6** | `ongoing_annual_prop_fibro_sem` | The percentage of annual assessments for Semaglutide including FibroScan. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
 
-
+<br/>
 
 # Survodutide Pathway Activity Assumptions
 
@@ -265,16 +265,16 @@ The following assumptions relate to activities for patients on the Survodutide t
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
 | **Surv_2.1** | `retention_surv_0_24` | Percentage of patients who started treatment who remain on treatment at 24 weeks. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
 | **Surv_2.2.1** | `treatment_setting_0_24_matrix_surv` | Set the percentage of initial treatment delivery appointments taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the total population starting treatment with Survodutide. The number of minutes are then applied to this activity. |
-| **Surv_2.2.2** | `appts_0_24_surv` | Set the number of appointments taking place over weeks 0-24.| Numeric value | N/A | N/A |
+| **Surv_2.2.2** | `appts_0_24_surv` | Set the number of appointments taking place over weeks 0-24.| Numeric value | Limited to maximum of 1 appointment per week | Used with **Sem_2.2.1** and **Sem_2.1** to determine the number of appointments taking place in each setting. |
 
 
 ## Week 0-71: Monitoring and Dosage Maintenance
 
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Surv_3.1.1** | `monitor_tests_0_71_num_surv` | Set the number of monitoring tests taking place over weeks 0-71.| Numeric value | N/A | N/A |
-| **Surv_3.1.2** | `monitor_tests_0_71_elf_prop_surv` | The percentage of monitoring tests taking place over weeks 0-71 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Surv_3.1.3** | `monitor_tests_0_71_bio_prop_surv` | The percentage of monitoring tests taking place over weeks 0-71 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Surv_3.1.1** | `monitor_tests_0_71_num_surv` | Set the number of monitoring tests taking place over weeks 0-71.| Numeric value | None | Applied to population of patients starting treatment with retention rates applied (**Surv_2.1** and **Surv_3.2**) |
+| **Surv_3.1.2** | `monitor_tests_0_71_elf_prop_surv` | The percentage of monitoring tests taking place over weeks 0-71 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
+| **Surv_3.1.3** | `monitor_tests_0_71_bio_prop_surv` | The percentage of monitoring tests taking place over weeks 0-71 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
 | **Surv_3.2** | `retention_25_71_surv` | Percentage of patients who were receiving treatment at week 25 who remain on treatment at week 71. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 25. |
 | **Surv_3.3** | `treatment_setting_25_71_matrix_surv` | Set the percentage of treatment delivery appointments taking place over weeks 25-71 across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population on treatment with Survodutide at week 25. The number of minutes are then applied to this activity. |
 
@@ -295,25 +295,25 @@ The following assumptions relate to activities for patients on the Survodutide t
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
 | **Surv_5.1** | `retention_73_103_surv` | Percentage of patients on treatment at week 73 who remain on treatment at week 103. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients receiving treatment at week 73. |
 | **Surv_5.2.1** | `treatment_setting_73_103_matrix_surv` | Set the percentage of treatment delivery appointments over weeks 73-103 taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Survodutide at week 73. The number of minutes are then applied to this activity. |
-| **Surv_5.2.2** | `appts_73_103_surv` | Set the number of appointments taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Surv_5.3.1** | `monitoring_tests_number_73_103_surv` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Surv_5.3.2** | `monitoring_tests_73_103_elf_surv` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Surv_5.3.3** | `monitoring_tests_73_103_biomarkers_surv` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Surv_5.2.2** | `appts_73_103_surv` | Set the number of appointments taking place over weeks 73-103.| Numeric value | None | Applied to population of patients continuing treatment at week 73 and **Surv_5.1** |
+| **Surv_5.3.1** | `monitoring_tests_number_73_103_surv` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | None | None |
+| **Surv_5.3.2** | `monitoring_tests_73_103_elf_surv` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Surv_5.3.1**) multiplied by number of patients continuing treatment |
+| **Surv_5.3.3** | `monitoring_tests_73_103_biomarkers_surv` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Surv_5.3.1**) multiplied by number of patients continuing treatment |
 
 
 
 ## Week 104+: Ongoing Treatment 
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Surv_6.1** | `ongoing_period_surv` | Set the number of weeks treatment is continued.| Numeric value | N/A | N/A |
+| **Surv_6.1** | `ongoing_period_surv` | Set the number of weeks treatment is continued.| Numeric value | Limited to 208 weeks (4 years) | Used alongside **Surv_6.2** to determine number of patients still receiving treatment for the ongoing treatment period. |
 | **Surv_6.2** | `retention_end_surv` | Percentage of patients who were receiving treatment at week 103 who remain on treatment at the end of the model. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 103. |
 | **Surv_6.3.1** | `survodutide_ongoing_delivery_setting` | Set the percentage of treatment delivery appointments from week 104 to end point taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Survodutide at week 103. The number of minutes are then applied to this activity. |
-| **Surv_6.3.2** | `appts_ongoing_surv` | Set the number of appointments taking place from week 104 to end point.| Numeric value | N/A | N/A |
-| **Surv_6.4** | `ongoing_annual_prop_elf_surv` | The percentage of annual assessments for Survodutide including an ELF test. | Percentage | Limited from 0 to 100% | N/A |
-| **Surv_6.5** | `ongoing_annual_prop_biomarkers_surv` | The percentage of annual assessments for Survodutide including biomarkers. | Percentage | Limited from 0 to 100% | N/A |
-| **Surv_6.6** | `ongoing_annual_prop_fibro_surv` | The percentage of annual assessments for Survodutide including FibroScan. | Percentage | Limited from 0 to 100% | N/A |
+| **Surv_6.3.2** | `appts_ongoing_surv` | Set the number of appointments taking place from week 104 to end point.| Numeric value | None | Applied with **Surv_6.3.1** and diagnostics to determine number of annual appointments post week 104. |
+| **Surv_6.4** | `ongoing_annual_prop_elf_surv` | The percentage of annual assessments for Survodutide including an ELF test. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Surv_6.5** | `ongoing_annual_prop_biomarkers_surv` | The percentage of annual assessments for Survodutide including biomarkers. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Surv_6.6** | `ongoing_annual_prop_fibro_surv` | The percentage of annual assessments for Survodutide including FibroScan. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
 
-
+<br/>
 
 # Resmetirom Pathway Activity Assumptions
 
@@ -339,11 +339,11 @@ The following assumptions relate to activities for patients on the Resmetirom tr
 | **Res_2.1** | `dosage_0_52_res` | Percentage of patients starting treatment who are under 100kg. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patient starting treatment. |
 | **Res_2.2** | `retention_res_0_52` | Percentage of patients who started treatment who remain on treatment at 52 weeks. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
 | **Res_2.3.1** | `treatment_setting_0_52_matrix_res` | Set the percentage of initial treatment delivery appointments taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the total population starting treatment with Resmetirom. The number of minutes are then applied to this activity. |
-| **Res_2.3.2** | `appts_0_52_res` | Set the number of appointments taking place over weeks 0-52.| Numeric value | N/A | N/A |
-| **Res_2.4.1** | `monitor_tests_0_52_res` | Set the number of monitoring tests taking place over weeks 0-52.| Numeric value | N/A | N/A |
-| **Res_2.4.2** | `monitor_tests_0_52_elf_res` | The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Res_2.4.3** | `monitor_tests_0_52_biomarkers_res` | The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
-| **Res_2.4.4** | `monitor_tests_0_52_fibro_res` | The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans. | Percentage | Limited from 0 to 100% | N/A |
+| **Res_2.3.2** | `appts_0_52_res` | Set the number of appointments taking place over weeks 0-52.| Numeric value | Limited to maximum of 1 per week | Applied to population of patients starting treatment with retention rates applied (**Res_2.2**) |
+| **Res_2.4.1** | `monitor_tests_0_52_res` | Set the number of monitoring tests taking place over weeks 0-52.| Numeric value | None | Applied to population of patients starting treatment with retention rates applied (**Res_2.2**) |
+| **Res_2.4.2** | `monitor_tests_0_52_elf_res` | The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
+| **Res_2.4.3** | `monitor_tests_0_52_biomarkers_res` | The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
+| **Res_2.4.4** | `monitor_tests_0_52_fibro_res` | The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
 
 
 ## Weeks 52-71: Efficacy and Continuation
@@ -357,7 +357,7 @@ The following assumptions relate to activities for patients on the Resmetirom tr
 | **Res_3.5.2** | `continuation_52_delivery_setting_res` | Set the percentage of continuation decision appointments taking place across the six locations. Also set the number of minutes for each assessment | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population remaining on treatment at week 52. The number of minutes are then applied to this activity. |
 | **Res_3.6** | `retention_res_52_71` | Percentage of patients who continued treatment at week 52 who remain on treatment at week 71. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients who continued treatment at week 52. |
 | **Res_3.7.1** | `treatment_setting_52_71_matrix_res` | Set the percentage of treatment delivery appointments taking place across the six locations over weeks 52-71. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the number of patients who continued treatment at week 52. The number of minutes are then applied to this activity. |
-| **Res_3.7.2** | `appts_52_71_res` | Set the number of appointments taking place over weeks 52-71.| Numeric value | N/A | N/A |
+| **Res_3.7.2** | `appts_52_71_res` | Set the number of appointments taking place over weeks 52-71.| Numeric value | Limited to max of 1 appointment per week | Used with **Res_3.6** to determine the number of appointments taking place in each setting |
 
 ## Week 72: Continuation Decision
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
@@ -374,21 +374,21 @@ The following assumptions relate to activities for patients on the Resmetirom tr
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
 | **Res_5.1** | `retention_73_103_res` | Percentage of patients on treatment at week 73 who remain on treatment at week 103. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients receiving treatment at week 73. |
 | **Res_5.2.1** | `treatment_setting_73_103_matrix_res` | Set the percentage of treatment delivery appointments over weeks 73-103 taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Resmetirom at week 73. The number of minutes are then applied to this activity. |
-| **Res_5.2.2** | `appts_73_103_res` | Set the number of appointments taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Res_5.3.1** | `monitoring_tests_number_73_103_res` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Res_5.3.2** | `monitoring_tests_73_103_elf_res` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Res_5.3.3** | `monitoring_tests_73_103_biomarkers_res` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Res_5.2.2** | `appts_73_103_res` | Set the number of appointments taking place over weeks 73-103.| Numeric value | Limited to max of 1 appointment per week | Used with **Res_5.2.1** to determine the number of appointments taking place in each setting |
+| **Res_5.3.1** | `monitoring_tests_number_73_103_res` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | None | None |
+| **Res_5.3.2** | `monitoring_tests_73_103_elf_res` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Res_5.3.1**) multiplied by number of patients continuing treatment |
+| **Res_5.3.3** | `monitoring_tests_73_103_biomarkers_res` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Res_5.3.1**) multiplied by number of patients continuing treatment |
 
 ## Week 104+: Ongoing Treatment 
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Res_6.1** | `ongoing_period_res` | Set the number of weeks treatment is continued.| Numeric value | N/A | N/A |
+| **Res_6.1** | `ongoing_period_res` | Set the number of weeks treatment is continued.| Numeric value | Limited to 208 weeks (4 years) | Used alongside **Res_6.2** to determine number of patients still receiving treatment for the ongoing treatment period. |
 | **Res_6.2** | `retention_end_res` | Percentage of patients who were receiving treatment at week 103 who remain on treatment at the end of the model. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 103. |
 | **Res_6.3.1** | `resmetirom_ongoing_delivery_setting` | Set the percentage of treatment delivery appointments from week 104 to end point taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Resmetirom at week 103. The number of minutes are then applied to this activity. |
-| **Res_6.3.2** | `appts_ongoing_res` | Set the number of appointments taking place from week 104 to end point.| Numeric value | N/A | N/A |
-| **Res_6.4** | `ongoing_annual_prop_elf_res` | The percentage of annual assessments for Resmetirom including an ELF test. | Percentage | Limited from 0 to 100% | N/A |
-| **Res_6.5** | `ongoing_annual_prop_biomarkers_res` | The percentage of annual assessments for Resmetirom including biomarkers. | Percentage | Limited from 0 to 100% | N/A |
-| **Res_6.6** | `ongoing_annual_prop_fibro_res` | The percentage of annual assessments for Resmetirom including FibroScan. | Percentage | Limited from 0 to 100% | N/A |
+| **Res_6.3.2** | `appts_ongoing_res` | Set the number of appointments taking place from week 104 to end point.| Numeric value | None | Applied with **Res_6.3.1** and diagnostics to determine number of annual appointments post week 104. |
+| **Res_6.4** | `ongoing_annual_prop_elf_res` | The percentage of annual assessments for Resmetirom including an ELF test. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Res_6.5** | `ongoing_annual_prop_biomarkers_res` | The percentage of annual assessments for Resmetirom including biomarkers. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Res_6.6** | `ongoing_annual_prop_fibro_res` | The percentage of annual assessments for Resmetirom including FibroScan. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
 
 
 
@@ -416,11 +416,11 @@ The following assumptions relate to activities for patients on the Lanifibranor 
 | **Lan_2.1** | `dosage_0_52_lan` | Percentage of patients starting treatment on 1200mg of Lanifibranor. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patient starting treatment. |
 | **Lan_2.2** | `retention_lan_0_52` | Percentage of patients who started treatment who remain on treatment at 52 weeks. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients starting treatment. |
 | **Lan_2.3.1** | `treatment_setting_0_52_matrix_lan` | Set the percentage of initial treatment delivery appointments taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the total population starting treatment with Lanifibranor. The number of minutes are then applied to this activity. |
-| **Lan_2.3.2** | `appts_0_52_lan` | Set the number of appointments taking place over weeks 0-52.| Numeric value | N/A | N/A |
-| **Lan_2.4.1** | `monitor_tests_0_52_lan` | Set the number of monitoring tests taking place over weeks 0-52.| Numeric value | N/A | N/A |
-| **Lan_2.4.2** | `monitor_tests_0_52_elf_lan` | The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Lan_2.4.3** | `monitor_tests_0_52_biomarkers_lan` | The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
-| **Lan_2.4.4** | `monitor_tests_0_52_fibro_lan` | The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans. | Percentage | Limited from 0 to 100% | N/A |
+| **Lan_2.3.2** | `appts_0_52_lan` | Set the number of appointments taking place over weeks 0-52.| Numeric value | Limited to maximum of 1 per week | Applied to population of patients starting treatment with retention rates applied (**Lan_2.2**) |
+| **Lan_2.4.1** | `monitor_tests_0_52_lan` | Set the number of monitoring tests taking place over weeks 0-52.| Numeric value | None | Applied to population of patients starting treatment with retention rates applied (**Lan_2.2**) |
+| **Lan_2.4.2** | `monitor_tests_0_52_elf_lan` | The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
+| **Lan_2.4.3** | `monitor_tests_0_52_biomarkers_lan` | The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
+| **Lan_2.4.4** | `monitor_tests_0_52_fibro_lan` | The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans. | Percentage | Limited from 0 to 100% | Applied to total volume of monitoring appointments |
 
 
 ## Weeks 52-71: Efficacy and Continuation
@@ -434,7 +434,7 @@ The following assumptions relate to activities for patients on the Lanifibranor 
 | **Lan_3.5.2** | `continuation_52_delivery_setting_lan` | Set the percentage of continuation decision appointments taking place across the six locations. Also set the number of minutes for each assessment | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population remaining on treatment at week 52. The number of minutes are then applied to this activity. |
 | **Lan_3.6** | `retention_lan_52_71` | Percentage of patients who continued treatment at week 52 who remain on treatment at week 71. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients who continued treatment at week 52. |
 | **Lan_3.7.1** | `treatment_setting_52_71_matrix_lan` | Set the percentage of treatment delivery appointments taking place across the six locations over weeks 52-71. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the number of patients who continued treatment at week 52. The number of minutes are then applied to this activity. |
-| **Lan_3.7.2** | `appts_52_71_lan` | Set the number of appointments taking place over weeks 52-71.| Numeric value | N/A | N/A |
+| **Lan_3.7.2** | `appts_52_71_lan` | Set the number of appointments taking place over weeks 52-71.| Numeric value | Limited to max of 1 appointment per week | Used with **Lan_3.6** to determine the number of appointments taking place in each setting |
 
 ## Week 72: Continuation Decision
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
@@ -451,20 +451,18 @@ The following assumptions relate to activities for patients on the Lanifibranor 
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
 | **Lan_5.1** | `retention_73_103_lan` | Percentage of patients on treatment at week 73 who remain on treatment at week 103. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients receiving treatment at week 73. |
 | **Lan_5.2.1** | `treatment_setting_73_103_matrix_lan` | Set the percentage of treatment delivery appointments over weeks 73-103 taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Lanifibranor at week 73. The number of minutes are then applied to this activity. |
-| **Lan_5.2.2** | `appts_73_103_lan` | Set the number of appointments taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Lan_5.3.1** | `monitoring_tests_number_73_103_lan` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | N/A | N/A |
-| **Lan_5.3.2** | `monitoring_tests_73_103_elf_lan` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | N/A |
-| **Lan_5.3.3** | `monitoring_tests_73_103_biomarkers_lan` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | N/A |
+| **Lan_5.2.2** | `appts_73_103_lan` | Set the number of appointments taking place over weeks 73-103.| Numeric value | Limited to max of 1 appointment per week | Used with **Lan_5.2.1** to determine the number of appointments taking place in each setting |
+| **Lan_5.3.1** | `monitoring_tests_number_73_103_lan` | Set the number of monitoring tests taking place over weeks 73-103.| Numeric value | None | None |
+| **Lan_5.3.2** | `monitoring_tests_73_103_elf_lan` | The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Lan_5.3.1**) multiplied by number of patients continuing treatment |
+| **Lan_5.3.3** | `monitoring_tests_73_103_biomarkers_lan` | The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers. | Percentage | Limited from 0 to 100% | Applied to the number of monitoring tests (**Lan_5.3.1**) multiplied by number of patients continuing treatment |
 
 ## Week 104+: Ongoing Treatment 
 | Input ID   | ID in Codebase | Description                     | Format    | Interactions or Dependencies | Calculations    |
 |------------|----------------|---------------------------------|-----------|------------------------------|----------------------|
-| **Lan_6.1** | `ongoing_period_lan` | Set the number of weeks treatment is continued.| Numeric value | N/A | N/A |
+| **Lan_6.1** | `ongoing_period_lan` | Set the number of weeks treatment is continued.| Numeric value | Limited to 208 weeks (4 years) | Used alongside **Lan_6.2** to determine number of patients still receiving treatment for the ongoing treatment period. |
 | **Lan_6.2** | `retention_end_lan` | Percentage of patients who were receiving treatment at week 103 who remain on treatment at the end of the model. | Percentage | Limited to 0 and 100% | This percentage is applied to the number of patients on treatment at week 103. |
 | **Lan_6.3.1** | `lanifibranor_ongoing_delivery_setting` | Set the percentage of treatment delivery appointments from week 104 to end point taking place across the six locations. Also set the number of minutes for each treatment appointment. | Percentage for activity and numeric value for number of minutes | The sum of the percentages across each of the six settings should sum to 100% | The percentages are applied to the population receiving treatment with Lanifibranor at week 103. The number of minutes are then applied to this activity. |
-| **Lan_6.3.2** | `appts_ongoing_lan` | Set the number of appointments taking place from week 104 to end point.| Numeric value | N/A | N/A |
-| **Lan_6.4** | `ongoing_annual_prop_elf_lan` | The percentage of annual assessments for Lanifibranor including an ELF test. | Percentage | Limited from 0 to 100% | N/A |
-| **Lan_6.5** | `ongoing_annual_prop_biomarkers_lan` | The percentage of annual assessments for Lanifibranor including biomarkers. | Percentage | Limited from 0 to 100% | N/A |
-| **Lan_6.6** | `ongoing_annual_prop_fibro_lan` | The percentage of annual assessments for Lanifibranor including FibroScan. | Percentage | Limited from 0 to 100% | N/A |
-
-##
+| **Lan_6.3.2** | `appts_ongoing_lan` | Set the number of appointments taking place from week 104 to end point.| Numeric value | None | Applied with **Lan_6.3.1** and diagnostics to determine number of annual appointments post week 104. |
+| **Lan_6.4** | `ongoing_annual_prop_elf_lan` | The percentage of annual assessments for Lanifibranor including an ELF test. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Lan_6.5** | `ongoing_annual_prop_biomarkers_lan` | The percentage of annual assessments for Lanifibranor including biomarkers. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |
+| **Lan_6.6** | `ongoing_annual_prop_fibro_lan` | The percentage of annual assessments for Lanifibranor including FibroScan. | Percentage | Limited from 0 to 100% | Applied to number of annual appointments |

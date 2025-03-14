@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andy WilsonNHS Transformation Unit">
+<meta name="author" content="Andy WilsonMartha HoltNHS Transformation Unit">
 <meta name="dcterms.date" content="2025-03-10">
 
 <title>MASLD Treatment Model Assumptions Guidance</title>
@@ -3159,7 +3159,6 @@ margin-bottom: 20px;
   <li><a href="#week-72-continuation-decision-3" id="toc-week-72-continuation-decision-3" class="nav-link" data-scroll-target="#week-72-continuation-decision-3"><span class="header-section-number">7.4</span> Week 72: Continuation Decision</a></li>
   <li><a href="#week-73-103-dosage-maintenance-2" id="toc-week-73-103-dosage-maintenance-2" class="nav-link" data-scroll-target="#week-73-103-dosage-maintenance-2"><span class="header-section-number">7.5</span> Week 73-103: Dosage Maintenance</a></li>
   <li><a href="#week-104-ongoing-treatment-3" id="toc-week-104-ongoing-treatment-3" class="nav-link" data-scroll-target="#week-104-ongoing-treatment-3"><span class="header-section-number">7.6</span> Week 104+: Ongoing Treatment</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">7.7</span> </a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3180,7 +3179,7 @@ margin-bottom: 20px;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p><a href="https://github.com/ASW-Analyst/">Andy Wilson</a><br><a href="https://transformationunit.nhs.uk/">NHS Transformation Unit</a> </p>
+             <p><a href="https://github.com/ASW-Analyst/">Andy Wilson</a><br><a href="https://github.com/marthaholt1">Martha Holt</a><br><a href="https://transformationunit.nhs.uk/">NHS Transformation Unit</a> </p>
           </div>
   </div>
     
@@ -3959,8 +3958,8 @@ margin-bottom: 20px;
 <td><code>appts_0_16_sem</code></td>
 <td>Set the number of appointments taking place over weeks 0-16.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to maximum of 1 appointment per week</td>
+<td>Used with <strong>Sem_2.2.1</strong> and <strong>Sem_2.1</strong> to determine the number of appointments taking place in each setting.</td>
 </tr>
 </tbody>
 </table>
@@ -3992,8 +3991,8 @@ margin-bottom: 20px;
 <td><code>monitoring_tests_number_sem</code></td>
 <td>Set the number of monitoring tests taking place over weeks 4-71.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied to population of patients starting treatment with retention rates applied (<strong>Sem_2.1</strong> and <strong>Sem_3.2</strong>)</td>
 </tr>
 <tr class="even">
 <td><strong>Sem_3.1.2</strong></td>
@@ -4001,7 +4000,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 4-71 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Sem_3.1.3</strong></td>
@@ -4009,7 +4008,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 4-71 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Sem_3.2</strong></td>
@@ -4032,8 +4031,8 @@ margin-bottom: 20px;
 <td><code>appts_20_71_sem</code></td>
 <td>Set the number of appointments taking place over weeks 20-71.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to max of 1 appointment per week</td>
+<td>Used with <strong>Sem_3.3</strong> and <strong>Sem_3.2</strong> to determine the number of appointments taking place in each setting.</td>
 </tr>
 </tbody>
 </table>
@@ -4154,16 +4153,16 @@ margin-bottom: 20px;
 <td><code>appts_73_103_sem</code></td>
 <td>Set the number of appointments taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied to population of patients continuing treatment at week 73 and <strong>Sem_5.1</strong></td>
 </tr>
 <tr class="even">
 <td><strong>Sem_5.3.1</strong></td>
 <td><code>monitoring_tests_number_73_103_sem</code></td>
 <td>Set the number of monitoring tests taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>None</td>
 </tr>
 <tr class="odd">
 <td><strong>Sem_5.3.2</strong></td>
@@ -4171,7 +4170,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Sem_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 <tr class="even">
 <td><strong>Sem_5.3.3</strong></td>
@@ -4179,7 +4178,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Sem_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 </tbody>
 </table>
@@ -4211,8 +4210,8 @@ margin-bottom: 20px;
 <td><code>ongoing_period_sem</code></td>
 <td>Set the number of weeks treatment is continued.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to 208 weeks (4 years)</td>
+<td>Used alongside <strong>Sem_6.2</strong> to determine number of patients still receiving treatment for the ongoing treatment period.</td>
 </tr>
 <tr class="even">
 <td><strong>Sem_6.2</strong></td>
@@ -4235,8 +4234,8 @@ margin-bottom: 20px;
 <td><code>appts_ongoing_sem</code></td>
 <td>Set the number of appointments taking place from week 104 to end point.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied with <strong>Sem_6.3.1</strong> and diagnostics to determine number of annual appointments post week 104.</td>
 </tr>
 <tr class="odd">
 <td><strong>Sem_6.4</strong></td>
@@ -4244,7 +4243,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Semaglutide including an ELF test.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Sem_6.5</strong></td>
@@ -4252,7 +4251,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Semaglutide including biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Sem_6.6</strong></td>
@@ -4260,10 +4259,11 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Semaglutide including FibroScan.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </section>
 </section>
 <section id="survodutide-pathway-activity-assumptions" class="level1" data-number="5">
@@ -4386,8 +4386,8 @@ margin-bottom: 20px;
 <td><code>appts_0_24_surv</code></td>
 <td>Set the number of appointments taking place over weeks 0-24.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to maximum of 1 appointment per week</td>
+<td>Used with <strong>Sem_2.2.1</strong> and <strong>Sem_2.1</strong> to determine the number of appointments taking place in each setting.</td>
 </tr>
 </tbody>
 </table>
@@ -4419,8 +4419,8 @@ margin-bottom: 20px;
 <td><code>monitor_tests_0_71_num_surv</code></td>
 <td>Set the number of monitoring tests taking place over weeks 0-71.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied to population of patients starting treatment with retention rates applied (<strong>Surv_2.1</strong> and <strong>Surv_3.2</strong>)</td>
 </tr>
 <tr class="even">
 <td><strong>Surv_3.1.2</strong></td>
@@ -4428,7 +4428,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-71 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Surv_3.1.3</strong></td>
@@ -4436,7 +4436,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-71 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Surv_3.2</strong></td>
@@ -4573,16 +4573,16 @@ margin-bottom: 20px;
 <td><code>appts_73_103_surv</code></td>
 <td>Set the number of appointments taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied to population of patients continuing treatment at week 73 and <strong>Surv_5.1</strong></td>
 </tr>
 <tr class="even">
 <td><strong>Surv_5.3.1</strong></td>
 <td><code>monitoring_tests_number_73_103_surv</code></td>
 <td>Set the number of monitoring tests taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>None</td>
 </tr>
 <tr class="odd">
 <td><strong>Surv_5.3.2</strong></td>
@@ -4590,7 +4590,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Surv_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 <tr class="even">
 <td><strong>Surv_5.3.3</strong></td>
@@ -4598,7 +4598,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Surv_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 </tbody>
 </table>
@@ -4630,8 +4630,8 @@ margin-bottom: 20px;
 <td><code>ongoing_period_surv</code></td>
 <td>Set the number of weeks treatment is continued.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to 208 weeks (4 years)</td>
+<td>Used alongside <strong>Surv_6.2</strong> to determine number of patients still receiving treatment for the ongoing treatment period.</td>
 </tr>
 <tr class="even">
 <td><strong>Surv_6.2</strong></td>
@@ -4654,8 +4654,8 @@ margin-bottom: 20px;
 <td><code>appts_ongoing_surv</code></td>
 <td>Set the number of appointments taking place from week 104 to end point.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied with <strong>Surv_6.3.1</strong> and diagnostics to determine number of annual appointments post week 104.</td>
 </tr>
 <tr class="odd">
 <td><strong>Surv_6.4</strong></td>
@@ -4663,7 +4663,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Survodutide including an ELF test.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Surv_6.5</strong></td>
@@ -4671,7 +4671,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Survodutide including biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Surv_6.6</strong></td>
@@ -4679,10 +4679,11 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Survodutide including FibroScan.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </section>
 </section>
 <section id="resmetirom-pathway-activity-assumptions" class="level1" data-number="6">
@@ -4813,16 +4814,16 @@ margin-bottom: 20px;
 <td><code>appts_0_52_res</code></td>
 <td>Set the number of appointments taking place over weeks 0-52.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to maximum of 1 per week</td>
+<td>Applied to population of patients starting treatment with retention rates applied (<strong>Res_2.2</strong>)</td>
 </tr>
 <tr class="odd">
 <td><strong>Res_2.4.1</strong></td>
 <td><code>monitor_tests_0_52_res</code></td>
 <td>Set the number of monitoring tests taking place over weeks 0-52.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied to population of patients starting treatment with retention rates applied (<strong>Res_2.2</strong>)</td>
 </tr>
 <tr class="even">
 <td><strong>Res_2.4.2</strong></td>
@@ -4830,7 +4831,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Res_2.4.3</strong></td>
@@ -4838,7 +4839,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Res_2.4.4</strong></td>
@@ -4846,7 +4847,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 </tbody>
 </table>
@@ -4942,8 +4943,8 @@ margin-bottom: 20px;
 <td><code>appts_52_71_res</code></td>
 <td>Set the number of appointments taking place over weeks 52-71.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to max of 1 appointment per week</td>
+<td>Used with <strong>Res_3.6</strong> to determine the number of appointments taking place in each setting</td>
 </tr>
 </tbody>
 </table>
@@ -5064,16 +5065,16 @@ margin-bottom: 20px;
 <td><code>appts_73_103_res</code></td>
 <td>Set the number of appointments taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to max of 1 appointment per week</td>
+<td>Used with <strong>Res_5.2.1</strong> to determine the number of appointments taking place in each setting</td>
 </tr>
 <tr class="even">
 <td><strong>Res_5.3.1</strong></td>
 <td><code>monitoring_tests_number_73_103_res</code></td>
 <td>Set the number of monitoring tests taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>None</td>
 </tr>
 <tr class="odd">
 <td><strong>Res_5.3.2</strong></td>
@@ -5081,7 +5082,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Res_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 <tr class="even">
 <td><strong>Res_5.3.3</strong></td>
@@ -5089,7 +5090,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Res_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 </tbody>
 </table>
@@ -5121,8 +5122,8 @@ margin-bottom: 20px;
 <td><code>ongoing_period_res</code></td>
 <td>Set the number of weeks treatment is continued.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to 208 weeks (4 years)</td>
+<td>Used alongside <strong>Res_6.2</strong> to determine number of patients still receiving treatment for the ongoing treatment period.</td>
 </tr>
 <tr class="even">
 <td><strong>Res_6.2</strong></td>
@@ -5145,8 +5146,8 @@ margin-bottom: 20px;
 <td><code>appts_ongoing_res</code></td>
 <td>Set the number of appointments taking place from week 104 to end point.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied with <strong>Res_6.3.1</strong> and diagnostics to determine number of annual appointments post week 104.</td>
 </tr>
 <tr class="odd">
 <td><strong>Res_6.4</strong></td>
@@ -5154,7 +5155,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Resmetirom including an ELF test.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Res_6.5</strong></td>
@@ -5162,7 +5163,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Resmetirom including biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Res_6.6</strong></td>
@@ -5170,7 +5171,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Resmetirom including FibroScan.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 </tbody>
 </table>
@@ -5304,16 +5305,16 @@ margin-bottom: 20px;
 <td><code>appts_0_52_lan</code></td>
 <td>Set the number of appointments taking place over weeks 0-52.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to maximum of 1 per week</td>
+<td>Applied to population of patients starting treatment with retention rates applied (<strong>Lan_2.2</strong>)</td>
 </tr>
 <tr class="odd">
 <td><strong>Lan_2.4.1</strong></td>
 <td><code>monitor_tests_0_52_lan</code></td>
 <td>Set the number of monitoring tests taking place over weeks 0-52.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied to population of patients starting treatment with retention rates applied (<strong>Lan_2.2</strong>)</td>
 </tr>
 <tr class="even">
 <td><strong>Lan_2.4.2</strong></td>
@@ -5321,7 +5322,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-52 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Lan_2.4.3</strong></td>
@@ -5329,7 +5330,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-52 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Lan_2.4.4</strong></td>
@@ -5337,7 +5338,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 0-52 that are FibroScans.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to total volume of monitoring appointments</td>
 </tr>
 </tbody>
 </table>
@@ -5433,8 +5434,8 @@ margin-bottom: 20px;
 <td><code>appts_52_71_lan</code></td>
 <td>Set the number of appointments taking place over weeks 52-71.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to max of 1 appointment per week</td>
+<td>Used with <strong>Lan_3.6</strong> to determine the number of appointments taking place in each setting</td>
 </tr>
 </tbody>
 </table>
@@ -5555,16 +5556,16 @@ margin-bottom: 20px;
 <td><code>appts_73_103_lan</code></td>
 <td>Set the number of appointments taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to max of 1 appointment per week</td>
+<td>Used with <strong>Lan_5.2.1</strong> to determine the number of appointments taking place in each setting</td>
 </tr>
 <tr class="even">
 <td><strong>Lan_5.3.1</strong></td>
 <td><code>monitoring_tests_number_73_103_lan</code></td>
 <td>Set the number of monitoring tests taking place over weeks 73-103.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>None</td>
 </tr>
 <tr class="odd">
 <td><strong>Lan_5.3.2</strong></td>
@@ -5572,7 +5573,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are ELF tests.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Lan_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 <tr class="even">
 <td><strong>Lan_5.3.3</strong></td>
@@ -5580,7 +5581,7 @@ margin-bottom: 20px;
 <td>The percentage of monitoring tests taking place over weeks 73-103 that are biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to the number of monitoring tests (<strong>Lan_5.3.1</strong>) multiplied by number of patients continuing treatment</td>
 </tr>
 </tbody>
 </table>
@@ -5612,8 +5613,8 @@ margin-bottom: 20px;
 <td><code>ongoing_period_lan</code></td>
 <td>Set the number of weeks treatment is continued.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>Limited to 208 weeks (4 years)</td>
+<td>Used alongside <strong>Lan_6.2</strong> to determine number of patients still receiving treatment for the ongoing treatment period.</td>
 </tr>
 <tr class="even">
 <td><strong>Lan_6.2</strong></td>
@@ -5636,8 +5637,8 @@ margin-bottom: 20px;
 <td><code>appts_ongoing_lan</code></td>
 <td>Set the number of appointments taking place from week 104 to end point.</td>
 <td>Numeric value</td>
-<td>N/A</td>
-<td>N/A</td>
+<td>None</td>
+<td>Applied with <strong>Lan_6.3.1</strong> and diagnostics to determine number of annual appointments post week 104.</td>
 </tr>
 <tr class="odd">
 <td><strong>Lan_6.4</strong></td>
@@ -5645,7 +5646,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Lanifibranor including an ELF test.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="even">
 <td><strong>Lan_6.5</strong></td>
@@ -5653,7 +5654,7 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Lanifibranor including biomarkers.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 <tr class="odd">
 <td><strong>Lan_6.6</strong></td>
@@ -5661,13 +5662,10 @@ margin-bottom: 20px;
 <td>The percentage of annual assessments for Lanifibranor including FibroScan.</td>
 <td>Percentage</td>
 <td>Limited from 0 to 100%</td>
-<td>N/A</td>
+<td>Applied to number of annual appointments</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="section" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="section"><span class="header-section-number">7.7</span> </h2>
 </section>
 </section>
 
