@@ -1,0 +1,62 @@
+---
+title: "MASLD Treatment Model Quality Assurance Plan"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "03/03/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+# Purpose
+***
+The purpose of this Quality Assurance (QA) plan is to ensure the accuracy, reliability and functionality of the MASLD Treatments Model. The plan below outlines the different types of assurance and testing that will be undertaken on the model.
+
+<br/>
+
+# Code Review
+***
+The purpose of the code review is to identify errors or functional issues with the code that result in incorrect or unhelpful outputs of the model. The reviews will consider:
+
+* Review of code structure and relevant documentation.
+* Review that all inputs are correctly processed into the `server.R` script.
+* Check that any R package loaded into the app are required within the code.
+* Review of calculations used within the `server.R` script to ensure accuracy.
+
+<br/>
+
+# Functional Testing
+***
+The purpose of functional testing the model is to ensure that the app behaves as expected when interacted with and is easy to use. The testing will consider:
+
+* Check that all inputs function correctly and limitations applied correctly (i.e. can't take negative percentages).
+* Ensure that navigation of the app is correct and consistent.
+* Validate that model outputs are reactive to input changes.
+* Check spelling, grammar and general readability of text within the app.
+* Validate that all download buttons work correctly (i.e. correct inputs or outputs extracted, match what is in model)
+
+<br/>
+
+# External Validation of Calculations
+***
+The purpose of this external validation is to ensure that calculations undertaken outside of the model return the same outputs. This testing will consider:
+
+* Selection of random set of calculations to test across the pathway (including different treatments)
+* Computing the values that would be expected to be returned. For example:
+  * With `x` patients attending an efficacy assessment at 72 weeks for semaglutide;
+  * And `y%` of these undergoing the assessment with a secondary care hepatologist;
+  * And each appointment being `z` minutes;
+  * Do the volume of appointments and the cost of these match the model outputs?
+* Checking other calculations within the model such as summaries for all treatments equalling the sum of the four treatments.
+
+<br/>
+
+# Conclusion
+***
+This QA plan provides a summary of the process for ensuring that the MASLD Treatments Model is accurate and functional. The outputs of the QA undertaken for each of these steps will be logged.
