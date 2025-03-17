@@ -1,0 +1,50 @@
+---
+title: "MASLD Treatment Model Scope"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "01/27/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+# Purpose
+The purpose of this model is to provide a structured estimates for the number of patients, both diagnosed and undiagnosed, with Metabolic dysfunction-associated steatotic liver disease (MASLD) or Metabolic dysfunction-associated steatohepatitis (MASH) who are eligible for one of four new emerging treatment pathways. The modelling will need to be flexible to consider a range of different scenarios for the delivery of treatment and the populations involved. The outputs of the model will be used to inform decision-making by stakeholders at NHS England regarding the clinical activities required to deliver these treatments and the associated cost and resource implications. The four treatment pathways to model are:
+
+* Semaglutide
+* Survodutide
+* Resmetirom
+* Lanifibranor
+
+<br/>
+
+# Scope
+
+## Patient Eligibility
+
+* Identify the total number of patients diagnosed and undiagnosed with MASLD and MASH.
+* Determine the split of this population by fibrosis stage.
+* Account for patients receiving treatment already via another pathway (i.e. obesity or type 2 diabetes)
+* Apply an estimate of the percentage of eligible patients that will be invited to commence treatment.
+
+## Pathway Clinical Activities
+* Identify the additional clinical activities required as part of the treatment pathway.
+* This will include relevant diagnostic tests, monitoring and efficacy consultations.
+* Be amenable to modelling alternative methods for delivering the pathway (i.e. secondary care led, primary care involvement)
+
+## Cost Implications
+* Develop financial assumptions for costing each of these clinical activities.
+* Apply these costs to the additional clinical activities to determine the impact of each pathway.
+
+<br/>
+
+# Exclusions and Limitations
+* The model will not evaluate the long-term health outcomes or cost-effectiveness of the treatments.
+* The model will be based on the mapped treatment pathway for the four treatments so will not include future treatments.
+* The model will not consider transition between health states or fibrosis stage.
