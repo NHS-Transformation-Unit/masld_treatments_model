@@ -1,0 +1,32 @@
+---
+title: "MASLD Treatment Model Data Lineage"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "03/18/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+# Introduction
+***
+
+The purpose of this document is to provide a summary of the datasets used within the model, their lineage and to record any relevant comments about their application. It is important to note that the vast majority of assumptions in this model have been developed from literature reviews and clinical expertise in relation to the population and the implementation of treatment pathways. Therefore, there are very few datasets used in the model.
+
+<br/>
+
+# Data Lineage
+***
+
+| **QA ID**   | **Dataset Name**          | **Description**           |
+|-------------|---------------------------|---------------------------|
+| DS1         | [ONS Mid-Year Population Estimates](https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/estimatesofthepopulationforenglandandwales/mid20232023localauthorityboundarieseditionofthisdataset/mye23tablesew.xlsx) | Used within the model to determine the population of England for ages 18-75 as the starting population. |
+| DS2         | [National Diabetes Audit](https://digital.nhs.uk/data-and-information/publications/statistical/national-diabetes-audit) | Used to determine the number of patients living with diabetes. This is then used as the denominator to determine the estimated proportion of diabetes patients prescribed a GLP-1 agonist. |
+| DS3         | [ePACT2](https://www.nhsbsa.nhs.uk/access-our-data-products/epact2) | Used within the model to determine the number of diabetic patients prescribed a GLP-1 agonist. Then applied as the numerator to the population from **DS2**.|
+| DS4         | [National Cost Collection Data Publication](https://app.powerbi.com/view?r=eyJrIjoiZGQxYjNkOGUtOTIwMC00N2VjLWEyM2EtYjAzOGMwNWU5ODQ1IiwidCI6IjM3YzM1NGIyLTg1YjAtNDdmNS1iMjIyLTA3YjQ4ZDc3NGVlMyJ9) | Used within the model to determine the average cost of clinical activities such as a face to face consultation with a hepatologist. |
