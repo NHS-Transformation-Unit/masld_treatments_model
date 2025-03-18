@@ -1,0 +1,50 @@
+---
+title: "MASLD Treatment Model Quality Assurance Process"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "03/17/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+# Purpose
+***
+The purpose of this document is to provide a summary of the Quality Assurance (QA) processes and steps that have been undertaken in line with the QA Plan.
+
+# Code Review
+***
+| **Task**                | **Description of QA**                   | **By who**        | **Links**               |
+|-------------------------|-----------------------------------------|-------------------|-------------------------|
+| Review of code structure| Review of the structure of the `server.R` script to ensure that processes within the script are ordered correctly and broken down into relevant chunks. | Andy Wilson | N/A |
+| Review of inputs        | Review of the `ui.R` script to ensure that each input is included within the population, treatment implementation, specific pathway and finance assumptions tabs. Also check that the correct type of input has been used (i.e. slider, matrix etc.) | Andy Wilson | N/A |
+| Review of input load     | Review of the `server.R` script to ensure that all inputs are loaded into the relevant assumption parameters reactive list. Also check that each percentage input is divided by 100 when defined. | Andy Wilson | N/A |
+| Review of package dependencies | Review the packages used within the model to ensure that these are listed as dependencies. This was conducted with `renv::dependencies()` to ensure that these were captured within the `requirements/packages.R` script. Additionally checked in the development of the `running_posit_cloud.qmd` guidance. | Andy Wilson & Kira Maguire | [Posit Cloud Guidance](https://github.com/NHS-Transformation-Unit/masld_treatments_model/blob/main/documentation/guidance/assumptions_guidance.html) and [`32d30e6`](https://github.com/NHS-Transformation-Unit/masld_treatments_model/commit/32d30e69673b570c402423b562edb9d46c6f68f7). |
+| Review of calculations   | Review of calculations in `server.R` to check the logic. Review undertaken during development alongside later review of the code using Copilot to identify any incosistencies. | Andy Wilson | N/A |
+
+<br/>
+
+# Functional Testing
+***
+| **Task**                | **Description of QA**                   | **By who**        | **Links**               |
+|-------------------------|-----------------------------------------|-------------------|-------------------------|
+| Review of inputs to ensure consistency with pathways | Review of the pathways alongside the inputs to ensure that these are consistent. Also review undertaken to check that the values are appropriate (i.e. match the literature review and assumption development documentation or can't take impossible values) | Molly Glynn & Martha Holt | N/A |
+| Review of navigation | Review to check that navigation of the app is correct and consistent | Molly Glynn & Martha Holt | N/A |
+| Review of spelling, grammar and readability of text within the app | Thorough review of the documentation and supporting information within the app. Areas requiring additional clarity flagged and amended | Molly Glynn & Martha Holt | [`270021a`](https://github.com/NHS-Transformation-Unit/masld_treatments_model/commit/270021a4658fa800878cc4a25f08935125055f49) |
+| Review of functionality of download features | Checks of each of the download features for inputs and outputs to ensure that they download the correct dataset | Jason Carrigan | N/A |
+
+<br/>
+
+# External Validation of Calculations
+***
+| **Task**                | **Description of QA**                   | **By who**        | **Check**               |
+|-------------------------|-----------------------------------------|-------------------|-------------------------|
+| Review of fibrosis stage calculation | Apply prevalence and fibrosis stage calculations outside the model | Jason Carrigan & Andy Wilson | Please see `qa_evidence_external_calcs.xlsx` for evidence of manual checks |
+| Review of treatment populations | Apply prevalence and fibrosis stage calculations outside the model | Jason Carrigan & Andy Wilson | Please see `qa_evidence_external_calcs.xlsx` for evidence of manual checks |
+| Review of semaglutide and resmetirom pathway activities | Apply prevalence and fibrosis stage calculations outside the model | Jason Carrigan & Andy Wilson | Please see `qa_evidence_external_calcs.xlsx` for evidence of manual checks |

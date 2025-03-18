@@ -934,7 +934,7 @@ ui <- fluidPage(
                              value = 4.5,
                              min = 0,
                              max = 100,
-                             step = 1,
+                             step = 0.5,
                              post = "%"),
                  sliderInput("mash_prev_tol",
                              "Set MASH Prevalence tolerance:",
