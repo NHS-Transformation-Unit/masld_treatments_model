@@ -1,0 +1,122 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.0.11">
+  <diagram name="Page-1" id="AfZEm4oeW3DWW0ptVHE7">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-19" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="100" y="30" width="1550" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="765" y="450" as="sourcePoint" />
+            <mxPoint x="1115" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-18" value="supply input parameters to server for calculation" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4JUsV28jwXVFUSFBbsHR-14">
+          <mxGeometry x="-0.2629" y="2" relative="1" as="geometry">
+            <mxPoint x="26" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="430" />
+              <mxPoint x="345" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="430" />
+              <mxPoint x="855" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="430" />
+              <mxPoint x="1025" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="430" />
+              <mxPoint x="1195" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="430" />
+              <mxPoint x="1365" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-1" target="4JUsV28jwXVFUSFBbsHR-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="430" />
+              <mxPoint x="1535" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-1" value="&lt;b&gt;ui.R&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Defines model structure within app&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- defines input parameters&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- sets navigation structure&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- sets location of outputs created in server.R&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="605" y="450" width="160" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-3" value="Introduction" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-4" value="Population Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="290" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-5" value="Treatment Implementation" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="460" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-6" value="Semaglutide Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="630" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-7" value="Survodutide Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-8" value="Resmetirom Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="970" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-9" value="Lanifibranor Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1140" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-10" value="Financial Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1310" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-11" value="Model Outputs - Activity &amp;amp; Costs" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1480" y="80" width="110" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-12" target="4JUsV28jwXVFUSFBbsHR-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-17" value="Send outputs to ui for rendering" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4JUsV28jwXVFUSFBbsHR-16">
+          <mxGeometry x="0.1086" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-12" value="&lt;b&gt;server.R&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Load input parameters set in model&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Calculate population metrics to identify those eligible for treatment&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Apply treatment implementation assumptions&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Apply assumptions for each pathway to model patients undergoing treatment.&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Calculate activities, diagnostics and costs&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1115" y="450" width="160" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-20" value="MASLD Treatment Model Shiny App" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="170" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
