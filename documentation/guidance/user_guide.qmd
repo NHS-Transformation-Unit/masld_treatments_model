@@ -1,0 +1,144 @@
+---
+title: "MASLD Treatment Model Guidance: User Guide"
+author: "<a href='https://github.com/ASW-Analyst/'>Andy Wilson</a><br><a href='https://transformationunit.nhs.uk/'>NHS Transformation Unit</a>"
+date: "03/21/2025"
+date-format: "DD MMMM YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    self-contained: true
+    css: ../../src/config/nhse_theme.css
+    number-sections: true
+
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  out.width = '100%'
+)
+
+library(here)
+
+```
+
+# Background
+***
+
+The purpose of this documentation is to provided users of the **MASLD Treatment Model** guidance on how to navigate and interact with the model. This model has been developed using the R programming language to create a Shiny App that enables a user to create a range of scenarios for how the emerging treatments could be implemented. There is additional documentation on how assumptions within the model have been developed and how to run the model using Posit Cloud. This documentation is available within the GitHub repository that hosts the codebase for creating the model.
+
+<br/>
+
+# Introduction
+***
+
+The Shiny App consists of several pages that you can navigate between to set different assumptions and view the outputs of the model. When you first launch the app you will be taken to the **Introduction** page. This provides information how how the app is structured, basic instructions on using the model and links to relevant documentation.
+
+![Introduction Tab](images/ug_load.png)
+
+
+Using the tabs, you can switch between different information such as the *Assumptions Guidance* tab:
+
+![Assumptions Guidance](images/ug_ag.png)
+
+<br/>
+
+# Population Assumptions
+***
+
+In this section you can set the population based assumptions within the model. These cover areas such as:
+
+* Prevalence within the population of MASLD and MASH
+* Split of the MASH population by fibrosis stage
+* Prevalence of co-morbidities (Type 2 Diabetes and Obesity)
+* Diagnosis rates by fibrosis stage
+
+The assumptions are contained in the sidebar panel to the left. In the main panel on the right hand side, the outputs of these assumptions show these different populations. These are shown in graphical format as histograms showing each of the 100 model simulations or in table format. Changing the assumptions in the sidebar panel will recalculate the values and these will refresh the relevant charts and tables.
+
+![Population Assumptions Tab](images/ug_pop.png)
+
+These assumptions can be amended using the sliders to adjust the percentages. The default values are based on the national scenario models.
+
+![Input Slider](images/ug_pop_slider.png)
+
+<br/>
+
+# Treatment Implementation
+***
+
+In this section of the model you can set your assumptions about how many patients you plan to treat. Applying the assumptions in the *Population Assumptions* section determines the number of patients diagnosed by fibrosis stage. You can now apply a percentage to each of these cohorts for the number being treated across each pathway. You can switch between the different pathways to set these percentages. As you change the percentages, the table in the main panel will update to show the number of patients that would be receiving treatment for each fibrosis stage and in total.
+
+![Treatment Implementation](images/ug_ti_rates.png)
+
+::: {.callout-warning}
+The percentage assumptions are applied for each treatment pathway. Therefore, a total for any fibrosis stage across the four treatments over 100% will mean that some patients are being treated with multiple treatments. This scenario may be one that you wish to model but otherwise ensure that you aren't treating patients more than once.
+
+:::
+
+You can view the total number of patients then receiving treatment across any of the four pathways via the *All Treatments* tab:
+
+![All Treatments](images/ug_ti_all.png)
+<br/>
+
+# Pathway Activity Assumptions
+The next four tabs enable you to set the assumptions for how each of the four treatment pathways will be implemented. There is a separate tab for each of the treatments. These assumptions include issues such as:
+
+* The proportion of patients having an initial assessment with a GP
+* The proportion of patients who are continued on treatment at the efficacy assessment
+* The number of diagnostic monitoring appointments during the initial treatment window
+
+![Resmetirom Assumptions](images/ug_res_pathway.png)
+
+These assumptions can be changed based on how the pathway will be implemented in your scenario.
+
+::: {.callout-caution}
+For the assumptions tables on the proportion of patients who are seen by the six different roles ensure that the total is equal to 100.
+
+:::
+
+As you develop the assumptions you can also refer back to the pathway by switching to the *Pathway Map* tab:
+
+![Resmetirom Pathway Map](images/ug_pathway_map.png)
+
+<br/>
+
+# Financial Assumptions
+***
+
+Once you have set the pathway assumptions where necessary, the final stage is to input the financial assumptions. These are used to provide estimates of the cost of diagnostic investigations and appointments.
+
+![Financial Assumptions](images/ug_fin_assumptions.png)
+<br/>
+
+# Model Outputs - Activity and Costs
+***
+
+Once you are satisfied with all of the assumptions being applied in the model, you can review the model outputs. These are located within the *Model Outputs - Activity and Costs* tab. Within this tab there are summaries and data tables showing the activities and costs associated with each stage of the pathway. The first section provides a summary of the number of patients starting treatment, completing the pathway and the costs for each stage.
+
+![Model Outputs](images/ug_model_outputs.png)
+
+
+More detail is available on specific sections of the pathway, for example *Continuation Decision Appointments*:
+
+![Continuation Decision Appointments](images/ug_cont_res.png)
+
+You can switch between the different pathway tabs to see the associated activities and costs for that treatment pathway. The *All Treatments* tabs show the total of each of the four pathways.
+
+<br/>
+
+# Exporting from the Model
+***
+
+You can export individual results and assumptions that you have applied from the model. For exporting the assumptions, there is a button on each assumptions page that enables you to export these as a `csv` file. 
+
+![Download Assumptions Button](images/ug_assumptions_download.png)
+
+The data tables used throughout the assumptions and outputs tabs can be downloaded as a `csv` using this button:
+
+![Download Data Table Button](images/ug_dt_download.png)
+
+
