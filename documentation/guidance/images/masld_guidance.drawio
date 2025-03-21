@@ -78,28 +78,28 @@
         <mxCell id="4JUsV28jwXVFUSFBbsHR-3" value="Introduction" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="120" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-4" value="Population Assumptions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-4" value="Population Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="290" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-5" value="Treatment Implementation" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-5" value="Treatment Implementation" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="460" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-6" value="Semaglutide Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-6" value="Semaglutide Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="630" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-7" value="Survodutide Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-7" value="Survodutide Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="800" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-8" value="Resmetirom Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-8" value="Resmetirom Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="970" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-9" value="Lanifibranor Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-9" value="Lanifibranor Pathway Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="1140" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-10" value="Financial Assumptions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-10" value="Financial Assumptions" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="1310" y="80" width="110" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="4JUsV28jwXVFUSFBbsHR-11" value="Model Outputs - Activity &amp;amp; Costs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="4JUsV28jwXVFUSFBbsHR-11" value="Model Outputs - Activity &amp;amp; Costs" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="1480" y="80" width="110" height="150" as="geometry" />
         </mxCell>
         <mxCell id="4JUsV28jwXVFUSFBbsHR-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="4JUsV28jwXVFUSFBbsHR-12" target="4JUsV28jwXVFUSFBbsHR-1">
