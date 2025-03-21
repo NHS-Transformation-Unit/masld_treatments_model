@@ -29,10 +29,11 @@ The current structure of the repository is detailed below:
     ├───references
     └───specification
 ├───images
-└───src
+├───src
     └───config
     └───modules
     └───requirements
+└───www
     
 ```
 
@@ -49,6 +50,7 @@ The current structure of the repository is detailed below:
   - `config`: Directory contains configuration files for outputs such as css themes.
   - `modules`: Contains the two files for the shiny app. `server.R` for the model logic and `ui.R` for the interface.
   - `requirements`: Contains `packages.R` which contains the model dependencies that need to be installed.
+- `www`: Contains images and files to be inlcuded in the app for deployment
 
 <br/>
 
@@ -60,6 +62,12 @@ git clone https://github.com/NHS-Transformation-Unit/masld_treatments_model.git
 ```
 
 <br/>
+
+## Model Diagram
+The diagram below shows the structure of the model in relation to the `ui.R` and `server.R` files:
+
+![Model Diagram](documentation/guidance/images/masld_guidance.drawio.svg)
+
 
 ## Contributors
 This repository has been created and developed by:
